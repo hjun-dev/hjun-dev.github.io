@@ -30,7 +30,6 @@ latest_posts:
 **Hello! I am Hyeongjun Lee.**
  
 My research focuses on optimal control theory, deep learning and reinforcement learning applications for aerospace systems.
-
 My goal is to bridge the gap between theoretical control guarantees and practical learning-based methods.
 
 ### **Research Interests**
@@ -64,7 +63,6 @@ My goal is to bridge the gap between theoretical control guarantees and practica
 ### **Contact**
 
 * **Email:** 12200617@inha.edu
-
 * **Address:** Inha Aerospace Campus, 36 Gaetbeol-ro, Yeonsu-gu, Incheon 21999, Republic of Korea
 
 ---

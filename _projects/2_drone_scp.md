@@ -3,7 +3,7 @@ layout: page
 title: Drone Obstacle Avoidance via SCP
 description: 6-DOF drone trajectory optimization using Sequential Convex Programming.
 img: assets/img/projects/SCP_result.png
-importance: 3
+importance: 2
 category: work
 github: https://github.com/hjun-dev/hjun-dev.github.io
 ---
