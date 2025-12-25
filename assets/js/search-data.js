@@ -416,26 +416,26 @@ ninja.data = [{
             },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
           title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
           description: "",
-          section: "News",},{id: "projects-model-based-intervention-learning-mile",
-          title: 'Model-based Intervention Learning (MILE)',
-          description: "Addressing action delay in RL environments (LunarLander &amp; BipedalWalker).",
+          section: "News",},{id: "projects-rlv-landing-simulation-simulink-unity",
+          title: 'RLV Landing Simulation (Simulink-Unity)',
+          description: "Reusable Launch Vehicle landing simulation connecting MATLAB/Simulink and Unity.",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/1_mile_rl/";
+              window.location.href = "/projects/1_rlv_landing/";
+            },},{id: "projects-sac-based-obstacle-avoidance-in-pybullet",
+          title: 'SAC-based Obstacle avoidance in PyBullet',
+          description: "Single agent obstacle avoidance and goal reaching using Soft Actor-Critic.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_pybullet_obstacle_avoidance/";
             },},{id: "projects-drone-obstacle-avoidance-via-scp",
           title: 'Drone Obstacle Avoidance via SCP',
           description: "6-DOF drone trajectory optimization using Sequential Convex Programming.",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/2_drone_scp/";
-            },},{id: "projects-sac-based-navigation-in-pybullet",
-          title: 'SAC-based Navigation in PyBullet',
-          description: "Single agent obstacle avoidance and goal reaching using Soft Actor-Critic.",
+              window.location.href = "/projects/3_drone_scp/";
+            },},{id: "projects-model-based-intervention-learning-mile",
+          title: 'Model-based Intervention Learning (MILE)',
+          description: "Addressing action delay in RL environments (LunarLander &amp; BipedalWalker).",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/3_pybullet_obstacle_avoidance/";
-            },},{id: "projects-rlv-landing-simulation-simulink-unity",
-          title: 'RLV Landing Simulation (Simulink-Unity)',
-          description: "Reusable Launch Vehicle landing simulation connecting MATLAB/Simulink and Unity.",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/4_rlv_landing/";
+              window.location.href = "/projects/4_mile_rl/";
             },},{
         id: 'social-cv',
         title: 'CV',
