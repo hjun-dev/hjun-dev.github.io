@@ -7,14 +7,22 @@ nav: true
 nav_order: 2
 ---
 
-<!-- _pages/publications.md -->
-
-<!-- Bibsearch Feature -->
-
-{% include bib_search.liquid %}
-
+<h2>International Journals</h2>
 <div class="publications">
+{% bibliography -f papers -q @article[keywords*=intl_journal] %}
+</div>
 
-{% bibliography %}
+<h2>International Conferences</h2>
+<div class="publications">
+{% bibliography -f papers -q @inproceedings[keywords*=intl_conf] %}
+</div>
 
+<h2>Domestic Journals</h2>
+<div class="publications">
+{% bibliography -f papers -q @article[keywords*=dom_journal] %}
+</div>
+
+<h2>Domestic Conferences</h2>
+<div class="publications">
+{% bibliography -f papers -q @inproceedings[keywords*=dom_conf] %}
 </div>
