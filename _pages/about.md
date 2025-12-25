@@ -1,6 +1,6 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
 subtitle: M.S. in Dept. of Aerospace Engineering, Inha University
 
@@ -26,18 +26,19 @@ latest_posts:
   scrollable: false # adds a vertical scroll bar if there are more than 3 new posts items
   limit: 3 # leave blank to include all the blog posts
 ---
+
 **Hello! I am Hyeongjun Lee.**
 
-I am currently a Master's student in the Department of Aerospace Engineering at **Inha University**. My research focuses on optimal control theory, deep learning and reinforcement learning applications for aerospace systems.
+I am currently a Master's student in the Department of Aerospace Engineering at **Inha University**. 
+My research focuses on optimal control theory, deep learning and reinforcement learning applications for aerospace systems.
+My goal is to bridge the gap between theoretical control guarantees and practical learning-based methods.
 
 ### **Research Interests**
-* **Optimization & Control Theory** (Convex Optimization, MPC, SCP)
+* **Optimization** (Convex Optimization, SCP, Convergence Analysis)
+* **Control Theory** (MPC)
 * **Deep Learning**
 * **Reinforcement Learning** (Safe RL, Imitation learning)
 * **Aerospace Systems** (Guidance, Navigation, and Control)
-
-My goal is to bridge the gap between theoretical control guarantees and practical learning-based methods.
----
 
 ### **Recent Projects**
 <div class="projects">
@@ -60,7 +61,7 @@ My goal is to bridge the gap between theoretical control guarantees and practica
   </div>
 </div>
 
----
-
 ### **Contact**
 * **Email:** 12200617@inha.edu
+* **Address:** Inha Aerospace Campus, 36 Gaetbeol-ro, Yeonsu-gu, Incheon 21999, Republic of Korea
+---
