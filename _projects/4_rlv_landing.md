@@ -3,7 +3,7 @@ layout: page
 title: RLV Landing Simulation (Simulink-Unity)
 description: Reusable Launch Vehicle landing simulation connecting MATLAB/Simulink and Unity.
 img: assets/img/projects/rlv_landing.gif
-importance: 4
+importance: 1
 category: work
 github: https://github.com/hjun-dev/hjun-dev.github.io
 ---

@@ -3,7 +3,7 @@ layout: page
 title: SAC-based Navigation in PyBullet
 description: Single agent obstacle avoidance and goal reaching using Soft Actor-Critic.
 img: assets/img/projects/pybullet_reward.gif
-importance: 3
+importance: 2
 category: work
 github: https://github.com/hjun-dev/hjun-dev.github.io
 ---
