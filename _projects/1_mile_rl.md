@@ -3,7 +3,7 @@ layout: page
 title: Model-based Intervention Learning (MILE)
 description: Addressing action delay in RL environments (LunarLander & BipedalWalker).
 img: assets/img/projects/mile_thumb.gif 
-importance: 4
+importance: 1
 category: work
 github: https://github.com/hjun-dev/hjun-dev.github.io
 ---
