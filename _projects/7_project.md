@@ -19,7 +19,7 @@ related_publications: false
 ### **Links**
 <div class="row">
     <div class="col-sm-3">
-        <a href="https://github.com/hjun-dev/your-repo" class="btn btn-sm btn-outline-dark w-100">GitHub</a>
+        <a href="https://github.com/hjun-dev/hjun-dev.github.io.git" class="btn btn-sm btn-outline-dark w-100">GitHub</a>
     </div>
     <div class="col-sm-3">
         <a href="#" class="btn btn-sm btn-outline-dark w-100">PDF Report</a>

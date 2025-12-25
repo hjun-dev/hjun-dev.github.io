@@ -97,8 +97,10 @@
 - title: Skills
   type: list
   entries:
-    - **Languages**: Python, MATLAB, C#
-    - **Tools**: PyTorch, ROS, Simulink, Git
+    - title: Languages
+      items: ["Python", "MATLAB", "C#"]
+    - title: Tools
+      items: ["PyTorch", "ROS", "Simulink", "Git"]
 
 - title: Projects
   type: time_table
