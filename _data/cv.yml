@@ -12,7 +12,7 @@
   type: time_table
   contents:
     - title: M.S. in Aerospace Engineering
-      institution: Inha University, Incheon, South Korea
+      institution: Inha University, South Korea
       year: 2026 - Present
 #      description:
 #        - Description 1.
@@ -79,8 +79,8 @@
 #      items:
 #        - Max Planck Medal
 
-- title: Academic Interests
-  type: nested_list
+- title: Research Interests
+  type: list
   contents:
     - title: Optimization
       items:
@@ -93,6 +93,28 @@
       items:
         - Deep Learning
         - Reinforcement Learning
+
+- title: Skills
+  type: list
+  entries:
+    - **Languages**: Python, MATLAB, C#
+    - **Tools**: PyTorch, ROS, Simulink, Git
+
+- title: Projects
+  type: time_table
+  entries:
+    - title: AI-based Moving Target Tracking & Situational Awareness using Sensor Networks (Funded by Hanwha Aerospace)
+      year: 2024 - 2025
+      description: >
+        Developing a 6-DOF simulation-based smart munition detection system in Unity. 
+        Implementing a real-time target detection pipeline using Laser Range Finder (LRF) data 
+        and a TCN-DAE based anomaly detection model for robust target recognition.
+
+    - title: Data-efficient Safe Reinforcement Learning from Human Corrections (Funded by Airbus Institute for Engineering Research)
+      year: 2025 - 2027
+      description: >
+        Research on reinforcement learning enhanced with computational models of human interventions.
+        Integrating human correction signals to improve safety, stability, and data efficiency for aerospace systems.
 
 #- title: Other Interests
 #  type: list
