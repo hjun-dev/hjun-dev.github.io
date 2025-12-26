@@ -422,7 +422,7 @@ ninja.data = [{
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_rlv_landing/";
             },},{id: "projects-sac-based-obstacle-avoidance-in-pybullet",
-          title: 'SAC-based Obstacle avoidance in PyBullet',
+          title: 'SAC-based Obstacle Avoidance in PyBullet',
           description: "Single agent obstacle avoidance and goal reaching using Soft Actor-Critic.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/2_pybullet_obstacle_avoidance/";
