@@ -154,11 +154,7 @@
     {% if entry.type == 'article' %}
       {% capture entrytype %}<em>{{ entry.journal }}</em>{% endcapture %}
     {% elsif proceedings contains entry.type %}
-      {% capture entrytype %}<em>In {{ entry.booktitle }}</em>
-      {% if entry.organization %}
-        <br><span style="font-size: 0.9em; color: #666;">({{ entry.organization }})</span>
-      {% endif %}
-      {% endcapture %}
+      {% capture entrytype %}<em>In {{ entry.booktitle }}</em>{% endcapture %}
     {% elsif thesis contains entry.type %}
       {% capture entrytype %}<em>{{ entry.school }}</em>{% endcapture %}
     {% else %}
@@ -185,6 +181,11 @@
     <div class="periodical">
       {{ periodical | strip }}
     </div>
+    {% if entry.organization %}
+      <div class="periodical" style="margin-top: 3px;">
+        <span style="font-size: 0.9em; color: #666;">({{ entry.organization }})</span>
+      </div>
+    {% endif %}
     <div class="periodical">
       {{ entry.note | strip }}
     </div>
