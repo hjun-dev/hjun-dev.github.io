@@ -1,8 +1,12 @@
-- title: General Information
+- title: Basics
   type: map
   contents:
-    - name: Full Name
+    - name: Name
       value: Hyeongjun Lee
+    - name: Label
+      value: Engineer
+    - name: Email
+      value: 12200617@inha.edu
     - name: Date of Birth
       value: 25th May 2000
     - name: Languages
@@ -12,7 +16,7 @@
   type: time_table
   contents:
     - title: M.S. in Aerospace Engineering
-      institution: Inha University, South Korea
+      institution: Inha University, Incheon, South Korea
       year: 2026 - Present
       description: ACSL (Aerospace Control & System Lab)
 #        - Description 1.
@@ -80,7 +84,7 @@
 #        - Max Planck Medal
 
 - title: Research Interests
-  type: list
+  type: nested_list
   contents:
     - title: Optimization
       items:
@@ -95,16 +99,16 @@
         - Reinforcement Learning
 
 - title: Skills
-  type: list
-  entries:
+  type: nested_list
+  contents:
     - title: Languages
       items: ["Python", "MATLAB", "C#"]
     - title: Tools
-      items: ["PyTorch", "ROS", "Simulink", "Git"]
+      items: ["PyTorch", "ROS", "Simulink", "Unity", "Git"]
 
 - title: Projects
   type: time_table
-  entries:
+  contents:
     - title: AI-based Moving Target Tracking & Situational Awareness using Sensor Networks (Funded by Hanwha Aerospace)
       year: 2024 - 2025
       description: >
