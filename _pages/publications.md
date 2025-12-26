@@ -5,6 +5,7 @@ title: Publications
 description: Publications organized by category and date.
 nav: true
 nav_order: 2
+bibliography: false
 ---
 
 <h2>International Journals</h2>
