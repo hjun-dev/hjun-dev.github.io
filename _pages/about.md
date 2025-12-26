@@ -27,7 +27,7 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-**Hello! I am Hyeongjun Lee.**
+**Hello! I am Hyeong-Jun Lee.**
  
 My research focuses on optimal control theory, deep learning and reinforcement learning applications for aerospace systems.
 
