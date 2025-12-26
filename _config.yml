@@ -10,7 +10,7 @@ email: 12200617@inha.edu
 contact_note: >
   You can even add a little note about which of these is the best way to reach you.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Personal academic website of Hyeongjun Lee, M.S. student at Department of Aerospace Engineering, Inha University.
+  Optimization, Control, Reinforcement Learning and Deep Learning
 #  Interests include web optimization, deep learning, reinforcement learning, and control theory.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
