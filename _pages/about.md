@@ -3,7 +3,6 @@ layout: about
 title: About
 permalink: /
 subtitle: M.S. in Dept. of Aerospace Engineering, Inha University
-og_image: assets/img/favicon.png
 profile:
   align: right
   image: leepic.jpg
