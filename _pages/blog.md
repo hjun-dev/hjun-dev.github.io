@@ -19,8 +19,8 @@ pagination:
 <div class="post">
 
   <div class="header-bar">
-    <h1>{{ site.blog_name }}</h1>
-    <h2>{{ site.blog_description }}</h2>
+    <h3>{{ site.blog_name }}</h3>
+    <h5>{{ site.blog_description }}</h5>
   </div>
 
   {% if site.display_categories.size > 0 %}
@@ -49,7 +49,7 @@ pagination:
       <div class="post-tags">
         {% for tag in post.tags %}
           <a href="{{ tag | slugify | prepend: '/blog/tag/' | relative_url }}">
-            <span class="badge rounded-pill border border-dark text-dark">{{ tag }}</span>
+            <span class="badge bg-primary">{{ tag }}</span>
           </a>
         {% endfor %}
       </div>
