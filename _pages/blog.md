@@ -19,7 +19,7 @@ pagination:
 <div class="post">
 
   <div class="header-bar mb-4">
-    <h3>{{ site.blog_name }}</h3>
+    <h1>{{ site.blog_name }}</h1>
     <h5>{{ site.blog_description }}</h5>
   </div>
 
