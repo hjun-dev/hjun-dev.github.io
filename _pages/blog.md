@@ -49,7 +49,7 @@ pagination:
       <div class="post-tags">
         {% for tag in post.tags %}
           <a href="{{ tag | slugify | prepend: '/blog/tag/' | relative_url }}">
-            <span class="badge bg-secondary">{{ tag }}</span>
+            <span class="badge bg-primary">{{ tag }}</span>
           </a>
         {% endfor %}
       </div>
