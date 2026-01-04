@@ -36,7 +36,8 @@ $$
 
 제어 로직을 Python 코드로 구현할 때, 코드 하이라이팅이 잘 되는지 확인합니다. 아래는 간단한 **PyTorch** 기반의 RL 에이전트 구조입니다.
 
-{% raw %}{% highlight python %}
+```liquid
+{% highlight python %}
 import torch
 import torch.nn as nn
 
@@ -58,4 +59,4 @@ class Actor(nn.Module):
 # Initialize Agent
 agent = Actor(state_dim=12, action_dim=4)
 print("RL Agent initialized.")
-{% endhighlight %}{% endraw %}
+{% endhighlight %}
