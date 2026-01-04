@@ -18,7 +18,7 @@ pagination:
 
 <div class="post">
 
-  <div class="header-bar">
+  <div class="header-bar mb-4">
     <h3>{{ site.blog_name }}</h3>
     <h5>{{ site.blog_description }}</h5>
   </div>
@@ -28,7 +28,7 @@ pagination:
     <ul class="p-0 m-0">
       {% for category in site.display_categories %}
         <li class="d-inline-block p-1">
-          <a class="btn btn-sm btn-outline-secondary" href="{{ category | slugify | prepend: '/blog/category/' | relative_url }}">
+          <a class="btn btn-sm btn-outline-primary" href="{{ category | slugify | prepend: '/blog/category/' | relative_url }}">
             {{ category | replace: '-', ' ' | capitalize }}
           </a>
         </li>
@@ -49,12 +49,13 @@ pagination:
       <div class="post-tags">
         {% for tag in post.tags %}
           <a href="{{ tag | slugify | prepend: '/blog/tag/' | relative_url }}">
-            <span class="badge bg-primary">{{ tag }}</span>
+            <span class="badge bg-secondary">{{ tag }}</span>
           </a>
         {% endfor %}
       </div>
     </li>
-    <hr> {% endfor %}
+    <hr> 
+    {% endfor %}
   </ul>
 
   {% include pagination.liquid %}
