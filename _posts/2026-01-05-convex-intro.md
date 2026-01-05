@@ -1,8 +1,7 @@
 ---
 layout: post
-title: "[Convex Optim] 
-00.Introduction & Roadmap"
-description: "Ryan Tibshirani 교수님의 Convex Optimization 강의 정리 및 학습 개요"
+title: [Convex Optimization] 00.Introduction & Roadmap
+description: Ryan Tibshirani 교수님의 Convex Optimization 강의 정리 및 학습 개요
 date: 2026-01-05 13:00:00
 tags: [math, study, optimization]
 categories: [optimization]
