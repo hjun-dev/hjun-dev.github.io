@@ -1,19 +1,14 @@
 ---
-layout: distill
-title: "[Convex Optimization] 
-00. Introduction & Roadmap"
+layout: post
+title: "[Convex Optim] 
+00.Introduction & Roadmap"
 description: "Ryan Tibshirani 교수님의 Convex Optimization 강의 정리 및 학습 개요"
-date: 2026-01-05 13:00:00 +1300
+date: 2026-01-05 13:00:00
 tags: [math, study, optimization]
 categories: [optimization]
-
+related_posts: false
 toc:
-  - name: 1. Introduction
-    subsections:
-        - name: Main References
-  - name: 2. Goals & Direction
-  - name: 3. Roadmap
-  - name: 4. Closing
+  sidebar: left
 ---
 
 ## 1. Introduction
@@ -21,11 +16,9 @@ toc:
 최적화 이론은 다양한 논문과 강의에서 자주 등장하며 연구를 진행하는 과정에서도 필요에 따라 접하게 되는 경우가 많습니다.
 Duality, KKT 조건, Newton 계열 방법과 같은 개념들이 자연스럽게 사용되지만, 이를 하나의 강의 흐름에 따라 처음부터 끝까지 따라가며 정리해본 경험은 많지 않았습니다. 이러한 이유로, 최적화 이론을 강의의 구조를 따라 제대로 공부해볼 필요가 있겠다는 생각을 하게 되었습니다.
 
-CMU의 Ryan Tibshirani 교수님의 **Convex Optimization (Fall 2019, 10-725)** 강의는  
-기본적인 정의와 개념부터 알고리즘, 그리고 비교적 고급 주제까지를 일관된 흐름 속에서 다루고 있어 학습 자료로 선택하게 되었습니다.
+CMU의 Ryan Tibshirani 교수님의 **Convex Optimization (Fall 2019, 10-725)** 강의는 기본적인 정의와 개념부터 알고리즘, 그리고 비교적 고급 주제까지를 일관된 흐름 속에서 다루고 있어 학습 자료로 선택하게 되었습니다.
 
 이 시리즈는 해당 강의를 따라가며 강의에서 다루는 내용을 정리하고, 이해 과정에서 중요하다고 느낀 부분이나 보충이 필요한 설명을 함께 기록하는 것을 목표로 합니다.
-
 ---
 
 ### Main References
@@ -34,8 +27,7 @@ CMU의 Ryan Tibshirani 교수님의 **Convex Optimization (Fall 2019, 10-725)** 
 
 1. **CMU 10-725: Convex Optimization (Fall 2019)**  
    Ryan Tibshirani 교수님의 강의 자료와 영상  
-   [https://www.stat.cmu.edu/~ryantibs/convexopt/]
-   (https://www.stat.cmu.edu/~ryantibs/convexopt/)
+   [https://www.stat.cmu.edu/~ryantibs/convexopt/](https://www.stat.cmu.edu/~ryantibs/convexopt/)
 
 2. **Convex Optimization for All**  
    위 강의를 바탕으로 정리된 오픈 소스 한글 노트  
@@ -44,9 +36,7 @@ CMU의 Ryan Tibshirani 교수님의 **Convex Optimization (Fall 2019, 10-725)** 
 이 시리즈 역시 위 자료를 참고하며 정리하였기 때문에 내용상 유사한 부분이 많을 수 있습니다. 다만 여기서는 개인적으로 이해하는 과정에서 중요하다고 느낀 설명이나 
 강의 슬라이드에서 바로 연결되지 않는 부분들을 중심으로 
 개인적인 해석과 보충 설명을 덧붙여 기록하고자 합니다.
-
 ---
-
 ## 2. Goals & Direction
 
 이 글들의 목적은 다음과 같습니다.
