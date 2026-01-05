@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-unified-approach-optimization-to-deep-rl",
+        },{id: "post-",
+        
+          title: "",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/2026-01-05-convex-intro/";
+          
+        },
+      },{id: "post-unified-approach-optimization-to-deep-rl",
         
           title: "Unified Approach: Optimization to Deep RL",
         
