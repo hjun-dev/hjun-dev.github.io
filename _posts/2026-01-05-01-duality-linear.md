@@ -12,9 +12,10 @@ toc:
 
 ## 10.1 Lower Bounds in Linear Programs
 
-Duality에 대한 이해를 위해 먼저 linear programs에서 optimal value의 lower bound를 찾아보자. ($B \le \min_{x} f(x)$)
+**Duality**에 대한 이해를 위해 먼저 linear programs에서 **optimal value**의 **lower bound**를 찾아볼 것이다. ($B \le \min_{x} f(x)$) 
+<br>
 
-다음과 같은 간단한 LP를 살펴보자.
+먼저 다음과 같은 간단한 LP를 살펴보자.
 
 $$
 \begin{aligned}
@@ -25,7 +26,8 @@ $$
 \end{aligned}
 $$
 
-위 문제의 lower bound는 제약함수를 통해 $B=2$를 쉽게 알 수 있다.
+위 문제의 lower bound는 제약함수를 통해 $B=2$를 쉽게 알 수 있다.    
+<br>
 
 이번엔 다른 LP를 보자.
 
@@ -40,7 +42,8 @@ $$
 
 위 문제의 lower bound는 $x + y \ge 2$와 $2y \ge 0$를 더한 $x + 3y \ge 2$를 통해 $B=2$를 구할 수 있다.
 
-다음의 일반적인 LP를 가정하자.
+<br>
+다음의 일반적인 LP를 가정하자.  
 
 $$
 \begin{aligned}
@@ -51,7 +54,8 @@ $$
 \end{aligned}
 $$
 
-위 문제의 lower bound는 아래 식을 통해 $B=2a$가 나온다.
+위 문제의 lower bound는 아래 식을 통해 $B=2a$가 나온다.  
+<br>
 
 $$
 \begin{aligned}
@@ -61,7 +65,7 @@ a, b, c \ge 0
 \end{aligned}
 $$
 
-위에서 구한 lower bound $B$를 maximize함으로써 우리는 가장 유용한(?) lower bound를 구할 수 있다.
+위에서 구한 lower bound $B$를 **maximize**함으로써 우리는 가장 유용한(?) lower bound를 구할 수 있다.
 
 $$
 \begin{array}{c|c}
@@ -86,7 +90,8 @@ $$
 \end{array}
 $$
 
-참고: dual variables의 개수는 primal constraints의 개수와 같다.
+**참고:** Dual variables의 개수는 primal constraints의 개수와 같다.
+<br>
 
 또 다른 문제에 적용해보면
 
@@ -114,11 +119,12 @@ $$
 \end{array}
 $$
 
-위 형태를 보면 알 수 있듯이 equality constraint에 대한 dual variable은 부호 제약이 없다.
+위 형태를 보면 알 수 있듯이 equality constraint에 대한 dual variable은 부호 제약이 **없다.**
+<br>
 
-## 10.2 Duality for general form LP
+### 10.1.1 Duality for general form LP
 
-$c \in \mathbb{R}^n$, $A \in \mathbb{R}^{m \times n}$, $b \in \mathbb{R}^m$, $G \in \mathbb{R}^{r \times n}$, $h \in \mathbb{R}^r$에 대해 general form LP에서의 primal과 dual problem은 다음과 같다.
+$c \in \mathbb{R}^n$, $A \in \mathbb{R}^{m \times n}$, $b \in \mathbb{R}^m$, $G \in \mathbb{R}^{r \times n}$, $h \in \mathbb{R}^r$에 대해 **general form LP**에서의 primal과 dual problem은 다음과 같다.
 
 $$
 \begin{array}{c|c}
@@ -151,30 +157,33 @@ u^{T}(Ax - b) + v^{T}(Gx - h) \le 0
 $$
 
 따라서 $c = -A^T u - G^T v$라면 primal optimal value의 lower bound를 구할 수 있다.
+<br>
 
-## Example: max flow and min cut
+## 10.2 Example: max flow and min cut
 
 Max flow problem은 시작 지점(source)에서 종료 지점(sink)까지 전달되는 유량의 총합을 가장 크게 만드는 문제이며 이는 Min cut problem과 강한 이론적 관계를 가진다.
-(해당 문제의 역사적 배경에 대해서는 "On the fistory of transportation and maximum flow problems, Schrijver (2002)"에 정리되어 있다.)
+(해당 문제의 역사적 배경에 대해서는 **"On the fistory of transportation and maximum flow problems, Schrijver (2002)"** 에 정리되어 있다.)
 
 ### Flow
-Flow는 파이프 내부를 흘러가는 액체 등의 유량을 생각하면 된다. 따라서 이는 nonnegative이며 파이프 내부의 capacity는 제한되어 있고 mass는 진행 중 줄지 않는다.
-위 내용을 formal하게 표현하기 위해 directed graph $G=(V, E)$를 고려한다. 시작 지점(source)의 node는 $s$, 종료 지점(sink)의 node는 $t$로 설정하며 flow는 $(i, j)\in E$에 대해 벡터 $f_{ij}$로 나타낸다. Flow의 제약은 아래와 같다.
+Flow는 파이프 내부를 흘러가는 액체 등의 **유량**을 생각하면 된다. 따라서 이는 **nonnegative**이며 파이프 내부의 **capacity**는 제한되어 있고 **mass**는 진행 중 줄지 않는다.    
+위 내용을 formal하게 표현하기 위해 **directed graph** $G=(V, E)$를 고려한다. 시작 지점(source)의 node는 $s$, 종료 지점(sink)의 node는 $t$로 설정하며 flow는 $(i, j)\in E$에 대해 벡터 $f_{ij}$로 나타낸다. Flow의 제약은 아래와 같다.
 
-* Nonnegativity of flow being pushed in the direction of the edge: $f_{ij} \ge 0, (i,j)\in E$
-* Flow capacity per edge: $f_{ij} \le c_{ij}, (i,j)\in E$
+* **Nonnegativity of flow being pushed in the direction of the edge**: $f_{ij} \ge 0, (i,j)\in E$
+* **Flow capacity per edge**: $f_{ij} \le c_{ij}, (i,j)\in E$
 
-* Conservation of flow (except source / sink nodes):  
+* **Conservation of flow** (except source / sink nodes):
+
 $$
 \sum_{(i,k)\in E} f_{ik}
 =\sum_{(k,j)\in E} f_{kj},
-\quad k \in V \setminus \{s,t\}$$  
+\quad k \in V \setminus \{s,t\}$$
 (나가는 유량과 들어오는 유량은 같다. (source & sink 제외))
 
 그래프이미지그래프이미지그래프이미지그래프이미지그래프이미지그래프이미지그래프이미지그래프이미지그래프이미지
+<br>
 
 ### Max flow problem
-주어진 그래프에서 Max flow를 만족하기 위해서 우리는 sourse $s$에서 방출되는 유량의 합을 maximize하길 원한다. 이를 LP(Linear Program)으로 나타내면 아래와 같다.
+주어진 그래프에서 **Max flow**를 만족하기 위해서 우리는 sourse $s$에서 방출되는 유량의 합을 maximize하길 원한다. 이를 **LP(Linear Program)** 으로 나타내면 아래와 같다.
 
 $$
 \begin{aligned}
@@ -189,9 +198,10 @@ $$
 \qquad \forall k \in V \setminus \{s,t\}.
 \end{aligned}
 $$
+<br>
 
 ### Deriving the dual
-LP를 primal에서 dual problem으로 변환하는 방법을 다시 생각해보면 primal 문제의 constraints에 dual variables을 곱하고 정리해 objective function의 lower bound를 구하고 이를 maximize한다. 이를 위해 primal problem의 constraints에 아래와 같이 dual variable을 곱한다.
+LP를 primal에서 dual problem으로 변환하는 방법을 다시 생각해보면 primal 문제의 constraints에 dual variables을 곱하고 정리해 objective function의 lower bound를 구하고 maximize한다.    <br>이를 위해 primal problem의 constraints에 아래와 같이 dual variable을 곱한다.
 
 $$
 \begin{aligned}
@@ -213,7 +223,7 @@ $$
 \end{aligned}
 $$
 
-전부 더해 $a_{ij}, b_{ij}\ge 0$, $(i,j)\in E$, $x_{k}, k \in V \setminus{s,t}$에 대해 정리하면
+위 식을 전부 더해 $a_{ij}, b_{ij}\ge 0$, $(i,j)\in E$, $x_{k}, k \in V \setminus{s,t}$에 대해 정리한다.
 
 $$
 \sum_{(i,j)\in E}
@@ -231,7 +241,7 @@ x_k
 \;\le\; 0
 $$
 
-위 식에서 $f_{ij}$의 계수를 $M_{ij}(a,b,x)$로 나타내면
+$f_{ij}$의 계수를 $M_{ij}(a,b,x)$로 표시한다.
 
 $$
 \sum_{(i,j)\in E}
@@ -260,6 +270,7 @@ $$
 & b \ge 0, \qquad x_s = 1,\; x_t = 0.
 \end{aligned}
 $$
+<br>
 
 ### LP relaxation of the min cut problem
 
@@ -269,11 +280,12 @@ $$
 x_i \in \{0, 1\} \quad \text{for all} \ \ i \in V
 $$
 
-로 제한해 가정해보자. Source를 포함한 노드들의 집합 $A=\{i:x_i = 1\}$와 sink를 포함한 노드들의 집합 $B=\{i: x_i = 0\}$이 있다고 하면 constraint
+로 제한해 가정해보자. Source를 포함한 노드들의 집합 $A=\{i:x_i = 1\}$와 sink를 포함한 노드들의 집합 $B=\{i: x_i = 0\}$이 있다고 하면 dual problem의 constraint인
 $$
 b_{ij}\ge x_i -x_j \quad \text{for} \ (i, j) \in E, b\ge 0
 $$
-는 $i \in A$, $j \in B$라면 $b_{ij}=1$이고 나머지 상황에선 0이 되는 것을 의미한다. 따라서 해당 문제는 source를 포함한 node set에서 sink를 포함한 node set으로 지나가는 edge들의 capacity 합을 최소화 하는 것을 나타내고 이것이 바로 min cut problem이다.
+는 $i \in A$, $j \in B$라면 $b_{ij}=1$이고 나머지 상황에선 0이 되는 것을 의미한다. <br>따라서 해당 문제는 source를 포함한 node set에서 sink를 포함한 node set으로 지나가는 edge들의 capacity 합을 최소화 하는 것을 나타내고 이것이 바로 **min cut problem**이다.
+<br>
 
 $$
 \begin{aligned}
@@ -287,13 +299,61 @@ $$
 \end{aligned}
 $$
 
-결론적으로, 우리는 min cut problem에 대해 LP relaxation을 적용한 것이 dual problem이라고 할 수 있으며 다음 관계가 성립한다.
+결론적으로, 우리는 min cut problem에 대해 **LP relaxation을 적용**한 것이 **dual problem**이라고 할 수 있으며 다음의 관계가 성립한다.
 
 $$
 \text{value of max flow}\le \text{optimal value for LP relaxed min cut} \le \text{capacity of min cut}
 $$
 
 실제로는 **max flow min cut theorem**에 의해 부등식의 세 값을 정확히 동일함이 알려져 있다. 이처럼 dual problem과 primal problem의 optimal value가 동일한 경우 **strong duality**가 성립된다고 한다.
+<br>
 
-## Alternative perspective on LP duality
+## 10.3 Alternative perspective on LP duality
+
+**10.1.1** 에서 다룬 general form LP의 dual에 대해 **다른 관점**을 가질 수 있다.
+아래와 같은 함수를 primal variable $x$와 dual variables $u, v$에 대한 **라그랑지안 함수(Lagrangian function)** 라고 정의한다.
+
+$$
+c^{T}x
+\;\ge\;
+c^{T}x
++
+\underbrace{u^{T}(Ax - b)}_{=\,0}
++
+\underbrace{v^{T}(Gx - h)}_{\le\,0}
+\;=:\;
+\mathcal{L}(x,u,v)
+$$
+
+만약 $C$가 **primal feasible set**이고 $f^*$가 **primal optimal value**라면 모든 $u$와 $v\ge0$에 대해 다음이 만족한다.
+
+$$
+f^* \ge \min_{x\in C}\mathcal{L}(x,u,v) \ge \min_{x}\mathcal{L}(x,u,v)=:g(u,v)
+$$
+
+$g(u,v)$는 모든 $u$와 $v\ge0$에 대해 $f^*$의 lower bound가 된다.
+<br>
+따라서 $g(u,v)$를 모든 $u$와 $v\ge0$에 대해 maximize하면 이는 **tightest lower bound**가 된다.
+
+$$
+\begin{aligned}
+g(u,v)=\min_{x}\mathcal{L(x,u,v)}
+=\min_{x}\bigl((A^T u+G^T v+c)^T x -b^T u - h^T v\bigr)
+\end{aligned}
+$$
+
+$$
+g(u,v)
+=
+\begin{cases}
+-\,b^{T}u - h^{T}v, 
+& \text{if } c = -A^{T}u - G^{T}v, \\[0.5em]
+-\infty,
+& \text{else}.
+\end{cases}
+$$
+
+결과적으로 $g(u,v)$를 **maximize**하면 이는 dual problem과 정확히 같은 문제가 된다.
+
+## 10.4 Example of duality
 
