@@ -37,11 +37,11 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-convex-optimization-00-introduction-amp-roadmap-cmu-10-725",
+        },{id: "post-convex-optimization-00-introduction-amp-roadmap",
         
-          title: "[Convex Optimization] 00. Introduction &amp; Roadmap (CMU 10-725)",
+          title: "[Convex Optimization] 00. Introduction &amp; Roadmap",
         
-        description: "Ryan Tibshirani 교수님의 Convex Optimization (CMU, Fall 2019) 강의를 따라가며 정리하는 학습 개요",
+        description: "Ryan Tibshirani 교수님의 Convex Optimization 강의 정리 및 학습 개요",
         section: "Posts",
         handler: () => {
           
