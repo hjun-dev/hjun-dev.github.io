@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-unified-approach-optimization-to-deep-rl",
+        },{id: "post-convex-optimization-00-introduction-amp-roadmap-cmu-10-725",
+        
+          title: "[Convex Optimization] 00. Introduction &amp; Roadmap (CMU 10-725)",
+        
+        description: "Ryan Tibshirani 교수님의 Convex Optimization (CMU, Fall 2019) 강의를 따라가며 정리하는 학습 개요",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/convex-intro/";
+          
+        },
+      },{id: "post-unified-approach-optimization-to-deep-rl",
         
           title: "Unified Approach: Optimization to Deep RL",
         
