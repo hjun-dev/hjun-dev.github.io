@@ -355,5 +355,17 @@ $$
 
 결과적으로 $g(u,v)$를 **maximize**하면 이는 dual problem과 정확히 같은 문제가 된다.
 
-## 10.4 Example of duality
+## 10.4 Example of duality: mixed strategies for matrix games
+
+두 플레이어 $\text{R}$와 $\text{J}$가 **게임**을 한다고 가정하자. 한 라운드에서 $\text{J}$가 $i$, $\text{R}$이 $j$를 골랐다면 $\text{J}$가 $\text{R}$에게 지불하게 되는 금액을 $P_{ij}$로 둔 **payoff matrix** $P$는 아래와 같다.
+
+$$
+\begin{array}{c|cccc}
+J \backslash R & 1 & 2 & \cdots & n \\ \hline
+1 & P_{11} & P_{12} & \cdots & P_{1n} \\
+2 & P_{21} & P_{22} & \cdots & P_{2n} \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+m & P_{m1} & P_{m2} & \cdots & P_{mn}
+\end{array}
+$$
 
