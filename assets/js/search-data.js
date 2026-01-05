@@ -37,18 +37,7 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-convex-optimization-00-introduction-amp-roadmap",
-        
-          title: "[Convex Optimization] 00.Introduction &amp; Roadmap",
-        
-        description: "Ryan Tibshirani 교수님의 Convex Optimization 강의 정리 및 학습 개요",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2026/convex-intro/";
-          
-        },
-      },{id: "post-convex-optimization-10-duality-in-linear-programs",
+        },{id: "post-convex-optimization-10-duality-in-linear-programs",
         
           title: "[Convex Optimization] 10. Duality in linear programs",
         
@@ -57,6 +46,17 @@ ninja.data = [{
         handler: () => {
           
             window.location.href = "/blog/2026/01-duality-linear/";
+          
+        },
+      },{id: "post-convex-optimization-00-introduction-amp-roadmap",
+        
+          title: "[Convex Optimization] 00.Introduction &amp; Roadmap",
+        
+        description: "Ryan Tibshirani 교수님의 Convex Optimization 강의 정리 및 학습 개요",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/00-convex-intro/";
           
         },
       },{id: "post-unified-approach-optimization-to-deep-rl",
