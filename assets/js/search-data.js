@@ -48,6 +48,17 @@ ninja.data = [{
             window.location.href = "/blog/2026/convex-intro/";
           
         },
+      },{id: "post-01-duality-linear",
+        
+          title: "01 Duality Linear",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/01-duality-linear/";
+          
+        },
       },{id: "post-unified-approach-optimization-to-deep-rl",
         
           title: "Unified Approach: Optimization to Deep RL",
