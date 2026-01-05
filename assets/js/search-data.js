@@ -48,11 +48,11 @@ ninja.data = [{
             window.location.href = "/blog/2026/convex-intro/";
           
         },
-      },{id: "post-01-duality-linear",
+      },{id: "post-convex-optimization-10-duality-in-linear-programs",
         
-          title: "01 Duality Linear",
+          title: "[Convex Optimization] 10. Duality in linear programs",
         
-        description: "",
+        description: "LP에서의 Duality 분석",
         section: "Posts",
         handler: () => {
           
