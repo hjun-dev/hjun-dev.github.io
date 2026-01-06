@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[Convex Optimization] 10. Duality in linear programs"
-description: "LP에서의 Duality 분석"
+description: "Linear Programs에서 Duality 정의 및 특징 파악"
 date: 2026-01-05 13:00:00 +0900
 tags: [math, study]
 categories: [optimization]
@@ -16,7 +16,7 @@ toc:
 
 ---
 
-## [10.1] Lower Bounds in Linear Programs
+## Lower Bounds in Linear Programs
 
 **Duality**에 대한 이해를 위해 먼저 linear programs에서 **optimal value**의 **lower bound**를 찾아볼 것이다. ($B \le \min_{x} f(x)$) 
 <br>
@@ -130,7 +130,7 @@ $$
 
 ---
 
-### [10.1.1] Duality for general form LP
+### Duality for general form LP
 
 $c \in \mathbb{R}^n$, $A \in \mathbb{R}^{m \times n}$, $b \in \mathbb{R}^m$, $G \in \mathbb{R}^{r \times n}$, $h \in \mathbb{R}^r$에 대해 **general form LP**에서의 primal과 dual problem은 다음과 같다.
 
@@ -169,7 +169,7 @@ $$
 
 ---
 
-## [10.2] Example: max flow and min cut
+## Example: max flow and min cut
 
 Max flow problem은 시작 지점(source)에서 종료 지점(sink)까지 전달되는 유량의 총합을 가장 크게 만드는 문제이며 이는 Min cut problem과 강한 이론적 관계를 가진다.
 (해당 문제의 역사적 배경에 대해서는 **"On the fistory of transportation and maximum flow problems, Schrijver (2002)"** 에 정리되어 있다.)
@@ -192,7 +192,12 @@ $$
 \quad k \in V \setminus \{s,t\}$$
 (나가는 유량과 들어오는 유량은 같다. (source & sink 제외))
 
-![Directed graph demonstrating the max flow / min cut setup.](/assets/img/blog_img/maxflowmincut.png)
+{% include figure.liquid 
+  path="assets/img/blog_img/maxflowmincut.png" 
+  title="Max Flow Min Cut" 
+  class="img-fluid rounded z-depth-1" 
+  caption="Directed graph demonstrating the max flow / min cut setup." 
+%}
 
 <br>
 
@@ -332,9 +337,9 @@ $$
 
 ---
 
-## [10.3] Alternative perspective on LP duality
+## Alternative perspective on LP duality
 
-**10.1.1** 에서 다룬 general form LP의 dual에 대해 **다른 관점**을 가질 수 있다.
+이전에 다룬 **general form LP의 dual**에 대해 **다른 관점**을 가질 수 있다.
 아래와 같은 함수를 primal variable $x$와 dual variables $u, v$에 대한 **라그랑지안 함수(Lagrangian function)** 라고 정의한다.
 
 $$
@@ -381,7 +386,7 @@ $$
 
 ---
 
-## [10.4] Example of duality: mixed strategies for matrix games
+## Example of duality: mixed strategies for matrix games
 
 두 플레이어 $\text{R}$와 $\text{J}$가 **게임**을 한다고 가정하자. 한 라운드에서 $\text{J}$가 $i$, $\text{R}$이 $j$를 골랐다면 $\text{J}$가 $\text{R}$에게 지불하게 되는 금액을 $P_{ij}$로 둔 **payoff matrix** $P$는 아래와 같다.
 
