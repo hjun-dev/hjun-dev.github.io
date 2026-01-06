@@ -2,10 +2,11 @@
 layout: post
 title: "[Convex Optimization] 11. Duality in General Programs"
 description: "General Programs에서 Lagrangian 정의 및 Duality gap 분석"
-date: 2026-01-05 13:00:00 +0900
+date: 2026-01-06 15:00:00 +0900
 tags: [math, study]
 categories: [optimization]
 related_posts: false
+# thumbnail: aseets/img/blog_img/
 toc:
   sidebar: left
 ---
@@ -13,200 +14,29 @@ toc:
 ## Introduction
 <br>
 
-본 챕터에서는 비교적 단순한 LP(Linear Programs)에 대해 **Duality**를 정의하고 그 특징을 알아본다.   
+본 챕터에서는 **General Programs**에 대한 **Lagrangian**를 정의하고 **Duality Gap**에 대한 분석을 진행한다.   
 
 ---
 
-## Lower Bounds in Linear Programs
+## Lagrangian
 <br>
 
-**Duality**에 대한 이해를 위해 먼저 linear programs에서 **optimal value**의 **lower bound**를 찾아볼 것이다. ($B \le \min_{x} f(x)$) 
-<br>
 
-먼저 다음과 같은 간단한 LP를 살펴보자.
 
-$$
-\begin{aligned}
-\min_{x, y} \quad & x + y \\
-\text{subject to} \quad 
-& x + y \ge 2, \\
-& x, y \ge 0.
-\end{aligned}
-$$
+<div class="row mt-3 justify-content-sm-center">
+    <div class="col-sm-8 mt-3 mt-md-0">
+        {% include figure.liquid 
+            loading="eager" 
+            path="assets/img/blog_img/maxflowmincut.png" 
+            class="img-fluid rounded z-depth-1" 
+            zoomable=true 
+        %}
+    </div>
+</div>
 
-위 문제의 lower bound는 제약함수를 통해 $B=2$를 쉽게 알 수 있다.    
-<br>
-
-이번엔 다른 LP를 보자.
-
-$$
-\begin{aligned}
-\min_{x, y} \quad & x + 3 y \\
-\text{subject to} \quad 
-& x + y \ge 2, \\
-& x, y \ge 0.
-\end{aligned}
-$$
-
-위 문제의 lower bound는 $x + y \ge 2$와 $2y \ge 0$를 더한 $x + 3y \ge 2$를 통해 $B=2$를 구할 수 있다.
-
-<br>
-다음의 일반적인 LP를 가정하자.  
-
-$$
-\begin{aligned}
-\min_{x, y} \quad & p x + q y \\
-\text{subject to} \quad 
-& x + y \ge 2, \\
-& x \ge 0,\; y \ge 0.
-\end{aligned}
-$$
-
-위 문제의 lower bound는 아래 식을 통해 $B=2a$가 나온다.  
-<br>
-
-$$
-\begin{aligned}
-a + b = p\\
-a + c = q\\
-a, b, c \ge 0
-\end{aligned}
-$$
-
-위에서 구한 lower bound $B$를 **maximize**함으로써 우리는 가장 유용한(?) lower bound를 구할 수 있다.
-
-$$
-\begin{array}{c|c}
-\begin{aligned}
-\min_{x,y} \quad & p x + q y \\
-\text{subject to} \quad
-& x + y \ge 2 \\
-& x, y \ge 0
-\end{aligned}
-&
-\begin{aligned}
-\max_{a,b,c} \quad & 2a \\
-\text{subject to} \quad
-& a + b = p \\
-& a + c = q \\
-& a, b, c \ge 0
-\end{aligned}
-\\[1em]
-\text{Called primal LP}
-&
-\text{Called dual LP}
-\end{array}
-$$
-
-**참고:** Dual variables의 개수는 primal constraints의 개수와 같다.
-<br>
-
-또 다른 문제에 적용해보면
-
-$$
-\begin{array}{c|c}
-\begin{aligned}
-\min_{x,y} \quad & p x + q y \\
-\text{subject to} \quad
-& x \ge 0 \\
-& y \le 0 \\
-& 3x + y = 2
-\end{aligned}
-&
-\begin{aligned}
-\max_{a,b,c} \quad & 2c - b \\
-\text{subject to} \quad
-& a + 3c = p \\
-& -b + c = q \\
-& a, b \ge 0
-\end{aligned}
-\\[1em]
-\text{Primal LP}
-&
-\text{Dual LP}
-\end{array}
-$$
-
-위 형태를 보면 알 수 있듯이 equality constraint에 대한 dual variable은 부호 제약이 **없다.**
-<br>
-
----
-
-### Duality for general form LP
-<br>
-
-$c \in \mathbb{R}^n$, $A \in \mathbb{R}^{m \times n}$, $b \in \mathbb{R}^m$, $G \in \mathbb{R}^{r \times n}$, $h \in \mathbb{R}^r$에 대해 **general form LP**에서의 primal과 dual problem은 다음과 같다.
-
-$$
-\begin{array}{c|c}
-\begin{aligned}
-\min_{x,y} \quad & c^T x \\
-\text{subject to} \quad
-& Ax = b \\
-& Gx \le h 
-\end{aligned}
-&
-\begin{aligned}
-\max_{a,b,c} \quad & -b^T u -h^T v \\
-\text{subject to} \quad
-& - A^T u - G^T v = c \\
-& v \ge 0
-\end{aligned}
-\\[1em]
-\text{Primal LP}
-&
-\text{Dual LP}
-\end{array}
-$$
-
-이는 primal problem에 대해,
-
-$$
-u^{T}(Ax - b) + v^{T}(Gx - h) \le 0
-\;\;\Longleftrightarrow\;\;
-(-A^{T}u - G^{T}v)^{T}x \ge -\,b^{T}u - h^{T}v
-$$
-
-따라서 $c = -A^T u - G^T v$라면 primal optimal value의 lower bound를 구할 수 있다.
-<br>
-
----
-
-## Example: max flow and min cut
-<br>
-
-Max flow problem은 시작 지점(source)에서 종료 지점(sink)까지 전달되는 유량의 총합을 가장 크게 만드는 문제이며 이는 Min cut problem과 강한 이론적 관계를 가진다.
-(해당 문제의 역사적 배경에 대해서는 **"On the fistory of transportation and maximum flow problems, Schrijver (2002)"** 에 정리되어 있다.)
-
----
-
-### Flow
-<br>
-
-Flow는 파이프 내부를 흘러가는 액체 등의 **유량**을 생각하면 된다. 따라서 이는 **nonnegative**이며 파이프 내부의 **capacity**는 제한되어 있고 **mass**는 진행 중 줄지 않는다.    
-위 내용을 formal하게 표현하기 위해 **directed graph** $G=(V, E)$를 고려한다. 시작 지점(source)의 node는 $s$, 종료 지점(sink)의 node는 $t$로 설정하며 flow는 $(i, j)\in E$에 대해 벡터 $f_{ij}$로 나타낸다. Flow의 제약은 아래와 같다.
-
-* **Nonnegativity of flow being pushed in the direction of the edge**: $f_{ij} \ge 0, (i,j)\in E$
-<br>
-
-* **Flow capacity per edge**: $f_{ij} \le c_{ij}, (i,j)\in E$
-<br>
-
-* **Conservation of flow** (except source / sink nodes): 
-$
-\sum_{(i,k)\in E} f_{ik}
-=\sum_{(k,j)\in E} f_{kj},
-\quad k \in V \setminus \{s,t\}$
-<br>
-(나가는 유량과 들어오는 유량은 같다. (source & sink 제외))
-
-{% include figure.liquid 
-  path="assets/img/blog_img/maxflowmincut.png" 
-  title="Max Flow Min Cut" 
-  class="img-fluid rounded z-depth-1 d-blonk mx-auto" 
-  width="60%"
-  caption="Directed graph demonstrating the max flow / min cut setup." 
-%}
+<div class="caption">
+    Directed graph demonstrating the max flow / min cut setup.
+</div>
 
 <br>
 
