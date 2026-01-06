@@ -196,6 +196,7 @@ $$
   path="assets/img/blog_img/maxflowmincut.png" 
   title="Max Flow Min Cut" 
   class="img-fluid rounded z-depth-1" 
+  width="60%"
   caption="Directed graph demonstrating the max flow / min cut setup." 
 %}
 
