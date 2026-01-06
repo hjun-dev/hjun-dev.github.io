@@ -37,9 +37,20 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-convex-optimization-10-duality-in-linear-programs",
+        },{id: "post-convex-optimization-11-duality-in-general-programs",
         
-          title: "[Convex Optimization] 10. Duality in linear programs",
+          title: "[Convex Optimization] 11. Duality in General Programs",
+        
+        description: "General Programs에서 Lagrangian 정의 및 Duality gap 분석",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/00-duality-general/";
+          
+        },
+      },{id: "post-convex-optimization-10-duality-in-linear-programs",
+        
+          title: "[Convex Optimization] 10. Duality in Linear Programs",
         
         description: "Linear Programs에서 Duality 정의 및 특징 파악",
         section: "Posts",
