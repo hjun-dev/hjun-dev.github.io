@@ -5,7 +5,7 @@ description: "Linear Programs에서 Duality 정의 및 특징 파악"
 date: 2026-01-05 13:00:00 +0900
 tags: [math, study]
 categories: [optimization]
-related_posts: false
+related_posts: True
 thumbnail: assets/img/blog_img/maxflowmincut.png
 toc:
   sidebar: left
@@ -516,9 +516,9 @@ $$
 \end{aligned}
 $$
 
-Scenario 1과 scenario 2에서 예측되는 payoff를 각각 $f^{*}_1$ , $f^{*}_2$ 라고 하자.   
-직관적으로 생각해보면 최댓값의 하한인 $f^{*}_1$ 이 최솟값의 상한인 $f^{*}_2$ 보다 크거나 같은 것을 눈치챌 수 있다. ( $f^{*}_1 \ge f^{*}_2$ )    
-하지만 **Von Neumman’s minimax theorem**에 의해 부등호는 등호로 바뀐다. ( $f^{*}_1 = f^{*}_2$ )   
+Scenario 1과 scenario 2에서 예측되는 payoff를 각각 $f^{\ast}_1$ , $f^{\ast}_2$ 라고 하자.   
+직관적으로 생각해보면 최댓값의 하한인 $f^{\ast}_1$ 이 최솟값의 상한인 $f^{\ast}_2$ 보다 크거나 같은 것을 눈치챌 수 있다. ( $f^{\ast}_1 \ge f^{\ast}_2$ )    
+하지만 **Von Neumman’s minimax theorem**에 의해 부등호는 등호로 바뀐다. ( $f^{\ast}_1 = f^{\ast}_2$ )   
 <br>
 사실 scenario 1과 2는 각각 primal-dual 관계를 가진다. 이를 확인해보도록 하겠다.   
 먼저 primal problem의 라그랑지안을 구한다.
@@ -546,7 +546,7 @@ v,
 $$
 
 Dual function을 보면 알 수 있듯이 이는 scenario 2의 problem과 일치한다.     
-따라서 해당 LP 문제에 대해서 $f^{*}_1 = f^{*}_2$ 이며 이처럼 primal problem과 dual problem의 **optimal value**가 **일치**하는 경우 **strong duality**를 가진다고 한다.   
+따라서 해당 LP 문제에 대해서 $f^{\ast}_1 = f^{\ast}_2$ 이며 이처럼 primal problem과 dual problem의 **optimal value**가 **일치**하는 경우 **strong duality**를 가진다고 한다.   
 Strong duality에 대한 자세한 내용은 다음 챕터에서 설명하도록 하겠다.
 
 ---
