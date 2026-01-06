@@ -11,12 +11,14 @@ toc:
 ---
 
 ## Introduction
+<br>
 
 본 챕터에서는 비교적 단순한 LP(Linear Programs)에 대해 **Duality**를 정의하고 그 특징을 알아본다.   
 
 ---
 
 ## Lower Bounds in Linear Programs
+<br>
 
 **Duality**에 대한 이해를 위해 먼저 linear programs에서 **optimal value**의 **lower bound**를 찾아볼 것이다. ($B \le \min_{x} f(x)$) 
 <br>
@@ -131,6 +133,7 @@ $$
 ---
 
 ### Duality for general form LP
+<br>
 
 $c \in \mathbb{R}^n$, $A \in \mathbb{R}^{m \times n}$, $b \in \mathbb{R}^m$, $G \in \mathbb{R}^{r \times n}$, $h \in \mathbb{R}^r$에 대해 **general form LP**에서의 primal과 dual problem은 다음과 같다.
 
@@ -170,6 +173,7 @@ $$
 ---
 
 ## Example: max flow and min cut
+<br>
 
 Max flow problem은 시작 지점(source)에서 종료 지점(sink)까지 전달되는 유량의 총합을 가장 크게 만드는 문제이며 이는 Min cut problem과 강한 이론적 관계를 가진다.
 (해당 문제의 역사적 배경에 대해서는 **"On the fistory of transportation and maximum flow problems, Schrijver (2002)"** 에 정리되어 있다.)
@@ -177,25 +181,29 @@ Max flow problem은 시작 지점(source)에서 종료 지점(sink)까지 전달
 ---
 
 ### Flow
+<br>
 
 Flow는 파이프 내부를 흘러가는 액체 등의 **유량**을 생각하면 된다. 따라서 이는 **nonnegative**이며 파이프 내부의 **capacity**는 제한되어 있고 **mass**는 진행 중 줄지 않는다.    
 위 내용을 formal하게 표현하기 위해 **directed graph** $G=(V, E)$를 고려한다. 시작 지점(source)의 node는 $s$, 종료 지점(sink)의 node는 $t$로 설정하며 flow는 $(i, j)\in E$에 대해 벡터 $f_{ij}$로 나타낸다. Flow의 제약은 아래와 같다.
 
 * **Nonnegativity of flow being pushed in the direction of the edge**: $f_{ij} \ge 0, (i,j)\in E$
+<br>
+
 * **Flow capacity per edge**: $f_{ij} \le c_{ij}, (i,j)\in E$
+<br>
 
-* **Conservation of flow** (except source / sink nodes):
-
-$$
+* **Conservation of flow** (except source / sink nodes): 
+$
 \sum_{(i,k)\in E} f_{ik}
 =\sum_{(k,j)\in E} f_{kj},
-\quad k \in V \setminus \{s,t\}$$
+\quad k \in V \setminus \{s,t\}$
+<br>
 (나가는 유량과 들어오는 유량은 같다. (source & sink 제외))
 
 {% include figure.liquid 
   path="assets/img/blog_img/maxflowmincut.png" 
   title="Max Flow Min Cut" 
-  class="img-fluid rounded z-depth-1" 
+  class="img-fluid rounded z-depth-1 d-blonk mx-auto" 
   width="60%"
   caption="Directed graph demonstrating the max flow / min cut setup." 
 %}
@@ -205,6 +213,7 @@ $$
 ---
 
 ### Max flow problem
+<br>
 
 주어진 그래프에서 **Max flow**를 만족하기 위해서 우리는 sourse $s$에서 방출되는 유량의 합을 maximize하길 원한다. 이를 **LP(Linear Program)** 으로 나타내면 아래와 같다.
 
@@ -226,6 +235,7 @@ $$
 ---
 
 ### Deriving the dual
+<br>
 
 LP를 primal에서 dual problem으로 변환하는 방법을 다시 생각해보면 primal 문제의 constraints에 dual variables을 곱하고 정리해 objective function의 lower bound를 구하고 maximize한다.    <br>이를 위해 primal problem의 constraints에 아래와 같이 dual variable을 곱한다.
 
@@ -301,6 +311,7 @@ $$
 ---
 
 ### LP relaxation of the min cut problem
+<br>
 
 당장 위 dual problem을 보면 어떤 의미인지 파악이 쉽지 않다. 하지만 solution을
 
@@ -339,6 +350,7 @@ $$
 ---
 
 ## Alternative perspective on LP duality
+<br>
 
 이전에 다룬 **general form LP의 dual**에 대해 **다른 관점**을 가질 수 있다.
 아래와 같은 함수를 primal variable $x$와 dual variables $u, v$에 대한 **라그랑지안 함수(Lagrangian function)** 라고 정의한다.
@@ -388,6 +400,7 @@ $$
 ---
 
 ## Example of duality: mixed strategies for matrix games
+<br>
 
 두 플레이어 $\text{R}$와 $\text{J}$가 **게임**을 한다고 가정하자. 한 라운드에서 $\text{J}$가 $i$, $\text{R}$이 $j$를 골랐다면 $\text{J}$가 $\text{R}$에게 지불하게 되는 금액을 $P_{ij}$로 둔 **payoff matrix** $P$는 아래와 같다.
 
@@ -423,6 +436,7 @@ $$
 ---
 
 ### Scenario 1: R know J's strategy ahead of time
+<br>
 
 $\text{R}$이 $\text{J}$의 전략을 알고 있다고 가정하자.  
 $\text{R}$은 payoff가 클 수록 이득이니 $P^T x$가 최대인 component의 index의 행동을 하는 것이 최적 행동이 된다.
@@ -460,6 +474,7 @@ $$
 ---
 
 ### Scenario 2: J know R's strategy ahead of time
+<br>
 
 이번엔 반대로 $\text{J}$이 $\text{R}$의 전략을 알고 있다고 가정하자.  
 $\text{J}$는 payout을 최소화하는 전략을 세우게 된다.
@@ -493,9 +508,9 @@ $$
 \end{aligned}
 $$
 
-Scenario 1과 scenario 2에서 예측되는 payoff를 각각 $f^*_1$, $f^*_2$라고 하자.   
-직관적으로 생각해보면 최댓값의 하한인 $f^*_1$이 최솟값의 상한인 $f^*_2$보다 크거나 같은 것을 눈치챌 수 있다. ($f^*_1 \ge f^*_2$)    
-하지만 **Von Neumman’s minimax theorem**에 의해 부등호는 등호로 바뀐다. ($f^*_1 = f^*_2$)   
+Scenario 1과 scenario 2에서 예측되는 payoff를 각각 $f^*_1$ , $f^*_2$ 라고 하자.   
+직관적으로 생각해보면 최댓값의 하한인 $f^*_1$ 이 최솟값의 상한인 $f^*_2$ 보다 크거나 같은 것을 눈치챌 수 있다. ( $f^*_1 \ge f^*_2$ )    
+하지만 **Von Neumman’s minimax theorem**에 의해 부등호는 등호로 바뀐다. ( $f^*_1 = f^*_2$ )   
 <br>
 사실 scenario 1과 2는 각각 primal-dual 관계를 가진다. 이를 확인해보도록 하겠다.   
 먼저 primal problem의 라그랑지안을 구한다.
@@ -523,7 +538,7 @@ v,
 $$
 
 Dual function을 보면 알 수 있듯이 이는 scenario 2의 problem과 일치한다.     
-따라서 해당 LP 문제에 대해서 $f^*_1 = f^*_2$이며 이처럼 primal problem과 dual problem의 **optimal value**가 **일치**하는 경우 **strong duality**를 가진다고 한다.   
-이에 대한 자세한 내용은 다음 챕터에서 설명하도록 하겠다.
+따라서 해당 LP 문제에 대해서 $f^*_1 = f^*_2$ 이며 이처럼 primal problem과 dual problem의 **optimal value**가 **일치**하는 경우 **strong duality**를 가진다고 한다.   
+Strong duality에 대한 자세한 내용은 다음 챕터에서 설명하도록 하겠다.
 
 ---
