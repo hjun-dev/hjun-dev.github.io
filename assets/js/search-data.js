@@ -41,7 +41,7 @@ ninja.data = [{
         
           title: "[Convex Optimization] 10. Duality in linear programs",
         
-        description: "LP에서의 Duality 분석",
+        description: "Linear Programs에서 Duality 정의 및 특징 파악",
         section: "Posts",
         handler: () => {
           
