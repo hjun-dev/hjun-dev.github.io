@@ -6,7 +6,6 @@ date: 2026-01-05 13:00:00 +0900
 tags: [math, study]
 categories: [optimization]
 related_posts: True
-thumbnail: assets/img/blog_img/maxflowmincut.png
 toc:
   sidebar: left
 ---
@@ -436,7 +435,7 @@ $$
 따라서 $\text{J}$ 가 $\text{R}$ 에게 지불하는 payout의 기댓값은 아래 식과 같다.
 
 $$
-\sum_{i=1}^{m}\sum_{j=1}^{n} x_i y_i P_{ij}=x^T Py
+\sum_{i=1}^{m}\sum_{j=1}^{n} x_i y_j P_{ij}=x^T Py
 $$
 
 아래에서는 해당 문제를 두 가지 관점에서 보고 문제를 formulation 해볼 것이다.
