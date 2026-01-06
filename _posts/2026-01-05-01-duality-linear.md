@@ -10,6 +10,12 @@ toc:
   sidebar: left
 ---
 
+## Introduction
+
+본 챕터에서는 비교적 단순한 LP(Linear Programs)에 대해 **Duality**를 정의하고 그 특징을 알아본다.   
+
+---
+
 ## [10.1] Lower Bounds in Linear Programs
 
 **Duality**에 대한 이해를 위해 먼저 linear programs에서 **optimal value**의 **lower bound**를 찾아볼 것이다. ($B \le \min_{x} f(x)$) 
@@ -186,7 +192,8 @@ $$
 \quad k \in V \setminus \{s,t\}$$
 (나가는 유량과 들어오는 유량은 같다. (source & sink 제외))
 
-그래프이미지그래프이미지그래프이미지그래프이미지그래프이미지그래프이미지그래프이미지그래프이미지그래프이미지
+![Directed graph demonstrating the max flow / min cut setup.](/assets/img/blog_img/maxflowmincut.png)
+
 <br>
 
 ---
@@ -388,3 +395,129 @@ m & P_{m1} & P_{m2} & \cdots & P_{mn}
 \end{array}
 $$
 
+두 플레이어는 모두 mixed stragy를 따른다. (자신의 행동 집합 위에 정의된 확률분포를 따라 하나를 선택하는 전략)   
+
+$$
+\begin{aligned}
+x:\quad & \mathbb{P}(\text{J chooses } i) = x_i,
+\qquad i = 1,\ldots,m, \\
+y:\quad & \mathbb{P}(\text{R chooses } j) = y_j,
+\qquad j = 1,\ldots,n.
+\end{aligned}
+$$
+
+따라서 $\text{J}$ 가 $\text{R}$ 에게 지불하는 payout의 기댓값은 아래 식과 같다.
+
+$$
+\sum_{i=1}^{m}\sum_{j=1}^{n} x_i y_i P_{ij}=x^T Py
+$$
+
+아래에서는 해당 문제를 두 가지 관점에서 보고 문제를 formulation 해볼 것이다.
+
+---
+
+### Scenario 1: R know J's strategy ahead of time
+
+$\text{R}$이 $\text{J}$의 전략을 알고 있다고 가정하자.  
+$\text{R}$은 payoff가 클 수록 이득이니 $P^T x$가 최대인 component의 index의 행동을 하는 것이 최적 행동이 된다.
+
+$$
+\max\{\, x^{T} P y \;:\; y \ge 0,\; \mathbf{1}^{T} y = 1 \,\}
+\;=\;
+\max_{i=1,\ldots,n} \bigl( P^{T} x \bigr)_i .
+$$
+
+그럼 $\text{J}$는 payoff를 최소화하는 것이 목적이므로 위에서 구한 $\text{R}$의 payoff 식을 최소화하고자 한다.
+
+$$
+\begin{aligned}
+\min_{x} \quad 
+& \max_{i=1,\ldots,n} \bigl( P^{T} x \bigr)_i \\[0.5em]
+\text{subject to} \quad
+& x \ge 0, \\
+& \mathbf{1}^{T} x = 1.
+\end{aligned}
+$$
+
+이를 다시 쓰면
+
+$$
+\begin{aligned}
+\min_{x,t} \quad & t \\[0.5em]
+\text{subject to} \quad
+& x \ge 0, \\
+& \mathbf{1}^{T} x = 1, \\
+& P^{T} x \le t\,\mathbf{1}.
+\end{aligned}
+$$
+
+---
+
+### Scenario 2: J know R's strategy ahead of time
+
+이번엔 반대로 $\text{J}$이 $\text{R}$의 전략을 알고 있다고 가정하자.  
+$\text{J}$는 payout을 최소화하는 전략을 세우게 된다.
+$$
+\min\{\, x^{T} P y \;:\; x \ge 0,\; \mathbf{1}^{T} x = 1 \,\}
+\;=\;
+\min_{i=1,\ldots,m} \bigl( Py \bigr)_i .
+$$
+
+따라서 이를 아는 $\text{R}$의 전략은 아래와 같게 된다.
+
+$$
+\begin{aligned}
+\max_{y} \quad 
+& \min_{i=1,\ldots,m} \bigl( Py \bigr)_i \\[0.5em]
+\text{subject to} \quad
+& y \ge 0, \\
+& \mathbf{1}^{T} y = 1.
+\end{aligned}
+$$
+
+이를 다시 쓰면
+
+$$
+\begin{aligned}
+\max_{y,v} \quad & v \\[0.5em]
+\text{subject to} \quad
+& y \ge 0, \\
+& \mathbf{1}^{T} y = 1, \\
+& P y \ge v\,\mathbf{1}.
+\end{aligned}
+$$
+
+Scenario 1과 scenario 2에서 예측되는 payoff를 각각 $f^*_1$, $f^*_2$라고 하자.   
+직관적으로 생각해보면 최댓값의 하한인 $f^*_1$이 최솟값의 상한인 $f^*_2$보다 크거나 같은 것을 눈치챌 수 있다. ($f^*_1 \ge f^*_2$)    
+하지만 **Von Neumman’s minimax theorem**에 의해 부등호는 등호로 바뀐다. ($f^*_1 = f^*_2$)   
+<br>
+사실 scenario 1과 2는 각각 primal-dual 관계를 가진다. 이를 확인해보도록 하겠다.   
+먼저 primal problem의 라그랑지안을 구한다.
+
+$$
+L(x,t,u,v,y)
+= t - u^{T}x + v\!\left(1-\mathbf{1}^{T}x\right)
++ y^{T}\!\left(P^{T}x - t\mathbf{1}\right).
+$$
+
+이를 minimize해 dual function을 구한다.
+
+$$
+\begin{aligned}
+g(u,v,y)
+&= \min_{x,t} L(x,t,u,v,y) \\[0.5em]
+&=
+\begin{cases}
+v,
+& \text{if } 1 - \mathbf{1}^{T}y = 0,\; Py - u - v\mathbf{1} = 0, \\[0.5em]
+-\infty,
+& \text{otherwise}.
+\end{cases}
+\end{aligned}
+$$
+
+Dual function을 보면 알 수 있듯이 이는 scenario 2의 problem과 일치한다.     
+따라서 해당 LP 문제에 대해서 $f^*_1 = f^*_2$이며 이처럼 primal problem과 dual problem의 **optimal value**가 **일치**하는 경우 **strong duality**를 가진다고 한다.   
+이에 대한 자세한 내용은 다음 챕터에서 설명하도록 하겠다.
+
+---
