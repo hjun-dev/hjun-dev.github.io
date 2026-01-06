@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "[Convex Optimization] 10. Duality in Linear Programs"
-description: "Linear Programs에서 Duality 정의 및 특징 파악"
+title: "[Convex Optimization] 11. Duality in General Programs"
+description: "General Programs에서 Lagrangian 정의 및 Duality gap 분석"
 date: 2026-01-05 13:00:00 +0900
 tags: [math, study]
 categories: [optimization]
@@ -200,20 +200,13 @@ $
 <br>
 (나가는 유량과 들어오는 유량은 같다. (source & sink 제외))
 
-<div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/maxflowmincut.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
-        %}
-    </div>
-</div>
-
-<div class="caption">
-    Directed graph demonstrating the max flow / min cut setup.
-</div>
+{% include figure.liquid 
+  path="assets/img/blog_img/maxflowmincut.png" 
+  title="Max Flow Min Cut" 
+  class="img-fluid rounded z-depth-1 d-blonk mx-auto" 
+  width="60%"
+  caption="Directed graph demonstrating the max flow / min cut setup." 
+%}
 
 <br>
 
