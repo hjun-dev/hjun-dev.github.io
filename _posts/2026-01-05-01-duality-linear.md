@@ -10,7 +10,7 @@ toc:
   sidebar: left
 ---
 
-## 10.1 Lower Bounds in Linear Programs
+## [10.1] Lower Bounds in Linear Programs
 
 **Duality**에 대한 이해를 위해 먼저 linear programs에서 **optimal value**의 **lower bound**를 찾아볼 것이다. ($B \le \min_{x} f(x)$) 
 <br>
@@ -122,7 +122,9 @@ $$
 위 형태를 보면 알 수 있듯이 equality constraint에 대한 dual variable은 부호 제약이 **없다.**
 <br>
 
-### 10.1.1 Duality for general form LP
+---
+
+### [10.1.1] Duality for general form LP
 
 $c \in \mathbb{R}^n$, $A \in \mathbb{R}^{m \times n}$, $b \in \mathbb{R}^m$, $G \in \mathbb{R}^{r \times n}$, $h \in \mathbb{R}^r$에 대해 **general form LP**에서의 primal과 dual problem은 다음과 같다.
 
@@ -159,12 +161,17 @@ $$
 따라서 $c = -A^T u - G^T v$라면 primal optimal value의 lower bound를 구할 수 있다.
 <br>
 
-## 10.2 Example: max flow and min cut
+---
+
+## [10.2] Example: max flow and min cut
 
 Max flow problem은 시작 지점(source)에서 종료 지점(sink)까지 전달되는 유량의 총합을 가장 크게 만드는 문제이며 이는 Min cut problem과 강한 이론적 관계를 가진다.
 (해당 문제의 역사적 배경에 대해서는 **"On the fistory of transportation and maximum flow problems, Schrijver (2002)"** 에 정리되어 있다.)
 
+---
+
 ### Flow
+
 Flow는 파이프 내부를 흘러가는 액체 등의 **유량**을 생각하면 된다. 따라서 이는 **nonnegative**이며 파이프 내부의 **capacity**는 제한되어 있고 **mass**는 진행 중 줄지 않는다.    
 위 내용을 formal하게 표현하기 위해 **directed graph** $G=(V, E)$를 고려한다. 시작 지점(source)의 node는 $s$, 종료 지점(sink)의 node는 $t$로 설정하며 flow는 $(i, j)\in E$에 대해 벡터 $f_{ij}$로 나타낸다. Flow의 제약은 아래와 같다.
 
@@ -182,7 +189,10 @@ $$
 그래프이미지그래프이미지그래프이미지그래프이미지그래프이미지그래프이미지그래프이미지그래프이미지그래프이미지
 <br>
 
+---
+
 ### Max flow problem
+
 주어진 그래프에서 **Max flow**를 만족하기 위해서 우리는 sourse $s$에서 방출되는 유량의 합을 maximize하길 원한다. 이를 **LP(Linear Program)** 으로 나타내면 아래와 같다.
 
 $$
@@ -200,7 +210,10 @@ $$
 $$
 <br>
 
+---
+
 ### Deriving the dual
+
 LP를 primal에서 dual problem으로 변환하는 방법을 다시 생각해보면 primal 문제의 constraints에 dual variables을 곱하고 정리해 objective function의 lower bound를 구하고 maximize한다.    <br>이를 위해 primal problem의 constraints에 아래와 같이 dual variable을 곱한다.
 
 $$
@@ -272,6 +285,8 @@ $$
 $$
 <br>
 
+---
+
 ### LP relaxation of the min cut problem
 
 당장 위 dual problem을 보면 어떤 의미인지 파악이 쉽지 않다. 하지만 solution을
@@ -308,7 +323,9 @@ $$
 실제로는 **max flow min cut theorem**에 의해 부등식의 세 값을 정확히 동일함이 알려져 있다. 이처럼 dual problem과 primal problem의 optimal value가 동일한 경우 **strong duality**가 성립된다고 한다.
 <br>
 
-## 10.3 Alternative perspective on LP duality
+---
+
+## [10.3] Alternative perspective on LP duality
 
 **10.1.1** 에서 다룬 general form LP의 dual에 대해 **다른 관점**을 가질 수 있다.
 아래와 같은 함수를 primal variable $x$와 dual variables $u, v$에 대한 **라그랑지안 함수(Lagrangian function)** 라고 정의한다.
@@ -355,7 +372,9 @@ $$
 
 결과적으로 $g(u,v)$를 **maximize**하면 이는 dual problem과 정확히 같은 문제가 된다.
 
-## 10.4 Example of duality: mixed strategies for matrix games
+---
+
+## [10.4] Example of duality: mixed strategies for matrix games
 
 두 플레이어 $\text{R}$와 $\text{J}$가 **게임**을 한다고 가정하자. 한 라운드에서 $\text{J}$가 $i$, $\text{R}$이 $j$를 골랐다면 $\text{J}$가 $\text{R}$에게 지불하게 되는 금액을 $P_{ij}$로 둔 **payoff matrix** $P$는 아래와 같다.
 
