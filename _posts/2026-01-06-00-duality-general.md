@@ -40,7 +40,7 @@ L(x,u,v)
 + \sum_{j=1}^{r} v_j \,\underbrace{l_j(x)}_{= 0}
 $$
 
-$u \le 0$에 대해서는 $L(x,u,v) \rightarrow -\infin $이다.  
+$u \le 0$에 대해서는 $L(x,u,v) \rightarrow -\infty$이다.  
 Lagrangian의 **중요한 특징** 중 하나는 모든 $u\ge 0$와 $v$에 대해 각 feasible $x$에서 $f(x)\le L(x,u,v)$가 성립한다는 것이다. 
 <br>
 $f$와 $L(x,u,v)$의 관계는 feasible set 밖에서는 적용되지 않음에 주의하자.
@@ -180,7 +180,7 @@ Q^{+}
 \end{aligned}
 $$
 
-위의 경우가 아닌 경우 해당 라그랑지안의 **minimizer**는 존재하지 않는다. 따라서 Lagrange dual function의 값은 $-\infin $이다.    
+위의 경우가 아닌 경우 해당 라그랑지안의 **minimizer**는 존재하지 않는다. 따라서 Lagrange dual function의 값은 $-\infty$이다.    
 
 $$
 g(u,v)
