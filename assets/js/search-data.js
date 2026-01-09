@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-convex-optimization-11-duality-in-general-programs",
+        },{id: "post-convex-optimization-12-kkt-conditions",
+        
+          title: "[Convex Optimization] 12. KKT conditions",
+        
+        description: "Karush-Kuhn-Tucker (KKT) Conditions에 대한 분석",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/00-kkt-conditions/";
+          
+        },
+      },{id: "post-convex-optimization-11-duality-in-general-programs",
         
           title: "[Convex Optimization] 11. Duality in General Programs",
         
