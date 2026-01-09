@@ -163,7 +163,7 @@ $$
 Lagrangian의 그래디언트가 0이 되는 곳을 찾으면 마찬가지로 $Qx=(-c-u+A^T v)$이다.    
 하지만 $Q$가 positive semidefinite이라 역행렬이 정의되지 않을 수 있다.
 <br>
-만약 $(c-u+A^T v) \in \text{col}(Q)$라면 ($Q \in \mathbb{S}$이므로 $(c-u+A^T v) \perp \text{null}(Q)$와 동치) 라그랑지안을 0으로 만드는 해는 무수히 많고 이는 psuedo inverse로 구할 수 있다. <br>(psuedo inverse는 [Moore-Penrose inverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse)라고도 부른다.)    
+만약 $(c-u+A^T v) \in \text{col}(Q)$라면 ($Q \in \mathbb{S}$이므로 $(c-u+A^T v) \perp \text{null}(Q)$와 동치) 라그랑지안을 0으로 만드는 해는 무수히 많고 이는 pseudo inverse로 구할 수 있다. <br>(pseudo inverse는 [Moore-Penrose inverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse)라고도 부른다.)    
 
 $$
 \begin{aligned}
@@ -421,10 +421,3 @@ $$
 
 따라서 duality gap이 0이면 primal optimal과 dual optimal이 그 지점의 $x$와 $(u,v)$가 되는 것을 알 수 있다.<br>
 알고리즘적 관점에서는 $f(x)-g(u,v)\le \epsilon$이 $f(x)-f^{\ast}\le \epsilon$을 보장하므로 종료조건으로 활용가능하다.
-
----
-
-## Geometric interpretation
-
-아래는 Stephen Boyd 교수님의 Convex Optimization (Stanford, EE364a) 강의자료를 참고해 추가 작성한 내용입니다.<br>
-Dual 

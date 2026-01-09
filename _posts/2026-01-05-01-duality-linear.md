@@ -176,7 +176,7 @@ $$
 <br>
 
 Max flow problem은 시작 지점(source)에서 종료 지점(sink)까지 전달되는 유량의 총합을 가장 크게 만드는 문제이며 이는 Min cut problem과 강한 이론적 관계를 가진다.
-(해당 문제의 역사적 배경에 대해서는 **"On the fistory of transportation and maximum flow problems, Schrijver (2002)"** 에 정리되어 있다.)
+(해당 문제의 역사적 배경에 대해서는 **"On the history of transportation and maximum flow problems, Schrijver (2002)"** 에 정리되어 있다.)
 
 ---
 
@@ -421,7 +421,7 @@ m & P_{m1} & P_{m2} & \cdots & P_{mn}
 \end{array}
 $$
 
-두 플레이어는 모두 mixed stragy를 따른다. (자신의 행동 집합 위에 정의된 확률분포를 따라 하나를 선택하는 전략)   
+두 플레이어는 모두 mixed strategy를 따른다. (자신의 행동 집합 위에 정의된 확률분포를 따라 하나를 선택하는 전략)   
 
 $$
 \begin{aligned}
