@@ -19,7 +19,7 @@ toc:
 
 ## Primal & Dual problems
 
-**Primal problem**
+**Primal problem**<br>
 $$
 \begin{aligned}
 \min_{x} \quad 
@@ -30,9 +30,9 @@ $$
 \end{aligned}
 $$
 
-위 primal problem에 대한 Lagrangian은 $L(x,u,v)=f(x)+\sum^{m}_{u=1}u_{i}h_{i}(x)+\sum^{r}_{j=1}v_{j}\ell_{j}(x)$이며 Lagrange dual function은 $g(u,v)=\min_{x}L(x,u,v)$로 정의된다.<br>
+위 primal problem에 대한 Lagrangian은 $L(x,u,v)=f(x)+\sum^{m}_{u=1}u_{i}h_{i}(x)+\sum^{r}_{j=1}v_{j}\ell_{j}(x)$ 이며 Lagrange dual function은 $g(u,v)=\min_{x}L(x,u,v)$ 로 정의된다.<br>
 
-**Dual problem**
+**Dual problem**<br>
 $$
 \begin{aligned}
 \max_{u,v} \quad
@@ -58,7 +58,7 @@ $$
 
 General primal problem에 대해 KKT conditions는 다음과 같다.
 
-1. $0\in \partial_x \bigl(f(x)+\sum^{m}_{i=1}u_{i}h_{i}(x)+\sum^{r}_{j=1}v_j \ell_j(x)\bigr)$ (**Stationary**)
+1. $ 0\in \partial_x \bigl(f(x)+\sum^{m}_{i=1}u_{i}h_{i}(x)+\sum^{r}_{j=1}v_j \ell_j(x)\bigr) $  (**Stationary**)
 <br>
 
 2. $u_i \cdot h_i (x) = 0$ for all $i$
@@ -84,6 +84,8 @@ General primal problem에 대해 KKT conditions는 다음과 같다.
 $$
 \text{KKT} \Rightarrow \text{optimal solutions}
 $$
+<br>
+
 **Proof**
 <br>
 
@@ -188,8 +190,6 @@ u
 0
 \end{bmatrix}
 $$
-
----
 
 ---
 
@@ -346,10 +346,20 @@ $$
 ## Constrained and Lagrange Forms
 
 **Lemma**<br>
-$t\in \mathbb{R}$와 $\lambda \ge 0$에 대해 $f, h$가 convex function이고 constrained form이 strictly feasible이라면 아래의 두 forms는 동일하다.
+$t\in \mathbb{R}$와 $\lambda \ge 0$에 대해 $f, h$가 **convex function**이고 constrained form이 **strictly feasible**이라면 아래의 두 forms는 동일하다.
 <br>
 
+$$
+\begin{aligned}
+\textit{Constrained Form (C)} 
+& \qquad \min_{x} \; f(x)
+\quad \text{subject to } h(x) \le t \\[0.5em]
+\textit{Lagrange Form (L)} 
+& \qquad \min_{x} \; f(x) + \lambda \cdot h(x)
+\end{aligned}
+$$
 **Proof**<br>
+
 
 
 ---
