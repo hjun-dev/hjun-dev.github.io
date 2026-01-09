@@ -30,7 +30,12 @@ $$
 \end{aligned}
 $$
 
-위 primal problem에 대한 Lagrangian은 $L(x,u,v)=f(x)+\sum^{m}_{u=1}u_{i}h_{i}(x)+\sum^{r}_{j=1}v_{j}\ell_{j}(x)$ 이며 Lagrange dual function은 $g(u,v)=\min_{x}L(x,u,v)$ 로 정의된다.<br>
+위 primal problem에 대한 Lagrangian은 
+
+$$
+L(x,u,v)=f(x)+\sum^{m}_{u=1}u_{i}h_{i}(x)+\sum^{r}_{j=1}v_{j}\ell_{j}(x)$$
+
+Lagrange dual function은 $g(u,v)=\min_{x}L(x,u,v)$ 로 정의된다.<br>
 
 **Dual problem**<br>
 $$
@@ -58,17 +63,18 @@ $$
 
 General primal problem에 대해 KKT conditions는 다음과 같다.
 
-1. $ 0\in \partial_x \bigl(f(x)+\sum^{m}_{i=1}u_{i}h_{i}(x)+\sum^{r}_{j=1}v_j \ell_j(x)\bigr) $  (**Stationary**)
+1. (**Stationary**)
+$$ 0\in \partial_x \bigl(f(x)+\sum^{m}_{i=1}u_{i}h_{i}(x)+\sum^{r}_{j=1}v_j \ell_j(x)\bigr) 
+$$  
 <br>
 
-2. $u_i \cdot h_i (x) = 0$ for all $i$
-(**Complementary slackness**)
+2. (**Complementary slackness**) $u_i \cdot h_i (x) = 0$ for all $i$
 <br>
 
-3. $h_i (x) \le 0, \ell_j (x) =0$ for all $i, j$ (**Primal feasibility**)
+3. (**Primal feasibility**) $h_i (x) \le 0, \ell_j (x) =0$ for all $i, j$
 <br>
 
-4. $u_i \ge 0$ for all $i$ (**Dual feasibility**)
+4. (**Dual feasibility**) $u_i \ge 0$ for all $i$
 
 ---
 
@@ -358,9 +364,53 @@ $$
 & \qquad \min_{x} \; f(x) + \lambda \cdot h(x)
 \end{aligned}
 $$
+
+<br>
+
+**해석** <br>
+제약을 거는 경우 주로 위 두 형태로 문제를 정의한다. (C) 방식에서는 특정 $t \ge 0$을 골라 문제를 완화시키거나 objective function에 t를 포함시켜 제약을 만족하게 한다.<br>
+(L) 방식에서는 제약조건을 벗어나는 만큼 objective function에 들어가게 문제를 정의해 제약을 만족시키는 해를 찾도록 한다. 사전에 충분히 큰 $\lambda$를 설정하거나 $\lambda$를 점진적으로 키우는 방식으로 제약을 만족하는 해를 찾는다.<br>
+이 두 방식의 해가 동일하게 나오기 위해서는 서로 어떤 대응되는 $t$와 $\lambda$를 골라야 하는지 알아보고 Lemma와 같이 두 방식이 동일한 해를 같도록 하는 파라미터가 항상 찾아지는지 살펴보도록 하겠다.
+
+
+
 **Proof**<br>
 
+**(C) to (L)** : 만약 (C)가 strictly feasible하다면 strong duality가 성립한다. Stationary condition에 의해 다음 식을 최소화하는 $x^{\ast}$ 몇몇 $\lambda \ge 0$에 대해 찾을 수 있다.
 
+$$
+f(x^{\ast})+\lambda \cdot (h(x^{\ast})-t)
+$$
+
+$x^{\ast}$는 마찬가지로 (L)를 minimize하는 solution 중 하나가 된다. 따라서 다음이 성립한다.
+
+$$
+\bigcup_{\lambda \ge 0} \{\, \text{solutions in } (L) \,\}
+\;\supseteq\;
+\bigcup_{\,t \in \{\, t : h(x) < t,\ \forall x \,\}}
+\{\, \text{solutions in } (C) \,\}
+$$
+
+<br>
+
+**(L) to (C)** : $x^{\ast}$가 (L)의 solution이고 $t=h(x^{\ast})$ 를 고르면 (C)의 KKT condition은 만족된다.<br>
+따라서 다음이 성립한다.
+
+$$
+\bigcup_{t \ge 0} \{\, \text{solutions in } (C) \,\}
+\;\supseteq\;
+\bigcup_{\lambda \ge 0} \{\, \text{solutions in } (L) \,\}
+$$
+
+그러므로 두 문제는 **거의** 항상 서로 변환 가능한 문제 형태이다.<br>
+**'거의'** 가 붙는 이유는 (C)에서 특정 t를 고르면 Slater's condition을 만족하지 못할 수 있기 때문이다. 하지만 t가 0 하나뿐이라면 t를 점점 줄여가며 수렴시킬 수 있어 대응이 가능하다.<br>
+따라서 t가 0이면 equality가 성립한다.<br>
+
+---
+
+## Uniqueness in $\ell_1$ Penalized Problems
+
+**Theorem**
 
 ---
 
