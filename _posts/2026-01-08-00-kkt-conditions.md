@@ -82,7 +82,7 @@ $$
 
 ---
 
-주의: 만약 objective function $f$가 convex하지 않다면 $f$가 미분가능하더라도 $\partial_x f(x)=\{\triangledown f(x)\}$라고 할 수 없음을 주의하자.<br>
+주의: 만약 objective function $f$가 convex하지 않다면 $f$가 미분가능하더라도 $\partial_x f(x)=\lbrace\triangledown f(x)\rbrace$라고 할 수 없음을 주의하자.<br>
 (Subgradient & subdifferential의 정의 기억)
 
 ---
@@ -156,8 +156,8 @@ KKT 조건은 원래 **KT(Kuhn-Tucker)** 조건으로 알려졌다.<br>
 
 $$
 0 \in \partial f(x^\star)
-+ \sum_{i=1}^{m} N_{\{\,h_i \le 0\,\}}(x^\star)
-+ \sum_{j=1}^{r} N_{\{\,\ell_j = 0\,\}}(x^\star)
++ \sum_{i=1}^{m} N_{\lbrace \,h_i \le 0\,\rbrace}(x^\star)
++ \sum_{j=1}^{r} N_{\lbrace \,\ell_j = 0\,\rbrace}(x^\star)
 $$
 
 위 식은 KKT 조건의 stationary condition을 **normal cone**으로 표현한 식이다.<br> 
@@ -254,14 +254,14 @@ x_i
 0, & \text{if } v \ge \dfrac{1}{\alpha_i},
 \end{cases}
 \;=\;
-\max\!\left\{\,0,\; \dfrac{1}{v} - \alpha_i \right\},
+\max\!\left\lbrace \,0,\; \dfrac{1}{v} - \alpha_i \right\rbrace,
 \qquad i = 1,\ldots,n
 $$
 
 또한 $\mathbf{1}^Tx=\mathbf{1}$에 의해 아래와 같이 나타난다.
 
 $$
-\sum_{i=1}^{n} \max\left\{ 0,\; \frac{1}{v} - \alpha_i \right\} = 1
+\sum_{i=1}^{n} \max\left\lbrace  0,\; \frac{1}{v} - \alpha_i \right\rbrace = 1
 $$
 
 이러한 해를 water-filling이라고 부른다. 주어진 $\alpha_i$를 ground level로 생각하고 채우는 물의 합이 1일때 가능한 $\frac{1}{v^{\ast}}$까지 물을 채우는 문제로 생각할 수 있다.
@@ -287,7 +287,7 @@ $$
 
 ### Support Vector Machines
 
-$y \in \{-1, 1\}^n$, $X\in \mathbb{R}^{n \times p}$에 대해 support vector machine 문제는 다음과 같이 정의된다.
+$y \in \lbrace -1, 1\rbrace^n$, $X\in \mathbb{R}^{n \times p}$에 대해 support vector machine 문제는 다음과 같이 정의된다.
 
 $$
 \begin{aligned}
@@ -389,10 +389,10 @@ $$
 $x^{\ast}$는 마찬가지로 (L)를 minimize하는 solution 중 하나가 된다. 따라서 다음이 성립한다.
 
 $$
-\bigcup_{\lambda \ge 0} \{\, \text{solutions in } (L) \,\}
+\bigcup_{\lambda \ge 0} \lbrace \, \text{solutions in } (L) \,\rbrace
 \;\supseteq\;
-\bigcup_{\,t \in \{\, t : h(x) < t,\ \forall x \,\}}
-\{\, \text{solutions in } (C) \,\}
+\bigcup_{\,t \in \lbrace \, t : h(x) < t,\ \forall x \,\rbrace}
+\lbrace \, \text{solutions in } (C) \,\rbrace
 $$
 
 <br>
@@ -401,9 +401,9 @@ $$
 따라서 다음이 성립한다.
 
 $$
-\bigcup_{t \ge 0} \{\, \text{solutions in } (C) \,\}
+\bigcup_{t \ge 0} \lbrace \, \text{solutions in } (C) \,\rbrace
 \;\supseteq\;
-\bigcup_{\lambda \ge 0} \{\, \text{solutions in } (L) \,\}
+\bigcup_{\lambda \ge 0} \lbrace \, \text{solutions in } (L) \,\rbrace
 $$
 
 그러므로 두 문제는 **거의** 항상 서로 변환 가능한 문제 형태이다.<br>
@@ -424,7 +424,7 @@ $$
 
 위 문제의 해 $\beta$는 $X$의 rank에 따라 해의 형태가 달라진다.
 
-1. $\text{rank}(X)=p$인 경우 : $X$의 column들이 **선형 독립**임을 의미한다. $\frac{1}{2}\,||y - X\beta||_2^{2}$ 항의 **Hessian**은 $X^T X$이며 **positive definite**이다. 따라서 첫 항은 **strictly convex**한 function이다. $\ell_1$ function은 **convex**이므로 전체 목적함수는 **strictly convex**하다. 따라서 이 경우에 문제의 해는 항상 **유일**하다.
+1. $\text{rank}(X)=p$인 경우 : $X$의 column들이 **선형 독립**임을 의미한다. $\frac{1}{2}\,\Vert y - X\beta\Vert_2^{2}$ 항의 **Hessian**은 $X^T X$이며 **positive definite**이다. 따라서 첫 항은 **strictly convex**한 function이다. $\ell_1$ function은 **convex**이므로 전체 목적함수는 **strictly convex**하다. 따라서 이 경우에 문제의 해는 항상 **유일**하다.
 <br>
 
 2. $\text{rank}(X)\lt p$인 경우 : $X$의 column들이 **선형 종속**임을 의미한다. wide($p \gt n$) 행렬은 반드시 이 경우에 포함되며 wide 행렬이 아니더라도 rank에 따라 포함 여부가 결정될 수 있다. 이때 $X^T X$는 **positive semidefinite**이므로 strictly convex가 아닌 **convex**한 특징을 가진다. 따라서 전체 목적함수는 **convex** 특징을 가지며 해가 **여러 개** 생길 수 있다.
@@ -446,7 +446,7 @@ F(\beta_\alpha) =
 + \lambda \|\alpha\beta^{(1)}+(1-\alpha)\beta^{(2)}\|_1
 $$
 
-$F(\beta)=\frac{1}{2}\,\|y - X\beta\|_2^{2}+ \lambda \|\beta\|_1$ 는 **convex function**이다. 따라서
+$F(\beta)=\frac{1}{2}\,\Vert y - X\beta\Vert_2^{2}+ \lambda \Vert\beta\Vert_1$ 는 **convex function**이다. 따라서
 
 $$
 F(\beta_\alpha)\le \alpha F(\beta^{(1)})+(1-\alpha)F(\beta^{(2)})
@@ -472,17 +472,17 @@ $$
 
 따라서 $X\beta$는 항상 일정하다. <br>
 
-$F$의 각 항의 값이 일정해야 하므로 $||\beta||_1$ 또한 일정하다.
+$F$의 각 항의 값이 일정해야 하므로 $\Vert\beta\Vert_1$ 또한 일정하다.
 <br>
 
-지금까지 해가 무수히 많이 존재할 때 $X\beta$와 $||\beta||_1$이 동일한 값을 가짐을 확인했다. <br>
+지금까지 해가 무수히 많이 존재할 때 $X\beta$와 $\Vert\beta|\Vert_1$이 동일한 값을 가짐을 확인했다. <br>
 이제 objective function의 KKT 조건을 살펴보겠다.
 
 $$
 0 \in \bigl(-X^{T}(y-X\hat{\beta}) + \lambda \partial\|\hat{\beta}\|_1 \bigr)
 $$
 
-따라서 $\exists \ \gamma \in \partial||\hat{\beta}||_1$ 에 대해 다음을 만족한다.
+따라서 $\exists \gamma \in \partial\Vert\hat{\beta}\Vert_1$ 에 대해 다음을 만족한다.
 
 $$
 X^{T}(y-X\hat{\beta}) = \lambda \gamma
@@ -512,12 +512,12 @@ LHS을 해석해보면 $X$의 column과 데이터에 대한 잔차의 **correlat
 $$
 \mathcal{E}
 =
-\left\{
-i \in \{1,\ldots,p\}
+\left\lbrace 
+i \in \lbrace 1,\ldots,p\rbrace
 :
 \left| X_i^{T}\bigl(y - X\hat{\beta}\bigr) \right|
 = \lambda
-\right\}
+\right\rbrace
 $$
 
 **Equicorrelation set**에는 $\hat{\beta}_i$가 0이 아닌 index 들과 $\hat{\beta}_i$가 0이지만 $|\gamma_i|=1$인 index들이 속하게 된다.<br>
@@ -531,10 +531,10 @@ s
 X_{\mathcal{E}}^{T}(y - X\hat{\beta})
 \right)
 \in
-\{-1,1\}^{|\mathcal{E}|}
+\lbrace -1,1\rbrace^{|\mathcal{E}|}
 $$
 
-$\hat{\beta}$중 nonzero component는 반드시 $\mathcal{E}$에만 속하게 되며 $-\mathcal{E}$에는 반드시 zero component만 존재한다. 
+$\hat{\beta}$ 중 nonzero component는 반드시 $\mathcal{E}$에만 속하게 되며 $-\mathcal{E}$에는 반드시 zero component만 존재한다. 
 
 $$
 \hat{\beta}_{-\mathcal{E}}=0
@@ -573,17 +573,17 @@ $$
 따라서 nonzero component는 $\hat{\beta}$에 대한 분석 대신 $\hat{\beta}_{\mathcal{E}}$가 존재하는 공간에 대한 분석만으로 충분하다.
 <br>
 
-그럼 언제 해가 유일해질까? $b\in \text{null}(X_\mathcal{E})$가 해를 무수히 많게 만드는 요인이므로 $\text{null}(X_\mathcal{E})=\{0\}$라면 해는 유일하게 존재한다.<br>
-또한 nonzero component의 수는 $\text{rank}(X_\mathcal{E})$보다 작거나 같아야 하므로 최대 $\text{min} \{n,p\}$개 가능하다.
+그럼 언제 해가 유일해질까? $b\in \text{null}(X_\mathcal{E})$가 해를 무수히 많게 만드는 요인이므로 $\text{null}(X_\mathcal{E})=\lbrace 0\rbrace$라면 해는 유일하게 존재한다.<br>
+또한 nonzero component의 수는 $\text{rank}(X_\mathcal{E})$보다 작거나 같아야 하므로 최대 $\text{min} \lbrace n,p\rbrace$개 가능하다.
 <br>
 
-그럼 이제 주된 관심사는 언제 $\text{null}(X_\mathcal{E})=\{0\}$가 되느냐는 것이다. <br>
-이를 이해하기 위해 $\text{null}(X_\mathcal{E})\ne\{0\}$인 경우를 가정해보자. 그럼 $\mathcal{E}$의 column들의 선형 종속 관계에 의해 다음이 성립한다.
+그럼 이제 주된 관심사는 언제 $\text{null}(X_\mathcal{E})=\lbrace 0\rbrace$가 되느냐는 것이다. <br>
+이를 이해하기 위해 $\text{null}(X_\mathcal{E})\ne\lbrace 0\rbrace$인 경우를 가정해보자. 그럼 $\mathcal{E}$의 column들의 선형 종속 관계에 의해 다음이 성립한다.
 
 $$
 X_i
 =
-\sum_{j \in \mathcal{E} \setminus \{i\}} c_j X_j
+\sum_{j \in \mathcal{E} \setminus \lbrace i\rbrace} c_j X_j
 $$
 
 위 식의 양변에 $s_i$를 곱하고 우항에 $s_j s_j =1$를 곱하면 다음과 같다.
@@ -591,7 +591,7 @@ $$
 $$
 s_i X_i
 =
-\sum_{j \in \mathcal{E} \setminus \{i\}}
+\sum_{j \in \mathcal{E} \setminus \lbrace i\rbrace}
 \left( s_i s_j c_j \right)\cdot \left( s_j X_j \right)
 $$
 
@@ -606,10 +606,10 @@ $$
 $$
 \lambda
 =
-\sum_{j \in \mathcal{E} \setminus \{i\}}
+\sum_{j \in \mathcal{E} \setminus \lbrace i\rbrace}
 \left( s_i s_j c_j \right)\lambda
 \quad \text{and} \quad
-\sum_{j \in \mathcal{E} \setminus \{i\}}
+\sum_{j \in \mathcal{E} \setminus \lbrace i\rbrace}
 \left( s_i s_j c_j \right)
 =
 1
@@ -620,12 +620,12 @@ $$
 $$
 s_i X_i
 =
-\sum_{j \in \mathcal{E} \setminus \{i\}} a_j \cdot s_j X_j,
+\sum_{j \in \mathcal{E} \setminus \lbrace i\rbrace} a_j \cdot s_j X_j,
 \quad \text{with} \quad
-\sum_{j \in \mathcal{E} \setminus \{i\}} a_j = 1
+\sum_{j \in \mathcal{E} \setminus \lbrace i\rbrace} a_j = 1
 $$
 
-이것이 의미하는 바는 $s_i X_i$가 $ \{s_j X_j:j \in \mathcal{E}\setminus \{i \} \} $의 affine span에 존재한다는 것이다. 다음 그림은 이를 그림으로 나타낸다.
+이것이 의미하는 바는 $s_i X_i$가 $ \lbrace s_j X_j:j \in \mathcal{E}\setminus \lbrace i\rbrace \rbrace$의 **affine span**에 존재한다는 것이다. 다음 그림은 이를 그림으로 나타낸다.
 
 
 <div class="row mt-3 justify-content-sm-center">
@@ -644,10 +644,10 @@ $$
 </div>
 <br>
 
-따라서 이전에 알아본 것처럼 $\text{null}(X_\mathcal{E})\ne\{0\}$가 성립하려면 column들이 선형 종속일 뿐 아니라 어떤 $i$에 대해 $s_{i}X_{i}$가 나머지의 affine hull에 들어가야 한다.
+따라서 이전에 알아본 것처럼 $\text{null}(X_\mathcal{E})\ne\lbrace  0\rbrace$가 성립하려면 column들이 선형 종속일 뿐 아니라 어떤 $i$에 대해 $s_{i}X_{i}$가 나머지의 **affine hull**에 들어가야 한다.
 <br>
 
-$X$의 column들이 [general position](https://en.wikipedia.org/wiki/General_position)을 만족하면 위 조건을 만족하게 되며 Lasso problem의 해는 유일하게 정해지며 아래와 같다.
+$X$의 column들이 [general position](https://en.wikipedia.org/wiki/General_position)을 만족하면 위 조건을 만족하게 되며 Lasso problem의 해는 **유일**하게 정해지며 아래와 같다.
 
 $$
 \hat{\beta}_{\mathcal{E}}
@@ -657,13 +657,6 @@ $$
 \hat{\beta}_{-\mathcal{E}}=0
 $$
 
-또한 $X\in \mathbb{R}^{n\times p}$의 모든 원소를 $\mathbb{R}^{np}$에서 어떤 연속 확률분포를 따르며 i.i.d.(independent and indentically distributed)로 뽑으면 column 벡터들은 거의 확실하게 general position이고 따라서 해가 거의 항상 유일해지게 된다.
+또한 $X\in \mathbb{R}^{n\times p}$의 모든 원소를 $\mathbb{R}^{np}$에서 어떤 연속 확률분포를 따르며 **i.i.d.(independent and indentically distributed)**로 뽑으면 column 벡터들은 거의 확실하게 **general position**이고 따라서 **해가 거의 항상 유일**해지게 된다.
 
-
----
-
-## Lagrange dual interpretation
-
-본 포스트에서는 **Strong duality**에 대한 충분조건으로 **Slater's condition**을 제시했다. <br>
-이 파트에서는 **Lagrange dual function**과 **primal / dual optimal value**에 대해 Stephen Boyd 교수님의 [Convex Optimization: Duality (Stanford, EE364a)](https://web.stanford.edu/class/ee364a/lectures/duality.pdf)를 참고해 추가적인 해석을 진행한다.
 
