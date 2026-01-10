@@ -414,8 +414,6 @@ $$
 
 ## Uniqueness in $\ell_1$ Penalized Problems
 
-**Theorem**
-
 $y\in \mathbb{R}^n$, $X \in \mathbb{R}^{n\times p}$, $\lambda \ge 0$에 대해 다음의 lasso problem을 가정하자.
 
 $$
@@ -500,7 +498,7 @@ i \in \{1,\ldots,p\}
 \right\}
 $$
 
-Equicorrelation set에는 $\hat{\beta}_i$가 0이 아닌 index 들과 $\hat{\beta}_i$가 0이지만 $\|\gamma\|=1$인 index들이 속하게 된다.<br>
+Equicorrelation set에는 $\hat{\beta}_i$가 0이 아닌 index 들과 $\hat{\beta}_i$가 0이지만 $|\gamma_i|=1$인 index들이 속하게 된다.<br>
 이번엔 equicorrelation sign $s$를 다음과 같이 정의한다. Equicorrelation set에 속하지 못하는 index는 전부 제외하고 속하는 index들의 부호를 넣은 벡터이다.
 
 $$
@@ -635,7 +633,7 @@ $$
 \hat{\beta}_{-\mathcal{E}}=0
 $$
 
-또한 $X\in \mathbb{R}^{n\times p}$의 모든 원소를 $\mathbb{R}^{np}$에서 어떤 연속 확률분포를 따르며 i.i.d.로 뽑으면 column 벡터들은 거의 확실하게 general position이고 따라서 해가 거의 항상 유일해지게 된다.
+또한 $X\in \mathbb{R}^{n\times p}$의 모든 원소를 $\mathbb{R}^{np}$에서 어떤 연속 확률분포를 따르며 i.i.d.(independent and indentically distributed)로 뽑으면 column 벡터들은 거의 확실하게 general position이고 따라서 해가 거의 항상 유일해지게 된다.
 
 
 ---
