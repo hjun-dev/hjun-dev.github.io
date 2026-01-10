@@ -424,18 +424,18 @@ $$
 
 위 문제의 해 $\beta$는 $X$의 rank에 따라 해의 형태가 달라진다.
 
-1. $\text{rank}(X)=p$인 경우 : $X$의 column들이 선형 독립임을 의미한다. $\frac{1}{2}\,\|y - X\beta\|_2^{2}$ 항의 Hessian은 $X^T X$이며 positive definite이다. 따라서 첫 항은 strictly convex한 function이다. $\ell_1$ function은 convex이므로 전체 목적함수는 strictly convex하다. 따라서 이 경우에 문제의 해는 항상 유일하다.
+1. $\text{rank}(X)=p$인 경우 : $X$의 column들이 **선형 독립**임을 의미한다. $\frac{1}{2}\,||y - X\beta||_2^{2}$ 항의 **Hessian**은 $X^T X$이며 **positive definite**이다. 따라서 첫 항은 **strictly convex**한 function이다. $\ell_1$ function은 **convex**이므로 전체 목적함수는 **strictly convex**하다. 따라서 이 경우에 문제의 해는 항상 **유일**하다.
 <br>
 
-2. $\text{rank}(X)\lt p$인 경우 : $X$의 column들이 선형 종속임을 의미한다. wide($p \gt n$) 행렬은 반드시 이 경우에 포함되며 wide 행렬이 아니더라도 rank에 따라 포함 여부가 결정될 수 있다. 이때 $X^T X$는 positive semidefinite이므로 strictly convex가 아닌 convex한 특징을 가진다. 따라서 전체 목적함수는 convex 특징을 가지며 해가 여러 개 생길 수 있다.
+2. $\text{rank}(X)\lt p$인 경우 : $X$의 column들이 **선형 종속**임을 의미한다. wide($p \gt n$) 행렬은 반드시 이 경우에 포함되며 wide 행렬이 아니더라도 rank에 따라 포함 여부가 결정될 수 있다. 이때 $X^T X$는 **positive semidefinite**이므로 strictly convex가 아닌 **convex**한 특징을 가진다. 따라서 전체 목적함수는 **convex** 특징을 가지며 해가 **여러 개** 생길 수 있다.
 <br>
 
-본 파트에서는 2번과 같이 rank deficient한 상황 중에서 어떤 경우에 해가 유일하게 결정되는지를 알아보고자 한다.
+본 파트에서는 2번과 같이 **rank deficient**한 상황 중에서 어떤 경우에 해가 유일하게 결정되는지를 알아보고자 한다.
 <br>
 
 Convex 함수의 중요한 특징 중 하나는 최적해가 여러 개 존재하는 경우 해가 무수히 많아진다는 것이다.<br>
 최적해가 $\beta^{(1)}$, $\beta^{(2)}$로 두 개 존재한다고 가정하자.<br>
-목적함수가 convex function이므로 $\beta^{(1)}$와 $\beta^{(2)}$를 잇는 선분 위의 모든 점 $\beta_\alpha = \alpha \beta^{(1)}+(1-\alpha) \beta^{(2)}$은 전부 minimizer가 되며 모두 같은 **optimal value**를 가진다.<br>
+목적함수가 **convex function**이므로 $\beta^{(1)}$와 $\beta^{(2)}$를 잇는 선분 위의 모든 점 $\beta_\alpha = \alpha \beta^{(1)}+(1-\alpha) \beta^{(2)}$은 전부 minimizer가 되며 모두 같은 **optimal value**를 가진다.<br>
 
 이제 모든 해의 특징을 알아보자.<br>
 목적함수에 $\beta_\alpha$를 대입하면 다음과 같다.
@@ -446,21 +446,43 @@ F(\beta_\alpha) =
 + \lambda \|\alpha\beta^{(1)}+(1-\alpha)\beta^{(2)}\|_1
 $$
 
-$F(\beta)=\frac{1}{2}\,\|y - X\beta\|_2^{2}+ \lambda \|\beta\|_1$는 **convex function**이므로 $F(\beta_\alpha)\le \alpha F(\beta^{(1)})+(1-\alpha)F(\beta^{(2)})$이다. 하지만 이 세 항이 모두 **minimizer**여야 하므로 등호가 성립된다.
-<br>
- $F(\beta_\alpha)$의 내부를 살펴보면 $\alpha$에 대해 convex한 두 번째 항과 달리 첫 번째 항은 **strictly convex** 할 수 있지만 $F$에 대한 부등식이 등호로 만족되려면 **strictly convex**한 항이 있어서는 안된다는 것을 알 수 있다. 더 자세히 보면 첫 항의 $\alpha$에 대한 **second derivative**은 $\|X(\beta^{(1)}-\beta^{(2)})\|^2_2$이다. 이때 두 벡터 $\beta^{(1)}$과 $\beta^{(2)}$를 잇는 선이 $X$의 **null space**에 존재하지 않는다면 첫 항은 $\alpha$에 대한 **strictly convex function**이 된다. <br>
-따라서 첫 항의 $\alpha$에 대한 **second derivative**를 0으로 만들기 위해 $\beta^{(1)}$과 $\beta^{(2)}$를 잇는 선이 $X$의 **null space**에 존재해야 한다. $\beta^{(1)}-\beta^{(2)} \in \text{null}(X)$이므로 $X(\beta^{(1)}-\beta^{(2)})=X(\beta^{(1)}-\beta_\alpha)=0$이고 $X\beta$는 항상 일정하다. <br>
-$F$의 각 항의 값이 일정해야 하므로 $\|\beta\|_1$ 또한 일정하다.
+$F(\beta)=\frac{1}{2}\,\|y - X\beta\|_2^{2}+ \lambda \|\beta\|_1$ 는 **convex function**이다. 따라서
+
+$$
+F(\beta_\alpha)\le \alpha F(\beta^{(1)})+(1-\alpha)F(\beta^{(2)})
+$$
+
+하지만 이 세 항이 모두 **minimizer**여야 하므로 등호가 성립된다.
 <br>
 
-지금까지 해가 무수히 많이 존재할 때 $X\beta$와 $\|\beta\|_1$이 동일한 값을 가짐을 확인했다. <br>
+$F(\beta_\alpha)$의 내부를 살펴보면 $\alpha$에 대해 convex한 두 번째 항과 달리 첫 번째 항은 **strictly convex** 할 수 있지만 $F$에 대한 부등식이 등호로 만족되려면 **strictly convex**한 항이 있어서는 안된다는 것을 알 수 있다. 더 자세히 보면 첫 항의 $\alpha$에 대한 **second derivative**은 다음과 같다.
+
+$$
+\|X(\beta^{(1)}-\beta^{(2)})\|^2_2
+$$
+
+이때 두 벡터 $\beta^{(1)}$과 $\beta^{(2)}$를 잇는 선이 $X$의 **null space**에 존재하지 않는다면 첫 항은 $\alpha$에 대한 **strictly convex function**이 된다. 
+<br>
+
+따라서 첫 항의 $\alpha$에 대한 **second derivative**를 0으로 만들기 위해 $\beta^{(1)}$과 $\beta^{(2)}$를 잇는 선이 $X$의 **null space**에 존재해야 한다. $\beta^{(1)}-\beta^{(2)} \in \text{null}(X)$이므로
+
+$$
+X(\beta^{(1)}-\beta^{(2)})=X(\beta^{(1)}-\beta_\alpha)=0
+$$
+
+따라서 $X\beta$는 항상 일정하다. <br>
+
+$F$의 각 항의 값이 일정해야 하므로 $||\beta||_1$ 또한 일정하다.
+<br>
+
+지금까지 해가 무수히 많이 존재할 때 $X\beta$와 $||\beta||_1$이 동일한 값을 가짐을 확인했다. <br>
 이제 objective function의 KKT 조건을 살펴보겠다.
 
 $$
 0 \in \bigl(-X^{T}(y-X\hat{\beta}) + \lambda \partial\|\hat{\beta}\|_1 \bigr)
 $$
 
-따라서 $\exists \ \gamma \in \partial\|\hat{\beta}\|_1$ 에 대해 다음을 만족한다.
+따라서 $\exists \ \gamma \in \partial||\hat{\beta}||_1$ 에 대해 다음을 만족한다.
 
 $$
 X^{T}(y-X\hat{\beta}) = \lambda \gamma
@@ -477,15 +499,15 @@ $$
 \qquad i = 1,\ldots,p
 $$
 
-KKT condition은 아래와 같이 다시 쓸 수 있다.
+**KKT condition**은 아래와 같이 다시 쓸 수 있다.
 
 $$
 X_i^{T}(y-X\hat{\beta}) = \lambda \gamma_i
 $$
 
-LHS을 해석해보면 $X$의 column과 데이터에 대한 잔차의 correlation인 것을 알 수 있다.<br>
+LHS을 해석해보면 $X$의 column과 데이터에 대한 잔차의 **correlation**인 것을 알 수 있다.<br>
 
-여기서 RHS의 최댓값인 $\lambda$에 도달하는 index들의 집합을 equicorrelation set이라고 정의한다.
+여기서 RHS의 최댓값인 $\lambda$에 도달하는 index들의 집합을 **Equicorrelation set**이라고 정의한다.
 
 $$
 \mathcal{E}
@@ -498,8 +520,9 @@ i \in \{1,\ldots,p\}
 \right\}
 $$
 
-Equicorrelation set에는 $\hat{\beta}_i$가 0이 아닌 index 들과 $\hat{\beta}_i$가 0이지만 $|\gamma_i|=1$인 index들이 속하게 된다.<br>
-이번엔 equicorrelation sign $s$를 다음과 같이 정의한다. Equicorrelation set에 속하지 못하는 index는 전부 제외하고 속하는 index들의 부호를 넣은 벡터이다.
+**Equicorrelation set**에는 $\hat{\beta}_i$가 0이 아닌 index 들과 $\hat{\beta}_i$가 0이지만 $|\gamma_i|=1$인 index들이 속하게 된다.<br>
+이번엔 **Equicorrelation sign** $s$를 다음과 같이 정의한다. <br>
+Equicorrelation set에 속하지 못하는 index는 전부 제외하고 속하는 index들의 부호를 넣은 벡터이다.
 
 $$
 s
@@ -529,7 +552,7 @@ $$
 X_{\mathcal{E}}^T X_{\mathcal{E}} \hat{\beta}_\mathcal{E}=X_{\mathcal{E}}^T y -\lambda s
 $$
 
-이 $X^T_{\mathcal{E}}X_{\mathcal{E}}$는 $\hat{\beta}_\mathcal{E}$에 대한 역행렬이 보장되지 않으므로 **pseudo inverse**를 사용해 $X_\mathcal{E}^{T}X_\mathcal{E}$의 range에 속하는 해를 구하고 $\text{null}(X_\mathcal{E}^{T}X_\mathcal{E})=\text{null}(X_\mathcal{E})$에 속하는 벡터를 더해 모든 해를 표현 가능하다.
+이 $X^T_{\mathcal{E}}X_{\mathcal{E}}$는 역행렬이 보장되지 않으므로 **pseudo inverse**를 사용해 $X_\mathcal{E}^{T}X_\mathcal{E}$의 range에 속하는 해를 구하고 $\text{null}(X_\mathcal{E}^{T}X_\mathcal{E})=\text{null}(X_\mathcal{E})$에 속하는 벡터를 더해 모든 해를 표현 가능하다.
 
 $$
 \hat{\beta}_{\mathcal{E}}
@@ -551,7 +574,7 @@ $$
 <br>
 
 그럼 언제 해가 유일해질까? $b\in \text{null}(X_\mathcal{E})$가 해를 무수히 많게 만드는 요인이므로 $\text{null}(X_\mathcal{E})=\{0\}$라면 해는 유일하게 존재한다.<br>
-또한 nonzero component의 수는 $\text{rank}(X_\mathcal{E})$보다 작거나 같아야 하므로 최대 $\text{min}\{n,p\}$개 가능하다.
+또한 nonzero component의 수는 $\text{rank}(X_\mathcal{E})$보다 작거나 같아야 하므로 최대 $\text{min} \{n,p\}$개 가능하다.
 <br>
 
 그럼 이제 주된 관심사는 언제 $\text{null}(X_\mathcal{E})=\{0\}$가 되느냐는 것이다. <br>
@@ -602,7 +625,7 @@ s_i X_i
 \sum_{j \in \mathcal{E} \setminus \{i\}} a_j = 1
 $$
 
-이것이 의미하는 바는 $s_i X_i$가 $\{s_j X_j:j \in \mathcal{E}\setminus\{i\}\}$의 affine span에 존재한다는 것이다. 다음 그림은 이를 그림으로 나타낸다.
+이것이 의미하는 바는 $s_i X_i$가 $ \{s_j X_j:j \in \mathcal{E}\setminus \{i \} \} $의 affine span에 존재한다는 것이다. 다음 그림은 이를 그림으로 나타낸다.
 
 
 <div class="row mt-3 justify-content-sm-center">
@@ -621,7 +644,8 @@ $$
 </div>
 <br>
 
-따라서 이전에 알아본 것처럼 $\text{null}(X_\mathcal{E})\ne\{0\}$가 성립하려면 column들이 선형 종속일 뿐 아니라 $s_i$를 column에 곱한 벡터들이 $n-1$보다 작은 특정 affine space에 속해야 한다는 것이다.<br>
+따라서 이전에 알아본 것처럼 $\text{null}(X_\mathcal{E})\ne\{0\}$가 성립하려면 column들이 선형 종속일 뿐 아니라 어떤 $i$에 대해 $s_{i}X_{i}$가 나머지의 affine hull에 들어가야 한다.
+<br>
 
 $X$의 column들이 [general position](https://en.wikipedia.org/wiki/General_position)을 만족하면 위 조건을 만족하게 되며 Lasso problem의 해는 유일하게 정해지며 아래와 같다.
 
