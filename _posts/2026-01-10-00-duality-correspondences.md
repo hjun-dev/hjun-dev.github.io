@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "[Convex Optimization] 12. KKT conditions"
+title: "[Convex Optimization] 13. Duality uses and correspondences"
 description: "Karush-Kuhn-Tucker (KKT) Conditions에 대한 분석"
-date: 2026-01-08 14:00:00 +0900
+date: 2026-01-10 21:00:00 +0900
 tags: [math, study]
 categories: [optimization]
 related_posts: True
@@ -658,3 +658,12 @@ $$
 $$
 
 또한 $X\in \mathbb{R}^{n\times p}$의 모든 원소를 $\mathbb{R}^{np}$에서 어떤 연속 확률분포를 따르며 **i.i.d.(independent and indentically distributed)**로 뽑으면 column 벡터들은 거의 확실하게 **general position**이고 따라서 **해가 거의 항상 유일**해지게 된다.
+
+
+---
+
+## Lagrange dual interpretation
+
+본 포스트에서는 **Strong duality**에 대한 충분조건으로 **Slater's condition**을 제시했다. <br>
+이 파트에서는 **Lagrange dual function**과 **primal / dual optimal value**에 대해 Stephen Boyd 교수님의 [Convex Optimization: Duality (Stanford, EE364a)](https://web.stanford.edu/class/ee364a/lectures/duality.pdf)를 참고해 추가적인 해석을 진행한다.
+
