@@ -10,18 +10,18 @@ email: 12200617@inha.edu
 contact_note: >
   You can even add a little note about which of these is the best way to reach you.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Optimization, Control, Reinforcement Learning and Deep Learning
+  Research blog of Hyeong-Jun Lee. Focusing on Optimization, Control, Reinforcement Learning and Deep Learning in Aerospace Engineering.
 #  Interests include web optimization, deep learning, reinforcement learning, and control theory.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-keywords:  # add your own keywords or leave empty
+keywords:  Hyeong-Jun Lee, Inha University, Aerospace, Optimization, hjun-dev, Reinforcement Learning, Deep Learning, Aerospace Engineering
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: favicon.png # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
 url: https://hjun-dev.github.io # the base hostname & protocol for your site
 baseurl:  # the subpath of your site, e.g. /blog/. Leave blank for root
-last_updated: false # set to true if you want to display last updated in the footer
+last_updated: true # set to true if you want to display last updated in the footer
 impressum_path: # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
 back_to_top: true # set to false to disable the back to top button
 
@@ -87,8 +87,8 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: Research Notes # blog_name will be displayed in your blog page
-blog_description: Optimization, Control, Reinforcement Learning and Deep Learning # blog_description will be displayed in your blog page
+blog_name: Hyeong-Jun's Research Blog # blog_name will be displayed in your blog page
+blog_description: Exploring Optimization, Control, and AI in Aerospace # blog_description will be displayed in your blog page
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related posts
 
