@@ -220,14 +220,14 @@ $$
 \min_{y}\lbrace \Vert y \Vert -y^{T}u \rbrace = -\infty
 $$
 
-결론적으로 Lagrange dual problem은
+결론적으로 **Lagrange dual problem**은
 
 $$
 \max_{u} (u^{T}x) \quad \text{subject to } \; \Vert u \Vert_{\ast} \le 1
 $$
 
-Primal problem의 strong duality에 의해 $f^{\star}=g^{\star}$이다.<br>
-Lagrange dual problem의 optimal value는 $\Vert x \Vert_{\ast \ast}$이고 primal optimal value는 $\Vert x \Vert$였으니 다음이 성립한다.
+**Primal problem**의 **strong duality**에 의해 $f^{\star}=g^{\star}$이다.<br>
+**Lagrange dual problem**의 optimal value는 $\Vert x \Vert_{\ast \ast}$이고 primal optimal value는 $\Vert x \Vert$였으니 다음이 성립한다.
 
 $$
 \Vert x \Vert = \Vert x \Vert_{\ast \ast}
@@ -235,13 +235,13 @@ $$
 
 ## Conjugate function
 
-$f\;:\; \mathbb{R}^{n} \rightarrow \mathbb{R}$에 대해 conjugate $f^{\ast}\;:\; \mathbb{R}^{n} \rightarrow \mathbb{R}$는 다음과 같이 정의된다.
+$f\;:\; \mathbb{R}^{n} \rightarrow \mathbb{R}$에 대해 **conjugate** $f^{\ast}\;:\; \mathbb{R}^{n} \rightarrow \mathbb{R}$는 다음과 같이 정의된다.
 
 $$
 f^{\ast}(y)=\max_{x}(y^T x - f(x))
 $$
 
-$f^{\ast}$는 $y$의 convex function들의 pointwise maximum이므로 $f^{\ast}$는 항상 convex function이다.<br>
+$f^{\ast}$는 $y$의 convex function들의 **pointwise maximum**이므로 $f^{\ast}$는 항상 convex function이다.<br>
 ($f$의 convexity와 상관없이.)
 
 <div class="row mt-3 justify-content-sm-center">
@@ -256,12 +256,13 @@ $f^{\ast}$는 $y$의 convex function들의 pointwise maximum이므로 $f^{\ast}$
 </div>
 
 <div class="caption">
-    Example of conjugate function.<br>
-    Maximum gap between linear function and target function.
+    Illustration of the conjugate for a function.<br>
+    (from B&V page 91)
 </div>
 <br>
 
-Differentiable $f$에 대한 conjugation은 **Legendre transform**이라 부른다.
+그림을 보면 알 수 있듯이 linear function $y^{T}x$와 function $f$의 **maximum difference**를 의미한다. <br>
+**Differentiable** $f$에 대한 conjugation은 **Legendre transform**이라 부른다.
 <br>
 
 **Properties**<br>
