@@ -422,6 +422,16 @@ $$
 + \lambda \|\beta\|_1
 $$
 
+**Theorem**
+<br>
+함수 $f$가 미분가능하며 strictly convex이고 $\lambda\gt0$이며 $X \in \mathbb{R}^{n\times p}$가 $\mathbb{R}^{np}$에 대한 어떤 continuous probability distribution을 따를 때 위 최적화 문제는 항상 유일한 solution을 갖는다. 또한 그 solution은 많아봐야 $\text{min} \lbrace n, p \rbrace $ 만큼의 nonzero components로 구성된다. 이때 $X$의 차원에 대한 제약은 없다.
+<br> 
+(wide, tall 상관 없이 적용됨.)
+
+<br>
+
+**Proof**
+
 위 문제의 해 $\beta$는 $X$의 rank에 따라 해의 형태가 달라진다.
 
 1. $\text{rank}(X)=p$인 경우 : $X$의 column들이 **선형 독립**임을 의미한다. $\frac{1}{2}\,\Vert y - X\beta\Vert_2^{2}$ 항의 **Hessian**은 $X^T X$이며 **positive definite**이다. 따라서 첫 항은 **strictly convex**한 function이다. $\ell_1$ function은 **convex**이므로 전체 목적함수는 **strictly convex**하다. 따라서 이 경우에 문제의 해는 항상 **유일**하다.
@@ -658,3 +668,13 @@ $$
 $$
 
 또한 $X\in \mathbb{R}^{n\times p}$의 모든 원소를 $\mathbb{R}^{np}$에서 어떤 연속 확률분포를 따르며 **i.i.d.(independent and indentically distributed)**로 뽑으면 column 벡터들은 거의 확실하게 **general position**이고 따라서 **해가 거의 항상 유일**해지게 된다.
+
+<br>
+
+**General lasso problem**
+
+다음과 같은 일반적인 lasso problem에 대해서도 같은 내용을 적용해 uniqueness를 따질 수 있다.
+
+$$
+\hat{\beta} \in \text{argmin}_{\beta \in \mathbb{R}^p} f(X\beta) + \lambda \Vert \beta \Vert_1
+$$
