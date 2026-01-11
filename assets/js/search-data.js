@@ -41,7 +41,7 @@ ninja.data = [{
         
           title: "[Convex Optimization] 13. Duality uses and correspondences",
         
-        description: "Karush-Kuhn-Tucker (KKT) Conditions에 대한 분석",
+        description: "Duality의 활용법 및 primal-dual 간의 대응 관계 파악",
         section: "Posts",
         handler: () => {
           
