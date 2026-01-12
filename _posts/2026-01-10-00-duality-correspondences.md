@@ -470,7 +470,10 @@ $f$가 twice differentiable & strictly convex라면 최적점 $x$는 $y=\nabla f
 양변 미분하면
 
 $$
-dy = \nabla^{2}f(x)dx \\
+dy = \nabla^{2}f(x)dx
+$$
+
+$$
 dx = (\nabla^{2}f(x))^{-1}dy
 $$
 
@@ -637,8 +640,14 @@ $$
 경우를 나눠서 생각해보면 
 
 $$
-\vert(X^{T}u)_i\vert \le \lambda  \Rightarrow \beta_i = 0 \\
-(X^{T}u)_i = +\lambda  \Rightarrow \beta_i \gt 0 \\
+\vert(X^{T}u)_i\vert \le \lambda  \Rightarrow \beta_i = 0
+$$
+
+$$
+(X^{T}u)_i = +\lambda  \Rightarrow \beta_i \gt 0
+$$
+
+$$
 (X^{T}u)_i = -\lambda  \Rightarrow \beta_i \lt 0
 $$
 
