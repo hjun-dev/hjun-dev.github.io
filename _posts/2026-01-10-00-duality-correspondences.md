@@ -796,7 +796,12 @@ $$
 A x \in K
 $$
 
-Dual problem은 다음과 같다. $I^{\ast}_{K}(y)=\max_{z\in K} z^T y$이며 $K$의 **support function**이다.
+Dual problem은 다음과 같다. $K$의 **support function**이 전개 중 나오게 된다.
+
+
+$$
+I^{\ast}_{K}(y)=\max_{z\in K} z^T y
+$$
 
 $$
 \max_{u} \; -f^{\ast}(A^{T}u) - I_{K}^{\ast}(-u)
@@ -810,7 +815,12 @@ $$
 u \in K^{\ast}
 $$
 
-위 변환은 $I^{\ast}_K (-u) = I_{K^\ast}(u)$ 때문에 가능하다.<br>
+위 변환은 다음 관계 때문에 성립한다.
+
+$$
+I^{\ast}_K (-u) = I_{K^\ast}(u)
+$$ 
+
 $u$가 **dual cone**에 존재하면 $-z^T u\le 0$이라 0이 최댓값, dual cone 외부에 존재하면 $-z^T u \gt 0$라 $\infty$가 최댓값이 되기 때문이다.<br>
 
 수많은 문제들이 **cone constraints** 형태로 표현될 수 있으므로 이는 매우 유용한 결론이다.
@@ -871,4 +881,4 @@ $f$, $h_i$가 전부 **closed and convex**이고 $\ell_j$가 전부 **affine**�
 
 해당 내용의 증명은 bifunction을 최소화하는 문제로 관점을 달리해야 한다. 그러면 dual function은 bifunction의 conjugate에 대응하게 된다. (자세한 내용은 Rockafellar의 CH 29와 30을 참고)<br>
 
->**Double dual**의 증명은 추후 포스트에서 다시 다루겠습니다.
+- **Double dual**의 구체적인 증명은 Perturbation-Duality Scheme in Optimization 관련 포스트에서 설명하겠습니다.
