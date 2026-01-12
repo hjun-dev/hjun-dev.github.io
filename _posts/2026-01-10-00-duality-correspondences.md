@@ -331,7 +331,7 @@ $$
 를 만족하는 $\hat{x}$는 다음을 만족한다.
 
 $$
-\bigtriangledown f(\hat{x})=y
+\nabla f(\hat{x})=y
 $$
 
 즉, $y$가 주어지면 $y$를 기울기로 갖는 직선(평면)이 $f$에 접하는 지점 $\hat{x}$가 결정된다. 이때 해당 **supporting hyperplane**의 절편은 $-f^{\ast}(y)$가 된다. 이는 conjugate에서 제시한 예시 그림을 통해서도 확인할 수 있다.
@@ -411,7 +411,7 @@ $$
 
 <br>
 
-- **Simple quadratic**: 만약 $Q\succ 0$에 대해 $f(x)=\frac{1}{2}x^{T}Qx$라면 $y^{T}x - \frac{1}{2}x^Qx$는 $x$에 대해 strictly concave하고 $y=Q^{-1}x$로 최대화된다. 따라서
+- **Simple quadratic**: 만약 $Q\succ 0$에 대해 $f(x)=\frac{1}{2}x^{T}Qx$라면 $y^{T}x - \frac{1}{2}x^{T}Qx$는 $x$에 대해 strictly concave하고 $x=Q^{-1}y$로 최대화된다. 따라서
 
 $$
 f^{\ast}(y)=\frac{1}{2}y^{T}Q^{-1}y
@@ -439,6 +439,67 @@ $$
 \Vert y \Vert^{\ast}=I_{\lbrace z : \Vert z \Vert_{\ast} \le 1 \rbrace}(y)
 $$
 
+
+---
+
+### Smoothness relatioin of primal and dual
+
+$f:\mathbb{R}^{n} \rightarrow \mathbb{R}$가 twice differentiable하고 convex하다고 하자.<br>
+최적화에서 smoothness와 strong convexity는 Hessian으로 다음과 같이 정의된다.<br>
+
+- $f$가 $L$-smooth
+
+$$
+\nabla^{2}f(x) \preceq LI
+$$
+
+- $f$가 $\mu$-strongly convex
+
+$$
+\nabla^{2}f(x) \succeq \mu I
+$$
+
+Conjugate의 정의는 아래와 같다.
+
+$$
+f^{\ast}(y) = \max_{x}(y^T x - f(x))
+$$
+
+$f$가 twice differentiable & strictly convex라면 최적점 $x$는 $y=\nabla f (x)$를 만족하며 Hessian이 역함수를 가진다.<br>
+
+양변 미분하면
+
+$$
+dy = \nabla^{2}f(x)dx \\
+dx = (\nabla^{2}f(x))^{-1}dy
+$$
+
+또한 $x=\nabla f^{\ast}(y)$이므로
+
+$$
+\frac{dx}{dy}=\nabla^2 f^{\ast}(y) =  (\nabla^{2}f(x))^{-1}
+$$
+
+가 된다.<br>
+즉, conjugate에서는 Hessian이 역행렬로 변환된다.<br>
+따라서 만약
+
+$$
+\mu I \preceq \nabla^2 f(x) \preceq L I
+$$
+
+라면 conjugate의 Hessian은
+
+$$
+\frac{1}{L}I \preceq \nabla^2 f(x) \preceq \frac{1}{\mu} I.
+$$
+
+따라서 정리하면 다음과 같다.<br>
+
+- $f$가 $L$-smooth면 $f^{\ast}$는 $1/L$-strongly convex
+<br>
+
+- $f$가 $\mu$-strongly convex면 $f^{\ast}$는 $1/\mu$-smooth
 
 ---
 
@@ -666,6 +727,148 @@ $$
 \max_{u} \; -f^{\ast}(A^{T}u) - g^{\ast}(-u)
 $$
 
-이는 가끔 유용할 때가 있다. 만약 $f$가 smooth하고 $g$가 그렇지 않다면 primal problem은 **projected gradient descent, proximal gradient descent, subgradient method** 등의 방법들로 풀어야 하는데 이러한 method들은 문제 형태에 따라 적용하기 어려울 수 있다.<br>
-하지만 primal 문제를 **dual**로 바꾸면 $f^{\ast}$는 **smooth**를 유지하고 $g^{\ast}$는 **projection**이나 **proximal operator**를 적용하기 쉬운 형태로 바꿔 앞서 언급한 **1st order method**를 적용할 수 있게 된다.
+이는 가끔 유용할 때가 있다. 만약 $f$가 differentiable하고 $g$가 그렇지 않다면 primal problem은 **projected gradient descent, proximal gradient descent, subgradient method** 등의 방법들로 풀어야 하는데 이러한 method들은 문제 형태에 따라 적용하기 어려울 수 있다.<br>
+하지만 primal 문제를 **dual**로 바꾸면 $f^{\ast}$의 **differentiable**을 유지하고 $g^{\ast}$는 **projection**이나 **proximal operator**를 nondifferentiable 중 적용하기 쉬운 형태로 바꿔 앞서 언급한 **1st order method** 적용에 용이하게 만들 수 있다.
 
+---
+
+## Dual cones
+
+Cone $K \subseteq \mathbb{R}^n$에 대한 **dual cone**의 정의는 아래와 같다.
+
+$$
+K^{\ast} = \lbrace y:y^{T}x \ge 0 \quad \forall x \in K \rbrace
+$$
+
+Dual cone은 항상 **convex cone**이며 아래와 같은 특징을 가진다.
+
+$$
+y\in K^{\ast} \Longleftrightarrow \text{the halfspace} \; \lbrace x:y^{T}x\ge 0 \rbrace \; \text{contains} \; K
+$$
+
+<div class="row mt-3 justify-content-sm-center">
+    <div class="col-sm-8 mt-3 mt-md-0">
+        {% include figure.liquid 
+            loading="eager" 
+            path="assets/img/blog_img/dualconepic.png" 
+            class="img-fluid rounded z-depth-1" 
+            zoomable=true 
+        %}
+    </div>
+</div>
+
+<div class="caption">
+    The halfspace contains K<br>
+    (from B&V page 52)
+</div>
+<br>
+
+만약 $K$가 closed convex cone이라면 $K^{\ast\ast}=K$이다.
+
+---
+
+**Exmples**<br>
+
+- **Linear subspace:** linear subspace $V$의 dual cone은 $V^{\perp}$ 즉, orthogonal complement이다. e.g., $(\text{row}(A))^{\ast}=\text{null}(A)$
+<br>
+
+- **Norm cone:** norm cone의 dual cone은 dual norm으로 정의되는 norm cone이다.
+
+$$
+K^{\ast} = \lbrace (y,s) \in \mathbb{R}^{n+1}:\Vert y \Vert_{\ast} \le s \rbrace
+$$
+
+- **Positive semidefinite cone:** convex cone $\mathbb{S}^n_{+}$는 self-dual cone이다. 아래 식을 eigenvalue decomposition해 생각해보면 쉽게 알 수 있다.
+
+$$
+Y \succeq 0 \Longleftrightarrow \text{tr}(YX) \ge 0, \quad \forall X\succeq 0
+$$
+
+---
+
+### Dual cones and dual problems
+
+다음과 같은 **cone constrained problem**을 가정하자.
+
+$$
+\min_{x} \; f(x)
+\quad \text{subject to} \quad
+A x \in K
+$$
+
+Dual problem은 다음과 같다. $I^{\ast}_{K}(y)=\max_{z\in K} z^T y$이며 $K$의 **support function**이다.
+
+$$
+\max_{u} \; -f^{\ast}(A^{T}u) - I_{K}^{\ast}(-u)
+$$
+
+$K$가 cone이라면 식은 다음과 같이 단순하게 정리된다.
+
+$$
+\max_{u} \; -f^{\ast}(A^{T}u)
+\quad \text{subject to} \quad
+u \in K^{\ast}
+$$
+
+위 변환은 $I^{\ast}_K (-u) = I_{K^\ast}(u)$ 때문에 가능하다.<br>
+$u$가 **dual cone**에 존재하면 $-z^T u\le 0$이라 0이 최댓값, dual cone 외부에 존재하면 $-z^T u \gt 0$라 $\infty$가 최댓값이 되기 때문이다.<br>
+
+수많은 문제들이 **cone constraints** 형태로 표현될 수 있으므로 이는 매우 유용한 결론이다.
+
+---
+
+## Dual subtleties
+
+- **Dual problem**을 **equivalent problem**으로 바꿔도 dual이라고 부를 수 있다. Strong duality 하에서 우리는 변형된 dual problem의 해를 primal solution을 찾기 위해 사용할 수 있다.<br>
+    하지만 변형된 dual 문제의 최적값이 반드시 primal의 최적값인 것은 아니다.
+
+- 제약 조건이 없는 문제에 대해 dual 문제를 유도하는 일반적인 방법은 보조 변수와 **equality** 제약 조건을 추가해 **primal problem**을 변형하는 것이다.<br>
+    구체적으로 어떻게 할지는 모호함이 있다. 다양한 선택에 따라 다른 **dual problem**들이 나올 수 있다.
+
+---
+
+## Double dual
+
+다음과 같은 일반적인 **linear constraints**를 갖는 최적화 문제를 가정하자.
+
+$$
+\begin{aligned}
+\min_{x}\quad & f(x) \\
+\text{subject to}\quad & Ax \le b,\; Cx = d
+\end{aligned}
+$$
+
+**Lagrangian**은
+
+$$
+L(x,u,v)=f(x)+(A^{T}u + C^{T}v)^{T}x - b^{T}u - d^{T}v
+$$
+
+따라서 **dual problem**은
+
+$$
+\begin{aligned}
+\max_{u,v}\quad & - f^{\ast}\!\left(-A^{T}u - C^{T}v\right) - b^{T}u - d^{T}v \\
+\text{subject to}\quad & u \ge 0
+\end{aligned}
+$$
+
+해당 Dual problem을 새로운 **primal problem**으로 보고 dual problem으로 한 번 더 변형시키면 해당 문제는 primal이 된다.<br>
+
+이러한 관계는 linear constraints보다 훨씬 깊게 적용된다.<br>
+다음과 같은 일반적인 **convex problem**을 생각하자.
+
+$$
+\begin{aligned}
+\min_{x}\quad & f(x) \\
+\text{subject to}\quad 
+& h_i(x) \le 0,\; i = 1,\ldots,m \\
+& \ell_j(x) = 0,\; j = 1,\ldots,r
+\end{aligned}
+$$
+
+$f$, $h_i$가 전부 **closed and convex**이고 $\ell_j$가 전부 **affine**이라면 dual 문제의 dual은 primal 문제가 된다.<br>
+
+해당 내용의 증명은 bifunction을 최소화하는 문제로 관점을 달리해야 한다. 그러면 dual function은 bifunction의 conjugate에 대응하게 된다. (자세한 내용은 Rockafellar의 CH 29와 30을 참고)<br>
+
+>**Double dual**의 증명은 추후 포스트에서 다시 다루겠습니다.
