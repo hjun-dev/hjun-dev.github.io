@@ -591,3 +591,81 @@ $$
 
 ### Relationship between conjugate and dual problems
 
+**Conjugates**는 **dual problem formulation** 중 **Lagrangian 최소화** 과정에서 다음과 같은 형태로 자주 등장하곤 한다.
+
+$$
+-f^{\ast}(u) = \min_{x} \; f(x) - u^{T}x
+$$
+
+예를 들어 아래와 같은 문제를 생각해보자.
+
+$$
+\min_{x} \; f(x) + g(x)
+$$
+
+위 문제는 **auxiliary variable** $z$를 사용해 아래와 같이 표현할 수 있다.
+
+$$
+\min_{x, z} \; f(x) + g(z) \quad \text{subject to }x=z
+$$
+
+$$
+g(u) = \min_{x} \; f(x)+ g(z) + u^{T}(z-x) = -f^{\ast}(u)-g^{\ast}(-u)
+$$
+
+따라서 dual problem은
+
+$$
+\max_{u} \; -f^{\ast}(u)-g^{\ast}(-u)
+$$
+
+**Examples**
+<br>
+
+- **Indicator function:** ($I_{C}^{\ast}$는 $C$의 support function)
+
+$$
+\begin{aligned}
+\text{Primal:} \quad & \min_{x} \; f(x) + I_{C}(x) \\
+\text{Dual:} \quad & \max_{u} \; - f^{\ast}(u) - I_{C}^{\ast}(-u)
+\end{aligned}
+$$
+
+- **Norms:** 
+
+$$
+\begin{aligned}
+\text{Primal:} \quad & \min_{x} \; f(x) + \|x\| \\
+\text{Dual:} \quad & \max_{u} \; -f^{\ast}(u)
+\quad \text{subject to } \|u\|_{\ast} \le 1
+\end{aligned}
+$$
+
+---
+
+### Shifting linear transformation
+
+Example of Lasso problem에서 우리는 **linear transformation**을 objective의 한 항에서 **dual formulation** 결과의 다른 항으로 **shifting** 시키는 trick을 사용했었다.<br>
+다음과 같은 문제가 있다고 하자.
+
+$$
+\min_{x} \; f(x) + g(Ax)
+$$
+
+이 문제는 다음 형태로 바꿀 수 있다.
+
+$$
+\min_{x,\,z} \; f(x) + g(z)
+\quad \text{subject to} \quad
+A x = z
+$$
+
+이 형태로 dual problem을 구하면 다음과 같다.
+
+$$
+\max_{u} \; -f^{\ast}(A^{T}u) - g^{\ast}(-u)
+$$
+
+이는 가끔 유용할 때가 있다. 만약 $f$가 smooth하고 $g$가 그렇지 않다면 primal problem은 **projected gradient descent, proximal gradient descent, subgradient method** 등의 방법들로 풀어야 하는데 이러한 method들은 문제 형태에 따라 적용하기 어려울 수 있다.<br>
+하지만 primal 문제를 **dual**로 바꾸면 $f^{\ast}$는 **smooth**를 유지하고 $g^{\ast}$는 **projection**이나 **proximal operator**를 적용하기 쉬운 형태로 바꿔 앞서 언급한 **1st order method**를 적용할 수 있게 된다.
+
