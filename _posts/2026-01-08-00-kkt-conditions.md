@@ -353,6 +353,8 @@ $$
 </div>
 <br>
 
+---
+
 ## Constrained and Lagrange Forms
 
 **Lemma**<br>

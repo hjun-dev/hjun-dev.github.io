@@ -34,7 +34,10 @@ $$
 \min_{x}L(x, u^{\ast}, v^{\ast})
 $$
 
+---
+
 ### When is dual easier?
+<br>
 
 **Primal-dual** 관계에는 다음과 같은 중요한 사실들이 있으며 후에 더 깊게 알아볼 것이다. 아래 관계를 이용해 언제 **primal problem**을 **dual problem**으로 변환하는 것이 더 풀기 쉽게 되는지 알 수 있다.
 <br>
@@ -51,7 +54,10 @@ $$
 - Dual problem으로 변환 시 **선형 연산자**의 위치를 다른 항으로 **shift** 할 수 있다.
 <br>
 
+---
+
 ### Solving the primal via the dual
+<br>
 
 **Strong duality**를 만족하는 상황에서 **stationarity**의 다음 식에 구해진 dual solution $u^{\ast}, v^{\ast}$를 대입하면 primal solution $x^{\ast}$는 해당 식의 solution이 된다.
 
@@ -62,7 +68,8 @@ $$
 때로 이 **unconstrained problem**의 해는 명시적으로 표현할 수 있고 dual solution으로부터 primal solution의 **explicit characterization**을 얻을 수 있다.<br>
 만약 이 문제의 해가 **unique**하다면 그 solution은 반드시 $x^{\ast}$가 된다. **Dual problem**이 **primal problem**보다 쉬울 때 이건 매우 큰 장점이 된다.
 <br>
-<br>
+
+---
 
 **Example**
 <br>
@@ -105,6 +112,8 @@ $$
 
 주어진 $f_i$가 strictly convex function이었기 때문에 해당 방법으로 구한 $x^{\ast}$는 unique solution이 된다.<br>
 $f'_{i}=a_i v^{\ast}$이므로 primal solution은 $x^{\ast}_i=a_i v^{\ast}/c_i$이다.
+
+---
 
 ## Dual Norms
 
@@ -181,6 +190,8 @@ $$
 \Vert x \Vert_{\ast}=\Vert x \Vert_q.
 $$
 
+---
+
 ### Dual norm of dual norm
 
 **Theorem**
@@ -233,6 +244,8 @@ $$
 \Vert x \Vert = \Vert x \Vert_{\ast \ast}
 $$
 
+---
+
 ## Conjugate function
 
 $f\;:\; \mathbb{R}^{n} \rightarrow \mathbb{R}$에 대해 **conjugate** $f^{\ast}\;:\; \mathbb{R}^{n} \rightarrow \mathbb{R}$는 다음과 같이 정의된다.
@@ -262,9 +275,319 @@ $f^{\ast}$는 $y$의 convex function들의 **pointwise maximum**이므로 $f^{\a
 <br>
 
 그림을 보면 알 수 있듯이 linear function $y^{T}x$와 function $f$의 **maximum difference**를 의미한다. <br>
-**Differentiable** $f$에 대한 conjugation은 **Legendre transform**이라 부른다.
+**Differentiable** $f$에 대한 conjugation은 [Legendre transformation](https://en.wikipedia.org/wiki/Legendre_transformation)이라 부른다.
 <br>
+
+---
 
 **Properties**<br>
 
-- Fenchel;s inequality: 
+- Fenchel's inequality: 
+
+$$
+f(x)+f^{\ast}(y) \ge x^{T}y, \quad \forall x,y
+$$
+
+- Conjugate of conjugate $f^{\ast \ast}$ satisfies $f^{\ast \ast}\le f$.<br>
+
+- If $f$ is closed and convex, then $f^{\ast \ast}=f$ <br>
+
+- If $f$ is closed and convex, then for any $x, y$,
+
+$$
+x \in \partial f^{\ast}(y)
+\;\Longleftrightarrow\;
+y \in \partial f(x)
+\Longleftrightarrow\;
+f(x) + f^{\ast}(y) = x^{T} y
+$$
+
+- If $f(u, v)=f_{1}(u) + f_{2}(v)$, then we can split it into a term-by-term conjugation:
+
+$$
+f^{\ast}(w,z)=f^{\ast}_1(w) + f^{\ast}_2(z)
+$$
+<br>
+
+---
+
+### Intuition of Conjugate
+
+Fenchel conjugate의 작용은 계산적 정의보다 기하학적 관점에서 이해하는 것이 훨씬 직관적이라 생각한다.<br>
+**Conjugate**은 원래의 함수를 직접 다루는 대신 해당 함수에 접할 수 있는 모든 **supporting hyperplane**들의 정보를 저장하는 변환으로 볼 수 있다.
+<br>
+
+---
+
+**Differentiable convex case**<br>
+
+먼저 **differentiable**한 convex function $f$를 생각해보자.<br>
+고정된 $y$에 대해
+
+$$
+f^{\ast}(y)=\max_{x}(y^T x - f(x))
+$$
+
+를 만족하는 $\hat{x}$는 다음을 만족한다.
+
+$$
+\bigtriangledown f(\hat{x})=y
+$$
+
+즉, $y$가 주어지면 $y$를 기울기로 갖는 직선(평면)이 $f$에 접하는 지점 $\hat{x}$가 결정된다. 이때 해당 **supporting hyperplane**의 절편은 $-f^{\ast}(y)$가 된다. 이는 conjugate에서 제시한 예시 그림을 통해서도 확인할 수 있다.
+<br>
+
+이 관점에서 **conjugate**은 주어진 함수에 대해 기울기를 변화시키며 그릴 수 있는 모든 **supporting hyperplane**들의 **절편 정보**를 저장하는 변환으로 이해할 수 있다.<br>
+Differentiable한 convex function의 경우 각 기울기 $y$에 대해 해당 기울기를 갖는 접점 $\hat{x}$가 유일하게 존재한다. 따라서 conjugate은 기울기 $y$를 입력으로 받아, 그 기울기를 갖는 접선이 함수에 접하는 위치와 그 절편을 대응시키는 변환으로 해석할 수 있다.<br>
+즉, 함수의 값을 직접 다루는 대신 기울기-절편 관계를 통해 함수를 재표현하는 역할을 한다.
+<br>
+
+---
+
+**Reconstruction intuition (conjugate to primal)** <br>
+
+**Differentiable convex case**에서 살펴본 것처럼 conjugate은 함수를 각 기울기 $y$에 대해 해당 기울기를 갖는 **supporting hyperplane**의 절편 정보를 저장한다.<br>
+이제 다시 원래 함수로 돌아오는 과정을 생각해보자.<br>
+**Conjugate**을 한 번 더 적용하면 아래와 같다.
+
+$$
+f^{\ast\ast}(x)=\max_{y}(x^T y - f^{\ast}(y))
+$$
+
+이는 저장해 두었던 모든 **supporting hyperplane**들 중에서 주어진 $x$에서 **가장 큰 값을 만드는 hyperplane**을 선택하는 과정으로 이해할 수 있다.<br>
+
+따라서 **double conjugate**은 기울기-절편 정보로 저장된 **모든 supporting hyperplane**을 다시 불러와 주어진 $x$에서 **가장 위**에 위치하는 것을 취하는 것이다.
+
+---
+
+**General convex (possibly nondifferentiable) case**<br>
+
+이제 미분 불가능한 함수를 포함한 일반적인 convex function을 생각해보자. 미분 불가능한 점에서는 단일 gradient 대신 **subgradient**들의 집합인 **subdifferential**이 정의되며 모든 **subgradient**는 각각 하나의 **supporting hyperplane**을 정의하게 된다.<br>
+
+따라서 **convex function**의 경우 conjugate은 미분 가능 여부 & strictly convexity 여부와 무관하게 모든 가능한 supporting hyperplane들의 **기울기-절편** 쌍을 전부 저장한다.<br>
+이 때문에 $f$가 **closed convex function**이면 **conjugate**을 두 번 적용했을 때 다음 식이 성립하며 정보 손실 없이 원래 함수를 복원할 수 있다.
+
+$$
+f^{\ast \ast}=f
+$$
+
+---
+
+**Nonconvex case and convex envelope**<br>
+
+마지막으로 $f$가 **nonconvex function**인 경우를 생각해보자.<br>
+Nonconvex 함수에서는 모든 점에서 **supporting hyperplane**이 존재하지 않을 수 있으며 동일한 기울기 $y$에 대해 여러 접점이 존재할 수 있다.<br>
+
+Conjugate는 정의상
+
+$$
+f^{\ast}(y)=\max_{x}(y^T x - f(x))
+$$
+
+로 주어지므로 이러한 경우에도 오직 전역적으로 함수 아래에 위치할 수 있는 hyperplane들 중 가장 바깥쪽에 위치한 것만을 선택하게 된다.<br>
+결과적으로 $f^{\ast}$에는 원래 함수의 모든 국소적 구조의 정보가 들어가지 못하고 **epigraph**를 감싸는 **convex envelope**를 구성하는 supporting hyperplane들의 정보만이 저장된다. 이전에 제시한 conjugate의 그림에서 $y$에 대한 **supporting hyperplane**을 그려보면 이를 확인 가능하다.<br>
+
+따라서 nonconvex 함수에 대해 conjugate을 두 번 적용하면 
+
+$$
+f^{\ast \ast}=\text{cl conv}(f)
+$$
+
+가 되며 이는 원래 함수가 아닌 convex envelope를 갖는 함수로 복원됨을 의미한다.<br>
+이를 통해 conjugation은 nonconvex 구조에 대해서는 정보 소실을 동반하게 됨을 알 수 있다.<br>
+
+Conjugate의 property 중 **Fenchel's inequality**를 다시 보면 다음과 같다.
+
+$$
+f(x)+ f^{\ast}(y) \ge x^{T}y
+$$
+
+이 부등식을 이전에 다룬 intuition을 가지고 보면 모든 $y$에 대해 $x^{T}y - f^{\ast}(y)$가 $f$ 아래에 위치하는 **supporting hyperplane**임을 의미한다. <br>
+또한 **equality**가 성립하는 경우는 해당 hyperplane이 실제로 함수에 접하는 경우인 $y \in \partial f(x)$를 의미하며 **closed convex function**의 경우 이러한 접촉이 가능한 supporting hyperplane이 존재해 등호가 성립하게 된다.
+
+---
+
+**Examples**
+
+<br>
+
+- **Simple quadratic**: 만약 $Q\succ 0$에 대해 $f(x)=\frac{1}{2}x^{T}Qx$라면 $y^{T}x - \frac{1}{2}x^Qx$는 $x$에 대해 strictly concave하고 $y=Q^{-1}x$로 최대화된다. 따라서
+
+$$
+f^{\ast}(y)=\frac{1}{2}y^{T}Q^{-1}y
+$$
+
+- **Indicator function**: $f(x)=I_{C}(x)$라면 그 conjugate은 아래와 같으며 **support function** of $C$ 라고 부른다.
+
+$$
+f^{\ast}(y)=I^{\ast}_C (y)=\max_{x\in C} y^{T}x
+$$
+
+- **Norm**: $f(x)=\Vert x\Vert$라면 그 conjugate은
+
+$$
+f^{\ast}(y)=I_{\lbrace z : \Vert z \Vert_{\ast} \le 1 \rbrace}(y)
+$$
+
+
+**Proof of Norm conjugate**
+
+$\max_{y}(z^{T}y-\Vert y \Vert)$를 만족하는 $z$는 Dual of dual norm 증명에서 쓰인 **Hölder's inequality** ($y^T z \le \Vert y \Vert \Vert z \Vert_{\ast}$)를 이용해 구할 수 있다.<br> 
+$\max_{y}(z^{T}y-\Vert y \Vert)$는 $\Vert z \Vert_{\ast} \le 1$인 경우 0, $\Vert z \Vert_{\ast} \gt 1$인 경우 $\infty$이므로 아래와 같이 쓸 수 있다.
+
+$$
+\Vert y \Vert^{\ast}=I_{\lbrace z : \Vert z \Vert_{\ast} \le 1 \rbrace}(y)
+$$
+
+
+---
+
+### Example: Lasso Dual
+
+이 예제는 **conjugate function**을 이용해서 dual problem을 만드는 예시를 보여준다.<br>
+여기서는 objective function 특정 항의 선형 연산자를 **shifting**하는 유용한 **trick**을 사용한다.<br>
+
+$y\in \mathbb{R}^n$, $X\in \mathbb{R}^{n\times p}$에 대해 아래와 같은 lasso problem을 보자.
+
+$$
+\min_{\beta} \quad \frac{1}{2}\Vert y-X\beta \Vert^{2}_{2} + \lambda \Vert \beta \Vert_{1}
+$$
+
+**Primal problem**은 **constraints**가 없는 문제이므로 dual variable을 만들기 위해 아래와 같이 보조 **(auxiliary) variables** ($z$)를 도입한다.
+
+$$
+\min_{\beta,\,z}
+\quad
+\frac{1}{2}\,\|y - z\|_2^{2}
++ \lambda \|\beta\|_1
+\quad
+\text{subject to }
+z = X\beta
+$$
+
+이제 문제의 Lagrangian을 아래와 같이 구할 수 있다.
+
+$$
+L(z,\beta, u)= \frac{1}{2} \Vert y-z \Vert^2_2 + \lambda \Vert \beta \Vert_1 + u^{T}(z-X\beta)
+$$
+
+**Lagrangian**을 **primal variable** $z, \beta$에 대해 minimize해 **Lagrange dual function**을 구하면 아래와 같다. 3번째 등호는 $\ell_1$ norm의 conjugate로부터 성립된다.
+
+$$
+\begin{aligned}
+\min_{\beta,\,z}
+\;&
+\frac{1}{2}\|y - z\|_2^2
++ \lambda \|\beta\|_1
++ u^{T}(z - X\beta)
+\\[0.8em]
+=\;&
+\min_{z}
+\left(
+\frac{1}{2}\|y - z\|_2^2 + u^{T} z
+\right)
++
+\min_{\beta}
+\left(
+\lambda \|\beta\|_1 + (X^{T}u)^{T}\beta
+\right)
+\\[0.8em]
+=\;&
+\frac{1}{2}\|y\|_2^2
+- \frac{1}{2}\|y - u\|_2^2
++
+\min_{\beta}
+\lambda
+\left(
+\|\beta\|_1
+- \frac{(X^{T}u)^{T}}{\lambda}\beta
+\right)
+\\[0.8em]
+=\;&
+\frac{1}{2}\|y\|_2^2
+- \frac{1}{2}\|y - u\|_2^2
+-
+\lambda I_{v:\|v\|_\infty \le 1}
+\left(
+\frac{X^{T}u}{\lambda}
+\right).
+\end{aligned}
+$$
+
+따라서 **lasso dual problem**은 아래와 같다. 이때 **Indicator function** 항이 0이어야 maximum 값을 얻을 수 있으므로 제약조건의 형태로 적용된다. ($\Vert X^{T}u \Vert_\infty \le \lambda$)
+
+$$
+\max_{u}
+\quad
+\frac{1}{2}
+\left(
+\|y\|_2^{2}
+-
+\|y - u\|_2^{2}
+\right)
+\quad
+\text{subject to }
+\|X^{T}u\|_{\infty} \le \lambda
+$$
+
+$$
+\Longleftrightarrow
+\quad 
+\min_{u}
+\quad
+\|y - u\|_2^{2}
+\quad
+\text{subject to }
+\|X^{T}u\|_{\infty} \le \lambda
+$$
+
+**Primal problem**의 constraint가 affine function이므로 **Slater's condition**을 만족해 **strong duality**가 성립한다. 따라서 primal과 dual의 optimal value는 동일하다. 하지만 dual 문제를 $\Vert y-u \Vert$ 항만 남기고 쓰면 상수항이 제거되어 **objective function** 값 자체는 primal과 다른 형태를 보인다.<br>
+
+원 문제의 해 $\beta$는 stationary condition ($z-y+u=0$)에 의해 아래와 같이 구할 수 있다.
+
+$$
+X\beta = y-u
+$$
+
+<div class="row mt-3 justify-content-sm-center">
+    <div class="col-sm-8 mt-3 mt-md-0">
+        {% include figure.liquid 
+            loading="eager" 
+            path="assets/img/blog_img/visuallassodual.png" 
+            class="img-fluid rounded z-depth-1" 
+            zoomable=true 
+        %}
+    </div>
+</div>
+
+<div class="caption">
+    Visualization of Lasso Dual Problem.
+</div>
+<br>
+
+**Dual problem**의 해를 보면 $y$를 set $C=\lbrace u : \Vert X^{T}u \Vert_\infty \le \lambda \rbrace=(X^{T})^{-1}\lbrace v : \Vert v \Vert_\infty \le \lambda \rbrace$로 **projection**한 것과 같다. 이는 위 그림에도 설명되어 있다. $v$의 차원에서 infinity norm cube로 정의된 **hypercube**에 대한 linear map $X$의 **inverse image**는 좌측의 **polyhedron**의 형태로 나타난다.<br>
+
+이게 무슨 의미일까? Primal 문제에서 $\beta$에 대한 **stationary condition**을 보면 아래와 같다.
+
+$$
+X^{T}u \in \lambda \partial \Vert \beta \Vert_{1}
+$$
+
+경우를 나눠서 생각해보면 
+
+$$
+\vert(X^{T}u)_i\vert \le \lambda  \Rightarrow \beta_i = 0 \\
+(X^{T}u)_i = +\lambda  \Rightarrow \beta_i \gt 0 \\
+(X^{T}u)_i = -\lambda  \Rightarrow \beta_i \lt 0
+$$
+
+따라서 $X^T u$의 좌표에 따라 **active set**과 **sign pattern**이 결정된다.<br>
+**Hypercube**의 각 face는 어떤 $v_i$는 $\pm \lambda$이고 나머지는 $\lt \lambda$이게 되고 내부는 모든 component가 $\lt \lambda$이다.<br>
+
+이를 $(X^T)^{-1}$로 끌고 왔기 때문에 **polyhedron**의 각 face마다 하나의 **lasso active set + sign pattern**이 정해진다.<br> Face에서 활성화되는 **active sets**는 **locally constant**하므로 $y$가 조금 변해도 activate 되는 component들의 set과 부호들은 강건한 것을 알 수 있다.<br> 
+이는 **sparse**한 solution을 제공하는 lasso solution의 **nonzero component의 set**이 제공되는 데이터가 크게 변하지 않는 이상 유지된다는 것을 보인다.
+
+---
+
+### Relationship between conjugate and dual problems
+
