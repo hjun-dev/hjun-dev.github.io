@@ -487,13 +487,19 @@ $$
 - **Quadratic functions (QP)**
 <br>
 
-- $f(X) = -\log(\det(X)) \; \; \text{on} \; \; \mathbb{S}^n_{++}$
+- 
+$$
+f(X) = -\log(\det(X)) \; \; \text{on} \; \; \mathbb{S}^n_{++}
+$$
 <br>
 
-- $f(x) = -\sum^{n}_{i=1} \log(x_i) \; \; \text{on}\; \; \mathbb{R^n_{++}}$
+- 
+$$
+f(x) = -\sum^{n}_{i=1} \log(x_i) \; \; \text{on}\; \; \mathbb{R^n_{++}}
+$$
 <br>
 
-- $g$ : Self-concordant $\longrightarrow$ $f(x) = g(Ax+b)$ **also self-concordant**
+- $g$ : **Self-concordant** $\longrightarrow$ $f(x) = g(Ax+b)$ **also self-concordant**
 <br>
 
 - Definition의 계수 2는 general $\kappa$로 대체 가능하다.
