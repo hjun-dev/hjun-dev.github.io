@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-convex-optimization-13-duality-uses-and-correspondences",
+        },{id: "post-convex-optimization-14-newton-39-s-method",
+        
+          title: "[Convex Optimization] 14. Newton&#39;s Method",
+        
+        description: "Second-order method의 대표적인 알고리즘인 Newton&#39;s Method 정의 및 분석",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/00-newton-method/";
+          
+        },
+      },{id: "post-convex-optimization-13-duality-uses-and-correspondences",
         
           title: "[Convex Optimization] 13. Duality uses and correspondences",
         
