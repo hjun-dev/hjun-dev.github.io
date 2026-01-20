@@ -583,7 +583,7 @@ Self-concordance 정의에 등장하는 계수는 함수의 스케일링에 따�
 ## Comparison to 1st-order methods
 
 | 항목 | Gradient descent | Newton's method |
-| :----------- | :------------: | ------------: |
+| :----------- | :------------: | :------------: |
 | **Memory**       |    $\mathcal{O}(n)$(gradient)    |    $\mathcal{O}(n^2)$(Hessian)    |
 | **Computation**       |    $\mathcal{O}(n)$(벡터 계산)    |    $\mathcal{O}(n^3)$(Hessian이 포함된 선형 시스템 계산)    |
 | **Backtracking**       |    $\mathcal{O}(n)$    |    $\mathcal{O}(n)$    |
@@ -665,7 +665,7 @@ Equality-constrained Newton's method은 다음과 같다. 먼저 $Ax^{(0)}=b$를
 $$
 \begin{aligned}
 x^{+} &= x + t v, \quad \text{where} \\
-v &= \argmin_{A z = 0}
+v &= \underset{Az=0}{\operatorname{argmin}}
 \left(
 \nabla f(x)^{T}(z - x)
 + \frac{1}{2}(z - x)^{T} \nabla^{2} f(x) (z - x)
