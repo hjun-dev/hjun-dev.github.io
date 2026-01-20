@@ -62,7 +62,7 @@ My goal is to bridge the gap between theoretical control guarantees and practica
 
 ### **Contact**
 
-* **Email:** 12200617@inha.edu
+* **Email:** hjunlee525@gmail.com
 * **Address:** Inha Aerospace Campus, 36 Gaetbeol-ro, Yeonsu-gu, Incheon 21999, Republic of Korea
 
 ---
