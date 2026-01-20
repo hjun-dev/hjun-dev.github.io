@@ -6,6 +6,7 @@ date: 2026-01-15 11:00:00 +0900
 tags: [math, study]
 categories: [optimization]
 related_posts: True
+pretty_table: true
 toc:
   sidebar: left
 ---
@@ -451,10 +452,10 @@ Self-concordant function을 이용하면 scale-free analysis가 가능해진다.
 Convex function $f : \mathbb{R} \rightarrow \mathbb{R}$가 아래의 식을 만족하면 self-concordant라고 한다.
 
 $$
-\vert f '''(x)\vert \le 2(f ''(x))^{3/2} \; \; \text{for}\; \text{all } x
+\vert f^{\prime\prime\prime}(x)\vert \le 2(f^{\prime\prime}(x))^{3/2} \; \; \text{for}\; \text{all } x
 $$
 
-Convexity를 만족하면 $f''(x) \ge 0$이므로 $(f''(x))^{3/2}$이 well defined 된다.<br>
+Convexity를 만족하면 $f^{\prime\prime}(x) \ge 0$이므로 $(f^{\prime\prime}(x))^{3/2}$이 well defined 된다.<br>
 
 Multivariate convex function $f : \mathbb{R}^n \rightarrow \mathbb{R}$가 self-concordant일 조건은 아래와 같다.
 
@@ -464,6 +465,74 @@ g(t) = f(x + t v) \text{ is self-concordant }
 $$
 
 위 조건의 의미는 $f$를 어떤 line이던 projection하면 self-concordant가 된다는 것이다.
+
+---
+
+### Intuition of self-concordance
+
+기존의 Newton's method의 수렴 분석을 보면 quadratic convergence를 위해 3차 오차항을 Hessian Lipschitz 상수 $M$으로 제어하여 곡률의 변화를 발산하지 않고 Newton step과 비교 가능하도록 제한한 뒤 분석을 진행했다.<br>
+Self-concordant function은 이러한 관점을 가져와 3차항이 2차항의 function으로 직접 bound되도록 만든 함수이다. 따라서 해당 함수에 대한 Newton's method의 convergence theorem은 3차 오차항의 상한이 함수 자체에 의해 자연스럽게 주어지며 추가적인 $L, m, M$ 등의 정의가 필요없게 되며 최종적으로 scale-free(affine invariant) 분석이 가능하게 된다.<br>
+여기서 그럼 드는 의문은 왜 self-concordance 정의에서 지수항이 $3/2$이고 계수로 2가 붙는가이다. 결론부터 말하면 scale-free를 위해 계수는 반드시 2일 필요는 없지만 지수항은 반드시 $3/2$이어야 한다. 계수에 대한 내용은 이후 self-concordant 함수의 property에서 다루어지므로 여기서는 지수항의 필연성에 대해서 알아보자.<br>
+
+우리가 원하는 것은 Newton step에 대한 오차항을 affine invariant한 Newton decrement $\lambda$로만 제어하는 것이다.<br>
+먼저 아래의 Taylor 전개를 보자.
+
+$$
+f(x+v)=f(x) + f^{\prime}(x)v + \frac{1}{2}f^{\prime\prime}(x)v^2 + R_3
+$$
+
+$R_3$는 3차항 이상의 오차항을 의미하며 $v\rightarrow 0$ 일수록 3차 오차항이 전체의 크기를 결정짓게 된다. 따라서 다음 식과 같이 나타낼 수 있다.
+
+$$
+\vert R_3 \vert \approx \frac{1}{6}\vert f^{\prime\prime\prime}(\xi)\vert \vert v \vert^3
+$$
+
+즉, Newton 분석에서 핵심적으로 제어해야 할 항은
+
+$$
+\vert f^{\prime\prime\prime} \vert \; \vert v \vert^3
+$$
+
+이제 Newton step의 자연스러운 scale을 보자.<br>
+Newton step은
+
+$$
+v_{nt} = -\frac{f^{\prime}(x)}{f^{\prime \prime}(x)}
+$$
+
+$$
+\lambda(x)^2 = \frac{(f^{\prime}(x))^2}{f^{\prime\prime}(x)} \quad \Rightarrow \quad \vert f^{\prime}(x) \vert = \lambda \sqrt{f^{\prime \prime}(x)}
+$$
+
+따라서 Newton step의 크기를 $\lambda$로 표현하면
+
+$$
+\vert v_{nt}\vert = \frac{\vert f^{\prime}\vert}{f^{\prime\prime}} = \frac{\lambda \sqrt{f^{\prime\prime}}}{f^{\prime\prime}} = \frac{\lambda}{\sqrt{f^{\prime\prime}}}
+$$
+
+위 결과를 가지고 이제 $\vert f^{\prime\prime\prime}(x)\vert \le C (f^{\prime\prime}(x))^p$를 만족하는 scale free $p$를 찾아보자.<br>
+이전에 구한 $R_3$의 스케일을 보면
+
+$$
+\vert R_3 \vert \approx \vert f^{\prime \prime \prime} \vert \; \vert v_{nt}\vert^3 \le C(f^{\prime\prime})^p \cdot \frac{\lambda^3}{(f^{\prime\prime})^{3/2}} = C\lambda^3 (f^{\prime\prime})^{p-3/2}
+$$
+
+따라서 다음 조건을 만족해야 곡률의 변화량 제어를 affine invariant하게 Newton decrement로만 할 수 있게 되는 것이다.
+
+$$
+p = \frac{3}{2}
+$$
+
+다시 정리하면 Newton's method의 convergence analysis를 위해서는 Newton's method가 목적함수의 quadratic approximation의 최솟값을 사용하므로 3차 오차항인 곡률 변화량의 상한을 적절히 제어해야 수렴과 수렴 속도를 논할 수 있다.<br>
+이를 위해 
+
+$$
+\vert f^{\prime\prime\prime}(x)\vert \le C (f^{\prime\prime}(x))^p
+$$
+
+형태의 bound를 가정하고 scale-free 관점에서 분석해보면 $p=3/2$일 때에만 approximation의 오차항이 affine invariant한 Newton decrement $\lambda$로 제어되는 것을 알 수 있다.
+
+---
 
 ### Convergence analysis via Self-concordance
 
@@ -507,9 +576,23 @@ $$
 
 - $g$ : $\kappa$**-self-concordant** $\longrightarrow$ $f(x) = \frac{\kappa}{4}g(x)$ : **2-self-concordant**
 
+Self-concordance 정의에 등장하는 계수는 함수의 스케일링에 따라 조정 가능하며 일반적인 $\kappa$-self-concordant 함수는 적절한 상수배를 통해 표준적인 2-self-concordant 형태로 항상 정규화할 수 있다.
+
 ---
 
 ## Comparison to 1st-order methods
+
+| 항목 | Gradient descent | Newton's method |
+| :----------- | :------------: | ------------: |
+| **Memory**       |    $\mathcal{O}(n)$(gradient)    |    $\mathcal{O}(n^2)$(Hessian)    |
+| **Computation**       |    $\mathcal{O}(n)$(벡터 계산)    |    $\mathcal{O}(n^3)$(Hessian이 포함된 선형 시스템 계산)    |
+| **Backtracking**       |    $\mathcal{O}(n)$    |    $\mathcal{O}(n)$    |
+| **Conditioning**       |    Problem's conditioning에 비교적 취약    |    Affine invariance에 의해 영향 받지 않음    |
+
+<br>
+위 표에서 backtracking line search의 연산 속도는 비슷한 것을 볼 수 있는데, 이는 Armijo 조건을 만족할 때까지 step size를 줄이는 과정이 벡터 스케일링과 함수값 평가로 이루어진 비교적 단순한 연산이기 때문이다.<br>
+
+다음 그림은 x축을 실제 연산에 걸린 시간으로 설정하여 두 알고리즘의 수렴 속도를 비교한 그래프이다. 한 iteration에 걸리는 시간은 Newton's method가 더 많지만 몇 개의 step만으로 더 수렴이 많이 진행돼 더 빠른 수렴 속도를 가지는 것을 볼 수 있다.
 
 <div class="row mt-3 justify-content-sm-center">
     <div class="col-sm-8 mt-3 mt-md-0">
@@ -528,3 +611,78 @@ $$
 </div>
 <br>
 
+---
+
+## Sparse, structured problems
+
+Newton's method의 computation은 Hessian이 포함된 선형시스템의 해를 구해야 하며 $\mathcal{O}(n^3)$으로 매우 크다.<br>
+하지만 Hessian이 sparse / structured matrix 인 경우 [band matrix](https://en.wikipedia.org/wiki/Band_matrix)라고 부르며 $\mathcal{O}(n)$의 computation이 소모된다.
+
+$$
+H = \nabla g \left\{
+\begin{array}{ll}
+O(n^3) & H:\ \text{Dense} \\
+O(n)   & H:\ \text{Banded}
+\end{array}
+\right.
+$$
+
+언제 structured Hessian을 가지는지 두 가지 예시를 보자.
+<br>
+
+- 만약 $g(\beta) = f(X\beta)$라면 $\nabla^2 g(\beta) = X^{T}\nabla^2 f(X\beta)X$이다. 따라서 만약 $X$가 structured predictor matrix고 $\nabla^2 f$가 diagonal matrix라면 $\nabla^2g$는 structured matrix이다.
+
+- $f(\beta)+g(D\beta)$를 minimize하는 문제를 보자. 여기서 $\nabla^2 f$는 diagonal, $g$는 not smooth, $D$는 structured penalty matrix이다. 이 문제의 Lagrange dual function은 $-f^{\ast}(-D^{T}u) - g^{\ast}(-u)$이다.<br> 
+따라서 Lagrange dual function의 Hessian은 $
+D \nabla^2 f^{\ast}(-D^{T}u)D^T + \nabla^2 g^{\ast}(-u)$ 이다. <br>
+$\nabla^2 f^{\ast}$도 diagonal로 유지되는 경우가 자주 있는데 이런 경우에는 첫 항이 structured matrix가 되어 $g$에 포함된 $D$를 쉽게 처리할 수 있게 된다.
+
+---
+
+## Equality-constrained Newton's Method
+
+지금까지는 constraints가 없는 problem에 대한 Newton's method를 다뤘다.<br>
+여기서는 equality constrained problem에 대한 Newton's method를 소개할 것이다.<br>
+다음과 같은 문제를 생각하자.
+
+$$
+\begin{aligned}
+\min_{x}\ & f(x) \\
+\text{subject to }\ & Ax = b
+\end{aligned}
+$$
+
+위 문제를 해결하는 방법은 아래 세 가지가 있다.<br>
+
+- **Equality constraints 제거**: $x=Fy+x_0$로 변환해 $y$에 대한 문제로 바꿔 푼다. 여기서 $F$는 $A$의 null space를 span하는 matrix이며 $Ax_0 = b$이다.
+
+- **Deriving the dual**: 위 문제의 Lagrange dual function은 $-f^{\ast}(-A^{T}v)-b^{T}v$이고 strong duality는 성립한다. 운좋으면 $x^{\star}$가 $v^{\star}$에 대한 식으로 표현될 수 있다.
+
+- **Equality-constrained Newton**: 많은 경우에 이 방법을 사용한다. 아래에 더 자세히 설명하겠다.
+
+Equality-constrained Newton's method은 다음과 같다. 먼저 $Ax^{(0)}=b$를 만족하는 $x^{(0)}$을 찾는다. 그리고 아래 과정을 반복해 업데이트를 진행한다.
+
+$$
+\begin{aligned}
+x^{+} &= x + t v, \quad \text{where} \\
+v &= \argmin_{A z = 0}
+\left(
+\nabla f(x)^{T}(z - x)
++ \frac{1}{2}(z - x)^{T} \nabla^{2} f(x) (z - x)
+\right)
+\end{aligned}
+$$
+
+이 과정은 $x^{+}$가 feasible set 내부를 유지하도록 한다. ($Ax^+ =  Ax + tAv = b+0 = b$)
+<br>
+
+또한 Newton step $v$는 quadratic function을 최소화하는 equality constrained problem의 solution으로 볼 수 있다. KKT condition을 가져오면
+
+$$
+$$
+
+
+
+---
+
+## Quasi-Newton methods

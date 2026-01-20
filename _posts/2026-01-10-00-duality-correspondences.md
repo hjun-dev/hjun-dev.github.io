@@ -305,8 +305,11 @@ $$
 - If $f(u, v)=f_{1}(u) + f_{2}(v)$, then we can split it into a term-by-term conjugation:
 
 $$
+\begin{aligned}
 f^{\ast}(w,z)=f^{\ast}_1(w) + f^{\ast}_2(z)
+\end{aligned}
 $$
+
 <br>
 
 ---
