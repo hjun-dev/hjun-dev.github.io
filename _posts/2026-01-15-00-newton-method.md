@@ -218,6 +218,7 @@ $$
 $$
 \lambda(x) = \sqrt{v_x^{T}H_x v_x} = \Vert v_x \Vert_{H_x}
 $$
+
 ---
 
 ### Affine Invariance of Newton Decrement
@@ -279,8 +280,11 @@ x &\leftarrow x + t v
 $$
 
 여기서 $v=-(\nabla^2 f(x))^{-1}\nabla f(x)$이므로 $\nabla f(x)^{T}v = -\lambda(x)^2$이다.<br>
-따라서 **loop condition**을 다음과 같이 쓸 수도 있다. $f(x + t v) > f(x) - \alpha t \lambda(x)^2$
-<br>
+따라서 **loop condition**을 다음과 같이 쓸 수도 있다. 
+
+$$
+f(x + t v) > f(x) - \alpha t \lambda(x)^2
+$$
 
 $t=1$일 때 보면 loop condition이 의미하는 바는 quadratic approximation의 minimum으로 이동 시 예측되는 함수값과 실제 이동 시의 함수값을 비교해 **step size**를 조정하는 것으로 볼 수 있다.
 
