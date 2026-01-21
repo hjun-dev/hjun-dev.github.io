@@ -72,16 +72,29 @@
 #      year: 2015-now
 #      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
 
-# - title: Honors and Awards
-#  type: time_table
-#  contents:
-#    - year: 1921
-#      items:
-#        - Nobel Prize in Physics
-#        - Matteucci Medal
-#    - year: 2029
-#      items:
-#        - Max Planck Medal
+- title: Honors and Awards
+  type: time_table
+  contents:
+    - year: 2025
+      items:
+        - Grand Prize - Aerospace Element Design Competition  
+          Institute for Aerospace Industry-Academia Collaboration  
+          (Topic: Real-Time Landing Guidance and Control Co-Simulation for a Reusable Launch Vehicle)
+
+    - year: 2025
+      items:
+        - Encouragement Award (Chairperson's Award) - National Industry-Academia Convergence Project Lab Competition  
+          Hosted by the Ministry of Trade, Industry and Energy  
+          Organized by Korea Industry-Academia Convergence Association  
+          (Topic: Real-Time Landing Guidance and Control Co-Simulation for a Reusable Launch Vehicle)
+
+    - year: 2025
+      items:
+        - Excellence Award - Aerospace Capstone Design Final Poster Presentation  
+          Inha University, Department of Aerospace Engineering  
+          (Topic: Optimization and Machine Learning Algorithm Research)
+
+
 
 - title: Research Interests
   type: nested_list
@@ -115,7 +128,10 @@
         Developing a 6-DOF simulation-based smart munition detection system in Unity. 
         Implementing a real-time target detection pipeline using Laser Range Finder (LRF) data 
         and a TCN-DAE based anomaly detection model for robust target recognition.
-
+    - title: Deep learning model for off-road vehicle state estimation (Funded by Hyundai Motor Company)
+      year: 2025 - 2026
+      description: >
+        Developing a deep learning-based vehicle state estimation algorithm for off-road vehicles.
     - title: Data-efficient Safe Reinforcement Learning from Human Corrections (Funded by Airbus Institute for Engineering Research)
       year: 2025 - 2027
       description: >
