@@ -5,7 +5,8 @@ description: "Ryan Tibshirani 교수님의 Convex Optimization 강의 정리 및
 date: 2026-01-05 13:00:00 +0900
 tags: [math, study]
 categories: [optimization]
-related_posts: false
+related_posts: True
+giscus_comments: true
 toc:
   sidebar: left
 ---

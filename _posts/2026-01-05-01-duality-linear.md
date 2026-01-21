@@ -6,6 +6,7 @@ date: 2026-01-05 13:00:00 +0900
 tags: [math, study]
 categories: [optimization]
 related_posts: True
+giscus_comments: true
 toc:
   sidebar: left
 ---
