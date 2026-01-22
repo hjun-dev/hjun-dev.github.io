@@ -143,3 +143,52 @@ $$
 ---
 
 ## Special Case: Linear Program
+
+**Linear Program**에 대한 **barrier problem**을 보자. $Dx\le e$의 **polyhedral constraint**에 대한 barrier function이다.
+
+$$
+\min_{x}\;\; tc^{T}x \;-\; \sum_{i=1}^{m} \log\!\bigl(e_i - d_i^{T}x\bigr)
+$$
+
+**Gradient optimality condition**은 아래와 같다.
+
+$$
+0=t c+\sum_{i=1}^{m}\frac{1}{e_i-d_i^{T}x^{\star}(t)}\,d_i
+$$
+
+이는 $\nabla \phi(x^{\star}(t))$가 $c$와 평행해야 함을 의미한다. 따라서 다음 그림에서처럼 **hyperplane** $\lbrace x: c^{T}x = c^Tx^{\star}(t) \rbrace$이 $x^{\star}(t)$에서 $\phi$의 **contour**에 접하게 나타나는 것을 알 수 있다.
+
+<div class="row mt-3 justify-content-sm-center">
+    <div class="col-sm-8 mt-3 mt-md-0">
+        {% include figure.liquid 
+            loading="eager" 
+            path="assets/img/blog_img/barrierlpproblem.png" 
+            class="img-fluid rounded z-depth-1" 
+            zoomable=true 
+        %}
+    </div>
+</div>
+
+<div class="caption">
+    Central path inside the polyhedron.<br>
+    (from B&V page 565)
+</div>
+<br>
+
+위 그림처럼 각 $t$에 대해 내부에서 최적점을 찾아 경계로 이동하는 central path를 보인다. 이 때문에 interior point method라고 불린다.
+
+---
+
+## KKT Conditions and Duality
+
+Central path의 KKT conditions는 아래와 같다. (for some $w \in \mathbb{R}^m$)
+
+$$
+\begin{aligned}
+t\nabla f(x^\star(t))
+-\sum_{i=1}^{m}\frac{1}{h_i(x^\star(t))}\nabla h_i(x^\star(t))
++ A^T w &= 0,\\
+Ax^\star(t) &= b,\quad
+h_i(x^\star(t))<0,\ i=1,\ldots,m
+\end{aligned}
+$$
