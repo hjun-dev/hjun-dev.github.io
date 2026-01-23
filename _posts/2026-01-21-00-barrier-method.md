@@ -185,10 +185,98 @@ Central path의 KKT conditions는 아래와 같다. (for some $w \in \mathbb{R}^
 
 $$
 \begin{aligned}
-t\nabla f(x^\star(t))
+& t\nabla f(x^\star(t))
 -\sum_{i=1}^{m}\frac{1}{h_i(x^\star(t))}\nabla h_i(x^\star(t))
-+ A^T w &= 0,\\
-Ax^\star(t) &= b,\quad
++ A^T w = 0,\\
+& Ax^\star(t) = b,\quad
 h_i(x^\star(t))<0,\ i=1,\ldots,m
 \end{aligned}
 $$
+
+원 문제의 KKT condition은 아래 문제와 같으며 complementary slackness의 boundary condition을 알기 매우 어렵다.
+
+$$
+\begin{aligned}
+& \nabla f(x^\star)
++ \sum_{i=1}^{m} u_i^\star \nabla h_i(x^\star)
++ A^T v^\star = 0 \\
+& Ax^\star = b,\quad
+h_i(x^\star) \le 0,\quad
+u_i^\star \ge 0, \\
+& h_i(x^\star)\cdot u_i^\star = 0,\quad
+i = 1,\ldots,m
+\end{aligned}
+$$
+
+따라서 원 문제의 KKT condition의 $u^{\star}_i(t), v^{\star}_i(t)$는 아래와 같이 대응된다.
+
+$$
+\begin{aligned}
+& u_i^\star(t)=-\frac{1}{t\,h_i(x^\star(t))},\quad i=1,\ldots,m \\
+& v^\star(t)=w/t
+\end{aligned}
+$$
+
+따라서 Central path의 KKT condition을 다시쓰면 아래와 같다.
+
+$$
+\begin{aligned}
+& \nabla f(x^\star(t))
++ \sum_{i=1}^{m}u_i(t)\nabla h_i(x^\star(t))
++ A^Tv
+= 0,\\
+& Ax^\star(t)=b,\quad
+u_i(t)\cdot h_i(x^\star(t))=-\frac{1}{t},\quad
+h_i(x^\star(t))<0,\quad
+u_i(t)>0,\ i=1,\ldots,m
+\end{aligned}
+$$
+
+이는 central path가 complementary slackness 조건 $h_i(x^{\star})u_i^{\star}=0$을 다음과 같이 완화한 형태임을 보여준다. $t \rightarrow 0$이면 slackness 조건과 동일해진다.
+
+$$
+h_i(x^{\star}(t))u^{\star}_i(t) = -\frac{1}{t}
+$$
+
+---
+
+**Dual Feasibility 검증**
+
+위와 같이 central path의 dual 변수 $u^{\star}(t), v^{\star}(t)$를 정의하기 위해서는 이들이 원 문제의 dual feasible point임을 확인해야 한다.<br>
+Dual feasibility는 다음 두 조건으로 정의된다.<br>
+1. Inequality constraints에 대한 dual variable은 $u\ge 0$이어야 한다.
+
+2. Lagrange dual function $g(u,v)=\min_xL(x,u,v)$가 $-\infty$가 아니어야 한다.
+
+먼저 $h_i(x^{\star}(t))\lt 0$이므로 다음이 성립해 첫 조건을 만족한다.
+
+$$
+u_i^{\star}(t) = - \frac{1}{t\;h_i(x^{\star}(t))} \gt 0
+$$
+
+다음으로 central path의 KKT conditions에 $u^{\star}(t),v^{\star}(t)$를 대입하면 다음과 같다.
+
+$$
+\nabla f(x^\star(t))
++\sum_{i=1}^{m}u_i^\star(t)\nabla h_i(x^\star(t))
++A^T v^\star(t)
+=0
+$$
+
+이는 $x^{\star}(t)$가 Lagrangian $L(x, u^{\star}(t), v^{\star}(t))$의 stationary point임을 의미한다.<br>
+원 문제가 convex problem이었으므로 Lagrangian역시 $x$에 대해 convex function이다. 따라서 위 stationary 조건으로 $x^{\star}(t)$는 전역 최소해가 되며 결과적으로 다음과 같다.
+
+$$
+g(u^\star(t),v^\star(t))
+=\inf_x L(x,u^\star(t),v^\star(t))
+= L(x^\star(t),u^\star(t),v^\star(t))
+> -\infty
+$$
+
+결론적으로 $(u^{\star}(t), v^{\star}(t))$는 원 문제의 dual feasible point이다.
+
+---
+
+## Duality Gap
+
+Dual feasible point를 이용해 
