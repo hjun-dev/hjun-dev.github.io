@@ -334,34 +334,18 @@ For $k = 1,2,3,\ldots$
 
 ```pseudocode
 \begin{algorithm}
-\caption{Barrier Method (with Newton Centering)}
+\caption{Barrier Method}
 \begin{algorithmic}
-\PROCEDURE{BarrierMethod}{$$f,\ \phi,\ A,\ b,\ x^{(0)},\ t^{(0)},\ \mu,\ \epsilon$$}
+\PROCEDURE{BarrierMethod}{$$x^{(0)},\ t^{(0)},\ \mu,\ \epsilon$$}
     \STATE $$t \leftarrow t^{(0)}$$
     \STATE $$x \leftarrow x^{(0)}$$
-    \FOR{$$k = 0,1,2,\ldots$$}
-        \STATE $$x \leftarrow $$ \CALL{CenteringStep}{$$f,\ \phi,\ A,\ b,\ x,\ t$$}
-        \IF{$$m/t \le \epsilon$$}
+    \FOR{$$k = 1,2,3,\ldots$$}
+        \STATE Solve the barrier problem at $$t$$ using Newton initialized at $$x$$
+        \STATE Set $$x \leftarrow$$ the solution obtained
+        \IF{duality gap $$\le \epsilon$$}
             \STATE \textbf{return} $$x$$
         \ENDIF
         \STATE $$t \leftarrow \mu t$$
-    \ENDFOR
-\ENDPROCEDURE
-
-\PROCEDURE{CenteringStep}{$$f,\ \phi,\ A,\ b,\ x,\ t$$}
-    \FOR{$$\ell = 0,1,2,\ldots$$}
-        \STATE $$F(x) \leftarrow t f(x) + \phi(x)$$
-        \STATE $$g \leftarrow \nabla F(x),\quad H \leftarrow \nabla^2 F(x)$$
-        \STATE Solve for $$v,w$$:
-        $$\begin{pmatrix} H & A^T \\ A & 0 \end{pmatrix}\begin{pmatrix} v \\ w \end{pmatrix}
-        = \begin{pmatrix} -g \\ 0 \end{pmatrix}$$
-        \STATE $$\lambda^2 \leftarrow g^T H^{-1} g \quad (\text{Newton decrement squared})$$
-        \IF{$$\lambda^2/2 \le \text{tol}$$}
-            \STATE \textbf{return} $$x$$
-        \ENDIF
-        \STATE Choose step size $$s \in (0,1]$$ (e.g., backtracking) such that
-        $$x + sv \in \mathrm{dom}(\phi)\ \ \text{and}\ \ F(x+sv) \le F(x) + \alpha s g^T v$$
-        \STATE $$x \leftarrow x + s v$$
     \ENDFOR
 \ENDPROCEDURE
 \end{algorithmic}
