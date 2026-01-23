@@ -329,25 +329,132 @@ $$
 \end{aligned}
 $$
 
-먼저 $t^{(0)}\gt 0, \mu \gt 1$을 설정한다. 그리고 Newton's method로 $t=t^{(0)}$에서의 solution $x^{(0)}=x^{\star}(t)$을 찾는다.<br>
-For $k = 1,2,3,\ldots$에 대해 
+Barrier method의 구체적인 알고리즘은 다음과 같다.
 
-```pseudocode
-\begin{algorithm}
-\caption{Barrier Method (Concrete Version)}
-\begin{algorithmic}
-\PROCEDURE{BarrierMethod}{}
-    \STATE Initialize $$t^{(0)} > 0,\ \mu > 1$$
-    \STATE Solve the minimization problem to obtain $$x^{(0)}$$
-    \FOR{$$k = 1,2,3,\ldots$$}
-        \STATE $$t^{(k)} \leftarrow \mu\, t^{(k-1)}$$
-        \STATE Solve the minimization problem using Newton's method
-        \STATE Initialize Newton at $$x^{(k-1)}$$ to obtain $$x^{(k)}$$
-        \IF{$$m / t^{(k)} \le \epsilon$$}
-            \STATE \textbf{break}
-        \ENDIF
-    \ENDFOR
-\ENDPROCEDURE
-\end{algorithmic}
-\end{algorithm}
-```
+1. Initialize $t^{(0)}\gt 0, \mu \gt 0$. Solve the minimization problem to get $x^{(0)}=x^{\star}(t^{(0)})$
+
+2. For $k=1,2,3,\ldots$ <br>
+    
+    $(a)$ Compute $t^{(k)}=\mu t^{(k-1)}$<br> 
+    $(b)$ Solve minimization problem using Newton's method initialized at $x^{(k-1)}$ to get $x^{(k)}=x^{\ast}(t^{(k)})$<br>
+    $(c)$ if $m/t \le \epsilon$ break
+
+$(b)$ 단계를 centering step이라고 부른다.<br>
+
+알고리즘을 설정할 때 $\mu$와 $t^{(0)}$를 선택할 때 아래를 고려해야 한다.
+
+- **Choice of $\mu$:** 만약 $\mu$가 너무 작으면 outer iteration이 너무 많이 필요하고 $\mu$가 너무 크면 각 centering step에서 Newton's method가 수렴에 너무 오래 걸릴 수 있다.
+
+- **Choice of $t^{(0)}$:** 만약 $t^{(0)}$가 너무 작으면 outer iteration을 많이 진행해야 하고 $t^{(0)}$가 너무 크면 처음 centering step이 너무 오래 걸릴 수 있다.
+
+
+하지만 다행히도 barrier method의 performance는 두 선택에 꽤나 robust하다고 한다.<br>
+
+아래 예시 그래프는 $n=50$ 차원, $m=100$ inequality constraints의 small LP를 barrier method로 푼 결과이다.
+
+<div class="row mt-3 justify-content-sm-center">
+    <div class="col-sm-8 mt-3 mt-md-0">
+        {% include figure.liquid 
+            loading="eager" 
+            path="assets/img/blog_img/convergencefordiffval.png" 
+            class="img-fluid rounded z-depth-1" 
+            zoomable=true 
+        %}
+    </div>
+</div>
+
+<div class="caption">
+    Convergence for different values of $\mu$<br>
+    (from B&V page 571)
+</div>
+<br>
+
+---
+
+## Convergence analysis
+
+Centering steps를 정확히 풀면서 barrier method를 진행했다고 가정하자. 다음의 수렴속도 식이 바로 나온다.<br>
+
+**Theorem**: The barrier method after $k$ centering steps satisfies
+
+$$
+f(x^{(k)})-f^{\star} \le \frac{m}{\mu^k t^{(0)}}
+$$
+
+이는 우리가 $\epsilon$의 정확도를 가지고 싶다면 아래의 centering steps가 필요하다는 것과 같다. (initial centering step 비포함)
+
+$$
+\frac{m}{\mu^k t^{(0)}} \le \epsilon
+$$
+
+$$
+\mu^k \ge \frac{m}{\epsilon t^{(0)}}
+$$
+
+$$
+k\log\mu \ge \log\frac{m}{\epsilon t^{(0)}}
+$$
+
+$$
+k \ge \frac{\log(m/(t^{(0)}\epsilon))}{\log\mu}
+$$
+
+결과를 보면 제약 조건의 개수 $m$에 대해 로그 스케일로 증가하며 $m$이 고정된 경우에는 linear convergence를 보인다.<br>
+아래의 LP 예제에서도 로그스케일에 대한 linear convergence임을 확인할 수 있다.
+
+<div class="row mt-3 justify-content-sm-center">
+    <div class="col-sm-8 mt-3 mt-md-0">
+        {% include figure.liquid 
+            loading="eager" 
+            path="assets/img/blog_img/linearconvergencebarriermethod.png" 
+            class="img-fluid rounded z-depth-1" 
+            zoomable=true 
+        %}
+    </div>
+</div>
+
+<div class="caption">
+    Convergence scales only with log of constraints, very slow scaling, good behavior<br>
+    (from B&V page 575)
+</div>
+<br>
+
+각 centering step에서 Newton iteration은 얼마나 필요할까? Self-concordant 함수의 경우 $x$의 작은 변화는 Newton method가 quadratic convergence phase로 작동하게 한다. 따라서 매 iteration마다 큰 반복을 필요로 하지 않게 되며 반복 횟수가 대략 상수 개수로 유지된다.
+결과적으로 전체 반복 step의 수도 아래 식과 같이 나타난다.
+
+$$
+\mathcal{O}(\log(m/\epsilon t^{(0)}))
+$$
+
+목적함수인 $tf+\phi$는 $f, h_i$가 전부 linear or quadratic이라면 self-concordant를 만족한다. 따라서  이는 LPs, QPs, QCQPs에 해당하며 이 문제들은 barrier method로 쉽게 풀린다.
+
+---
+
+## Feasibility Criterion
+
+$t$를 키워가며 전 centering step의 결과로 얻은 strictly feasible point로 초기화해 다음 centering step을 진행했다.<br>
+그럼 첫 번째 centering step에서 $x^{(0)}$는 어떻게 구할까?<br>
+
+다음과 같은 LP를 풀면 strictly feasible point를 구할 수 있다.
+
+$$
+\begin{aligned}
+&\min_{x,s}\quad s\\
+&\text{s.t.}\quad h_i(x)\le s,\quad i=1,2,\ldots,m\\
+&\qquad\;\; Ax=b
+\end{aligned}
+$$
+
+위 문제의 optimal solution을 구할 필요 없이 $s\lt 0$이면 종료하고 해당 $x$를 feasible point $x^{(0)}$로 설정한다. 이러한 방법을 feasibility method라고 부른다.<br>
+
+하지만 위 방법만으로는 infeasible한 경우에 어떤 constraint때문에 infeasible한지 알 수 없다. 따라서 다음과 같은 LP를 풀어 각 constraints에 upper bound를 걸어 어떤 constraints가 infeasible하게 만드는지 분석할 수 있다.
+
+$$
+\begin{aligned}
+&\min_{x,s}\quad \mathbf{1}^T s\\
+&\text{s.t.}\quad h_i(x)\le s_i,\quad i=1,2,\ldots,m\\
+&\qquad\;\; Ax=b,\; s\ge 0
+\end{aligned}
+$$
+
+모든 $s$가 0이라면 feasible point가 존재함을, $s\gt0$가 나타난다면 해당 constraint 때문에 원 문제가 infeasible함을 알 수 있다.
