@@ -36,7 +36,7 @@ $$
 위 primal problem에 대한 Lagrangian은 
 
 $$
-L(x,u,v)=f(x)+\sum^{m}_{u=1}u_{i}h_{i}(x)+\sum^{r}_{j=1}v_{j}\ell_{j}(x)$$
+L(x,u,v)=f(x)+\sum^{m}_{i=1}u_{i}h_{i}(x)+\sum^{r}_{j=1}v_{j}\ell_{j}(x)$$
 
 Lagrange dual function은 $g(u,v)=\min_{x}L(x,u,v)$ 로 정의된다.<br>
 
