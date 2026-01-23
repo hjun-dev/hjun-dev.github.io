@@ -232,7 +232,7 @@ u_i(t)>0,\ i=1,\ldots,m
 \end{aligned}
 $$
 
-이는 central path가 complementary slackness 조건 $h_i(x^{\star})u_i^{\star}=0$을 다음과 같이 완화한 형태임을 보여준다. $t \rightarrow 0$이면 slackness 조건과 동일해진다.
+이는 central path가 complementary slackness 조건 $h_i(x^{\star})u_i^{\star}=0$을 다음과 같이 완화한 형태임을 보여준다. $t \rightarrow \infty$이면 slackness 조건과 동일해진다.
 
 $$
 h_i(x^{\star}(t))u^{\star}_i(t) = -\frac{1}{t}
@@ -279,4 +279,90 @@ $$
 
 ## Duality Gap
 
-Dual feasible point를 이용해 
+Barrier problem의 equality-constraints는 hard constraints라 $x^{\ast}(t)$는 반드시 해당 constraints를 0으로 만든다. 따라서 다음과 같이 전개된다.
+
+$$
+\begin{aligned}
+g(u^\star(t),v^\star(t))
+&= f(x^\star(t)) + \sum_{i=1}^{m} u_i^\star(t)\,h_i(x^\star(t))
+   + v^\star(t)^T\bigl(Ax^\star(t)-b\bigr) \\
+&= f(x^\star(t)) - \frac{m}{t}
+\end{aligned}
+$$
+
+$g(u^{\star}(t),v^{\star(t)})\le \max_{u,v}g(u(t),v(t))\le f^{\star}$이므로 다음과 같다.
+
+$$
+f(x^{\star}(t))-f^{\star}\le \frac{m}{t}
+$$
+
+$m/t$는 stopping criterion으로 쓸 수 있으며 $t\rightarrow \infty$라면 $x^{\star}(t) \rightarrow x^{\star}$임을 알 수 있다.
+
+---
+
+## Perturbed KKT Conditions
+
+이제 central path $(x^{\star}(t), u^{\star}(t), v^{\star}(t))$를 아래와 같은 perturbed KKT conditions를 만족하는 solution으로 볼 수 있다.
+
+$$
+\begin{aligned}
+&\nabla f(x)+\sum_{i=1}^{m}u_i\nabla h_i(x)+A^Tv=0 \\[6pt]
+&u_i\cdot h_i(x)=\frac{1}{t},\quad i=1,\ldots,m \qquad (\text{perturbation}) \\[6pt]
+&h_i(x)\lt 0,\quad i=1,\ldots,m,\qquad Ax=b \\[6pt]
+&u_i\ge 0,\quad i=1,\ldots,m
+\end{aligned}
+$$
+
+Actual KKT conditions와는 complementary slackness와 primal feasibility의 inequaility constraints만 다른 것을 볼 수 있다. $t\rightarrow\infty$면 actual KKT conditions와 거의 같아진다.
+
+---
+
+## Barrier Method Algorithm and Considerations
+
+Barrier method는 연속적으로 $t \gt 0$을 증가시키며 아래 문제를 $m/t\lt \epsilon$를 만족할때까지 푸는 것이다.
+
+$$
+\begin{aligned}
+&\min_x\quad \quad  \;\;\;\;tf(x)+\phi(x)\\
+&\text{subject to}\; \;\;Ax=b
+\end{aligned}
+$$
+
+먼저 $t^{(0)}\gt 0, \mu \gt 1$을 설정한다. 그리고 Newton's method로 $t=t^{(0)}$에서의 solution $x^{(0)}=x^{\star}(t)$을 찾는다.<br>
+For $k = 1,2,3,\ldots$
+
+```pseudocode
+\begin{algorithm}
+\caption{Barrier Method (with Newton Centering)}
+\begin{algorithmic}
+\PROCEDURE{BarrierMethod}{$$f,\ \phi,\ A,\ b,\ x^{(0)},\ t^{(0)},\ \mu,\ \epsilon$$}
+    \STATE $$t \leftarrow t^{(0)}$$
+    \STATE $$x \leftarrow x^{(0)}$$
+    \FOR{$$k = 0,1,2,\ldots$$}
+        \STATE $$x \leftarrow $$ \CALL{CenteringStep}{$$f,\ \phi,\ A,\ b,\ x,\ t$$}
+        \IF{$$m/t \le \epsilon$$}
+            \STATE \textbf{return} $$x$$
+        \ENDIF
+        \STATE $$t \leftarrow \mu t$$
+    \ENDFOR
+\ENDPROCEDURE
+
+\PROCEDURE{CenteringStep}{$$f,\ \phi,\ A,\ b,\ x,\ t$$}
+    \FOR{$$\ell = 0,1,2,\ldots$$}
+        \STATE $$F(x) \leftarrow t f(x) + \phi(x)$$
+        \STATE $$g \leftarrow \nabla F(x),\quad H \leftarrow \nabla^2 F(x)$$
+        \STATE Solve for $$v,w$$:
+        $$\begin{pmatrix} H & A^T \\ A & 0 \end{pmatrix}\begin{pmatrix} v \\ w \end{pmatrix}
+        = \begin{pmatrix} -g \\ 0 \end{pmatrix}$$
+        \STATE $$\lambda^2 \leftarrow g^T H^{-1} g \quad (\text{Newton decrement squared})$$
+        \IF{$$\lambda^2/2 \le \text{tol}$$}
+            \STATE \textbf{return} $$x$$
+        \ENDIF
+        \STATE Choose step size $$s \in (0,1]$$ (e.g., backtracking) such that
+        $$x + sv \in \mathrm{dom}(\phi)\ \ \text{and}\ \ F(x+sv) \le F(x) + \alpha s g^T v$$
+        \STATE $$x \leftarrow x + s v$$
+    \ENDFOR
+\ENDPROCEDURE
+\end{algorithmic}
+\end{algorithm}
+```
