@@ -359,13 +359,13 @@ $$
 더 구체적으로 살펴보면 Newton's method의 수렴 특성은 $\gamma\gt0$, $0 \lt \eta \le m^2/M$에 대해서 아래의 두 stage로 나뉜다. 이중 **damped phase**는 backtracking line search로 descent를 강제할 때 가지는 수렴 특성이며 **pure phase**는 backtracking line search에 의한 step 크기 감소가 필요없어 $t=1$인 경우를 나타낸다.
 <br>
 
-- Damped phase: $\Vert f(x^{(k)})\Vert_2 \ge \eta$인 경우이며
+- Damped phase: $\Vert \nabla f(x^{(k)})\Vert_2 \ge \eta$인 경우이며
 
 $$
 f(x^{(k+1)})-f(x^{(k)}) \le -\gamma
 $$
 
-- Pure phase: $\Vert f(x^{(k)})\Vert_2 \lt \eta$인 경우이며 backtracking line search는 $t=1$을 고르고
+- Pure phase: $\Vert \nabla f(x^{(k)})\Vert_2 \lt \eta$인 경우이며 backtracking line search는 $t=1$을 고르고
 
 $$
 \frac{M}{2m^2}\Vert f(x^{(k+1)})\Vert_2 \le \left( \frac{M}{2m^2} \Vert \nabla f(x^{(k)})\Vert_2 \right)^2
