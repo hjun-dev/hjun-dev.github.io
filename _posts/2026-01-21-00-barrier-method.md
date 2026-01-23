@@ -2,7 +2,7 @@
 layout: post
 title: "[Convex Optimization] 15. Barrier Method"
 description: "Inequality and equality constrained problem을 풀기 위한 second-order method 중 하나인 Barrier Method 정의 및 분석"
-date: 2026-01-15 11:00:00 +0900
+date: 2026-01-21 10:00:00 +0900
 tags: [math, study]
 categories: [optimization]
 related_posts: True
@@ -17,7 +17,7 @@ toc:
 <br>
 
 이 포스트에서는 Second-order method 중 하나인 **Barrier Method**를 알아볼 것이다.<br>
-가장 대표적인 두 **interior points methods**에는 **barrier method**와 **primal-dual interior poinr method**가 있으며 전자는 이번 포스트에서, 후자는 다음 포스트에서 다룬다.
+가장 대표적인 두 **interior points methods**에는 **barrier method**와 **primal-dual interior point method**가 있으며 전자는 이번 포스트에서, 후자는 다음 포스트에서 다룬다.
 
 ---
 
@@ -308,7 +308,7 @@ $m/t$는 stopping criterion으로 쓸 수 있으며 $t\rightarrow \infty$라면 
 $$
 \begin{aligned}
 &\nabla f(x)+\sum_{i=1}^{m}u_i\nabla h_i(x)+A^Tv=0 \\[6pt]
-&u_i\cdot h_i(x)=\frac{1}{t},\quad i=1,\ldots,m \qquad (\text{perturbation}) \\[6pt]
+&u_i\cdot h_i(x)=-\frac{1}{t},\quad i=1,\ldots,m \qquad (\text{perturbation}) \\[6pt]
 &h_i(x)\lt 0,\quad i=1,\ldots,m,\qquad Ax=b \\[6pt]
 &u_i\ge 0,\quad i=1,\ldots,m
 \end{aligned}
