@@ -330,22 +330,22 @@ $$
 $$
 
 먼저 $t^{(0)}\gt 0, \mu \gt 1$을 설정한다. 그리고 Newton's method로 $t=t^{(0)}$에서의 solution $x^{(0)}=x^{\star}(t)$을 찾는다.<br>
-For $k = 1,2,3,\ldots$
+For $k = 1,2,3,\ldots$에 대해 
 
 ```pseudocode
 \begin{algorithm}
-\caption{Barrier Method}
+\caption{Barrier Method (Concrete Version)}
 \begin{algorithmic}
-\PROCEDURE{BarrierMethod}{$$x^{(0)},\ t^{(0)},\ \mu,\ \epsilon$$}
-    \STATE $$t \leftarrow t^{(0)}$$
-    \STATE $$x \leftarrow x^{(0)}$$
+\PROCEDURE{BarrierMethod}{}
+    \STATE Initialize $$t^{(0)} > 0,\ \mu > 1$$
+    \STATE Solve the minimization problem to obtain $$x^{(0)}$$
     \FOR{$$k = 1,2,3,\ldots$$}
-        \STATE Solve the barrier problem at $$t$$ using Newton initialized at $$x$$
-        \STATE Set $$x \leftarrow$$ the solution obtained
-        \IF{duality gap $$\le \epsilon$$}
-            \STATE \textbf{return} $$x$$
+        \STATE $$t^{(k)} \leftarrow \mu\, t^{(k-1)}$$
+        \STATE Solve the minimization problem using Newton's method
+        \STATE Initialize Newton at $$x^{(k-1)}$$ to obtain $$x^{(k)}$$
+        \IF{$$m / t^{(k)} \le \epsilon$$}
+            \STATE \textbf{break}
         \ENDIF
-        \STATE $$t \leftarrow \mu t$$
     \ENDFOR
 \ENDPROCEDURE
 \end{algorithmic}
