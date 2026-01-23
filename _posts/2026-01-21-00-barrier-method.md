@@ -45,7 +45,7 @@ $$
 \end{aligned}
 $$
 
-$f, h_1, h_2, \dots, h_m$는 convex, twice differentiable이며 각 domain은 간단히 $\mathbb{R}^n$라 하자.<br>
+$f, h_1, h_2, \dots, h_m$는 **convex, twice differentiable**이며 각 domain은 간단히 $\mathbb{R}^n$라 하자.<br>
 
 위 문제의 Log-barrier function은 다음과 같다.
 
@@ -53,8 +53,8 @@ $$
 \phi(x) = - \sum_{i=1}^{m} \log\bigl(-h_i(x)\bigr)
 $$
 
-Log-barrier function의 domain은 strictly feasible points들의 집합이 된다. $\lbrace x: h_i(x)\lt 0 , i=1, \dots,m \rbrace$<br>
-이 집합이 nonempty라면 자동으로 strong duality도 성립하게 된다.
+Log-barrier function의 **domain**은 **strictly feasible points**들의 집합이 된다. $\lbrace x: h_i(x)\lt 0 , i=1, \dots,m \rbrace$<br>
+이 집합이 **nonempty**라면 자동으로 **strong duality**도 성립하게 된다.
 <br>
 
 이제 원 문제의 inequality constraints를 objective function에 넣어 없애면 다음과 같다.
@@ -63,7 +63,7 @@ $$
 \min_{x}\; f(x) + \sum_{i=1}^{m} I_{h_i(x)\le 0}(x)
 $$
 
-하지만 해당 문제는 여전히 $h_i$의  boundary에서 non-smooth이며 풀기 어렵다. 따라서 main idea는 이 indicator function을 log-barrier를 통해 근사해 문제를 푸는 것이다.
+하지만 해당 문제는 여전히 $h_i$의  **boundary**에서 **non-smooth**이며 풀기 어렵다. 따라서 main idea는 이 **indicator function**을 **log-barrier**를 통해 근사해 문제를 푸는 것이다.
 
 $$
 \min_{x}\; f(x) + \frac{1}{t}\,\phi(x)
@@ -91,8 +91,8 @@ $$
 
 ## Convexity of Log Barrier Function
 
-Log-barrier function이 convex function인 것을 convexity를 유지하는 composition을 통해 확인할 수 있다.<br>
-Inner function $h_i(x)$가 convex이고 outer function $-\log(-x)$가 convex & non-decreasing이므로 $-\log(-h_i(x))$는 convex function이다. 또한 convex function들의 summation 역시 convex function이므로 convexity가 입증된다.
+Log-barrier function이 **convex function**인 것을 convexity를 유지하는 변환 중 **composition rule**을 통해 확인할 수 있다.<br>
+**Inner function** $h_i(x)$가 convex이고 **outer function** $-\log(-x)$가 convex & non-decreasing이므로 $-\log(-h_i(x))$는 **convex function**이다. 또한 convex function들의 **summation** 역시 convex function이므로 convexity가 입증된다.
 
 ---
 
@@ -104,14 +104,14 @@ $$
 \phi(x) = - \sum_{i=1}^{m} \log\bigl(-h_i(x)\bigr)
 $$
 
-Gradient는
+**Gradient**는
 
 $$
 \nabla \phi(x)
 = - \sum_{i=1}^{m} \frac{1}{h_i(x)} \, \nabla h_i(x)
 $$
 
-Hessian은
+**Hessian**은
 
 $$
 \nabla^{2} \phi(x)
@@ -176,13 +176,13 @@ $$
 </div>
 <br>
 
-위 그림처럼 각 $t$에 대해 내부에서 최적점을 찾아 경계로 이동하는 central path를 보인다. 이 때문에 interior point method라고 불린다.
+위 그림처럼 각 $t$에 대해 내부에서 최적점을 찾아 경계로 이동하는 central path를 보인다. 이 때문에 **interior point method**라고 불린다.
 
 ---
 
 ## KKT Conditions and Duality
 
-Central path의 KKT conditions는 아래와 같다. (for some $w \in \mathbb{R}^m$)
+Central path의 **KKT conditions**는 아래와 같다. (for some $w \in \mathbb{R}^m$)
 
 $$
 \begin{aligned}
@@ -194,7 +194,7 @@ h_i(x^\star(t))<0,\ i=1,\ldots,m
 \end{aligned}
 $$
 
-원 문제의 KKT condition은 아래 문제와 같으며 complementary slackness의 boundary condition을 알기 매우 어렵다.
+원 문제의 **KKT condition**은 아래 문제와 같으며 **complementary slackness**의 boundary condition을 알기 매우 어렵다.
 
 $$
 \begin{aligned}
@@ -233,7 +233,7 @@ u_i(t)>0,\ i=1,\ldots,m
 \end{aligned}
 $$
 
-이는 central path가 complementary slackness 조건 $h_i(x^{\star})u_i^{\star}=0$을 다음과 같이 완화한 형태임을 보여준다. $t \rightarrow \infty$이면 slackness 조건과 동일해진다.
+이는 **central path**가 **complementary slackness** 조건 $h_i(x^{\star})u_i^{\star}=0$을 다음과 같이 완화한 형태임을 보여준다. $t \rightarrow \infty$이면 slackness 조건과 동일해진다.
 
 $$
 h_i(x^{\star}(t))u^{\star}_i(t) = -\frac{1}{t}
@@ -244,8 +244,8 @@ $$
 **Dual Feasibility 검증**
 
 위와 같이 central path의 dual 변수 $u^{\star}(t), v^{\star}(t)$를 정의하기 위해서는 이들이 원 문제의 dual feasible point임을 확인해야 한다.<br>
-Dual feasibility는 다음 두 조건으로 정의된다.<br>
-1. Inequality constraints에 대한 dual variable은 $u\ge 0$이어야 한다.
+**Dual feasibility**는 다음 두 조건으로 정의된다.<br>
+1. **Inequality constraints**에 대한 **dual variable**은 $u\ge 0$이어야 한다.
 
 2. Lagrange dual function $g(u,v)=\min_xL(x,u,v)$가 $-\infty$가 아니어야 한다.
 
@@ -255,7 +255,7 @@ $$
 u_i^{\star}(t) = - \frac{1}{t\;h_i(x^{\star}(t))} \gt 0
 $$
 
-다음으로 central path의 KKT conditions에 $u^{\star}(t),v^{\star}(t)$를 대입하면 다음과 같다.
+다음으로 central path의 **KKT conditions**에 $u^{\star}(t),v^{\star}(t)$를 대입하면 다음과 같다.
 
 $$
 \nabla f(x^\star(t))
@@ -264,8 +264,8 @@ $$
 =0
 $$
 
-이는 $x^{\star}(t)$가 Lagrangian $L(x, u^{\star}(t), v^{\star}(t))$의 stationary point임을 의미한다.<br>
-원 문제가 convex problem이었으므로 Lagrangian역시 $x$에 대해 convex function이다. 따라서 위 stationary 조건으로 $x^{\star}(t)$는 전역 최소해가 되며 결과적으로 다음과 같다.
+이는 $x^{\star}(t)$가 **Lagrangian** $L(x, u^{\star}(t), v^{\star}(t))$의 **stationary point**임을 의미한다.<br>
+원 문제가 convex problem이었으므로 Lagrangian역시 $x$에 대해 **convex function**이다. 따라서 위 stationary 조건으로 $x^{\star}(t)$는 **전역 최소해**가 되며 결과적으로 다음과 같다.
 
 $$
 g(u^\star(t),v^\star(t))
@@ -274,13 +274,13 @@ g(u^\star(t),v^\star(t))
 > -\infty
 $$
 
-결론적으로 $(u^{\star}(t), v^{\star}(t))$는 원 문제의 dual feasible point이다.
+결론적으로 $(u^{\star}(t), v^{\star}(t))$는 원 문제의 **dual feasible point**이다.
 
 ---
 
 ## Duality Gap
 
-Barrier problem의 equality-constraints는 hard constraints라 $x^{\ast}(t)$는 반드시 해당 constraints를 0으로 만든다. 따라서 다음과 같이 전개된다.
+Barrier problem의 **equality-constraints**는 **hard constraints**라 $x^{\ast}(t)$는 반드시 해당 constraints를 0으로 만든다. 따라서 다음과 같이 전개된다.
 
 $$
 \begin{aligned}
@@ -297,13 +297,13 @@ $$
 f(x^{\star}(t))-f^{\star}\le \frac{m}{t}
 $$
 
-$m/t$는 stopping criterion으로 쓸 수 있으며 $t\rightarrow \infty$라면 $x^{\star}(t) \rightarrow x^{\star}$임을 알 수 있다.
+$m/t$는 **stopping criterion**으로 쓸 수 있으며 $t\rightarrow \infty$라면 $x^{\star}(t) \rightarrow x^{\star}$임을 알 수 있다.
 
 ---
 
 ## Perturbed KKT Conditions
 
-이제 central path $(x^{\star}(t), u^{\star}(t), v^{\star}(t))$를 아래와 같은 perturbed KKT conditions를 만족하는 solution으로 볼 수 있다.
+이제 central path $(x^{\star}(t), u^{\star}(t), v^{\star}(t))$를 아래와 같은 **perturbed KKT conditions**를 만족하는 solution으로 볼 수 있다.
 
 $$
 \begin{aligned}
@@ -314,13 +314,13 @@ $$
 \end{aligned}
 $$
 
-Actual KKT conditions와는 complementary slackness와 primal feasibility의 inequaility constraints만 다른 것을 볼 수 있다. $t\rightarrow\infty$면 actual KKT conditions와 거의 같아진다.
+**Actual KKT conditions**와는 **complementary slackness**와 **primal feasibility의 inequaility constraints**만 다른 것을 볼 수 있다. $t\rightarrow\infty$면 actual KKT conditions와 거의 같아진다.
 
 ---
 
 ## Barrier Method Algorithm and Considerations
 
-Barrier method는 연속적으로 $t \gt 0$을 증가시키며 아래 문제를 $m/t\lt \epsilon$를 만족할때까지 푸는 것이다.
+**Barrier method**는 연속적으로 $t \gt 0$을 증가시키며 아래 문제를 $m/t\lt \epsilon$를 만족할때까지 푸는 것이다.
 
 $$
 \begin{aligned}
@@ -329,7 +329,7 @@ $$
 \end{aligned}
 $$
 
-Barrier method의 구체적인 알고리즘은 다음과 같다.
+**Barrier method**의 구체적인 알고리즘은 다음과 같다.
 
 1. Initialize $t^{(0)}\gt 0, \mu \gt 0$. Solve the minimization problem to get $x^{(0)}=x^{\star}(t^{(0)})$
 
@@ -339,7 +339,7 @@ Barrier method의 구체적인 알고리즘은 다음과 같다.
     $(b)$ Solve minimization problem using Newton's method initialized at $x^{(k-1)}$ to get $x^{(k)}=x^{\ast}(t^{(k)})$<br>
     $(c)$ if $m/t \le \epsilon$ break
 
-$(b)$ 단계를 centering step이라고 부른다.<br>
+$(b)$ 단계를 **centering step**이라고 부른다.<br>
 
 알고리즘을 설정할 때 $\mu$와 $t^{(0)}$를 선택할 때 아래를 고려해야 한다.
 
@@ -348,7 +348,7 @@ $(b)$ 단계를 centering step이라고 부른다.<br>
 - **Choice of $t^{(0)}$:** 만약 $t^{(0)}$가 너무 작으면 outer iteration을 많이 진행해야 하고 $t^{(0)}$가 너무 크면 처음 centering step이 너무 오래 걸릴 수 있다.
 
 
-하지만 다행히도 barrier method의 performance는 두 선택에 꽤나 robust하다고 한다.<br>
+하지만 다행히도 barrier method의 performance는 두 선택에 꽤나 **robust**하다고 한다.<br>
 
 아래 예시 그래프는 $n=50$ 차원, $m=100$ inequality constraints의 small LP를 barrier method로 푼 결과이다.
 
@@ -381,7 +381,7 @@ $$
 f(x^{(k)})-f^{\star} \le \frac{m}{\mu^k t^{(0)}}
 $$
 
-이는 우리가 $\epsilon$의 정확도를 가지고 싶다면 아래의 centering steps가 필요하다는 것과 같다. (initial centering step 비포함)
+이는 우리가 $\epsilon$의 정확도를 가지고 싶다면 아래의 **centering steps**가 필요하다는 것과 같다. (initial centering step 비포함)
 
 $$
 \frac{m}{\mu^k t^{(0)}} \le \epsilon
@@ -399,7 +399,7 @@ $$
 k \ge \frac{\log(m/(t^{(0)}\epsilon))}{\log\mu}
 $$
 
-결과를 보면 제약 조건의 개수 $m$에 대해 로그 스케일로 증가하며 $m$이 고정된 경우에는 linear convergence를 보인다.<br>
+결과를 보면 제약 조건의 개수 $m$에 대해 로그 스케일로 증가하며 $m$이 고정된 경우에는 **linear convergence**를 보인다.<br>
 아래의 LP 예제에서도 로그스케일에 대한 linear convergence임을 확인할 수 있다.
 
 <div class="row mt-3 justify-content-sm-center">
@@ -419,23 +419,23 @@ $$
 </div>
 <br>
 
-각 centering step에서 Newton iteration은 얼마나 필요할까? Self-concordant 함수의 경우 $x$의 작은 변화는 Newton method가 quadratic convergence phase로 작동하게 한다. 따라서 매 iteration마다 큰 반복을 필요로 하지 않게 되며 반복 횟수가 대략 상수 개수로 유지된다.
+각 centering step에서 **Newton iteration**은 얼마나 필요할까? Self-concordant 함수의 경우 $x$의 작은 변화는 Newton method가 **quadratic convergence phase**로 작동하게 한다. 따라서 매 iteration마다 큰 반복을 필요로 하지 않게 되며 반복 횟수가 대략 상수 개수로 유지된다.
 결과적으로 전체 반복 step의 수도 아래 식과 같이 나타난다.
 
 $$
 \mathcal{O}(\log(m/\epsilon t^{(0)}))
 $$
 
-목적함수인 $tf+\phi$는 $f, h_i$가 전부 linear or quadratic이라면 self-concordant를 만족한다. 따라서  이는 LPs, QPs, QCQPs에 해당하며 이 문제들은 barrier method로 쉽게 풀린다.
+목적함수인 $tf+\phi$는 $f, h_i$가 전부 **linear or quadratic**이라면 **self-concordant**를 만족한다. 따라서  이는 **LPs, QPs, QCQPs**에 해당하며 이 문제들은 **barrier method**로 쉽게 풀린다.
 
 ---
 
 ## Feasibility Criterion
 
 $t$를 키워가며 전 centering step의 결과로 얻은 strictly feasible point로 초기화해 다음 centering step을 진행했다.<br>
-그럼 첫 번째 centering step에서 $x^{(0)}$는 어떻게 구할까?<br>
+그럼 **첫 번째 centering step**에서 $x^{(0)}$는 어떻게 구할까?<br>
 
-다음과 같은 LP를 풀면 strictly feasible point를 구할 수 있다.
+다음과 같은 LP를 풀면 **strictly feasible point**를 구할 수 있다.
 
 $$
 \begin{aligned}
@@ -445,9 +445,9 @@ $$
 \end{aligned}
 $$
 
-위 문제의 optimal solution을 구할 필요 없이 $s\lt 0$이면 종료하고 해당 $x$를 feasible point $x^{(0)}$로 설정한다. 이러한 방법을 feasibility method라고 부른다.<br>
+위 문제의 optimal solution을 구할 필요 없이 $s\lt 0$이면 종료하고 해당 $x$를 feasible point $x^{(0)}$로 설정한다. 이러한 방법을 **feasibility method**라고 부른다.<br>
 
-하지만 위 방법만으로는 infeasible한 경우에 어떤 constraint때문에 infeasible한지 알 수 없다. 따라서 다음과 같은 LP를 풀어 각 constraints에 upper bound를 걸어 어떤 constraints가 infeasible하게 만드는지 분석할 수 있다.
+하지만 위 방법만으로는 **infeasible**한 경우에 어떤 constraint때문에 infeasible한지 알 수 없다. 따라서 다음과 같은 LP를 풀어 각 constraints에 **upper bound**를 걸어 어떤 constraints가 infeasible하게 만드는지 분석할 수 있다.
 
 $$
 \begin{aligned}
@@ -457,4 +457,4 @@ $$
 \end{aligned}
 $$
 
-모든 $s$가 0이라면 feasible point가 존재함을, $s\gt0$가 나타난다면 해당 constraint 때문에 원 문제가 infeasible함을 알 수 있다.
+모든 $s$가 0이라면 **feasible point**가 존재함을, $s\gt0$가 나타난다면 해당 constraint 때문에 원 문제가 **infeasible**함을 알 수 있다.
