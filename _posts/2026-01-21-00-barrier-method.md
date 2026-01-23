@@ -8,6 +8,7 @@ categories: [optimization]
 related_posts: True
 giscus_comments: true
 pretty_table: true
+pseudocode: true
 toc:
   sidebar: left
 ---
