@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-convex-optimization-15-barrier-method",
+        },{id: "post-convex-optimization-16-primal-dual-interior-point-methods",
+        
+          title: "[Convex Optimization] 16. Primal-dual interior-point methods",
+        
+        description: "Inequality and equality constrained problem을 풀기 위한 second-order method 중 하나인 Barrier Method 정의 및 분석",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/00-primal-dual-interior-point-method/";
+          
+        },
+      },{id: "post-convex-optimization-15-barrier-method",
         
           title: "[Convex Optimization] 15. Barrier Method",
         
