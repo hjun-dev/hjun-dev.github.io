@@ -16,7 +16,7 @@ toc:
 ## Introduction
 <br>
 
-이 포스트에서는 Second-order method의 interior point method 중 하나인 **Primal-dual interior-point method**를 알아볼 것이다. 이전에 다룬 barrier method와 비교해 더 빠르고 더 높은 정확도를 가진다.
+이 포스트에서는 Second-order method의 interior point methods 중 하나인 **Primal-dual interior-point method**를 알아볼 것이다. 이전에 다룬 barrier method와 비교해 더 빠르고 더 높은 정확도를 가진다.
 
 ---
 
@@ -34,7 +34,7 @@ $$
 \end{aligned}
 $$
 
-여기서 $f, h_1, h_2, \dots, h_m$는 **convex, twice differentiable**이며 **strong duality**가 성립한다.<br>
+여기서 $f, h_1, h_2, \dots, h_m$는 **convex, twice differentiable**이며 Slater condition을 만족한다고 가정한다. (**strong duality** 성립)<br>
 
 해당 문제에 대한 log barrier problem은 아래와 같다.
 
@@ -64,7 +64,7 @@ Barrier method는 Barrier problem에 대해 $t\gt 0$을 증가시켜가며 $m/t 
 
 **Barrier method**의 구체적인 알고리즘은 다음과 같다.
 
-1. Initialize $t^{(0)}\gt 0, \mu \gt 0$. Solve the minimization problem to get $x^{(0)}=x^{\star}(t^{(0)})$
+1. Initialize $t^{(0)}\gt 0, \mu \gt 1$. Solve the minimization problem to get $x^{(0)}=x^{\star}(t^{(0)})$
 
 2. For $k=1,2,3,\ldots$ <br>
     
@@ -83,7 +83,7 @@ Barrier method는 Barrier problem에 대해 $t\gt 0$을 증가시켜가며 $m/t 
 
 - 둘 모두 perturbed KKT conditions에서 나왔다.
 
-- Primal-dual interior-poin methods는 매 iteration마다 한 Newton step을 사용하며 inner & outer loop로 나뉘지 않는다.
+- Primal-dual interior-point methods는 매 iteration마다 한 Newton step을 사용하며 inner & outer loop로 나뉘지 않는다.
 
 - Primal-dual interior-point iterates는 feasible하지 않을 수 있다.
 
@@ -107,7 +107,8 @@ $$
 \begin{aligned}
 &\nabla f(x)+\sum_{i=1}^m u_i\nabla h_i(x)+A^T v=0\\
 &u_i h_i(x)=-\frac{1}{t},\quad i=1,\ldots,m\\
-&h_i(x)\lt 0,\quad i=1,\ldots,m,\quad Ax=b\\
+&Ax=b,\\
+&h_i(x)\lt 0,\quad i=1,\ldots,m,\\
 &u_i\gt 0,\quad i=1,\ldots,m
 \end{aligned}
 $$
@@ -160,7 +161,7 @@ $$
 
 ### Newton on perturbed KKT, v1
 
-먼저 barrier method에서 등장한 perturbed KKT conditions을 떠올려보자. 여기서 $u_i$는 원 문제의 KKT conditions와의 대응을 위해 도입된 기호지만 barrier problem 자체에는 inequality constraint에 대한 dual bariable이 본질적으로 필요하지 않다.<br>
+먼저 barrier method에서 등장한 perturbed KKT conditions을 떠올려보자. 여기서 $u_i$는 원 문제의 KKT conditions와의 대응을 위해 도입된 기호지만 barrier method 자체에는 inequality constraint에 대한 명시적인 dual variable이 필요하지 않으며 $u_i$는 자연스럽게 정의되는 quantity이다.<br>
 Perturbed complementary slackness 조건에 따라
 
 $$
@@ -258,7 +259,7 @@ $$
 
 - v2는 primal-dual interior-point method라는 새로운 방법을 정의하며 이후에 더 자세히 볼 것이다.
 
-- 한 가지 중요한 점은 v2에서의 dual iterates가 origianl dual problem에 대해 반드시 dual feasible하지 않는다는 것이다.<br>(v1에서는 outer iteration마다 거의 central path에 있어 dual feasibility가 만족된다.)
+- 한 가지 중요한 점은 v2에서의 dual iterates가 original dual problem에 대해 반드시 dual feasible하지 않는다는 것이다.<br>(v1에서는 inner iteration을 충분히 진행하면 outer iteration마다  central path에 근처에 있어 dual feasibility가 거의 만족된다.)
 
 ---
 
@@ -283,7 +284,7 @@ $$
 
 기존 barrier method에서는 $t^{(0)}$를 정한 뒤 $\mu$를 곱해가며 outer loop를 진행한다. 반면에 primal-dual interior-point method에서는 outer loop 없이 매 step마다 $(x,u,v)$를 동시에 업데이트하므로 $t$를 외부에서 매번 증가시키는 방식은 오히려 수렴을 방해할 수 있다. 대신 현재 state에서 계산된 $\eta$를 통해 암묵적으로 대응되는 $t \approx m/\eta$의 scale을 추적함으로써 centrality 수준을 상태에 맞게 adaptive하게 조절한다.<br>
 
-또한 $\eta$는 현재 iterate가 최적점으로부터 얼마나 떨어져 있는지를 나타내는 수렴 지표로도 사용된다. 해가 수렴하여 complementary slackness에 가까워질수록 $\eta \rightarrow 0$이며 이에 따라 대응되는 $t$는 자동으로 매우 큰 값이 된다.
+또한 $\eta$는 현재 iterate에서의 complementarity(dual gap 규모)를 나타내는 수렴 지표로도 사용된다. 해가 수렴하여 complementary slackness에 가까워질수록 $\eta \rightarrow 0$이며 이에 따라 대응되는 $t$는 자동으로 매우 큰 값이 된다.
 
 ---
 
@@ -372,3 +373,148 @@ $$
 
 ## Highlight: standard LP
 
+**Standard form LP:** ($c\in \mathbb{R}^n$, $A\in \mathbb{R}^{m \times n}$, $b\in \mathbb{R}^m$)
+
+$$
+\begin{aligned}
+&\min_x\qquad \quad  \; c^T x\\
+&\text{subject to}\quad Ax=b\\
+&\qquad\qquad\;\; \; \ \ x\ge 0
+\end{aligned}
+$$
+
+**Dual problem:**
+
+$$
+\begin{aligned}
+&\max_{u,v}\qquad \quad  \; b^T v\\
+&\text{subject to}\quad A^T v + u = c\\
+&\qquad\qquad\;\; \; \ \ u \ge 0
+\end{aligned}
+$$
+
+### KKT conditions
+
+$x^{\star}, (u^{\star}, v^{\star})$는 아래의 KKT conditions를 만족하면 primal and dual optimal solutions이 된다.
+
+$$
+\begin{aligned}
+& A^T v + u = c \\
+& x_i u_i = 0,\quad i=1,\ldots,n \\
+& Ax = b \\
+& x \ge 0,\quad u \ge 0
+\end{aligned}
+$$
+
+Simplex method는 위 KKT의 1~3의 세 condition을 유지하고 네 번째 condition이 성립하는데 초점을 둔다. <br>
+반면 interior-point methods는 1,3,4 condition을 유지하고 두 번째 condition을 성립하는데 초점을 둔다.<br>
+Standard form LP의 perturbed KKT conditions는 아래와 같다.
+
+$$
+\begin{aligned}
+& A^T v + u = c \\
+& x_i u_i = 1/t,\quad i=1,\ldots,n \\
+& Ax = b \\
+& x \gt 0,\quad u \gt 0
+\end{aligned}
+$$
+
+이 perturbed KKT conditions를 만족하기 위해 barrier method와 primal-dual method는 각각 어떻게 작용하는지 알아보자.
+<br>
+
+**Barrier method**<br>
+(after eliminating $u$)
+
+$$
+\begin{aligned}
+0 &= r_\mathrm{br}(x,v) \\
+  &= 
+\begin{bmatrix}
+A^T v + \operatorname{diag}(x)^{-1}(1/t)\mathbf{1} - c \\
+Ax - b
+\end{bmatrix}
+\end{aligned}
+$$
+
+$0 = r_\mathrm{br}(y+\Delta y) \approx r_\mathrm{br}(y) + D r_\mathrm{br}(y) \Delta y$를 만족하는 Newton step은 아래 system의 해가 된다.
+
+$$
+\begin{aligned}
+\begin{bmatrix}
+-\operatorname{diag}(x)^{-2}/t & A^T \\
+A & 0
+\end{bmatrix}
+\begin{bmatrix}
+\Delta x \\
+\Delta v
+\end{bmatrix}
+&= -r_\mathrm{br}(x,v)
+\end{aligned}
+$$
+
+$y^+ = y+ s \Delta y$를 backtracking line search로 적절한 $s\gt 0$를 찾아 이동한다. 이 과정을 수렴할 때까지 반복하고 $t=\mu t$로 업데이트한다.<br>
+Backtracking line search 과정에서는 $u$가 $x$에 대한 함수이므로 $x\gt 0$, $\Vert r(x^+, v^+)\Vert_2 \le (1-\alpha s) \Vert r(x,v)\Vert_2$를 만족하도록 유도한다.<br>
+
+**Primal-dual method**<br>
+
+$$
+\begin{aligned}
+0 &= r_\mathrm{pd}(x,u,v) \\
+  &= 
+\begin{pmatrix}
+A^T v + u - c \\
+\operatorname{diag}(x)u - (1/t)\mathbf{1} \\
+Ax - b
+\end{pmatrix}
+\end{aligned}
+$$
+
+$0 = r_\mathrm{pd}(y+\Delta y) \approx r_\mathrm{pd}(y) + D r_\mathrm{pd}(y) \Delta y$를 만족하는 Newton step은 아래 system의 해가 된다.
+
+$$
+\begin{aligned}
+\begin{bmatrix}
+0 & I & A^T \\
+\operatorname{diag}(u) & \operatorname{diag}(x) & 0 \\
+A & 0 & 0
+\end{bmatrix}
+\begin{pmatrix}
+\Delta x \\
+\Delta u \\
+\Delta v
+\end{pmatrix}
+= -\,r_\mathrm{pd}(x,u,v)
+\end{aligned}
+$$
+
+Backtracking line search로 step size를 정해 $y^+ = y + s \Delta y$를 진행한다. 하지만 한 스텝만 진행한 후 $t=\mu m/\eta$로 업데이트한다.
+
+---
+
+### The Power of Full Newton
+
+Backtracking line search가 $s=1$로 one full Newton step을 허용하면 primal-dual method의 iterates는 그 뒤로 모두 primal & dual feasible하게 된다.<br>
+
+**Proof**<br>
+
+$s=1$이니 $\Delta x, \Delta u, \Delta v$에 대해 다음 식이 만족한다.
+
+$$
+\begin{aligned}
+A^T\Delta v + \Delta u &= -r_{\mathrm{dual}}
+= -\bigl(A^T v + u - c\bigr)\\
+A\Delta x &= -r_{\mathrm{prim}}
+= -\bigl(Ax - b\bigr)
+\end{aligned}
+$$
+
+따라서 one full Newton step 이동한 뒤의 $x^+ = x+ \Delta x$, $u^+ = u+ \Delta u$, $v^+ = v+ \Delta v$에 대해
+
+$$
+\begin{aligned}
+r_{\mathrm{dual}}^{+} &= A^{T}v^{+} + u^{+} - c = 0,\\
+r_{\mathrm{prim}}^{+} &= Ax^{+} - b = 0.
+\end{aligned}
+$$
+
+결론적으로 한 번 $s=1$ full step으로 $r_\mathrm{prim}=r_\mathrm{dual}=0$에 도달하면 LP의 선형성 때문에 이후 Newton direction은 자동으로 $A \Delta x=0, A^{T} \Delta v + \Delta u = 0$을 만족하여 primal & dual feasibility가 유지된다. ($s\lt 1$일 수 있지만 feasibility residual은 0 유지)
