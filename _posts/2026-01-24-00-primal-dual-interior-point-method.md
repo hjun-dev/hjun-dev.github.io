@@ -22,9 +22,9 @@ toc:
 
 ## Last time: barrier method
 
-Primal-dual interior-point method를 보기 전에 이전 포스트에서 다룬 barrier method를 다시 보고 넘어가자.<br>
+Primal-dual interior-point method를 보기 전에 이전 포스트에서 다룬 **barrier method**를 다시 보고 넘어가자.<br>
 
-다음과 같은 일반적인 convex optimization 문제를 보자.
+다음과 같은 일반적인 **convex optimization** 문제를 보자.
 
 $$
 \begin{aligned}
@@ -36,7 +36,7 @@ $$
 
 여기서 $f, h_1, h_2, \dots, h_m$는 **convex, twice differentiable**이며 Slater condition을 만족한다고 가정한다. (**strong duality** 성립)<br>
 
-해당 문제에 대한 log barrier problem은 아래와 같다.
+해당 문제에 대한 **log barrier problem**은 아래와 같다.
 
 $$
 \begin{aligned}
@@ -57,9 +57,9 @@ $$
 f(x^{\star}(t))-f^{\star} \le m/t
 $$
 
-또한 duality gap은 $m/t$임을 보일 수 있다.<br>
+또한 **duality gap**은 $m/t$임을 보일 수 있다.<br>
 
-Barrier method는 Barrier problem에 대해 $t\gt 0$을 증가시켜가며 $m/t \le \epsilon$을 만족할 때까지 푸는 알고리즘이다.
+**Barrier method**는 Barrier problem에 대해 $t\gt 0$을 증가시켜가며 $m/t \le \epsilon$을 만족할 때까지 푸는 알고리즘이다.
 <br>
 
 **Barrier method**의 구체적인 알고리즘은 다음과 같다.
@@ -76,32 +76,32 @@ Barrier method는 Barrier problem에 대해 $t\gt 0$을 증가시켜가며 $m/t 
 
 ## Barrier versus primal-dual method
 
-오늘 다룰 primal-dual interior-point method는 본질적으로 barrier method와 동일한 문제를 푼다. 그럼 뭐가 다른걸까?
+오늘 다룰 **primal-dual interior-point method**는 본질적으로 barrier method와 동일한 문제를 푼다. 그럼 뭐가 다른걸까?
 <br>
 
 **Overview:**
 
-- 둘 모두 perturbed KKT conditions에서 나왔다.
+- 둘 모두 **perturbed KKT conditions**에서 나왔다.
 
-- Primal-dual interior-point methods는 매 iteration마다 한 Newton step을 사용하며 inner & outer loop로 나뉘지 않는다.
+- **Primal-dual interior-point methods**는 매 iteration마다 **one Newton step**을 사용하며 inner & outer loop로 나뉘지 않는다.
 
-- Primal-dual interior-point iterates는 feasible하지 않을 수 있다.
+- Primal-dual interior-point iterates는 **non-feasible**할 수 있다.
 
-- Primal-dual interior-point methods는 자주 더 효율적이며 linear convergence보다 더 좋은 수렴 속도를 가질 수 있다.
+- Primal-dual interior-point methods는 자주 더 효율적이며 **linear convergence보다 더 좋은 수렴 속도**를 가질 수 있다.
 
-- Primal-dual interior-point methods는 대신 덜 직관적이다.
+- Primal-dual interior-point methods는 대신 **덜 직관적**이다.
 
 ---
 
 ## Perturbed KKT conditions
 
-Barrier method와 primal-dual interior-point method는 모두 perturbed KKT conditions로부터 나온다. 이를 자세히 살펴보자.
+Barrier method와 primal-dual interior-point method는 모두 **perturbed KKT conditions**로부터 나온다. 이를 자세히 살펴보자.
 
 ---
 
 ### Perturbed KKT conditions
 
-Barrier method에서 central path의 $(x^{\star}(t), u^{\star}(t),v^{\star}(t))$는 아래의 perturbed KKT conditions를 만족한다.
+Barrier method에서 **central path**의 $(x^{\star}(t), u^{\star}(t),v^{\star}(t))$는 아래의 **perturbed KKT conditions**를 만족한다.
 
 $$
 \begin{aligned}
@@ -113,13 +113,13 @@ $$
 \end{aligned}
 $$
 
-원 문제의 KKT conditions와 가장 다른 점은 두 번째 줄이다. 원 문제의 경우 $u_i h_i(x) = 0$의 complementary slackness가 성립한다.
+원 문제의 KKT conditions와 가장 다른 점은 **두 번째 줄**이다. 원 문제의 경우 $u_i h_i(x) = 0$의 **complementary slackness**가 성립한다.
 
 ---
 
 ### Perturbed KKT as nonlinear system
 
-Perturbed KKT를 다음과 같은 nonlinear system으로 볼 수 있다.
+Perturbed KKT를 다음과 같은 **nonlinear system**으로 볼 수 있다.
 
 $$
 r(x,u,v)=
@@ -149,7 +149,7 @@ Dh(x)=
 \end{pmatrix}
 $$
 
-Newton's method를 이용해 non-linear system $F(y)=0$에 대해 root-finding을 진행한다. $F(y+\Delta y ) \simeq F(y) + DF(y) \Delta y$로 근사하며
+**Newton's method**를 이용해 non-linear system $F(y)=0$에 대해 **root-finding**을 진행한다. $F(y+\Delta y ) \simeq F(y) + DF(y) \Delta y$로 근사하며
 
 $$
 \Delta y = -(DF(y))^{-1}F(y)
@@ -161,15 +161,15 @@ $$
 
 ### Newton on perturbed KKT, v1
 
-먼저 barrier method에서 등장한 perturbed KKT conditions을 떠올려보자. 여기서 $u_i$는 원 문제의 KKT conditions와의 대응을 위해 도입된 기호지만 barrier method 자체에는 inequality constraint에 대한 명시적인 dual variable이 필요하지 않으며 $u_i$는 자연스럽게 정의되는 quantity이다.<br>
-Perturbed complementary slackness 조건에 따라
+먼저 **barrier method**에서 등장한 **perturbed KKT conditions**을 떠올려보자. 여기서 $u_i$는 원 문제의 KKT conditions와의 대응을 위해 도입된 기호지만 barrier method 자체에는 **inequality constraint**에 대한 명시적인 **dual variable**이 필요하지 않으며 $u_i$는 자연스럽게 정의되는 quantity이다.<br>
+**Perturbed complementary slackness** 조건에 따라
 
 $$
 u_i = -\frac{1}{t h_i(x)}
 $$
 
-가 유도된다. 따라서 barrier method (v1)에서는 $u_i$를 독립적인 변수로 두지 않고 $x$에 대한 함수로 제거하여 다룬다.<br>
-이와 같이 $u_i$를 제거하면 perturbed KKT conditions는 다음과 같은 $(x,v)$에 대한 non-linear system으로 나타난다.
+가 유도된다. 따라서 **barrier method (v1)**에서는 $u_i$를 독립적인 변수로 두지 않고 $x$에 대한 함수로 제거하여 다룬다.<br>
+이와 같이 $u_i$를 제거하면 perturbed KKT conditions는 다음과 같은 $(x,v)$에 대한 **non-linear system**으로 나타난다.
 
 
 $$
@@ -183,7 +183,7 @@ Ax-b
 =0
 $$
 
-이에 대한 Newton root-finding update $(\Delta x, \Delta v)$는 다음의 solution으로 결정된다.
+이에 대한 **Newton root-finding update** $(\Delta x, \Delta v)$는 다음의 solution으로 결정된다.
 
 $$
 \begin{pmatrix}
@@ -200,20 +200,20 @@ $$
 
 여기서 $H_{\mathrm{bar}}(x)=\nabla^2 f(x) + \sum^m_{i=1} \frac{1}{th_i(x)^2}\nabla h_i(x) \nabla h_i(x)^{T} + \sum^m_{i=1}(-\frac{1}{th_i(x)})\nabla^2 h_i(x)$
 
-이 과정은 barrier method에서 고정된 $t$에 대한 다음의 barrier subproblem을 푸는 과정에서 사용되는 centering step의 Newton iteration과 정확히 같다.
+이 과정은 barrier method에서 고정된 $t$에 대한 다음의 **barrier subproblem**을 푸는 과정에서 사용되는 **centering step**의 **Newton iteration**과 정확히 같다.
 
 $$
 \min_{x}\; t f(x)+\phi(x)\quad \text{s.t.}\; Ax=b
 $$
 
-따라서 $r(x,v)=0$을 만족하는 해 $(x^{\star}(t), v^{\star}(t))$는 해당 $t$에 대한 barrier problem의 해이며 $x^{\star}(t)$는 $t$에 따라 central path를 이룬다.
+따라서 $r(x,v)=0$을 만족하는 해 $(x^{\star}(t), v^{\star}(t))$는 해당 $t$에 대한 barrier problem의 해이며 $x^{\star}(t)$는 $t$에 따라 **central path**를 이룬다.
 
 ---
 
 ### Newton on perturbed KKT, v2
 
 v1과 달리 이번엔 $u$를 제거하지 말고 새로운 변수로 보자.<br>
-다음의 세 residual은 각각 $y=(x,u,v)$에서의 dual, central, and primal residual이라 부를 것이다.
+다음의 세 residual은 각각 $y=(x,u,v)$에서의 **dual, central, and primal residual**이라 부를 것이다.
 
 $$
 \begin{aligned}
@@ -251,38 +251,38 @@ $$
 
 정리하자면 
 
-- v2에서는 primal variable과 dual variable의 update direction이 하나의 KKT system을 통해 동시에 결정된다.
+- v2에서는 primal variable과 dual variable의 **update direction**이 하나의 KKT system을 통해 동시에 결정된다.
 
 - v1과 v2는 서로 다른 업데이트를 유도한다.
 
-- v1의 한 번의 iteration은 barrier method의 centering step에서 수행되는 inner iteration과 같다.
+- v1의 한 번의 iteration은 barrier method의 centering step에서 수행되는 **inner iteration**과 같다.
 
-- v2는 primal-dual interior-point method라는 새로운 방법을 정의하며 이후에 더 자세히 볼 것이다.
+- v2는 **primal-dual interior-point method**라는 새로운 방법을 정의하며 이후에 더 자세히 볼 것이다.
 
-- 한 가지 중요한 점은 v2에서의 dual iterates가 original dual problem에 대해 반드시 dual feasible하지 않는다는 것이다.<br>(v1에서는 inner iteration을 충분히 진행하면 outer iteration마다  central path에 근처에 있어 dual feasibility가 거의 만족된다.)
+- 한 가지 중요한 점은 v2에서의 dual iterates가 original dual problem에 대해 반드시 **dual feasible**하지 않는다는 것이다.<br>(v1에서는 inner iteration을 **충분히** 진행하면 outer iteration마다  central path에 근처에 있어 dual feasibility가 거의 만족된다.)
 
 ---
 
 ## Surrogate duality gap
 
-Barrier method에서 duality gap은 $m/t$로 주어지며 central path 위에서는 $u_i$가 원 문제에 대해 dual feasible이다.<br>
+Barrier method에서 **duality gap**은 $m/t$로 주어지며 central path 위에서는 $u_i$가 원 문제에 대해 **dual feasible**이다.<br>
 
-Primal-dual interior-point method에서는 중간 iterate가 반드시 primal 또는 dual feasible하지 않으므로 진짜 duality gap 대신 다음과 같은 surrogate duality gap을 정의한다.
+Primal-dual interior-point method에서는 중간 iterate가 반드시 primal 또는 dual feasible하지 않으므로 진짜 duality gap 대신 다음과 같은 **surrogate duality** gap을 정의한다.
 
 $$
 \eta = -h(x)^{T}u
 = -\sum_{i=1}^{m} u_i h_i(x)
 $$
 
-$r_\mathrm{prim}=0$, $r_\mathrm{dual}=0$이 보장되지 않으면 이 값은 원 문제의 실제 duality gap과 일치하지 않는다. 하지만 perturbed KKT conditions를 정확히 만족하는 경우에는 다음 식이 성립한다.
+$r_\mathrm{prim}=0$, $r_\mathrm{dual}=0$이 보장되지 않으면 이 값은 원 문제의 실제 duality gap과 일치하지 않는다. 하지만 **perturbed KKT conditions**를 정확히 만족하는 경우에는 다음 식이 성립한다.
 
 $$
 u_i h_i (x) = -\frac{1}{t} \quad \Rightarrow \quad \eta=\frac{m}{t}
 $$
 
-따라서 $\eta$는 현재 iterate가 central path에서 어떤 barrier parameter $t$에 대응되는 지를 나타내는 척도로 해석할 수 있다.<br>
+따라서 $\eta$는 현재 iterate가 central path에서 어떤 **barrier parameter** $t$에 대응되는 지를 나타내는 **척도**로 해석할 수 있다.<br>
 
-기존 barrier method에서는 $t^{(0)}$를 정한 뒤 $\mu$를 곱해가며 outer loop를 진행한다. 반면에 primal-dual interior-point method에서는 outer loop 없이 매 step마다 $(x,u,v)$를 동시에 업데이트하므로 $t$를 외부에서 매번 증가시키는 방식은 오히려 수렴을 방해할 수 있다. 대신 현재 state에서 계산된 $\eta$를 통해 암묵적으로 대응되는 $t \approx m/\eta$의 scale을 추적함으로써 centrality 수준을 상태에 맞게 adaptive하게 조절한다.<br>
+기존 barrier method에서는 $t^{(0)}$를 정한 뒤 $\mu$를 곱해가며 **outer loop**를 진행한다. 반면에 primal-dual interior-point method에서는 outer loop 없이 **매 step**마다 $(x,u,v)$를 동시에 업데이트하므로 $t$를 외부에서 매번 증가시키는 방식은 오히려 수렴을 **방해**할 수 있다. 대신 현재 state에서 계산된 $\eta$를 통해 암묵적으로 대응되는 $t \approx m/\eta$의 scale을 추적함으로써 **centrality** 수준을 상태에 맞게 adaptive하게 조절한다.<br>
 
 또한 $\eta$는 현재 iterate에서의 complementarity(dual gap 규모)를 나타내는 수렴 지표로도 사용된다. 해가 수렴하여 complementary slackness에 가까워질수록 $\eta \rightarrow 0$이며 이에 따라 대응되는 $t$는 자동으로 매우 큰 값이 된다.
 
@@ -290,7 +290,7 @@ $$
 
 ## Primal-dual interior-point method
 
-구체적인 primal-dual interior-point method에 대해 알아보자.<br>
+구체적인 **primal-dual interior-point method**에 대해 알아보자.<br>
 $h_i(x^{(0)})\lt 0,i=1,\ldots,m$을 만족하는 $x^{(0)}$와 $u^{(0)}\gt 0$, $v^{(0)}$에서 시작한다. (이는 primal & dual feasible point가 된다.) $\eta^{(0)}=-h(x^{(0)})^{T}u^{(0)}$로, $\mu \gt 1$는 특정 값으로 설정한다.<br>
 아래를 $k=1,2,3,\ldots$에 대해 반복한다.
 
@@ -321,7 +321,7 @@ v^{+}=v+s\Delta v
 $$
 
 는 $h_i(x) \lt 0, u_i \gt 0, i=1,\ldots,m$를 유지해야 한다. <br>
-이러한 inequality constraints는 Newton step이 직접적으로 처리할 수 있는 equality constraints가 아니다. 따라서 본 알고리즘에서는 equality constraints에 대해 계산된 Newton direction을 따라가되 backtracking line search를 통해 step size $s$를 조절함으로써 iterates가 항상 feasible set의 내부에 머물도록 한다.<br>
+이러한 **inequality constraints**는 Newton step이 직접적으로 처리할 수 있는 **equality constraints**가 아니다. 따라서 본 알고리즘에서는 equality constraints에 대해 계산된 **Newton direction**을 따라가되 backtracking line search를 통해 **step size** $s$를 조절함으로써 iterates가 항상 **feasible set**의 내부에 머물도록 한다.<br>
 
 **Multi-stage backtracking line search** 과정은 다음과 같다:<br>
 
@@ -345,7 +345,7 @@ $$
 \Delta y = -r^\prime(y)^{-1}r(y) \quad \Leftrightarrow\quad r(y) = -r^\prime(y)\Delta y
 $$
 
-Newton step은 선형화의 결과이므로 Armijo 조건을 위해 Taylor 1차 근사식을 살펴보면
+Newton step은 선형화의 결과이므로 Armijo 조건을 위해 **Taylor 1차 근사식**을 살펴보면
 
 $$
 r(y+s\Delta y) \approx r(y) + r^\prime (y)(s\Delta y) = (1-s)r(y)
@@ -406,9 +406,9 @@ $$
 \end{aligned}
 $$
 
-Simplex method는 위 KKT의 1~3의 세 condition을 유지하고 네 번째 condition이 성립하는데 초점을 둔다. <br>
-반면 interior-point methods는 1,3,4 condition을 유지하고 두 번째 condition을 성립하는데 초점을 둔다.<br>
-Standard form LP의 perturbed KKT conditions는 아래와 같다.
+**Simplex method**는 위 KKT의 1~3의 세 condition을 유지하고 네 번째 condition이 성립하는데 초점을 둔다. <br>
+반면 **interior-point methods**는 1,3,4 condition을 유지하고 두 번째 condition을 성립하는데 초점을 둔다.<br>
+**Standard form LP**의 perturbed KKT conditions는 아래와 같다.
 
 $$
 \begin{aligned}
@@ -419,7 +419,7 @@ $$
 \end{aligned}
 $$
 
-이 perturbed KKT conditions를 만족하기 위해 barrier method와 primal-dual method는 각각 어떻게 작용하는지 알아보자.
+이 perturbed KKT conditions를 만족하기 위해 **barrier method**와 **primal-dual method**는 각각 어떻게 작용하는지 알아보자.
 <br>
 
 **Barrier method**<br>
@@ -493,7 +493,7 @@ Backtracking line search로 step size를 정해 $y^+ = y + s \Delta y$를 진행
 
 ### The Power of Full Newton
 
-Backtracking line search가 $s=1$로 one full Newton step을 허용하면 primal-dual method의 iterates는 그 뒤로 모두 primal & dual feasible하게 된다.<br>
+Backtracking line search가 $s=1$로 one full Newton step을 허용하면 primal-dual method의 iterates는 그 뒤로 모두 **primal & dual feasible**하게 된다.<br>
 
 **Proof**<br>
 
@@ -517,4 +517,4 @@ r_{\mathrm{prim}}^{+} &= Ax^{+} - b = 0.
 \end{aligned}
 $$
 
-결론적으로 한 번 $s=1$ full step으로 $r_\mathrm{prim}=r_\mathrm{dual}=0$에 도달하면 LP의 선형성 때문에 이후 Newton direction은 자동으로 $A \Delta x=0, A^{T} \Delta v + \Delta u = 0$을 만족하여 primal & dual feasibility가 유지된다. ($s\lt 1$일 수 있지만 feasibility residual은 0 유지)
+결론적으로 한 번 $s=1$ full step으로 $r_\mathrm{prim}=r_\mathrm{dual}=0$에 도달하면 LP의 선형성 때문에 이후 **Newton direction**은 자동으로 $A \Delta x=0, A^{T} \Delta v + \Delta u = 0$을 만족하여 **primal & dual feasibility**가 유지된다. ($s\lt 1$일 수 있지만 feasibility residual은 0 유지)
