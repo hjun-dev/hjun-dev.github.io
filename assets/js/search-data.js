@@ -41,7 +41,7 @@ ninja.data = [{
         
           title: "[Convex Optimization] 16. Primal-dual interior-point methods",
         
-        description: "Inequality and equality constrained problem을 풀기 위한 second-order method 중 하나인 Barrier Method 정의 및 분석",
+        description: "Inequality and equality constrained problem을 효율적으로 풀기 위한 핵심 2nd order method인 Primal-dual interior-point method의 정의 및 분석",
         section: "Posts",
         handler: () => {
           
