@@ -222,3 +222,153 @@ r_{\text{prim}} &= Ax-b
 \end{aligned}
 $$
 
+Root-finding update $\Delta y = (\Delta x, \Delta u, \Delta v)$는 다음과 같다.
+
+$$
+\begin{aligned}
+\begin{bmatrix}
+H_{\mathrm{pd}}(x) & Dh(x)^{T} & A^{T} \\
+-\operatorname{diag}(u)\,Dh(x) & -\operatorname{diag}(h(x)) & 0 \\
+A & 0 & 0
+\end{bmatrix}
+\begin{bmatrix}
+\Delta x \\
+\Delta u \\
+\Delta v
+\end{bmatrix}
+=
+-
+\begin{bmatrix}
+r_{\mathrm{dual}} \\
+r_{\mathrm{cent}} \\
+r_{\mathrm{prim}}
+\end{bmatrix}
+\end{aligned}
+$$
+
+여기서 $H_\mathrm{pd}(x) = \nabla^2 f(x) + \sum^m_{i=1}u_i\nabla^2 h_i(x)$이다.
+
+정리하자면 
+
+- v2에서는 primal variable과 dual variable의 update direction이 하나의 KKT system을 통해 동시에 결정된다.
+
+- v1과 v2는 서로 다른 업데이트를 유도한다.
+
+- v1의 한 번의 iteration은 barrier method의 centering step에서 수행되는 inner iteration과 같다.
+
+- v2는 primal-dual interior-point method라는 새로운 방법을 정의하며 이후에 더 자세히 볼 것이다.
+
+- 한 가지 중요한 점은 v2에서의 dual iterates가 origianl dual problem에 대해 반드시 dual feasible하지 않는다는 것이다.<br>(v1에서는 outer iteration마다 거의 central path에 있어 dual feasibility가 만족된다.)
+
+---
+
+## Surrogate duality gap
+
+Barrier method에서 duality gap은 $m/t$로 주어지며 central path 위에서는 $u_i$가 원 문제에 대해 dual feasible이다.<br>
+
+Primal-dual interior-point method에서는 중간 iterate가 반드시 primal 또는 dual feasible하지 않으므로 진짜 duality gap 대신 다음과 같은 surrogate duality gap을 정의한다.
+
+$$
+\eta = -h(x)^{T}u
+= -\sum_{i=1}^{m} u_i h_i(x)
+$$
+
+$r_\mathrm{prim}=0$, $r_\mathrm{dual}=0$이 보장되지 않으면 이 값은 원 문제의 실제 duality gap과 일치하지 않는다. 하지만 perturbed KKT conditions를 정확히 만족하는 경우에는 다음 식이 성립한다.
+
+$$
+u_i h_i (x) = -\frac{1}{t} \quad \Rightarrow \quad \eta=\frac{m}{t}
+$$
+
+따라서 $\eta$는 현재 iterate가 central path에서 어떤 barrier parameter $t$에 대응되는 지를 나타내는 척도로 해석할 수 있다.<br>
+
+기존 barrier method에서는 $t^{(0)}$를 정한 뒤 $\mu$를 곱해가며 outer loop를 진행한다. 반면에 primal-dual interior-point method에서는 outer loop 없이 매 step마다 $(x,u,v)$를 동시에 업데이트하므로 $t$를 외부에서 매번 증가시키는 방식은 오히려 수렴을 방해할 수 있다. 대신 현재 state에서 계산된 $\eta$를 통해 암묵적으로 대응되는 $t \approx m/\eta$의 scale을 추적함으로써 centrality 수준을 상태에 맞게 adaptive하게 조절한다.<br>
+
+또한 $\eta$는 현재 iterate가 최적점으로부터 얼마나 떨어져 있는지를 나타내는 수렴 지표로도 사용된다. 해가 수렴하여 complementary slackness에 가까워질수록 $\eta \rightarrow 0$이며 이에 따라 대응되는 $t$는 자동으로 매우 큰 값이 된다.
+
+---
+
+## Primal-dual interior-point method
+
+구체적인 primal-dual interior-point method에 대해 알아보자.<br>
+$h_i(x^{(0)})\lt 0,i=1,\ldots,m$을 만족하는 $x^{(0)}$와 $u^{(0)}\gt 0$, $v^{(0)}$에서 시작한다. (이는 primal & dual feasible point가 된다.) $\eta^{(0)}=-h(x^{(0)})^{T}u^{(0)}$로, $\mu \gt 1$는 특정 값으로 설정한다.<br>
+아래를 $k=1,2,3,\ldots$에 대해 반복한다.
+
+- Define $t=\mu m / \eta^{(k-1)}$
+
+- Compute primal-dual update direction $\Delta y$
+
+- Use backtracking to determine step size $s$
+
+- Update $y^{(k)}=y^{(k-1)}+s\cdot \Delta y$
+
+- Compute $\eta^{(k)} = -h(x^{(k)})^{T}u^{(k)}$
+
+- Stop if $\eta^{(k)}\le \epsilon$ and $(\Vert r_\mathrm{prim}\Vert^2_2 + \Vert r_\mathrm{dual} \Vert^2_2)^{1/2} \le \epsilon$
+
+Backtracking line search 과정에서 $h_i(x) \lt 0, u_i \gt 0, i=1,\ldots,m$을 유지하도록 보장하며 stopping criterion은 surrogate duality gap과 approximate feasibility를 모두 사용한다.
+
+---
+
+## Backtracking line search
+
+매 step마다 $y^+ = y+s\Delta y$ 즉,
+
+$$
+x^{+}=x+s\Delta x,\quad
+u^{+}=u+s\Delta u,\quad
+v^{+}=v+s\Delta v
+$$
+
+는 $h_i(x) \lt 0, u_i \gt 0, i=1,\ldots,m$를 유지해야 한다. <br>
+이러한 inequality constraints는 Newton step이 직접적으로 처리할 수 있는 equality constraints가 아니다. 따라서 본 알고리즘에서는 equality constraints에 대해 계산된 Newton direction을 따라가되 backtracking line search를 통해 step size $s$를 조절함으로써 iterates가 항상 feasible set의 내부에 머물도록 한다.<br>
+
+**Multi-stage backtracking line search** 과정은 다음과 같다:<br>
+
+먼저 $u+s\Delta u \ge 0$을 만족하는 최대 step size $s_\mathrm{max}\le 1$을 고른다:
+
+$$
+s_{\max}=\min\left\{1,\;\min\left\{-\frac{u_i}{\Delta u_i}:\Delta u_i<0\right\}\right\}
+$$
+
+$s_\mathrm{max}$가 $u\gt 0$를 만족하기 위해서 $s=0.999s_\mathrm{max}$를 한다.<br>
+파라미터 $\alpha, \beta \in (0,1)$를 설정해 아래 과정을 진행한다.
+
+- $h_i(x^+)\lt 0$를 만족할 때까지 $s=\beta s$
+
+- $\Vert r(x^+, u^+, v^+)\Vert_2 \le (1-\alpha s) \Vert r(x,u,v)\Vert_2$를 만족할 때까지 $s=\beta s$
+
+마지막 조건은 다음과 같이 유도된다.<br>
+먼저 Newton step은
+
+$$
+\Delta y = -r^\prime(y)^{-1}r(y) \quad \Leftrightarrow\quad r(y) = -r^\prime(y)\Delta y
+$$
+
+Newton step은 선형화의 결과이므로 Armijo 조건을 위해 Taylor 1차 근사식을 살펴보면
+
+$$
+r(y+s\Delta y) \approx r(y) + r^\prime (y)(s\Delta y) = (1-s)r(y)
+$$
+
+따라서 적절한 $\alpha$에 대해 $\Vert r(x^+, u^+, v^+)\Vert_2 \le (1-\alpha s) \Vert r(x,u,v)\Vert_2$ 조건이 나오게 된다.
+
+---
+
+## Some history
+
+- **Dantzig (1940년대):** Simplex method는 선형계획법(LP)을 위한 알고리즘 중 오늘날까지도 가장 잘 알려지고 많이 연구된 방법 중 하나이다.
+
+- **Klee와 Minty (1972):** 변수 $n$개와 제약식 $2n$개를 갖는 병리적인(pathological) LP 예제에서 심플렉스 방법은 해를 구하는 데 $2^n$번의 반복이 필요하다.
+
+- **Khachiyan (1979):** Nemirovski와 Yudin (1976)의 ellipsoid method에 기반한 LP를 위한 다항시간(polynomial-time) 알고리즘. 이론적으로는 강력하지만 실제 계산에서는 성능이 약하다.
+
+- **Karmarkar (1984):** LP를 위한 내부점(interior-point) 기반의 다항시간 알고리즘. 비교적 효율적임 (미국 특허 4,744,026, 2006년에 만료).
+
+- **Renegar (1988):** LP를 위한 뉴턴 기반 내부점 알고리즘. Lee와 Sidford (2014) 이전까지 알려진 최고의 복잡도를 가짐.
+
+- 현대의 최첨단 LP 솔버들은 일반적으로 심플렉스 방법과 내부점 방법을 모두 사용한다.
+
+---
+
+## Highlight: standard LP
+
