@@ -518,3 +518,51 @@ r_{\mathrm{prim}}^{+} &= Ax^{+} - b = 0.
 $$
 
 결론적으로 한 번 $s=1$ full step으로 $r_\mathrm{prim}=r_\mathrm{dual}=0$에 도달하면 LP의 선형성 때문에 이후 **Newton direction**은 자동으로 $A \Delta x=0, A^{T} \Delta v + \Delta u = 0$을 만족하여 **primal & dual feasibility**가 유지된다. ($s\lt 1$일 수 있지만 feasibility residual은 0 유지)
+
+---
+
+## Example: barrier versus primal-dual
+
+다음의 예시는 $n=50$차원 변수, $m=100$ equality constraints를 가진 standard LP에 대해 barrier method와 primal-daul method를 적용한 결과이다.<br>
+Barrier method는 다양한 $\mu$를 사용했고 primal-dual method는 $\mu=10$을 사용했다. 둘  모두 backtracking에서 $\alpha=0.01, \beta=0.5$를 사용했다.
+
+<div class="row mt-3 justify-content-sm-center">
+    <div class="col-sm-8 mt-3 mt-md-0">
+        {% include figure.liquid 
+            loading="eager" 
+            path="assets/img/blog_img/barriervspdipm.png" 
+            class="img-fluid rounded z-depth-1" 
+            zoomable=true 
+        %}
+    </div>
+</div>
+
+<div class="caption">
+    Barrier method versus Primal-dual interior-point method<br>
+    (from B&V 11.3.2 and 11.17.4)
+</div>
+<br>
+
+결과를 보면 primal-dual method가 더 빠르게 더 높은 정확도로 수렴하는 것을 확인할 수 있다.<br>
+
+이번엔 $n=2m$으로 변수의 차원을 증가시켜가며 수렴에 걸리는 iteration을 비교해보자.<br>
+Barrier method는 $\mu=100$로 two outer loops만 진행했다. 결과적으로 duality gap은 $10^4$까지 줄었다.<br>
+Primal-dual method는 $\mu=10$을 사용했고 surrogate duality gap과 feasibility gap이 거의 $10^{-8}$일때 종료했다.
+
+<div class="row mt-3 justify-content-sm-center">
+    <div class="col-sm-8 mt-3 mt-md-0">
+        {% include figure.liquid 
+            loading="eager" 
+            path="assets/img/blog_img/barriervspdipm2.png" 
+            class="img-fluid rounded z-depth-1" 
+            zoomable=true 
+        %}
+    </div>
+</div>
+
+<div class="caption">
+    Barrier method versus Primal-dual interior-point method
+</div>
+<br>
+
+Primal-dual method가 훨씬 더 높은 정확도의 solution을 얻었음에도 iteration은 살짝 더 필요한 수준인 것을 볼 수 있다.
