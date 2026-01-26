@@ -21,14 +21,14 @@ toc:
 ## Uses of Duality
 
 
-1. **Duality gap**은 **optimality**를 판단하고 **stopping criterion**으로써 사용될 수 있다.<br>
+- **Duality gap**은 **optimality**를 판단하고 **stopping criterion**으로써 사용될 수 있다.<br>
 Primal feasible $x$와 Dual feasible $u, v$에 대해 다음이 성립한다.
 
 $$
 f(x)- f^{\ast} \le f(x)-g(u, v)
 $$
 
-2. **Duality**는 **dual solution**으로부터 **primal solution**을 도출하거나 특징을 알기 위해 사용될 수 있다.<br>
+- **Duality**는 **dual solution**으로부터 **primal solution**을 도출하거나 특징을 알기 위해 사용될 수 있다.<br>
 **Strong duality**가 성립한다면 구해진 dual optimal $u^{\ast}, v^{\ast}$에 대해 아래 식의 solution은 **primal solution** $x^{\ast}$가 된다.
 
 $$
