@@ -91,7 +91,7 @@ XSe &= \mu e, \\
 \end{aligned}
 $$
 
-$\mu$는 barrier parameter로 $\infty$에서 $0$으로 갈수록 원 문제의 optimal solution으로 수렴하며 이를 central path라고 한다.
+$\mu$는 barrier parameter로 큰 값에서 $0$으로 갈수록 원 문제의 optimal solution으로 수렴하며 이를 central path라고 한다.
 <br>
 
 이제 우리는 위의 (perturbed) KKT conditions를 만족하는 해를 찾는 것이 목표이다. 따라서 다음과 같이 $z=(x, \lambda, s)$에 대한 $F(z)=0$을 정의할 수 있다.
@@ -112,7 +112,7 @@ XSe
 0 \\
 \end{bmatrix}
 ,\\
-&\qquad (x,s)\ge 0
+&\qquad (x,s)\gt 0
 \end{aligned}
 $$
 
@@ -256,8 +256,8 @@ $$
 $$
 
 경우를 나눠서 생각해보자.<br> 
-$\alpha_{\mathrm{aff}}\approx 1$이라면 해당 affine 이동이 최적해까지 안전하게 갈 수 있음을 의미하고 $\sigma$는 작은 값을 가진다. 따라서 $\mu$는 다음 iterate에서 값이 급격히 감소한다.<br>
-$\alpha_{\mathrm{aff}}\ll 1$이라면 affine 이동이 위험해 비교적 짧게 이동해야 함을 의미하고 $\sigma$는 1에 가까운 값을 가진다. 따라서 $\mu$는 다음 iterate에서 큰 변화 없이 조금 감소한다.
+$\alpha_{\mathrm{aff}}\approx 1$이라면 affine-scaling 방향으로 경계까지 거의 한 번에 가도 될 만큼 positivity가 덜 깨지고 안전하게 갈 수 있음을 의미하며 $\sigma$는 작은 값을 가진다. 따라서 $\mu$는 다음 iterate에서 값이 급격히 감소한다.<br>
+$\alpha_{\mathrm{aff}}\ll 1$이라면 경계에 대해 위험해 비교적 짧게 이동해야 함을 의미하고 $\sigma$는 1에 가까운 값을 가진다. 따라서 $\mu$는 다음 iterate에서 큰 변화 없이 조금 감소한다.
 <br>
 
 다음으로 설명할 내용은 Mehrotra predictor-corrector method의 가장 중요한 부분이다.<br>
@@ -312,9 +312,18 @@ $$
 $$
 
 이다. 좌변의 matrix는 동일하게 나타나므로 분해(factorization) 과정이 추가로 필요하지 않다.<br>
-해당 결과로 나오는 $\Delta$가 바로 Mehrotra predictor-corrector method의 최종 이동 방향이 된다.
+해당 결과로 나오는 $\Delta$가 바로 Mehrotra predictor-corrector method의 최종 이동 방향이 된다.<br>
 
-하지만 $- (XSe-\sigma\mu e + \Delta X^{\mathrm{aff}}\Delta S^{\mathrm{aff}}e)$ 를 보고 의문이 생길 수 있다. $\Delta X^{\mathrm{aff}}$, $\Delta S^{\mathrm{aff}}$는 애초에 $\mu=0$으로 설정하고 진행해 구한 step size인데 $- (XSe-\sigma\mu e)$에 대한 선형화 오차 보정항은 $- (XSe-\sigma\mu e)$가 우변에 있는 경우 나오는 $\Delta$로 구해야 하는 것이 아닌가? 이는 타당한 의문이며 실제로 정확한 오차 보정이 이루어지지 못한다. 하지만 $\sigma$ 값을 정하는 과정에도 $-(XSe)$가 쓰였기 때문에 정확한 선형화 오차보정항을 구하려면 계산이 한 번 더 필요하게 된다. 하지만 central path에서 크게 떨어지지 않는 이상 큰 차이가 생기지 않는게 일반적이며 국소적인 특징을 담는 것은 변하지 않아 $\Delta X^{\mathrm{aff}}$, $\Delta S^{\mathrm{aff}}$를 그대로 사용해도 충분한 것이다.
+하지만 우변에 등장하는
+
+$$
+- (XSe-\sigma\mu e + \Delta X^{\mathrm{aff}}\Delta S^{\mathrm{aff}}e)
+$$
+를 보면 한 가지 의문이 생길 수 있다. $\Delta X^{\mathrm{aff}}$, $\Delta S^{\mathrm{aff}}$는 $\mu=0$으로 설정한 affine-scaling predictor step에서 계산된 방향인데 실제로 우리가 목표로 하는 central path는 $XSe = \sigma \mu e$이기 때문이다.<br>
+엄밀하게 말하면 $XSe-\sigma \mu e$에 대한 Newton 선형화 오차 보정항은 해당 우변을 기준으로 다시 Newton system을 풀어 얻은 $\Delta X$, $\Delta S$로부터 계산되어야 한다. 즉, $\Delta X^{\mathrm{aff}}\Delta S^{\mathrm{aff}}$는 정확한 2차 오차 보정항은 아니다.<br>
+그러나 이를 정확히 반영하려면 추가적인 Newton solve가 한 번 더 필요하게 된다. Mehrotra predictor-corrector method는 이 점에서 엄밀한 2차 보정보다는 계산 효율과 실질적인 centrality 개선을 선택한다. 실제로 $\sigma$ 자체가 affine predictor에서의 $XSe$ 감소량을 기반으로 정의되기 때문에 $\Delta X^{\mathrm{aff}}\Delta S^{\mathrm{aff}}$는 central path로부터의 이탈 방향과 크기를 충분히 잘 포착한다.<br>
+
+따라서 central path에서 크게 벗어나지 않는 영역에서는 $\Delta X^{\mathrm{aff}}\Delta S^{\mathrm{aff}}$를 그대로 사용하는 근사가 수렴성과 효율 면에서 매우 효과적이게 된다.
 
 ---
 
@@ -326,21 +335,31 @@ $$
 \begin{aligned}
 \alpha_{\max}^{\mathrm{primal}}
 &=
+\min\!\left\{
+1,\;
 \min_{\,i:\,\Delta x_i<0}
 \left(
 -\frac{x_i}{\Delta x_i}
-\right), \\[0.8em]
+\right)
+\right\}, \\[1.5em]
 \alpha_{\max}^{\mathrm{dual}}
 &=
+\min\!\left\{
+1,\;
 \min_{\,i:\,\Delta s_i<0}
 \left(
 -\frac{s_i}{\Delta s_i}
-\right), \\[0.8em]
+\right)
+\right\}, \\[1.5em]
 \alpha_{\mathrm{final}}
 &=
-\min\{\,1,\;\eta\,\alpha_{\max}\,\}
+\eta\,\min\!\left\{
+\alpha_{\max}^{\mathrm{primal}},
+\alpha_{\max}^{\mathrm{dual}}
+\right\}.
 \end{aligned}
 $$
+
 
 ---
 
@@ -359,7 +378,7 @@ $1.$ **Residual 계산**
 
 $2.$ **Factorization**
 
-- Newton system의 좌변 행렬을 Cholesky decomposition한다. (가장 오래걸리는 작업)
+- Newton system의 좌변 행렬을 factorization(Cholesky, sparse 등)한다. (가장 오래걸리는 작업)
 
 $3.$ **Predictor Step**
 
@@ -388,7 +407,7 @@ $6.$ **Update**
 $$
 \begin{aligned}
 x &\leftarrow x + \alpha\,\Delta x,\\[0.6em]
-y &\leftarrow \lambda + \alpha\,\Delta \lambda,\\[0.6em]
+\lambda &\leftarrow \lambda + \alpha\,\Delta \lambda,\\[0.6em]
 s &\leftarrow s + \alpha\,\Delta s
 \end{aligned}
 $$
