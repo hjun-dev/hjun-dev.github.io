@@ -317,10 +317,13 @@ $$
 하지만 우변에 등장하는
 
 $$
-- (XSe-\sigma\mu e + \Delta X^{\mathrm{aff}}\Delta S^{\mathrm{aff}}e)
+-(XSe-\sigma\mu e + \Delta X^{\mathrm{aff}}\Delta S^{\mathrm{aff}}e)
 $$
+
 를 보면 한 가지 의문이 생길 수 있다. $\Delta X^{\mathrm{aff}}$, $\Delta S^{\mathrm{aff}}$는 $\mu=0$으로 설정한 affine-scaling predictor step에서 계산된 방향인데 실제로 우리가 목표로 하는 central path는 $XSe = \sigma \mu e$이기 때문이다.<br>
+
 엄밀하게 말하면 $XSe-\sigma \mu e$에 대한 Newton 선형화 오차 보정항은 해당 우변을 기준으로 다시 Newton system을 풀어 얻은 $\Delta X$, $\Delta S$로부터 계산되어야 한다. 즉, $\Delta X^{\mathrm{aff}}\Delta S^{\mathrm{aff}}$는 정확한 2차 오차 보정항은 아니다.<br>
+
 그러나 이를 정확히 반영하려면 추가적인 Newton solve가 한 번 더 필요하게 된다. Mehrotra predictor-corrector method는 이 점에서 엄밀한 2차 보정보다는 계산 효율과 실질적인 centrality 개선을 선택한다. 실제로 $\sigma$ 자체가 affine predictor에서의 $XSe$ 감소량을 기반으로 정의되기 때문에 $\Delta X^{\mathrm{aff}}\Delta S^{\mathrm{aff}}$는 central path로부터의 이탈 방향과 크기를 충분히 잘 포착한다.<br>
 
 따라서 central path에서 크게 벗어나지 않는 영역에서는 $\Delta X^{\mathrm{aff}}\Delta S^{\mathrm{aff}}$를 그대로 사용하는 근사가 수렴성과 효율 면에서 매우 효과적이게 된다.
