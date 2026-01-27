@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-convex-optimization-16-primal-dual-interior-point-methods",
+        },{id: "post-mehrotra-predictor-corrector-method",
+        
+          title: "Mehrotra Predictor-Corrector Method",
+        
+        description: "Primal-dual interior-point method로 실제 솔버 제작 시 널리 쓰이는 Mehrotra predictor-corrector method 분석",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/00-mehrotra-predictor-corrector-method/";
+          
+        },
+      },{id: "post-convex-optimization-16-primal-dual-interior-point-methods",
         
           title: "[Convex Optimization] 16. Primal-dual interior-point methods",
         
