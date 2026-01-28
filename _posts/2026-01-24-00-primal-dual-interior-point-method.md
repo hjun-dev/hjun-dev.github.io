@@ -523,7 +523,7 @@ $$
 
 ## Example: barrier versus primal-dual
 
-다음의 예시는 $n=50$차원 변수, $m=100$ equality constraints를 가진 standard LP에 대해 barrier method와 primal-daul method를 적용한 결과이다.<br>
+다음의 예시는 $n=50$차원 변수, $m=100$ equality constraints를 가진 standard LP에 대해 barrier method와 primal-dual method를 적용한 결과이다.<br>
 Barrier method는 다양한 $\mu$를 사용했고 primal-dual method는 $\mu=10$을 사용했다. 둘  모두 backtracking에서 $\alpha=0.01, \beta=0.5$를 사용했다.
 
 <div class="row mt-3 justify-content-sm-center">
