@@ -112,7 +112,7 @@ XSe
 0 \\
 \end{bmatrix}
 ,\\
-&\qquad (x,s)\gt 0
+&\qquad (x,s)\ge 0
 \end{aligned}
 $$
 
