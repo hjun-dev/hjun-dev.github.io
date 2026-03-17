@@ -312,6 +312,36 @@ where $c_k \rightarrow 0$ as $k \rightarrow \infty$. Here $k_0, c_k$ depend on $
 
 ---
 
+## Example: Newton versus BFGS
+
+다음은 **Vandenberghe lecture note**의 예제이다.<br>
+
+$n=100, m=500$에 대해 **LP barrier problem**에 **Newton method**와 **BFGS**를 적용시켰다.
+
+$$
+\min_x c^T x - \sum^m_{i=1} \log(b_i - a_i^T x)
+$$
+
+<div class="row mt-3 justify-content-sm-center">
+    <div class="col-sm-8 mt-3 mt-md-0">
+        {% include figure.liquid 
+            loading="eager" 
+            path="assets/img/blog_img/BFGSvsNM.png" 
+            class="img-fluid rounded z-depth-1" 
+            zoomable=true 
+        %}
+    </div>
+</div>
+
+<div class="caption">
+    Convergence of Newton versus BFGS.
+</div>
+<br>
+
+**Newton update**는 $\mathcal{O}(n^3)$, **quasi-Newton update**는 $\mathcal{O}(n^2)$지만 quasi-Newton이 수렴까지 대략 100배 정도 iteration이 더 걸린 것을 확인할 수 있다.
+
+---
+
 ## Implicit-Form quasi-Newton
 
 Quasi-Newton methods는 newton updates에 비해서는 훨씬 가볍지만 아직 $\mathcal{O}(n^2)$의 메모리와 시간이 걸린다. 만약 $n$이 크면 $C$를 만드는 것도 힘들어진다.<br>
