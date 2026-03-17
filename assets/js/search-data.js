@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-mehrotra-predictor-corrector-method",
+        },{id: "post-convex-optimization-17-quasi-newton-method",
+        
+          title: "[Convex Optimization] 17. Quasi Newton Method",
+        
+        description: "Newton Method의 헤시안을 근사하는 Second-order method",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/quasi-newton-method/";
+          
+        },
+      },{id: "post-mehrotra-predictor-corrector-method",
         
           title: "Mehrotra Predictor-Corrector Method",
         
