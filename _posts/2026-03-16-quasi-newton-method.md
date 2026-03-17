@@ -315,7 +315,7 @@ where $c_k \rightarrow 0$ as $k \rightarrow \infty$. Here $k_0, c_k$ depend on $
 ## Implicit-Form quasi-Newton
 
 Quasi-Newton methods는 newton updates에 비해서는 훨씬 가볍지만 아직 $\mathcal{O}(n^2)$의 메모리와 시간이 걸린다. 만약 $n$이 크면 $C$를 만드는 것도 힘들어진다.<br>
-이 문제를 해결하기 위해 $C$를 직접 계산하고 저장하는 대신에 모든 $(y, s)$ pair를 저장하고 **implicit version**을 사용한다. 이 방식은 특히 $k << n$인 경우 더 유용하다.<br>
+이 문제를 해결하기 위해 $C$를 직접 계산하고 저장하는 대신에 모든 $(y, s)$ pair를 저장하고 **implicit version**을 사용한다. 이 방식은 특히 $k \lt\lt n$인 경우 더 유용하다.<br>
 아래와 같은 결과를 보면
 
 $$
@@ -350,7 +350,7 @@ $$
 
 **Explicit form(Original)**은 $n^2$ 메모리와 연산시간을 필요로 한다. 따라서 $k$ 스텝의 경우 $\mathcal{O}(kn^2)$의 연산시간이 걸린다.<br>
 **Implicit form(IFQN)**은 $n$사이즈의 $(y, s)$ pair들을 $k$ iteration 동안 저장해야 하므로 $\mathcal{O}(kn)$의 메모리를 필요로 한다. 또한 $k$ step에 대해 $\mathcal{O}(k^2n)$의 시간이 걸린다.<br>
-결론적으로 $k << n$라면 **IFQN**은 많은 장점을 가진다.
+결론적으로 $k \lt \lt n$라면 **IFQN**은 많은 장점을 가진다.
 
 ---
 
