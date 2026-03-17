@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-convex-optimization-17-quasi-newton-method",
+        },{id: "post-convex-optimization-18-numerical-linear-algebra",
+        
+          title: "[Convex Optimization] 18. Numerical Linear Algebra",
+        
+        description: "실제 솔버 및 다양한 연산에서 선형대수의 수치적 분석",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/num-lin-alg/";
+          
+        },
+      },{id: "post-convex-optimization-17-quasi-newton-method",
         
           title: "[Convex Optimization] 17. Quasi Newton Method",
         
