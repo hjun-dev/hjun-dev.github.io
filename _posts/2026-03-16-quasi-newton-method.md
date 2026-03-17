@@ -16,31 +16,31 @@ toc:
 ## Introduction
 <br>
 
-이 포스트에서는 Second-order method 중 하나인 Quasi-Newton method에 대해 알아볼 것이다. Newton method의 가장 큰 문제점인 연산 시간 문제를 해결하기 위해 나온 방법이다.
+이 포스트에서는 **Second-order method** 중 하나인 **Quasi-Newton method**에 대해 알아볼 것이다. Newton method의 가장 큰 문제점인 연산 시간 및 메모리 문제를 해결하기 위해 나온 방법이다.
 
 ---
 
 ## Motivation for Quasi-Newton Method
 
-다음과 같은 unconstrained smooth convex optimization problem을 생각해 보자.
+다음과 같은 **unconstrained smooth convex optimization problem**을 생각해 보자.
 
 $$
 \min_x f(x)
 $$
 
-Gradient descent는 global linear convergence하며 Newton's method는 local quadratic convergence한다.<br>
+**Gradient descent**는 **global linear convergence**하며 **Newton's method**는 **local quadratic convergence**한다.<br>
 하지만 gradient descent iteration의 cost는 $\mathcal{O}(n)$인 반면에 Newton iteration은 $\mathcal{O}(n^3)$이다.
-- Gradient descent
+- **Gradient descent**
 $$
 x^+ =x- t\nabla f(x) \\
 $$
-- Newton's method
+- **Newton's method**
 $$
 x^+ =x- t(\nabla^2 f(x))^{-1}\nabla f(x)
 $$ 
 
 따라서 수렴에 걸리는 iteration의 수는 Newton's method가 gradient descent보다 적을 수 있지만 차원이 커질수록 한 iteration의 크기가 지나치게 오래걸리게 된다.<br>
-이 문제를 해결하기 위해서 Quasi-Newton method가 제시되었다. Quasi-Newton method는 superlinear convergence하며 각 iteration의 cost는 $\mathcal{O}(n^2)$이다. 이론적으로는 $n$ Quasi-Newton step이 한 Newton step만큼 걸리지만 실제로는 훨씬 빠른 경우가 많다고 한다.
+이 문제를 해결하기 위해서 **Quasi-Newton method**가 제시되었다. Quasi-Newton method는 **superlinear convergence**하며 각 iteration의 cost는 $\mathcal{O}(n^2)$이다. 이론적으로는 $n$ Quasi-Newton step이 한 Newton step만큼 걸리지만 실제로는 훨씬 빠른 경우가 많다고 한다.
 
 ---
 
@@ -52,7 +52,7 @@ $x^{(0)}\in \mathbb{R}^n, B^{(0)}\succ 0 $을 설정한 뒤 $k=1,2,3,\ldots,$에
 2. Update $x^{(k)} = x^{(k-1)}+t_k s^{(k-1)}$
 3. Compute $B^{(k)}$ from $B^{(k-1)}$
 
-Quasi-Newton method의 종류에 따라 Step 3를 다르게 계산한다. Basic idea는 $B^{(k-1)}$가  헤시안에 대한 정보를 담고 있을 때 어떻게 적절한 $B^{(k)}$를 구할 것이냐이다.<br>
+**Quasi-Newton method**의 종류에 따라 **Step 3**를 다르게 계산한다. **Basic idea**는 $B^{(k-1)}$가  헤시안에 대한 정보를 담고 있을 때 어떻게 적절한 $B^{(k)}$를 구할 것이냐이다.<br>
 적절한 $B^{(k)}$가 가져야 하는 성질들은 다음과 같다.<br>
 
 - **Secant Equation**<br>
@@ -70,7 +70,7 @@ $$
 
 - $B^+$가 symmetric
 
-- $B$와 "close"한 $B^+$
+- $B$와 **"close"**한 $B^+$
 
 - $B\succ 0 \Rightarrow B^+ \succ 0$
 
@@ -86,13 +86,13 @@ $$
 B^+ = B + auu^T
 $$
 
-이를 secant equation에 대입하면
+이를 **secant equation**에 대입하면
 
 $$
 (au^T s)u = y - Bs
 $$
 
-위 식을 만족하는 $a$와 $u$가 존재하기 위해서는 $u$가 $y-Bs$와 평행해야 한다.<br>
+위 식을 만족하는 $a$와 $u$가 존재하기 위해서는 $u$가 $y-Bs$와 **평행**해야 한다.<br>
 $u=y-Bs$를 사용하면 $a=\frac{1}{(y-Bs)^T s}$가 나온다.<br>
 따라서 $B^+$의 식은 다음과 같다.
 
@@ -113,13 +113,13 @@ $$
 C^+ = C + \frac{(s-Cy)(s-Cy)^T}{(s-Cy)^T y}
 $$
 
-일반적으로 SR1은 간단하고 저렴하지만 중요한 문제가 있다. Positive definiteness가 보장되지 않는 것이다. 따라서 사용되지 않는다.
+일반적으로 **SR1**은 간단하고 저렴하지만 중요한 문제가 있다. **Positive definiteness**가 보장되지 않는 것이다. 따라서 사용되지 않는다.
 
 ---
 
 ### Broyden-Fletcher-Goldfarb-Shanno Update (Rank Two)
 
-이번에는 rank 2 update를 진행해보자.
+이번에는 **rank 2 update**를 진행해보자.
 
 $$
 B^+ = B + auu^T + b vv^T
@@ -158,8 +158,8 @@ C^{+} &= C + \frac{(s - C y)s^{T}}{y^{T}s}
 \end{aligned}
 $$
 
-BFGS update는 $\mathcal{O}(n^2)$이므로 여전히 가볍다.<br>
-SR1과는 달리 BFGS는 positive definiteness를 보존한다. ($B\succ 0 \Rightarrow B^+ \succ 0$ 혹은 $C\succ 0 \Rightarrow C^+ \succ 0$)를 보이면 된다.<br>
+**BFGS update**는 $\mathcal{O}(n^2)$이므로 여전히 가볍다.<br>
+SR1과는 달리 BFGS는 **positive definiteness**를 보존한다. ($B\succ 0 \Rightarrow B^+ \succ 0$ 혹은 $C\succ 0 \Rightarrow C^+ \succ 0$)를 보이면 된다.<br>
 
 $$
 x^{T} C^{+} x
@@ -176,13 +176,13 @@ x - \frac{s^{T}x}{y^{T}s}y
 $$
 
 첫 항은 $C\succ 0$이므로 $\ge 0$이며 두 번째 항은 $y^T s \ge 0$이라면 $\ge 0$이다. 또한 각 항이 0이 되는 경우 다른 항이 0이 아니게 되어 $C^+$는 positive definite하게 된다. <br>
-Convex function은 다음과 같은 monotonicity를 가진다.
+Convex function은 다음과 같은 **monotonicity**를 가진다.
 
 $$
 y^Ts = (\nabla f(x^+) - \nabla f(x))^T (x^+ - x) \ge 0
 $$
 
-$0$이 되는 것을 피하기 위해 후에 BFGS로 찾은 방향으로 line search하여 $y^T s\gt 0$으로 강제한다.
+$0$이 되는 것을 피하기 위해 후에 BFGS로 찾은 방향으로 **line search**하여 $y^T s\gt 0$으로 강제한다.
 
 ---
 
@@ -206,7 +206,7 @@ C
 \frac{ss^{T}}{y^{T}s}
 $$
 
-Woodbury를 적용하면
+**Woodbury**를 적용하면
 
 $$
 B^{+}
@@ -222,7 +222,7 @@ I - \frac{s y^{T}}{y^{T}s}
 \frac{y y^{T}}{y^{T}s}
 $$
 
-이러한 method를 **David-Fletcher-Powell (DFP)**라고 부른다. BFGS와 같이 연산 속도가 $\mathcal{O}(n^2)$이며 positive definiteness를 보존하지만 BFGS만큼 자주 사용되지는 않는다.
+이러한 method를 **David-Fletcher-Powell (DFP)**라고 부른다. BFGS와 같이 연산 속도가 $\mathcal{O}(n^2)$이며 **positive definiteness**를 보존하지만 BFGS만큼 자주 사용되지는 않는다.
 
 ---
 
@@ -246,7 +246,7 @@ $$
 \end{aligned}
 $$
 
-여기서 $W$는 nonsingular하며 $WW^T s = y$를 만족한다. BFGS 역시 같은 문제를 풀지만 $B$와 $C$가 바뀐다.
+여기서 $W$는 **nonsingular**하며 $WW^T s = y$를 만족한다. BFGS 역시 같은 문제를 풀지만 $B$와 $C$가 바뀐다.
 
 ---
 
@@ -278,17 +278,17 @@ B
 \phi(s^{T} B s)\, v v^{T}
 $$
 
-- BFGS는 $\phi = 0$
+- **BFGS**는 $\phi = 0$
 
-- DFS는 $\phi = 1$
+- **DFS**는 $\phi = 1$
 
-- SR1는 $\phi = y^T s / (y^T s - s^T Bs)$
+- **SR1**는 $\phi = y^T s / (y^T s - s^T Bs)$
 
 ---
 
 ## Convergence Analysis
 
-$f$가 convex, twice differentiable라면 $\text{dom}(f) = \mathbb{R}^n$에 대해서 다음이 만족한다고 하자.
+$f$가 **convex, twice differentiable**라면 $\text{dom}(f) = \mathbb{R}^n$에 대해서 다음이 만족한다고 하자.
 - $\nabla f$ is Lipschitz with parameter $L$
 
 - $f$ is strongly convex with parameter $m$
@@ -315,7 +315,7 @@ where $c_k \rightarrow 0$ as $k \rightarrow \infty$. Here $k_0, c_k$ depend on $
 ## Implicit-Form quasi-Newton
 
 Quasi-Newton methods는 newton updates에 비해서는 훨씬 가볍지만 아직 $\mathcal{O}(n^2)$의 메모리와 시간이 걸린다. 만약 $n$이 크면 $C$를 만드는 것도 힘들어진다.<br>
-이 문제를 해결하기 위해 $C$를 직접 계산하고 저장하는 대신에 모든 $(y, s)$ pair를 저장하고 implicit version을 사용한다. 이 방식은 특히 $k << n$인 경우 더 유용하다.<br>
+이 문제를 해결하기 위해 $C$를 직접 계산하고 저장하는 대신에 모든 $(y, s)$ pair를 저장하고 **implicit version**을 사용한다. 이 방식은 특히 $k << n$인 경우 더 유용하다.<br>
 아래와 같은 결과를 보면
 
 $$
@@ -348,16 +348,16 @@ $$
 
 **Complexity Analysis**<br>
 
-Explicit form(Original)은 $n^2$ 메모리와 연산시간을 필요로 한다. 따라서 $k$ 스텝의 경우 $\mathcal{O}(kn^2)$의 연산시간이 걸린다.<br>
-Implicit form(IFQN)은 $n$사이즈의 $(y, s)$ pair들을 $k$ iteration 동안 저장해야 하므로 $\mathcal{O}(kn)$의 메모리를 필요로 한다. 또한 $k$ step에 대해 $\mathcal{O}(k^2n)$의 시간이 걸린다.<br>
-결론적으로 $k << n$라면 IFQN은 많은 장점을 가진다.
+**Explicit form(Original)**은 $n^2$ 메모리와 연산시간을 필요로 한다. 따라서 $k$ 스텝의 경우 $\mathcal{O}(kn^2)$의 연산시간이 걸린다.<br>
+**Implicit form(IFQN)**은 $n$사이즈의 $(y, s)$ pair들을 $k$ iteration 동안 저장해야 하므로 $\mathcal{O}(kn)$의 메모리를 필요로 한다. 또한 $k$ step에 대해 $\mathcal{O}(k^2n)$의 시간이 걸린다.<br>
+결론적으로 $k << n$라면 **IFQN**은 많은 장점을 가진다.
 
 ---
 
 ## Limited memory BFGS
 
 IFQN은 iteration $k$가 너무 늘어날 경우 원래의 메모리와 연산속도 문제가 해결되지 않을 수 있다.<br>
-이를 해결하기 위해 Limited memory BFGS(LBFGS)가 제안되었다.
+이를 해결하기 위해 **Limited memory BFGS(LBFGS)**가 제안되었다.
 <br>
 
 1. Let $q = -\nabla f(x^k)$
@@ -388,18 +388,18 @@ $$
 \min_x \mathbb{E}_\xi[f(x,\xi)]
 $$
 
-여기서 $\xi$는 noisy random 변수이다.<br>
-이전 아이디어를 확장해서 다음과 같은 stochastic quasi-Newton update를 사용하는 것이 자연스럽다.
+여기서 $\xi$는 **noisy** random 변수이다.<br>
+이전 아이디어를 확장해서 다음과 같은 **stochastic quasi-Newton update**를 사용하는 것이 자연스럽다.
 
 $$
 x^{(k)} = x^{(k-1)} - t_k C^{(k-1)}\nabla f(x^{(k-1)}, \xi_k)
 $$
 
-하지만 몇 가지 어려움이 존재한다.
+하지만 여기엔 몇 가지 어려움이 존재한다.
 
-- 최대로 얻을 수 있는 이론적 수렴 속도는 sublinear이다. 따라서 SGD보다 가치가 있다고 확신하기 어렵다.
+- 최대로 얻을 수 있는 이론적 수렴 속도는 **sublinear**이다. 따라서 SGD보다 가치가 있다고 확신하기 어렵다.
 
-- $C$의 업데이트는 연속된 gradient 추정값에 의존하는데 gradient의 노이즈가 문제를 일으킬 수 있다.
+- $C$의 업데이트는 연속된 gradient 추정값에 의존하는데 **gradient의 노이즈**가 문제를 일으킬 수 있다.
 
 ---
 
@@ -413,7 +413,7 @@ $$
 y^{(k-1)} = \nabla f(x^{(k)},\xi_k) - \nabla f(x^{(k-1)}, \xi_k)
 $$
 
-이 방법은 Schraudolph et al. (2007)에 의해 제안되었다.<br>
+이 방법은 **Schraudolph et al. (2007)**에 의해 제안되었다.<br>
 이후에도 계속 연구가 진행되고 있다.
 
 ---
