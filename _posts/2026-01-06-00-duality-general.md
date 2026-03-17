@@ -3,7 +3,7 @@ layout: post
 title: "[Convex Optimization] 11. Duality in General Programs"
 description: "General Programs에서 Lagrangian 정의 및 Duality gap 분석"
 date: 2026-01-06 15:00:00 +0900
-tags: [math, study]
+tags: [math, study, CMU 10-725]
 categories: [optimization]
 related_posts: True
 giscus_comments: true

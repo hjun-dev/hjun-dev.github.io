@@ -3,7 +3,7 @@ layout: post
 title: "[Convex Optimization] 10. Duality in Linear Programs"
 description: "Linear Programs에서 Duality 정의 및 특징 파악"
 date: 2026-01-05 13:00:00 +0900
-tags: [math, study]
+tags: [math, study, CMU 10-725]
 categories: [optimization]
 related_posts: True
 giscus_comments: true

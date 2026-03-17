@@ -3,7 +3,7 @@ layout: post
 title: "[Convex Optimization] 15. Barrier Method"
 description: "Inequality and equality constrained problem을 풀기 위한 second-order method 중 하나인 Barrier Method 정의 및 분석"
 date: 2026-01-21 10:00:00 +0900
-tags: [math, study]
+tags: [math, study, CMU 10-725]
 categories: [optimization]
 related_posts: True
 giscus_comments: true

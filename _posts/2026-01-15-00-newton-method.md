@@ -3,7 +3,7 @@ layout: post
 title: "[Convex Optimization] 14. Newton's Method"
 description: "Second-order method의 대표적인 알고리즘인 Newton's Method 정의 및 분석"
 date: 2026-01-15 11:00:00 +0900
-tags: [math, study]
+tags: [math, stud, CMU 10-725]
 categories: [optimization]
 related_posts: True
 giscus_comments: true

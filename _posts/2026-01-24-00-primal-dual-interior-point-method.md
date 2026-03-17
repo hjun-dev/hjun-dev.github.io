@@ -3,7 +3,7 @@ layout: post
 title: "[Convex Optimization] 16. Primal-dual interior-point methods"
 description: "Inequality and equality constrained problem을 효율적으로 풀기 위한 핵심 2nd order method인 Primal-dual interior-point method의 정의 및 분석"
 date: 2026-01-24 13:00:00 +0900
-tags: [math, study]
+tags: [math, study, CMU 10-725]
 categories: [optimization]
 related_posts: True
 giscus_comments: true

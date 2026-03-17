@@ -3,7 +3,7 @@ layout: post
 title: "[Convex Optimization] 13. Duality uses and correspondences"
 description: "Duality의 활용법 및 primal-dual 간의 대응 관계 파악"
 date: 2026-01-10 21:00:00 +0900
-tags: [math, study]
+tags: [math, study, CMU 10-725]
 categories: [optimization]
 related_posts: True
 giscus_comments: true

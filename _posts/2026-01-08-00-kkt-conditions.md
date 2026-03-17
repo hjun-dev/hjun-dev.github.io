@@ -3,7 +3,7 @@ layout: post
 title: "[Convex Optimization] 12. KKT conditions"
 description: "Karush-Kuhn-Tucker (KKT) Conditions에 대한 분석"
 date: 2026-01-08 14:00:00 +0900
-tags: [math, study]
+tags: [math, study, CMU 10-725]
 categories: [optimization]
 related_posts: True
 giscus_comments: true
