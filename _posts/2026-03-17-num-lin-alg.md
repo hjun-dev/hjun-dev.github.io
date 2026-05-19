@@ -135,3 +135,32 @@ $$
 
 - **Permutation matrix $A$:** 0. ($A^{-1}=A^T$이고 $A^T b$는 0이기 때문)
 
+---
+
+## Matrix factorizations
+
+$Ax=b$는 기본적으로 가우스 소거법으로 해를 구할 수 있다. 하지만 종종 $A$를 먼저 factorization하는 것이 더 유용하기도 한다.
+
+$$
+A = A_1 A_2 \cdots A_k
+$$
+
+주어진 matrix를 몇몇 특정 구조를 가진 matrices로 분해한다. (보통 2~3 matrices)
+
+- **Factorization cost:** $n^3$ flops (expensive)
+
+- 하지만 $A^{-1}_1, \ldots, A_k^{-1}$를 적용하는 연산은 특정 구조들에 의해 훨씬 가벼워진다. 이는 많은 시스템을 같은 $A$에 대해 푸는 경우에 매우 효과적이다.
+
+---
+
+### QR decomposition
+
+Rectangular matrix $A\in \mathbb{R}^{m\times n}$ with $m \ge n$은 다음과 같이 분해할 수 있다.
+
+$$
+A = QR
+$$
+
+여기서 $Q\in \mathbb{R}^{m \times n}$은 orthogonal($Q^TQ=I_m$)이고 $R\in \mathbb{R}^{n\times n}$은 upper triangular matrix이다.
+
+- de
