@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-convex-optimization-18-numerical-linear-algebra",
+        },{id: "post-paper-review-hierarchical-reinforcement-learning-for-air-to-air-combat",
+        
+          title: "[Paper Review] Hierarchical Reinforcement Learning for Air-to-Air Combat",
+        
+        description: "AlphaDogfight Trials에서 2위를 기록한 Lockheed Martin의 계층적 강화학습 기반 공대공 전투 에이전트 PHANG-MAN 리뷰",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/phangman/";
+          
+        },
+      },{id: "post-convex-optimization-18-numerical-linear-algebra",
         
           title: "[Convex Optimization] 18. Numerical Linear Algebra",
         
