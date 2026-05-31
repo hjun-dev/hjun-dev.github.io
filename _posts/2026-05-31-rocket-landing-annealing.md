@@ -1,5 +1,4 @@
 ---
-
 layout: post
 title: "[Paper Review] Rocket Landing Control with Random Annealing Jump Start Reinforcement Learning"
 description: "기존 baseline controller를 guide policy로 활용하여 sparse reward 기반 로켓 착륙 제어를 학습하는 RAJS 방법 리뷰"
