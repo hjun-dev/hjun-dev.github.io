@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-paper-review-rocket-landing-control-with-random-annealing-jump-start-reinforcement-learning",
+        },{id: "post-paper-review-real-world-reinforcement-learning-from-suboptimal-interventions",
+        
+          title: "[Paper Review] Real-world Reinforcement Learning from Suboptimal Interventions",
+        
+        description: "불완전한 인간 개입 데이터를 state-wise Lagrangian constraint로 활용하는 실세계 로봇 조작 강화학습 방법 SiLRI 리뷰",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/suboptimal-real-world-rl/";
+          
+        },
+      },{id: "post-paper-review-rocket-landing-control-with-random-annealing-jump-start-reinforcement-learning",
         
           title: "[Paper Review] Rocket Landing Control with Random Annealing Jump Start Reinforcement Learning",
         
