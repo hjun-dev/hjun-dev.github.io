@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-paper-review-hierarchical-reinforcement-learning-for-air-to-air-combat",
+        },{id: "post-",
+        
+          title: "",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/2026-05-31-rocket-landing-annealing/";
+          
+        },
+      },{id: "post-paper-review-hierarchical-reinforcement-learning-for-air-to-air-combat",
         
           title: "[Paper Review] Hierarchical Reinforcement Learning for Air-to-Air Combat",
         
