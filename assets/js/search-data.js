@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-paper-review-hierarchical-reinforcement-learning-for-air-to-air-combat",
+        },{id: "post-paper-review-rocket-landing-control-with-random-annealing-jump-start-reinforcement-learning",
+        
+          title: "[Paper Review] Rocket Landing Control with Random Annealing Jump Start Reinforcement Learning",
+        
+        description: "기존 baseline controller를 guide policy로 활용하여 sparse reward 기반 로켓 착륙 제어를 학습하는 RAJS 방법 리뷰",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/rocket-landing-annealing/";
+          
+        },
+      },{id: "post-paper-review-hierarchical-reinforcement-learning-for-air-to-air-combat",
         
           title: "[Paper Review] Hierarchical Reinforcement Learning for Air-to-Air Combat",
         
