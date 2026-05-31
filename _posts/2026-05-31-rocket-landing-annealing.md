@@ -11,7 +11,7 @@ pretty_table: true
 pseudocode: true
 toc:
   sidebar: left
--------------
+---
 
 ## Introduction
 
