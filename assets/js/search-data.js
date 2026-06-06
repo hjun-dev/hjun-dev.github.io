@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-linear-algebra-고유값분해의-직관적-이해",
+        },{id: "post-linear-algebra-특이값분해의-직관적-이해",
+        
+          title: "[Linear Algebra] 특이값분해의 직관적 이해",
+        
+        description: "SVD를 정의역, 공역, 치역, Null Space, Row Space, Least Squares, Least Norm 관점에서 직관적으로 정리",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/01-singularvalue-decomposition/";
+          
+        },
+      },{id: "post-linear-algebra-고유값분해의-직관적-이해",
         
           title: "[Linear Algebra] 고유값분해의 직관적 이해",
         
@@ -45,7 +56,7 @@ ninja.data = [{
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2026/eigenvalue-decomposition/";
+            window.location.href = "/blog/2026/00-eigenvalue-decomposition/";
           
         },
       },{id: "post-paper-review-rocket-landing-control-with-random-annealing-jump-start-reinforcement-learning",
