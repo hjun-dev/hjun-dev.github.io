@@ -487,28 +487,6 @@ $$
 
 즉, 행렬은 벡터를 고유방향으로 분해한 뒤 방향별로 서로 다르게 스케일한다.
 
-<br>
-
-그림을 넣는다면 다음과 같은 그림이 좋다.
-
-<div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/eigendecomposition_stretch_axes.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
-        %}
-    </div>
-</div>
-
-<div class="caption">
-    Symmetric matrix action as stretching along orthogonal eigenvector directions.
-</div>
-<br>
-
-그림에는 원래 좌표축 대신 두 개의 고유벡터 방향을 그리고, 단위원이 고유벡터 방향으로 타원처럼 늘어나는 모습을 넣으면 좋다.
-
 ---
 
 ## 8. 고유값이 0이면 무슨 일이 일어나는가?
@@ -752,8 +730,9 @@ $$
 $$
 
 이다.
+<br>
 
-이 값을 가장 크게 만들려면 $|\lambda_i|$가 가장 큰 고유값 방향으로 $x$를 잡으면 된다.
+이 값을 가장 크게 만들려면 $\vert\lambda_i\vert$가 가장 큰 고유값 방향으로 $x$를 잡으면 된다.
 
 따라서 대칭행렬에 대해
 
@@ -1110,7 +1089,7 @@ $$
 ### Q6. Negative eigenvalue는 어떻게 해석해야 하는가?
 <br>
 
-$\lambda < 0$이면 해당 고유벡터 방향 성분은 크기가 $|\lambda|$배 되고 방향이 반대로 뒤집힌다.
+$\lambda < 0$이면 해당 고유벡터 방향 성분은 크기가 $\vert\lambda\vert$배 되고 방향이 반대로 뒤집힌다.
 
 Quadratic form에서는 음의 고유값 방향으로
 
@@ -1127,7 +1106,7 @@ $$
 ### Q7. 고유값이 작다는 것은 무슨 뜻인가?
 <br>
 
-$|\lambda_i|$가 작으면 그 고유벡터 방향 성분은 $A$를 통과하면서 작게 반영된다.
+$\vert\lambda_i\vert$가 작으면 그 고유벡터 방향 성분은 $A$를 통과하면서 작게 반영된다.
 
 특히 $\lambda_i$가 0에 가까우면 그 방향 정보는 거의 사라진다.
 
@@ -1212,7 +1191,7 @@ $$
 - Null Space는 $\lambda = 0$인 고유벡터들의 span이다.
 - Range는 $\lambda \neq 0$인 고유벡터들의 span이다.
 - 대칭행렬에서는 Null Space와 Range가 서로 직교한다.
-- 행렬의 2-norm은 가장 큰 $|\lambda|$이다.
+- 행렬의 2-norm은 가장 큰 $\vert\lambda\vert$이다.
 - Positive definite 여부는 고유값의 부호로 판단된다.
 - 역행렬은 각 고유값을 reciprocal로 바꾸는 것이다.
 - Projection matrix의 고유값은 0 또는 1이다.
