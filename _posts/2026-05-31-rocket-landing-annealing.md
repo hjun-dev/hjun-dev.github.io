@@ -115,9 +115,7 @@ Control input은 총 네 개이다.
 - 세 개의 engine attitude signal
 - 하나의 engine thrust signal
 
-각 action은 $[-1,1]$ 범위로 normalize된다. <br>
-
-이 문제는 단순히 착륙 지점까지 가는 문제가 아니다. 목표 위치에 도달하더라도 착륙 속도가 너무 크거나, 자세가 불안정하거나, 각속도가 크면 실패로 처리된다. 따라서 policy는 착륙 지점으로 이동하는 동시에 착륙 순간의 전체 상태를 정밀하게 맞춰야 한다.
+각 action은 $[-1,1]$ 범위로 normalize된다. 
 
 ---
 
@@ -171,10 +169,6 @@ Baseline controller는 정상 조건에서는 자세 안정화와 수직 하강�
 - 완전한 random policy보다 좋은 trajectory를 생성함
 - 초기 학습 단계에서 RL policy의 탐색공간을 줄여줄 수 있음
 - 기존 제어 지식을 guide policy 형태로 활용할 수 있음
-
-<br>
-
-RAJS는 이 baseline controller를 단순히 imitation하는 것이 아니라, RL policy의 학습을 돕는 guide policy로 사용한다.
 
 ---
 
