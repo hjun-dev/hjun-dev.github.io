@@ -159,6 +159,25 @@ $$
 
 즉, 공역은 $\mathbb{R}^3$이지만 치역은 그 안의 부분공간이다.
 
+이 관점을 그림으로 보면 다음과 같다. 예를 들어 $A \in \mathbb{R}^{3 \times 2}$이면 입력공간은 $\mathbb{R}^2$이고 출력공간은 $\mathbb{R}^3$이다. 이때 $A$는 입력공간의 방향들을 출력공간 안의 실제로 만들 수 있는 부분공간, 즉 Range $\mathcal{R}(A)$로 보낸다.
+
+
+<div class="row mt-3 justify-content-sm-center">
+    <div class="col-sm-9 mt-3 mt-md-0">
+        {% include figure.liquid 
+            loading="eager" 
+            path="assets/img/blog_img/svd_domain_to_range.png" 
+            class="img-fluid rounded z-depth-1" 
+            zoomable=true 
+        %}
+    </div>
+</div>
+
+<div class="caption">
+    A matrix can map an input space into a lower-dimensional range inside the output space.
+</div>
+<br>
+
 ---
 
 ## 2. 고유값분해와 SVD의 차이
@@ -524,6 +543,25 @@ $$
 $$
 Av_i = \sigma_i u_i
 $$
+
+이 흐름을 한 장의 그림으로 정리하면 다음과 같다. 먼저 $V^T$는 입력벡터 $x$를 오른쪽 특이벡터 좌표계에서 본다. 그다음 $\Sigma$는 각 좌표 성분을 특이값만큼 스케일한다. 마지막으로 $U$는 스케일된 성분을 출력공간의 왼쪽 특이벡터 방향으로 합친다.
+
+
+<div class="row mt-3 justify-content-sm-center">
+    <div class="col-sm-9 mt-3 mt-md-0">
+        {% include figure.liquid 
+            loading="eager" 
+            path="assets/img/blog_img/svd_three_step_geometry.png" 
+            class="img-fluid rounded z-depth-1" 
+            zoomable=true 
+        %}
+    </div>
+</div>
+
+<div class="caption">
+    SVD as input coordinate change, singular-value scaling, and output coordinate change.
+</div>
+<br>
 
 ---
 
@@ -1332,6 +1370,25 @@ $$
 
 가 된다.
 
+즉, least squares의 핵심은 $b$를 억지로 맞추는 것이 아니라, $A$가 실제로 만들 수 있는 공간 $\mathcal{R}(A)$ 안에서 $b$와 가장 가까운 점을 찾는 것이다. 이때 남는 오차 $b - Ax_{\text{LS}}$는 Range에 수직인 Left Null Space 방향에 놓인다.
+
+
+<div class="row mt-3 justify-content-sm-center">
+    <div class="col-sm-9 mt-3 mt-md-0">
+        {% include figure.liquid 
+            loading="eager" 
+            path="assets/img/blog_img/svd_least_squares_projection.png" 
+            class="img-fluid rounded z-depth-1" 
+            zoomable=true 
+        %}
+    </div>
+</div>
+
+<div class="caption">
+    Least squares chooses the point in the range of A closest to b.
+</div>
+<br>
+
 Reduced SVD
 
 $$
@@ -1439,6 +1496,25 @@ x_{\text{LN}}
 $$
 
 이다.
+
+기하학적으로 보면 해집합은 Null Space 방향으로 뻗은 affine subspace이다. 이 해집합 위의 점들은 모두 같은 $b$를 만들지만, 원점에서 가장 가까운 점만이 Null Space 성분을 갖지 않는다. 그 점이 least norm solution이다.
+
+
+<div class="row mt-3 justify-content-sm-center">
+    <div class="col-sm-9 mt-3 mt-md-0">
+        {% include figure.liquid 
+            loading="eager" 
+            path="assets/img/blog_img/svd_least_norm_solution.png" 
+            class="img-fluid rounded z-depth-1" 
+            zoomable=true 
+        %}
+    </div>
+</div>
+
+<div class="caption">
+    When Ax=b has infinitely many solutions, the least norm solution is the one closest to the origin.
+</div>
+<br>
 
 SVD로 보면 해는 다음과 같다.
 
@@ -1712,118 +1788,7 @@ $$
 
 ---
 
-## 21. 그림으로 넣으면 좋은 내용
-<br>
-
-SVD 글에는 다음 그림을 넣으면 좋다.
-
----
-
-### 그림 1. 입력공간과 출력공간이 다른 선형변환
-<br>
-
-<div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/svd_domain_codomain_range.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
-        %}
-    </div>
-</div>
-
-<div class="caption">
-    A matrix as a linear map from the input space to the output space.
-</div>
-<br>
-
-이 그림에는 $\mathbb{R}^2$ 입력공간이 $\mathbb{R}^3$ 출력공간 안의 2차원 평면으로 mapping되는 모습을 넣으면 좋다.
-
----
-
-### 그림 2. SVD의 세 단계
-<br>
-
-<div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/svd_three_steps.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
-        %}
-    </div>
-</div>
-
-<div class="caption">
-    SVD as input rotation, axis scaling, and output rotation.
-</div>
-<br>
-
-이 그림에는
-
-$$
-x
-\rightarrow
-V^Tx
-\rightarrow
-\Sigma V^Tx
-\rightarrow
-U\Sigma V^Tx
-$$
-
-의 흐름을 넣으면 좋다.
-
----
-
-### 그림 3. Least squares as projection onto the range
-<br>
-
-<div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/svd_least_squares_projection.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
-        %}
-    </div>
-</div>
-
-<div class="caption">
-    Least squares solution as the projection of b onto the range of A.
-</div>
-<br>
-
-이 그림에는 $b$가 Range 밖에 있고, $\text{proj}_{\mathcal{R}(A)}b$가 Range 위에 있는 모습을 넣으면 좋다.
-
----
-
-### 그림 4. Least norm solution
-<br>
-
-<div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/svd_least_norm_solution.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
-        %}
-    </div>
-</div>
-
-<div class="caption">
-    Least norm solution among infinitely many solutions.
-</div>
-<br>
-
-이 그림에는 해집합이 affine subspace로 있고, 그중 원점에 가장 가까운 해가 선택되는 모습을 넣으면 좋다.
-
----
-
-## 22. 정리
+## 21. 정리
 <br>
 
 SVD는 임의의 행렬
