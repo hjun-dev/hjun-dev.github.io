@@ -234,11 +234,7 @@ $$
 
 이 구조의 직관은 간단하다. 처음부터 RL policy가 전체 착륙 과정을 학습하려고 하면 탐색공간이 너무 크다. 하지만 guide policy가 어느 정도 적절한 상태까지 환경을 진행시켜주면, RL policy는 남은 구간부터 학습할 수 있다. <br>
 
-로켓 착륙 문제에서는 baseline controller가 guide policy 역할을 한다. Baseline controller가 에피소드 초반을 담당하고, 이후 PPO policy가 이어받아 착륙을 시도한다.
-
-<br>
-
-Baseline controller가 담당하는 길이를 의미하는 guide horizon $H$에 대해 $H$가 길수록 RL policy는 착륙 후반부만 학습하고, $H$가 짧을수록 RL policy가 더 많은 구간을 직접 제어한다.
+로켓 착륙 문제에서는 baseline controller가 guide policy 역할을 한다. Baseline controller가 에피소드 초반을 담당하고, 이후 PPO policy가 이어받아 착륙을 시도한다. 여기서 guide horizon $H$는 baseline controller가 담당하는 시간 길이를 의미한다. $H$가 길수록 RL policy는 착륙 후반부만 학습하고, $H$가 짧을수록 RL policy가 더 앞부분부터 직접 제어하게 된다.
 
 ---
 
@@ -270,32 +266,52 @@ $$
 
 여기서 $\bar{H}$는 초기 guide horizon이고, $n$은 curriculum stage 수이다. <br>
 
-이 방식은 학습이 진행될수록 guide policy의 도움을 줄이고, 최종적으로는 RL policy가 전체 episode를 직접 수행하도록 만든다. 하지만 guide horizon이 stage 단위로 바뀌기 때문에, 각 stage 전환 시점에서 initial state distribution이 갑자기 달라진다. <br>
+이 방식은 학습이 진행될수록 guide policy의 도움을 줄이고, 최종적으로는 RL policy가 전체 episode를 직접 수행하도록 만든다. 즉, 초기 stage에서는 controller가 episode의 많은 구간을 담당하고 RL policy는 후반부만 학습한다. 이후 stage가 진행될수록 controller가 담당하는 구간은 줄어들고, RL policy가 직접 제어해야 하는 구간은 점점 늘어난다. <br>
 
-이러한 변화는 **distribution shift**를 발생시킨다. 특히 PPO와 같은 on-policy 알고리즘은 현재 policy로 수집한 데이터에 민감하므로, 상태분포가 갑자기 바뀌면 학습이 불안정해질 수 있다.
+이를 표로 나타내면 다음과 같다.
 
 <br>
 
-```text
-JSRL-Curriculum
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:center;">Stage</th>
+      <th style="text-align:center;">Guide controller</th>
+      <th style="text-align:center;">RL policy</th>
+      <th style="text-align:left;">Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:center;">Stage 1</td>
+      <td style="text-align:center;">High</td>
+      <td style="text-align:center;">Low</td>
+      <td>Controller가 대부분의 구간을 진행하고, policy는 후반부만 학습한다.</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;">Stage 2</td>
+      <td style="text-align:center;">Medium-high</td>
+      <td style="text-align:center;">Medium-low</td>
+      <td>Controller의 도움을 줄이고, policy가 더 앞 구간부터 학습한다.</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;">Stage 3</td>
+      <td style="text-align:center;">Medium-low</td>
+      <td style="text-align:center;">Medium-high</td>
+      <td>Policy가 episode의 더 많은 구간을 직접 제어한다.</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;">Final</td>
+      <td style="text-align:center;">None</td>
+      <td style="text-align:center;">Full</td>
+      <td>최종적으로 policy가 처음부터 끝까지 전체 episode를 수행한다.</td>
+    </tr>
+  </tbody>
+</table>
 
-Stage 1:
-Controller ==================== | Policy ==
+<br>
 
-Stage 2:
-Controller ===============      | Policy =======
-
-Stage 3:
-Controller =========            | Policy =============
-
-Stage 4:
-Controller ===                  | Policy ===================
-
-Final:
-Controller                      | Policy =======================
-```
-
-위 구조에서는 stage가 바뀔 때마다 policy가 시작하는 상태분포가 크게 달라질 수 있다.
+하지만 guide horizon이 stage 단위로 바뀌기 때문에, 각 stage 전환 시점에서 RL policy가 마주하는 initial state distribution이 갑자기 달라진다. 이러한 변화는 **distribution shift**를 발생시킨다. 특히 PPO와 같은 on-policy 알고리즘은 현재 policy로 수집한 데이터에 민감하므로, 상태분포가 갑자기 바뀌면 학습이 불안정해질 수 있다.
 
 ---
 
@@ -309,40 +325,16 @@ $$
 H \sim U(0,\bar{H})
 $$
 
-이 방식은 guide horizon이 매 episode마다 random하게 정해지기 때문에 JSRL-Curriculum보다 학습 중 distribution shift가 작다. <br>
+이 방식은 guide horizon이 매 episode마다 random하게 정해지기 때문에 JSRL-Curriculum보다 학습 중 distribution shift가 작다. 어떤 episode에서는 controller가 긴 구간을 담당하고, 다른 episode에서는 짧은 구간만 담당하므로 RL policy가 다양한 시작 상태를 경험할 수 있다. <br>
 
-하지만 JSRL-Random에는 **distribution mismatch** 문제가 있다. 학습 중에는 guide policy가 항상 일정 확률로 episode 초반을 진행한다. 반면 실제 evaluation에서는 RL policy가 처음부터 전체 episode를 제어해야 한다. 따라서 학습 중 exploration policy가 경험한 상태분포와 최종 evaluation 상태분포가 달라질 수 있다.
-
-<br>
-
-```text
-JSRL-Random during training
-
-Episode A:
-Controller ==========           | Policy =============
-
-Episode B:
-Controller ===                  | Policy ===================
-
-Episode C:
-Controller =================    | Policy ========
-
-Episode D:
-Controller ======               | Policy ================
-```
-
-<br>
-
-JSRL-Random은 매 episode마다 guide horizon이 달라지므로 학습 중 변화는 비교적 부드럽다. 하지만 guide horizon의 upper bound가 끝까지 유지되기 때문에, 최종적으로 policy가 처음부터 제어하는 상황과 mismatch가 남을 수 있다.
-
-<br>
+하지만 JSRL-Random에는 **distribution mismatch** 문제가 있다. 학습 중에는 guide policy가 항상 일정 확률로 episode 초반을 진행한다. 반면 실제 evaluation에서는 RL policy가 처음부터 전체 episode를 제어해야 한다. 따라서 학습 중 exploration policy가 경험한 상태분포와 최종 evaluation 상태분포가 달라질 수 있다. <br>
 
 정리하면 다음과 같다.
 
-| Method | Main Issue |
-| --- | --- |
-| JSRL-Curriculum | stage 전환 시 distribution shift |
-| JSRL-Random | 최종 evaluation과의 distribution mismatch |
+| Method | Guide horizon | Main Issue |
+| --- | --- | --- |
+| JSRL-Curriculum | Stage에 따라 점진적으로 감소 | stage 전환 시 distribution shift |
+| JSRL-Random | $U(0,\bar{H})$에서 random sampling | 최종 evaluation과의 distribution mismatch |
 
 <br>
 
@@ -362,49 +354,54 @@ $$
 
 여기서 $\bar{H}$는 maximum guide horizon이고, $\beta(\cdot)$는 annealing factor이다. $\beta$는 1에서 시작하여 학습이 진행될수록 0으로 감소한다. <br>
 
-초기에는 $\beta=1$이므로 guide horizon은 $U(0,\bar{H})$에서 sampling된다. 따라서 guide policy가 에피소드 초반을 도와준다. 학습이 진행되면 $\beta$가 감소하고, guide policy가 담당하는 구간이 점점 짧아진다. 최종적으로 $\beta=0$이 되면 $H=0$이므로 RL policy가 처음부터 전체 episode를 담당한다. <br>
+초기에는 $\beta=1$이므로 guide horizon은 $U(0,\bar{H})$에서 sampling된다. 따라서 guide policy가 에피소드 초반을 도와준다. 이 단계에서 RL policy는 착륙 전체 과정을 처음부터 학습하는 것이 아니라, guide policy가 만들어준 비교적 좋은 상태 이후부터 제어를 학습한다. <br>
 
-RAJS의 구조를 시각화하면 다음과 같다.
+학습이 진행되면 $\beta$가 감소한다. 그러면 guide horizon의 최대 길이가 줄어들고, controller가 담당하는 구간도 점점 짧아진다. 그만큼 RL policy는 더 이른 시점부터 직접 제어해야 한다. 최종적으로 $\beta=0$이 되면 $H=0$이므로, guide policy의 도움 없이 RL policy가 처음부터 전체 episode를 담당한다. <br>
 
-```text
-RAJS training progression
-
-Early training: β ≈ 1.0
-Controller ================     | Policy ========
-
-Middle training: β ≈ 0.5
-Controller ========             | Policy ================
-
-Late training: β ≈ 0.2
-Controller ===                  | Policy =====================
-
-Final training: β = 0
-Controller                      | Policy ========================
-```
+이를 정리하면 다음과 같다.
 
 <br>
 
-여기서 `Controller`는 baseline controller 또는 guide policy가 담당하는 구간이고, `Policy`는 학습 중인 RL policy가 담당하는 구간이다. RAJS는 학습 초반에는 controller의 도움을 크게 받고, 학습이 진행될수록 RL policy가 더 긴 구간을 직접 제어하도록 만든다.
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:center;">Training phase</th>
+      <th style="text-align:center;">$\beta$</th>
+      <th style="text-align:center;">Guide horizon range</th>
+      <th style="text-align:left;">Role of controller and policy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:center;">Early</td>
+      <td style="text-align:center;">$\beta \approx 1.0$</td>
+      <td style="text-align:center;">$U(0,\bar{H})$</td>
+      <td>Controller의 도움을 크게 받으며, policy는 주로 후반부 제어를 학습한다.</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;">Middle</td>
+      <td style="text-align:center;">$\beta \approx 0.5$</td>
+      <td style="text-align:center;">$U(0,0.5\bar{H})$</td>
+      <td>Controller가 담당하는 최대 구간이 줄어들고, policy가 더 앞부분부터 제어한다.</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;">Late</td>
+      <td style="text-align:center;">$\beta \approx 0.2$</td>
+      <td style="text-align:center;">$U(0,0.2\bar{H})$</td>
+      <td>Controller의 도움은 매우 짧아지고, policy가 대부분의 구간을 직접 수행한다.</td>
+    </tr>
+    <tr>
+      <td style="text-align:center;">Final</td>
+      <td style="text-align:center;">$\beta = 0$</td>
+      <td style="text-align:center;">$H=0$</td>
+      <td>Guide 없이 policy가 처음부터 끝까지 전체 episode를 수행한다.</td>
+    </tr>
+  </tbody>
+</table>
 
 <br>
 
-JSRL-Curriculum, JSRL-Random, RAJS를 비교하면 다음과 같다.
-
-```text
-JSRL-Curriculum:
-Controller ========> sudden stage change ========> Policy
-Guide horizon이 stage별로 줄어들어 분포 변화가 급격할 수 있음
-
-JSRL-Random:
-Controller / Policy split is random, but upper bound fixed
-학습 중에는 안정적이지만 최종 evaluation과 mismatch가 남을 수 있음
-
-RAJS:
-Random split + gradually shrinking upper bound
-학습 중 변화가 부드럽고, 최종적으로 policy가 전체 구간을 담당함
-```
-
-<br>
+따라서 RAJS는 JSRL-Random처럼 guide horizon을 무작위로 sampling하여 학습 중 상태분포 변화를 부드럽게 만들면서도, annealing을 통해 최종적으로는 RL policy가 원래 initial state distribution에서 직접 학습하도록 만든다. 즉, JSRL-Curriculum의 급격한 distribution shift와 JSRL-Random의 최종 evaluation mismatch를 동시에 완화하려는 구조이다. <br>
 
 RAJS의 annealing update는 다음과 같다.
 
@@ -428,35 +425,19 @@ $$
 
 논문에서 제안하는 RAJS with on-policy RL의 전체 흐름은 다음과 같다.
 
-```text
-Algorithm: Random Annealing Jump Start with On-Policy RL
+<br>
 
-Input:
-    guide policy π_g
-    maximum guide horizon H_bar
-    metric threshold P_thresh
-    annealing step size α
-    training batch size B
-
-Initialize:
-    exploration policy π_e
-    value function V
-    annealing factor β ← 1
-    moving mean metric P ← 0
-
-Repeat:
-    1. Initialize trajectory dataset D
-    2. Sample initial state s_0 from d_init
-    3. Sample guide horizon H ~ U(0, H_bar β)
-    4. Rollout floor(H) steps with guide policy π_g
-    5. Rollout until termination with exploration policy π_e
-    6. Store trajectory data in D
-    7. Train π_e and V using on-policy RL
-    8. Update β ← max(β - α I(P ≥ P_thresh), 0)
-
-Until:
-    β = 0 and convergence
-```
+| Step | Description |
+| --- | --- |
+| 1 | Guide policy $\pi_g$, maximum guide horizon $\bar{H}$, threshold $P_{thresh}$, annealing step size $\alpha$를 설정한다. |
+| 2 | Exploration policy $\pi_e$, value function $V$, annealing factor $\beta=1$을 초기화한다. |
+| 3 | Initial state $s_0$를 initial distribution에서 sampling한다. |
+| 4 | Guide horizon $H \sim U(0,\bar{H}\beta)$를 sampling한다. |
+| 5 | 처음 $\lfloor H \rfloor$ step은 guide policy $\pi_g$로 rollout한다. |
+| 6 | 이후 episode가 끝날 때까지 exploration policy $\pi_e$로 rollout한다. |
+| 7 | 수집한 trajectory data로 on-policy RL update를 수행한다. |
+| 8 | 성공률이 기준 $P_{thresh}$ 이상이면 $\beta$를 감소시킨다. |
+| 9 | $\beta=0$이 되고 policy가 수렴할 때까지 반복한다. |
 
 <br>
 
@@ -490,25 +471,9 @@ $$
 
 <br>
 
-이후 더 어려운 setting에서 새로운 exploration policy를 학습한다. 논문에서는 action smoothness regulation을 추가한 PPO-RAJS-S policy를 학습할 때 cascading jump start를 사용한다. <br>
+즉, 처음에는 기존 baseline controller를 guide로 사용하여 PPO-RAJS를 학습한다. 그 다음에는 학습된 PPO-RAJS policy를 더 나은 guide policy로 사용하여 새로운 exploration policy를 학습한다. 논문에서는 이 구조를 action smoothness regulation이 추가된 PPO-RAJS-S 학습에 사용한다. <br>
 
-즉, 처음에는 baseline controller를 이용해 기본적인 착륙 policy를 얻고, 그 다음에는 학습된 policy를 guide로 사용해 더 부드러운 제어 입력을 생성하는 policy를 학습한다.
-
-<br>
-
-```text
-Cascading Jump Start
-
-Stage 0 guide:
-Baseline controller
-        ↓
-Train PPO-RAJS
-        ↓
-Stage 1 guide:
-Trained PPO-RAJS policy
-        ↓
-Train PPO-RAJS-S with action smoothness
-```
+이 방식은 처음부터 smoothness constraint가 포함된 어려운 문제를 직접 학습하는 대신, 먼저 기본적인 착륙 policy를 얻고, 그 policy를 guide로 사용하여 더 부드러운 제어 입력을 생성하는 policy를 학습하는 구조이다.
 
 ---
 
