@@ -41,7 +41,7 @@ ninja.data = [{
         
           title: "[Paper Review] Predictive Safety Filter for Learning-Based Control",
         
-        description: "학습 기반 제어기의 입력을 MPC 기반 안전 필터로 검증하고 수정하는 Predictive Safety Filter 논문 리뷰",
+        description: "Constrained nonlinear dynamical system에서 learning-based controller의 입력을 predictive safety filter로 안전하게 검증하는 방법",
         section: "Posts",
         handler: () => {
           
