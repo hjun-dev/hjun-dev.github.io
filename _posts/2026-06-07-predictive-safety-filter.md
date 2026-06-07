@@ -404,22 +404,6 @@ $$
 
 <br>
 
-<br>
-
-```text
-Time k-1:
-[ u0, u1, u2, ..., uN-1 ]  → terminal safe set
-
-Apply u0
-
-Time k:
-[ u1, u2, ..., uN-1 ]      → terminal safe set
-
-If new full horizon plan is unavailable,
-follow the remaining backup plan.
-```
-
-<br>
 
 Nominal PSF의 안전성은 이 shrinking horizon과 recursive feasibility에 기반한다.
 
