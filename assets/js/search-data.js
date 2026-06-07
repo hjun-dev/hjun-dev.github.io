@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-linear-algebra-특이값분해의-직관적-이해",
+        },{id: "post-paper-review-predictive-safety-filter-for-learning-based-control",
+        
+          title: "[Paper Review] Predictive Safety Filter for Learning-Based Control",
+        
+        description: "학습 기반 제어기의 입력을 MPC 기반 안전 필터로 검증하고 수정하는 Predictive Safety Filter 논문 리뷰",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/predictive-safety-filter/";
+          
+        },
+      },{id: "post-linear-algebra-특이값분해의-직관적-이해",
         
           title: "[Linear Algebra] 특이값분해의 직관적 이해",
         
