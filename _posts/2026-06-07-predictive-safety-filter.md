@@ -404,6 +404,8 @@ $$
 
 <br>
 
+<br>
+
 ```text
 Time k-1:
 [ u0, u1, u2, ..., uN-1 ]  → terminal safe set
@@ -415,57 +417,66 @@ Time k:
 
 If new full horizon plan is unavailable,
 follow the remaining backup plan.
+```
 
 <br>
 
 Nominal PSF의 안전성은 이 shrinking horizon과 recursive feasibility에 기반한다.
 
-<br> <div class="row mt-3 justify-content-sm-center"> <div class="col-sm-8 mt-3 mt-md-0"> {% include figure.liquid loading="eager" path="assets/img/blog_img/psf_nominal_backup_trajectory.png" class="img-fluid rounded z-depth-1" zoomable=true %} </div> </div> <div class="caption"> Nominal predictive safety filter and backup trajectory.<br> (from Wabersich and Zeilinger, Predictive Safety Filter for Learning-Based Control) </div> <br>
+<br>
+
+<div class="row mt-3 justify-content-sm-center">
+    <div class="col-sm-8 mt-3 mt-md-0">
+        {% include figure.liquid 
+            loading="eager" 
+            path="assets/img/blog_img/psf_nominal_backup_trajectory.png" 
+            class="img-fluid rounded z-depth-1" 
+            zoomable=true 
+        %}
+    </div>
+</div>
+
+<div class="caption">
+    Nominal predictive safety filter and backup trajectory.<br>
+    (from Wabersich and Zeilinger, Predictive Safety Filter for Learning-Based Control)
+</div>
+<br>
 
 이 그림은 논문에서 PSF의 기본 구조를 보여주는 중요한 그림이다. 현재 입력을 허용하려면 terminal safe set으로 이어지는 backup trajectory가 존재해야 한다. 새 backup trajectory를 찾지 못하면 이전 backup trajectory의 남은 부분을 따라가며 terminal safe set으로 이동한다.
 
-7. Model Uncertainty and Constraint Tightening
+---
+
+## 7. Model Uncertainty and Constraint Tightening
+
 <br>
 
 현실에서는 모델이 정확하지 않다. 실제 시스템은 다음과 같지만,
 
-x(k+1)=f(x(k),u(k);θ
-R
-	
-
-)
+$$
+x(k+1)=f(x(k),u(k);\theta_R)
+$$
 
 우리는 평균 모델 또는 nominal model을 사용한다.
 
-f(x,u;
-θ
-ˉ
-)
+$$
+f(x,u;\bar{\theta})
+$$
 
 따라서 model error가 존재한다.
 
-e(k,θ
-R
-	
-
-)=f(x(k),u(k);θ
-R
-	
-
-)−f(x(k),u(k);
-θ
-ˉ
-)
+$$
+e(k,\theta_R)
+=
+f(x(k),u(k);\theta_R)
+-
+f(x(k),u(k);\bar{\theta})
+$$
 
 이 경우 nominal PSF의 핵심 등식이 깨진다.
 
-x(k)
-
-=μ
-1∣k−1
-∗
-	
-
+$$
+x(k)\neq \mu_{1|k-1}^{\ast}
+$$
 
 즉, 실제 상태는 이전에 예측한 nominal trajectory 위에 정확히 놓이지 않는다.
 
@@ -475,180 +486,125 @@ x(k)
 
 Nominal predicted state는 $\mu$로 쓴다.
 
-μ
-i+1∣k
-	
-
-=f(μ
-i∣k
-	
-
-,v
-i∣k
-	
-
-;
-θ
-ˉ
-)
+$$
+\mu_{i+1|k}=f(\mu_{i|k},v_{i|k};\bar{\theta})
+$$
 
 그리고 nominal trajectory가 원래 제약 경계까지 가지 않도록 제약을 tighten한다.
 
 상태 제약은 다음처럼 줄어든다.
 
-X
-ˉ
-i
-	
-
-={x∣A
-x
-	
-
-x≤(1−ϵ
-i
-	
-
-)1}
+$$
+\bar{X}_i
+=
+\{x\mid A_xx\leq (1-\epsilon_i)\mathbf{1}\}
+$$
 
 입력 제약도 마찬가지이다.
 
-U
-ˉ
-i
-	
-
-={u∣A
-u
-	
-
-u≤(1−ϵ
-i
-	
-
-)1}
+$$
+\bar{U}_i
+=
+\{u\mid A_uu\leq (1-\epsilon_i)\mathbf{1}\}
+$$
 
 terminal set도 줄인다.
 
-S
-ˉ
-N
-f
-	
+$$
+\bar{S}_N^f
+=
+\{x\mid a_S(x)\leq (1-\epsilon_N)\mathbf{1}\}
+$$
 
-={x∣a
-S
-	
-
-(x)≤(1−ϵ
-N
-	
-
-)1}
 <br>
 
 즉, uncertain PSF에서는 nominal trajectory가 원래 constraint가 아니라 tightened constraint 안에 있어야 한다.
 
-μ
-i∣k
-	
+$$
+\mu_{i|k}\in \bar{X}_i
+$$
 
-∈
-X
-ˉ
-i
-	
-
-v
-i∣k
-	
-
-∈
-U
-ˉ
-i
-	
-
+$$
+v_{i|k}\in \bar{U}_i
+$$
 
 이렇게 하면 실제 trajectory가 model error 때문에 nominal trajectory에서 조금 벗어나도 원래 제약 $X$, $U$ 안에 남을 수 있다.
 
-<br> <div class="row mt-3 justify-content-sm-center"> <div class="col-sm-8 mt-3 mt-md-0"> {% include figure.liquid loading="eager" path="assets/img/blog_img/psf_uncertainty_tube_tightening.png" class="img-fluid rounded z-depth-1" zoomable=true %} </div> </div> <div class="caption"> Uncertainty tube and tightened constraints in the predictive safety filter.<br> (from Wabersich and Zeilinger, Predictive Safety Filter for Learning-Based Control) </div> <br>
+<br>
+
+<div class="row mt-3 justify-content-sm-center">
+    <div class="col-sm-8 mt-3 mt-md-0">
+        {% include figure.liquid 
+            loading="eager" 
+            path="assets/img/blog_img/psf_uncertainty_tube_tightening.png" 
+            class="img-fluid rounded z-depth-1" 
+            zoomable=true 
+        %}
+    </div>
+</div>
+
+<div class="caption">
+    Uncertainty tube and tightened constraints in the predictive safety filter.<br>
+    (from Wabersich and Zeilinger, Predictive Safety Filter for Learning-Based Control)
+</div>
+<br>
 
 이 그림은 nominal trajectory와 실제 trajectory의 차이를 직관적으로 보여준다. PSF는 평균 모델 기준의 nominal trajectory를 계획하지만, 실제 시스템은 모델 오차 때문에 그 주변 tube 안에서 움직일 수 있다. 따라서 nominal trajectory는 원래 constraint boundary가 아니라 tightened constraint 안쪽에 있어야 한다.
 
-8. Tightening Sequence
+---
+
+## 8. Tightening Sequence
+
 <br>
 
 tightening factor는 다음과 같이 정의된다.
 
-ϵ
-0
-	
+$$
+\epsilon_0=0
+$$
 
-=0
-ϵ
-i+1
-	
-
-=ϵ
-i
-	
-
-+
-ρ
-i
-	
-
-ϵ
+$$
+\epsilon_{i+1}=\epsilon_i+\sqrt{\rho^i}\epsilon
+$$
 
 따라서
 
-ϵ
-i
-	
-
-=ϵ
-1−
-ρ
-	
-
-1−
-ρ
-	
-
-i
-	
-
+$$
+\epsilon_i
+=
+\epsilon
+\frac{1-\sqrt{\rho}^{\,i}}
+{1-\sqrt{\rho}}
+$$
 
 여기서 $\rho$는 actual state가 nominal trajectory를 얼마나 빨리 따라잡을 수 있는지를 나타내는 contraction rate이다.
 
-$\rho\approx 0$이면 tracking error가 빠르게 줄어든다.
-$\rho\approx 1$이면 tracking error가 오래 남는다.
+- $\rho\approx 0$이면 tracking error가 빠르게 줄어든다.
+- $\rho\approx 1$이면 tracking error가 오래 남는다.
 
 $\epsilon$은 기본 tightening scale이다.
 
-$\epsilon$이 크면 더 보수적이다.
-$\epsilon$이 작으면 덜 보수적이지만 model error에 취약하다.
+- $\epsilon$이 크면 더 보수적이다.
+- $\epsilon$이 작으면 덜 보수적이지만 model error에 취약하다.
+
 <br>
 
 이 tightening sequence는 단순히 임의로 만든 것이 아니다. 시간 $k$의 backup plan을 시간 $k+1$에서 한 칸 shift할 때 생기는 deviation을 흡수하기 위해 설계된다.
 
 즉,
 
-ϵ
-i+1
-	
-
-−ϵ
-i
-	
-
+$$
+\epsilon_{i+1}-\epsilon_i
+$$
 
 는 shifted backup trajectory와 실제 candidate trajectory 사이의 차이를 흡수하는 margin이다.
 
 조금 더 직관적으로 보면 다음과 같다. 시간 $k$에서 $i+1$ step 뒤의 nominal state는 더 멀리 있는 미래 상태이므로 더 강하게 tightened된 set 안에 있어야 한다. 시간 $k+1$이 되면 그 상태는 이제 $i$ step 뒤의 상태가 된다. 이때 horizon index가 하나 줄어들면서 constraint tightening도 조금 완화된다. 그 완화된 양이 바로 model error와 tracking deviation을 흡수하는 여유가 된다.
 
-9. Model Confidence Map
+---
+
+## 9. Model Confidence Map
+
 <br>
 
 모델 불확실성을 전체 영역에서 하나의 큰 bound로 잡으면 지나치게 보수적이다.
@@ -657,65 +613,34 @@ i
 
 이를 반영하기 위해 논문은 state-input dependent uncertainty를 사용한다.
 
-E
-p
-S
-	
-
-	
-
-(x,u)
+$$
+E_{p_S}(x,u)
+$$
 
 이것은 상태-입력 쌍 $(x,u)$에서 가능한 model error들의 집합이다. Bayesian regression이나 Gaussian Process를 사용하면 posterior variance를 통해 이런 confidence set을 만들 수 있다.
 
 PSF는 backup trajectory가 모델을 충분히 믿을 수 있는 영역만 지나가도록 다음 조건을 둔다.
 
-E
-p
-S
-	
-
-	
-
-(μ
-i∣k
-	
-
-,v
-i∣k
-	
-
-)⊆
-E
-ˉ
-i
-γ
-	
-
+$$
+E_{p_S}(\mu_{i|k},v_{i|k})
+\subseteq
+\bar{E}_i^\gamma
+$$
 
 여기서 $\bar{E}_i^\gamma$는 허용 가능한 작은 error set이다.
 
-E
-ˉ
-i
-γ
-	
+$$
+\bar{E}_i^\gamma
+=
+\{e\mid a_E(e)\leq \gamma(1-\epsilon_i)\mathbf{1}\}
+$$
 
-={e∣a
-E
-	
-
-(e)≤γ(1−ϵ
-i
-	
-
-)1}
 <br>
 
 이 조건의 의미는 다음이다.
 
-해당 예측 상태-입력 지점에서 가능한 model error가
-우리가 감당할 수 있는 작은 error set 안에 들어와야 한다.
+> 해당 예측 상태-입력 지점에서 가능한 model error가  
+> 우리가 감당할 수 있는 작은 error set 안에 들어와야 한다.
 
 즉, PSF는 모델이 불확실한 영역에서는 backup trajectory를 만들지 못한다.
 
@@ -725,144 +650,79 @@ i
 
 초기에는 데이터가 적기 때문에 PSF가 매우 보수적으로 행동한다. 하지만 안전하게 rollout을 반복하면서 데이터가 쌓이면 모델의 posterior variance가 줄어든다. 그러면 confidence set $E_{p_S}(x,u)$가 작아지고, 더 많은 상태-입력 쌍이 다음 조건을 만족하게 된다.
 
-E
-p
-S
-	
-
-	
-
-(x,u)⊆
-E
-ˉ
-i
-γ
-	
-
+$$
+E_{p_S}(x,u)\subseteq \bar{E}_i^\gamma
+$$
 
 결과적으로 PSF가 허용하는 backup trajectory의 범위가 넓어진다.
 
-10. Final PSF Optimization Problem
+---
+
+## 10. Final PSF Optimization Problem
+
 <br>
 
 불확실한 모델을 고려한 최종 PSF 문제는 다음 구조를 가진다.
 
-{v
-i
-	
-
-}
-min
-	
-
-∥u
-L
-	
-
-(k)−v
-0∣k
-	
-
-∥
+$$
+\min_{\{v_i\}}
+\|u_L(k)-v_{0|k}\|
+$$
 
 subject to
 
-μ
-i+1∣k
-	
+$$
+\mu_{i+1|k}
+=
+f(\mu_{i|k},v_{i|k};\bar{\theta})
+$$
 
-=f(μ
-i∣k
-	
+$$
+\mu_{i|k}\in \bar{X}_i
+$$
 
-,v
-i∣k
-	
+$$
+v_{i|k}\in \bar{U}_i
+$$
 
-;
-θ
-ˉ
-)
-μ
-i∣k
-	
+$$
+E_{p_S}(\mu_{i|k},v_{i|k})
+\subseteq
+\bar{E}_i^\gamma
+$$
 
-∈
-X
-ˉ
-i
-	
+$$
+\mu_{N|k}\in \bar{S}_N^f
+$$
 
-v
-i∣k
-	
+$$
+\mu_{0|k}=x(k)
+$$
 
-∈
-U
-ˉ
-i
-	
-
-E
-p
-S
-	
-
-	
-
-(μ
-i∣k
-	
-
-,v
-i∣k
-	
-
-)⊆
-E
-ˉ
-i
-γ
-	
-
-μ
-N∣k
-	
-
-∈
-S
-ˉ
-N
-f
-	
-
-μ
-0∣k
-	
-
-=x(k)
 <br>
 
 각 항의 역할은 다음과 같다.
 
-Component	Role
-Objective $|u_L-v_0|$	learning input을 최대한 유지
-Nominal dynamics	평균 모델 기준 backup trajectory 생성
-Tightened state constraint	실제 상태가 원래 $X$를 위반하지 않도록 margin 확보
-Tightened input constraint	실제 입력이 원래 $U$를 위반하지 않도록 margin 확보
-Confidence map constraint	모델이 충분히 정확한 영역에서만 planning
-Terminal set constraint	finite horizon 이후의 safety 보장
-Initial condition	현재 실제 상태에서 출발
+| Component | Role |
+| --- | --- |
+| Objective $\|u_L-v_0\|$ | learning input을 최대한 유지 |
+| Nominal dynamics | 평균 모델 기준 backup trajectory 생성 |
+| Tightened state constraint | 실제 상태가 원래 $X$를 위반하지 않도록 margin 확보 |
+| Tightened input constraint | 실제 입력이 원래 $U$를 위반하지 않도록 margin 확보 |
+| Confidence map constraint | 모델이 충분히 정확한 영역에서만 planning |
+| Terminal set constraint | finite horizon 이후의 safety 보장 |
+| Initial condition | 현재 실제 상태에서 출발 |
+
 <br>
 
 이 문제의 목적함수는 performance cost가 아니다. PSF는 task objective를 최적화하는 것이 아니라, learning input을 최소 수정하면서 safety certificate를 찾는 문제를 푼다.
 
 즉, PSF가 푸는 문제는 다음과 같이 요약할 수 있다.
 
-현재 learning input을 최대한 유지하되,
-평균 모델 기준으로 tightened constraints를 만족하고,
-모델 uncertainty가 충분히 작은 영역을 지나며,
-마지막에는 terminal safe set에 도달하는 backup trajectory를 찾아라.
+> 현재 learning input을 최대한 유지하되,  
+> 평균 모델 기준으로 tightened constraints를 만족하고,  
+> 모델 uncertainty가 충분히 작은 영역을 지나며,  
+> 마지막에는 terminal safe set에 도달하는 backup trajectory를 찾아라.
 
 여기까지가 PSF의 핵심 formulation이다.
 
