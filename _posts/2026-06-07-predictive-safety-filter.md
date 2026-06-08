@@ -286,13 +286,13 @@ $$
 x_{0|k}=x(k)
 $$
 
-목적함수는 task cost가 아니다. 오직 learning input $u_L(k)$와 첫 번째 backup input $u_{0|k}$의 차이를 줄인다.
+목적함수는 task cost가 아니다. 오직 learning input $u_L(k)$와 첫 번째 backup input $u_{0\vert k}$의 차이를 줄인다.
 
 $$
 \min \|u_L(k)-u_{0|k}\|
 $$
 
-따라서 $u_L(k)$가 안전하면 최적해는 $u_{0|k}^{\ast}=u_L(k)$가 된다. 반대로 $u_L(k)$를 그대로 쓰면 terminal safe set으로 가는 safe backup plan이 없으면, PSF는 $u_L(k)$를 최소한으로 수정한다.
+따라서 $u_L(k)$가 안전하면 최적해는 $u_{0\vert k}^{\ast}=u_L(k)$가 된다. 반대로 $u_L(k)$를 그대로 쓰면 terminal safe set으로 가는 safe backup plan이 없으면, PSF는 $u_L(k)$를 최소한으로 수정한다.
 
 ---
 
@@ -439,7 +439,7 @@ $$
 \mu_{i+1|k}=f(\mu_{i|k},v_{i|k};\bar{\theta})
 $$
 
-여기서 $\mu_{i|k}$는 평균 모델에 의해 예측된 nominal state이고, $v_{i|k}$는 nominal input이다.
+여기서 $\mu_{i\vert k}$는 평균 모델에 의해 예측된 nominal state이고, $v_{i\vert k}$는 nominal input이다.
 
 문제는 nominal prediction이 제약을 만족하더라도 실제 시스템은 model error 때문에 제약을 위반할 수 있다는 점이다.
 
@@ -711,7 +711,7 @@ $$
 
 <br>
 
-이제 논문의 최종 predictive safety filter problem을 정리할 수 있다. 최종 PSF는 nominal state sequence $\{\mu_{i|k}\}$와 nominal input sequence $\{v_{i|k}\}$를 최적화한다.
+이제 논문의 최종 predictive safety filter problem을 정리할 수 있다. 최종 PSF는 nominal state sequence $\{\mu_{i \vert k}\}$와 nominal input sequence $\{v_{i \vert k}\}$를 최적화한다.
 
 목적은 learning input $u_L(k)$와 첫 번째 nominal input $v_{0|k}$의 차이를 최소화하는 것이다.
 
