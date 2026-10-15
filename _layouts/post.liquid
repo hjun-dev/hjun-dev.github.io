@@ -15,7 +15,7 @@ layout: default
   </style>
 {% endif %}
 
-<div class="post post-reading">
+<div class="post post-reading{% if page.toc and page.toc.sidebar %} post-reading--with-toc{% if page.toc.sidebar == 'right' %} post-reading--toc-right{% endif %}{% endif %}">
   <header class="post-header post-reading__header">
     <p class="eyebrow">{% if page.tags contains 'paper review' %}Paper review{% else %}Research article{% endif %}</p>
     <h1 class="post-title">{{ page.title | remove_first: '[Paper Review] ' }}</h1>
@@ -69,7 +69,10 @@ layout: default
   <div class="post-reading-layout {% if page.toc and page.toc.sidebar %}post-reading-layout--with-toc post-reading-layout--toc-{{ page.toc.sidebar }}{% endif %}">
     {% if page.toc and page.toc.sidebar and page.toc.sidebar != 'right' %}
       <aside class="post-toc-desktop" aria-label="Table of contents">
-        <nav id="toc-sidebar" class="sticky-top"></nav>
+        <div class="post-toc-desktop__inner">
+          <p class="post-toc-label">On this page</p>
+          <nav id="toc-sidebar" aria-label="Article sections"></nav>
+        </div>
       </aside>
     {% endif %}
 
@@ -85,6 +88,9 @@ layout: default
           {{ content }}
         </div>
       </article>
+
+    </div>
+    <div class="post-reading__after">
 
       {% if page.citation %}
         {% include citation.liquid %}
@@ -113,7 +119,10 @@ layout: default
 
     {% if page.toc and page.toc.sidebar == 'right' %}
       <aside class="post-toc-desktop" aria-label="Table of contents">
-        <nav id="toc-sidebar" class="sticky-top"></nav>
+        <div class="post-toc-desktop__inner">
+          <p class="post-toc-label">On this page</p>
+          <nav id="toc-sidebar" aria-label="Article sections"></nav>
+        </div>
       </aside>
     {% endif %}
   </div>

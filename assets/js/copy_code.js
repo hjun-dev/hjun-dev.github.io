@@ -17,29 +17,36 @@ codeBlocks.forEach(function (codeBlock) {
     copyButton.type = "button";
     copyButton.ariaLabel = "Copy code to clipboard";
     copyButton.innerText = "Copy";
-    copyButton.innerHTML = '<i class="fa-solid fa-clipboard"></i>';
+    copyButton.innerHTML = '<i class="fa-solid fa-clipboard" aria-hidden="true"></i>';
 
     // get code from code block and copy to clipboard
-    copyButton.addEventListener("click", function () {
+    copyButton.addEventListener("click", async function () {
       // check if code block has line numbers
       // i.e. `kramdown.syntax_highlighter_opts.block.line_numbers` set to true in _config.yml
       // or using `jekyll highlight` liquid tag with `linenos` option
       if (codeBlock.querySelector("pre:not(.lineno)")) {
         // get code from code block ignoring line numbers
-        var code = codeBlock.querySelector("pre:not(.lineno)").innerText.trim();
+        var code = codeBlock.querySelector("pre:not(.lineno)").textContent;
       } else {
-        // if (codeBlock.querySelector('code')) {
         // get code from code block when line numbers are not displayed
-        var code = codeBlock.querySelector("code").innerText.trim();
+        var code = codeBlock.querySelector("code").textContent;
       }
-      window.navigator.clipboard.writeText(code);
-      copyButton.innerText = "Copied";
-      copyButton.innerHTML = '<i class="fa-solid fa-clipboard-check"></i>';
+      copyButton.disabled = true;
+      try {
+        await window.navigator.clipboard.writeText(code);
+        copyButton.ariaLabel = "Code copied";
+        copyButton.innerHTML = '<i class="fa-solid fa-clipboard-check" aria-hidden="true"></i>';
+      } catch {
+        copyButton.ariaLabel = "Copy failed; select the code manually";
+        copyButton.innerText = "Copy";
+      } finally {
+        copyButton.disabled = false;
+      }
       var waitFor = 3000;
 
       setTimeout(function () {
-        copyButton.innerText = "Copy";
-        copyButton.innerHTML = '<i class="fa-solid fa-clipboard"></i>';
+        copyButton.ariaLabel = "Copy code to clipboard";
+        copyButton.innerHTML = '<i class="fa-solid fa-clipboard" aria-hidden="true"></i>';
       }, waitFor);
     });
 

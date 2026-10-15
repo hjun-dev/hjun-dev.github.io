@@ -43,6 +43,12 @@ test("supports technical overflow and bounded desktop TOCs", () => {
   assert.match(postScss, /font-size:\s*1\.0625rem/);
 });
 
+test("balances bilingual titles and keeps Korean words together without changing code wrapping", () => {
+  assert.match(postScss, /\.post-title\s*\{[^}]*text-wrap:\s*balance;[^}]*word-break:\s*keep-all;/s);
+  assert.match(postScss, /\.post-content\s*\{[^}]*word-break:\s*keep-all;/s);
+  assert.match(postScss, /pre code\s*\{[^}]*white-space:\s*pre;[^}]*word-break:\s*normal;/s);
+});
+
 test("gives the sticky desktop TOC a full-height grid containing block", () => {
   assert.match(
     postScss,

@@ -70,6 +70,8 @@ jobs:
         run: bundle exec ruby tests/cache-bust.test.rb
       - name: Verify original portrait rendering
         run: bundle exec ruby tests/portrait-render.test.rb
+      - name: Verify site and reading interactions
+        run: node --test tests/*.test.mjs
       - name: Build
         env:
           JEKYLL_ENV: production
