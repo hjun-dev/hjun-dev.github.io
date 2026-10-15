@@ -1,0 +1,19 @@
+{% assign document = include.document %}
+
+<article class="blog-archive-row">
+  <div class="blog-archive-row__body">
+    <h2 class="blog-archive-row__title">
+      {% if document.redirect == blank %}
+        <a href="{{ document.url | relative_url }}">{{ document.title }}</a>
+      {% elsif document.redirect contains '://' %}
+        <a href="{{ document.redirect }}" target="_blank" rel="noopener noreferrer">{{ document.title }}</a>
+      {% else %}
+        <a href="{{ document.redirect | relative_url }}">{{ document.title }}</a>
+      {% endif %}
+    </h2>
+    {% if document.description %}
+      <p class="blog-archive-row__description">{{ document.description }}</p>
+    {% endif %}
+  </div>
+  <time class="blog-archive-row__date" datetime="{{ document.date | date_to_xmlschema }}">{{ document.date | date: '%Y.%m.%d' }}</time>
+</article>

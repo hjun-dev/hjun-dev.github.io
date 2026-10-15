@@ -3,15 +3,26 @@
 
 {% if topic_posts and topic_posts.size > 0 %}
   {% assign topic_path = topic.key | slugify | prepend: '/blog/category/' | append: '/' %}
+  {% assign topic_post_noun = 'posts' %}
+  {% if topic_posts.size == 1 %}
+    {% assign topic_post_noun = 'post' %}
+  {% endif %}
   <article class="blog-topic-panel surface">
     <header class="blog-topic-panel__header">
       <h3>
         <a href="{{ topic_path | relative_url }}">{{ topic.label }}</a>
       </h3>
-      <span class="blog-topic-panel__count">
-        {{- topic_posts.size }}
-        {% if topic_posts.size == 1 %}post{% else %}posts{% endif -%}
-      </span>
+      <a
+        class="blog-topic-panel__count-link"
+        href="{{ topic_path | relative_url }}"
+        aria-label="View all {{ topic_posts.size }} {{ topic_post_noun }} in {{ topic.label }}"
+      >
+        <span class="blog-topic-panel__count">
+          {{- topic_posts.size }}
+          {{ topic_post_noun -}}
+        </span>
+        <span class="blog-topic-panel__arrow" aria-hidden="true">→</span>
+      </a>
     </header>
 
     <ol class="blog-topic-panel__posts">

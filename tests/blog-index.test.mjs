@@ -26,6 +26,8 @@ const blogPage = readText("_pages/blog.md");
 const blogScss = readOptional("_sass/_blog.scss");
 const topicsData = readOptional("_data/blog_topics.yml");
 const topicPanel = readOptional("_includes/blog/topic_panel.liquid");
+const archiveLayout = readOptional("_layouts/archive.liquid");
+const archiveRow = readOptional("_includes/blog/archive_row.liquid");
 
 test("page one progresses from summary to topics and all posts without a duplicate latest module", () => {
   assert.match(blogPage, /paginator\.page\s*==\s*1/);
@@ -50,6 +52,27 @@ test("all configured topics resolve to canonical posts", () => {
 
 test("omits topic panels whose filtered post list is empty", () => {
   assert.match(topicPanel, /if topic_posts and topic_posts\.size > 0[\s\S]*endif/);
+});
+
+test("topic post counts link to their canonical archives with an accessible arrow", () => {
+  assert.match(
+    topicPanel,
+    /<a\s+class="blog-topic-panel__count-link"[\s\S]*href="{{ topic_path \| relative_url }}"[\s\S]*aria-label="View all {{ topic_posts\.size }} {{ topic_post_noun }} in {{ topic\.label }}"/
+  );
+  assert.match(topicPanel, /class="blog-topic-panel__arrow" aria-hidden="true">→<\/span>/);
+});
+
+test("topic post count labels use the singular noun for one post", () => {
+  assert.match(topicPanel, /assign topic_post_noun = ['"]posts['"][\s\S]*topic_posts\.size == 1[\s\S]*assign topic_post_noun = ['"]post['"]/);
+  assert.match(topicPanel, /aria-label="View all {{ topic_posts\.size }} {{ topic_post_noun }} in {{ topic\.label }}"/);
+});
+
+test("category archives show newest-first article summaries with dates on the right", () => {
+  assert.match(archiveLayout, /assign sorted_documents = page\.documents \| sort: ['"]date['"] \| reverse/);
+  assert.match(archiveLayout, /page\.type == ['"]categories['"][\s\S]*blog\/archive_row\.liquid/);
+  assert.match(archiveRow, /class="blog-archive-row__title"[\s\S]*document\.description[\s\S]*class="blog-archive-row__date"/);
+  assert.match(blogScss, /\.blog-archive-row\s*{[\s\S]*?border-bottom:\s*1px solid var\(--journal-border\)/);
+  assert.match(blogScss, /\.blog-archive-row\s*{[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\)\s+auto/);
 });
 
 test("later pagination pages omit page-one discovery modules", () => {
