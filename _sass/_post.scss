@@ -132,7 +132,7 @@
   }
 
   #toc-sidebar {
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     line-height: 1.5;
     max-height: calc(100vh - 9rem);
     overscroll-behavior: contain;
@@ -146,7 +146,7 @@
       border-left: 2px solid var(--journal-border);
       color: var(--journal-muted);
       display: block;
-      overflow-wrap: anywhere;
+      overflow-wrap: break-word;
       padding: 0.4rem 0.6rem;
       text-decoration: none;
 
@@ -185,7 +185,7 @@
   padding: 0;
 
   &__subitem {
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     margin-left: 0.75rem;
   }
 }
@@ -501,6 +501,33 @@
   }
 }
 
+.post-series-nav {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 1rem;
+
+  a {
+    border: 1px solid var(--journal-border);
+    border-radius: 3px;
+    color: var(--journal-ink);
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    font-weight: 600;
+    gap: 0.4rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    padding: 0.85rem 1rem;
+    text-decoration: none;
+
+    &:hover, &:focus-visible { background: var(--journal-surface-muted); border-color: var(--journal-accent); }
+    &[rel="next"] { grid-column: 2; }
+  }
+
+  &__label { color: var(--journal-muted); font-size: 0.72rem; font-weight: 500; }
+}
+
 @media (max-width: 991.98px) {
   .post-reading {
     --post-columns: minmax(0, var(--journal-reading-width));
@@ -528,6 +555,11 @@
 }
 
 @media (max-width: 575.98px) {
+  .post-series-nav {
+    grid-template-columns: minmax(0, 1fr);
+    a[rel="next"] { grid-column: 1; }
+  }
+
   .post-reading {
     &__header { margin: 0.25rem 0 1.5rem; }
     &__dek { font-size: 0.94rem; line-height: 1.65; word-break: keep-all; }

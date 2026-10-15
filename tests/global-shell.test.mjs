@@ -58,7 +58,7 @@ test("uses one responsive editorial shell across portfolio pages", () => {
   assert.match(header, /class="navbar-brand site-brand/);
   assert.match(aboutLayout, /class="home-page journal-shell"/);
   assert.match(aboutLayout, /class="home-hero/);
-  assert.match(pageLayout, /class="page-shell journal-shell"/);
+  assert.match(pageLayout, /class="page-shell journal-shell\b/);
   assert.match(projectCard, /class="project-card/);
   assert.match(mainScss, /"portfolio"/);
 });

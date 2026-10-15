@@ -245,6 +245,17 @@ a.anchor {
   visibility: hidden;
 }
 
+@media (min-width: 992px) {
+  .cv-header { margin: 1rem 0 1.25rem; }
+  .cv-header h1 { font-size: 3rem; }
+  .cv-summary { padding: 0.65rem 1rem; }
+  .cv-summary td { line-height: 1.45; }
+  .cv-section-nav { padding: 0.65rem 0; }
+  .cv-section { gap: 2.5rem; padding: 2rem 0; }
+  .cv-timeline__item { padding-bottom: 1rem; }
+  .cv-timeline__item:last-child { padding-bottom: 0; }
+}
+
 @media (max-width: 767.98px) {
   .cv-summary {
     padding: 0.85rem;

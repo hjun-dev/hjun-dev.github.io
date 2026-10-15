@@ -72,6 +72,8 @@ jobs:
         run: bundle exec ruby tests/portrait-render.test.rb
       - name: Verify mobile CV rendering
         run: bundle exec ruby tests/cv-mobile-render.test.rb
+      - name: Verify related reading navigation
+        run: bundle exec ruby tests/related-posts-render.test.rb
       - name: Verify site and reading interactions
         run: node --test tests/*.test.mjs
       - name: Build

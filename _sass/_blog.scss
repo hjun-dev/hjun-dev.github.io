@@ -143,27 +143,23 @@
 
 .blog-specific-topics {
   border-top: 1px solid var(--journal-border);
-  margin-top: 1.25rem;
-  padding-top: 1rem;
+  margin-top: 1rem;
 
-  &__heading {
-    align-items: baseline;
-    display: flex;
-    gap: 1rem;
-    justify-content: space-between;
-    margin-bottom: 1rem;
+  summary {
+    color: var(--journal-muted);
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 600;
+    min-height: 44px;
+    padding: 0.65rem 0;
+  }
 
-    h3 {
-      font-size: 0.88rem;
-      margin: 0;
-    }
+  &[open] summary { color: var(--journal-ink); }
+  .blog-tag-browser { padding: 0.3rem 0 0.6rem; }
 
-    p {
-      color: var(--journal-muted);
-      font-size: 0.76rem;
-      margin: 0;
-      text-align: right;
-    }
+  summary:focus-visible {
+    outline: 2px solid var(--journal-accent);
+    outline-offset: 3px;
   }
 }
 
@@ -543,16 +539,6 @@
     grid-template-columns: minmax(0, 1fr) auto;
   }
 
-  .blog-specific-topics__heading {
-    align-items: start;
-    flex-direction: column;
-    gap: 0.35rem;
-
-    p {
-      text-align: left;
-    }
-  }
-
   .blog-post-row {
     gap: 0.55rem;
     grid-template-areas:
@@ -577,6 +563,41 @@
     padding: 0;
   }
 
+}
+
+@media (min-width: 992px) {
+  .blog-masthead {
+    align-items: end;
+    gap: 1.75rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 0.25rem 0 1rem;
+  }
+
+  .blog-intro {
+    h1 { font-size: 2.8rem; margin: 0.4rem 0 0.55rem; }
+    > p:not(.eyebrow) { font-size: 0.94rem; max-width: 44rem; }
+  }
+
+  .blog-jump-nav { margin-top: 0.65rem; }
+
+  .blog-summary {
+    align-self: center;
+    gap: 1.25rem;
+    grid-template-columns: auto auto;
+
+    > div { border-top: 0; display: block; padding: 0; }
+    dd { font-size: 1.6rem; }
+  }
+
+  .blog-section { margin-top: 1.5rem; }
+  .blog-section .section-heading { margin-bottom: 1rem; }
+  .blog-topic-groups { gap: 1.25rem; margin-top: 0; }
+  .blog-topic-group__header { padding: 0.7rem 1rem; }
+  .blog-topic-panel { padding: 0.7rem 0; }
+  .blog-topic-panel__header { align-items: baseline; gap: 0.5rem 0.75rem; grid-template-columns: minmax(0, 1fr) auto; }
+  .blog-topic-panel__count-link { white-space: nowrap; }
+  .blog-topic-panel__description { margin-top: 0.4rem; }
+  .blog-post-row { padding: 1.2rem 0; }
 }
 
 @media (max-width: 479.98px) {

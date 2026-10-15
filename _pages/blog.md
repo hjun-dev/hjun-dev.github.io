@@ -58,7 +58,6 @@ pagination:
     <section class="blog-section blog-discovery" aria-labelledby="explore-topics">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">Fields &amp; methods</p>
           <h2 id="explore-topics">Explore by topic</h2>
         </div>
       </div>
@@ -88,12 +87,10 @@ pagination:
         {% endfor %}
       </div>
 
-      <div class="blog-specific-topics">
-        <div class="blog-specific-topics__heading">
-          <h3>Browse specific topics</h3>
-        </div>
+      <details class="blog-specific-topics">
+        <summary>Browse specific topics</summary>
         {% include blog/tag_browser.liquid %}
-      </div>
+      </details>
     </section>
 
 {% endif %}
@@ -101,7 +98,6 @@ pagination:
   <section class="blog-section blog-archive" aria-labelledby="all-posts">
     <div class="section-heading">
       <div>
-        <p class="eyebrow">Chronological archive</p>
         <h2 id="all-posts">All posts{% if paginator.page > 1 %} · Page {{ paginator.page }}{% endif %}</h2>
       </div>
     </div>

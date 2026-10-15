@@ -4,6 +4,7 @@ permalink: /publications/
 title: Publications
 description: Publications organized by category and date.
 eyebrow: Research output
+page_class: publication-page
 nav: true
 nav_order: 2
 ---

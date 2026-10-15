@@ -9,6 +9,16 @@
 .publications {
   margin-top: 0.75rem;
 
+  h2.bibliography {
+    border-top: 0;
+    color: var(--journal-muted);
+    font-size: 1rem;
+    font-variant-numeric: tabular-nums;
+    margin: 1.25rem 0 0.5rem;
+    padding: 0;
+    text-align: left;
+  }
+
   ol.bibliography {
     border-top: 1px solid var(--journal-border);
 
@@ -55,6 +65,19 @@
     a.btn {
       margin: 0;
     }
+  }
+}
+
+@media (min-width: 992px) {
+  .publication-page {
+    .page-header {
+      margin-bottom: 1.5rem;
+      padding: 1rem 0 1.25rem;
+      h1 { font-size: 3rem; }
+    }
+
+    .publication-section { margin-top: 1.5rem; }
+    .section-heading { margin-bottom: 0.75rem; }
   }
 }
 

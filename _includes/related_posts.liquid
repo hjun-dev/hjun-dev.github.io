@@ -1,28 +1,31 @@
-{% assign have_related_posts = false %}
-{% for post in site.related_posts | limit: site.related_blog_posts.max_related %}
-  {% unless have_related_posts %}
-    {% assign have_related_posts = true %}
-    <section class="post-related" aria-labelledby="related-reading">
-      <p class="eyebrow">Continue reading</p>
-      <h2 id="related-reading">Related articles</h2>
-      <ul class="post-related__list">
-  {% endunless %}
-
-  <li>
-    {% if post.redirect == blank %}
-      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    {% elsif post.redirect contains '://' %}
-      <a href="{{ post.redirect }}" target="_blank" rel="noopener noreferrer">
-        {{- post.title }}
-        <span aria-hidden="true">↗</span></a
-      >
-    {% else %}
-      <a href="{{ post.redirect | relative_url }}">{{ post.title }}</a>
+{% assign reading = page | reading_recommendations: site.posts, site.related_blog_posts.max_related %}
+{% if reading.previous or reading.next or reading.posts.size > 0 %}
+  <section class="post-related" aria-labelledby="related-reading">
+    <p class="eyebrow">Continue reading</p>
+    <h2 id="related-reading">Related articles</h2>
+    {% if reading.previous or reading.next %}
+      <nav class="post-series-nav" aria-label="{{ reading.series | escape }} series">
+        {% if reading.previous %}
+          <a href="{{ reading.previous.url | relative_url }}" rel="prev">
+            <span class="post-series-nav__label">← Previous in series</span>
+            <span>{{ reading.previous.title | escape }}</span>
+          </a>
+        {% endif %}
+        {% if reading.next %}
+          <a href="{{ reading.next.url | relative_url }}" rel="next">
+            <span class="post-series-nav__label">Next in series →</span>
+            <span>{{ reading.next.title | escape }}</span>
+          </a>
+        {% endif %}
+      </nav>
     {% endif %}
-  </li>
-{% endfor %}
-{% if have_related_posts %}
-  </ul>
+    {% if reading.posts.size > 0 %}
+      <ul class="post-related__list">
+        {% for post in reading.posts %}
+          <li><a href="{{ post.url | relative_url }}">{{ post.title | remove_first: '[Paper Review] ' | escape }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
   </section>
 {% endif %}
 {% if site.newsletter.enabled and site.footer_fixed %}

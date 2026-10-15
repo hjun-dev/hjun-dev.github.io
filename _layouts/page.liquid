@@ -5,7 +5,7 @@ layout: default
   <style type="text/css">{{ page._styles }}</style>
 {% endif %}
 
-<div class="page-shell journal-shell">
+<div class="page-shell journal-shell{% if page.page_class %} {{ page.page_class | escape }}{% endif %}">
   <header class="page-header">
     <p class="eyebrow">{{ page.eyebrow | default: 'Research portfolio' }}</p>
     <h1>{{ page.title }}</h1>
