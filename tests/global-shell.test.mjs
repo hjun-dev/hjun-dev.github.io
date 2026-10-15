@@ -19,6 +19,10 @@ const layoutScss = readText("_sass/_layout.scss");
 const mainScss = readText("assets/css/main.scss");
 const variables = readText("_sass/_variables.scss");
 const journalScss = readOptional("_sass/_journal.scss");
+const portfolioScss = readOptional("_sass/_portfolio.scss");
+const aboutLayout = readText("_layouts/about.liquid");
+const pageLayout = readText("_layouts/page.liquid");
+const projectCard = readText("_includes/projects.liquid");
 
 test("loads bilingual editorial fonts and the journal partial", () => {
   assert.match(config, /fonts\.googleapis\.com\/css2\?/);
@@ -47,4 +51,24 @@ test("preserves navigation JavaScript hooks", () => {
   for (const id of ["navbar", "navbarNav", "search-toggle", "light-toggle"]) {
     assert.match(header, new RegExp(`id=["']${id}["']`));
   }
+});
+
+test("uses one responsive editorial shell across portfolio pages", () => {
+  assert.match(header, /navbar-expand-lg/);
+  assert.match(header, /class="navbar-brand site-brand/);
+  assert.match(aboutLayout, /class="home-page journal-shell"/);
+  assert.match(aboutLayout, /class="home-hero/);
+  assert.match(pageLayout, /class="page-shell journal-shell"/);
+  assert.match(projectCard, /class="project-card/);
+  assert.match(mainScss, /"portfolio"/);
+});
+
+test("defines a restrained research-journal palette and responsive hierarchy", () => {
+  for (const token of ["--journal-canvas", "--journal-ink", "--journal-accent-soft", "--journal-planned"]) {
+    assert.match(journalScss, new RegExp(token));
+  }
+
+  assert.match(portfolioScss, /\.home-hero/);
+  assert.match(portfolioScss, /\.project-card/);
+  assert.match(portfolioScss, /@media\s*\(max-width:\s*991\.98px\)/);
 });
