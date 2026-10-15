@@ -18,7 +18,7 @@ function determineGiscusTheme() {
 
   let giscusAttributes = {
     src: "https://giscus.app/client.js",
-    "data-repo": "hjun-dev/hjun-dev.github.io",
+    "data-repo": "hyeong-jun-lee/hyeong-jun-lee.github.io",
     "data-repo-id": "R_kgDOQuobfA",
     "data-category": "General",
     "data-category-id": "DIC_kwDOQuobfM4C1OZO",

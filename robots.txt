@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /404.html
 
-Sitemap: https://hjun-dev.github.io/sitemap.xml
+Sitemap: https://hyeong-jun-lee.github.io/sitemap.xml

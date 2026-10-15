@@ -377,7 +377,7 @@ ninja.data = [{
         title: 'GitHub',
         section: 'Socials',
         handler: () => {
-          window.open("https://github.com/hjun-dev", "_blank");
+          window.open("https://github.com/hyeong-jun-lee", "_blank");
         },
       },{
         id: 'social-rss',
