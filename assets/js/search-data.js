@@ -32,7 +32,7 @@ ninja.data = [{
           },
         },{id: "nav-cv",
           title: "CV",
-          description: "",
+          description: "Curriculum vitae, research interests, skills, and ongoing projects.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/cv/";
@@ -224,12 +224,7 @@ ninja.data = [{
             window.location.href = "/blog/2025/unified-approach/";
           
         },
-      },{id: "books-the-godfather",
-          title: 'The Godfather',
-          description: "",
-          section: "Books",handler: () => {
-              window.location.href = "/books/the_godfather/";
-            },},{id: "projects-rlv-landing-simulation-simulink-unity",
+      },{id: "projects-rlv-landing-simulation-simulink-unity",
           title: 'RLV Landing Simulation (Simulink-Unity)',
           description: "Reusable Launch Vehicle landing simulation connecting MATLAB/Simulink and Unity.",
           section: "Projects",handler: () => {
@@ -254,7 +249,7 @@ ninja.data = [{
         title: 'CV',
         section: 'Socials',
         handler: () => {
-          window.open("/assets/pdf/example_pdf.pdf", "_blank");
+          window.open("/assets/pdf/cv.pdf", "_blank");
         },
       },{
         id: 'social-github',
