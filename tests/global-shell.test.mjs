@@ -64,7 +64,7 @@ test("uses one responsive editorial shell across portfolio pages", () => {
 });
 
 test("defines a restrained research-journal palette and responsive hierarchy", () => {
-  for (const token of ["--journal-canvas", "--journal-ink", "--journal-accent-soft", "--journal-planned"]) {
+  for (const token of ["--journal-canvas", "--journal-ink", "--journal-accent-soft", "--journal-rule"]) {
     assert.match(journalScss, new RegExp(token));
   }
 

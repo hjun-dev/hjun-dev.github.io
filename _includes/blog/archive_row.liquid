@@ -1,6 +1,6 @@
 {% assign document = include.document %}
 
-<article class="blog-archive-row{% if include.planned %} blog-archive-row--planned{% endif %}">
+<article class="blog-archive-row">
   <div class="blog-archive-row__body">
     <h2 class="blog-archive-row__title">
       {% if document.redirect == blank %}
@@ -15,9 +15,5 @@
       <p class="blog-archive-row__description">{{ document.description }}</p>
     {% endif %}
   </div>
-  {% if include.planned %}
-    <span class="blog-archive-row__date blog-archive-row__status">Planned</span>
-  {% else %}
-    <time class="blog-archive-row__date" datetime="{{ document.date | date_to_xmlschema }}">{{ document.date | date: '%Y.%m.%d' }}</time>
-  {% endif %}
+  <time class="blog-archive-row__date" datetime="{{ document.date | date_to_xmlschema }}">{{ document.date | date: '%Y.%m.%d' }}</time>
 </article>

@@ -21,7 +21,7 @@
     {% include header.liquid %}
 
     <!-- Content -->
-    <div class="container mt-5" role="main">
+    <div class="container site-main{% if page.layout == 'about' %} site-main--home{% endif %}" role="main">
       {{ content }}
     </div>
 

@@ -17,17 +17,15 @@ layout: default
 
 <div class="post post-reading">
   <header class="post-header post-reading__header">
-    <p class="eyebrow">{% if page.status == 'planned' %}Planned note{% elsif page.tags contains 'paper review' %}Paper review{% else %}Research article{% endif %}</p>
+    <p class="eyebrow">{% if page.tags contains 'paper review' %}Paper review{% else %}Research article{% endif %}</p>
     <h1 class="post-title">{{ page.title | remove_first: '[Paper Review] ' }}</h1>
     {% if page.description %}
       <p class="post-reading__dek">{{ page.description }}</p>
     {% endif %}
 
     <div class="post-meta-row">
-      {% if page.status == 'planned' %}
-        <span>Writing queue</span>
-      {% else %}
-        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %-d, %Y' }}</time>
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %-d, %Y' }}</time>
+      {% if word_count > 100 %}
         <span aria-hidden="true">·</span>
         <span>{{ reading_time }} min read</span>
       {% endif %}
@@ -76,12 +74,6 @@ layout: default
     {% endif %}
 
     <div class="post-reading__main">
-      {% if page.status == 'planned' %}
-        <aside class="planned-note-callout">
-          <span>In preparation</span>
-          <p>This page is a sourced outline. The full review will be expanded here without entering the published-post timeline.</p>
-        </aside>
-      {% endif %}
       <article class="post-content">
         {% if page.toc and page.toc.beginning %}
           <div id="table-of-contents">
@@ -105,7 +97,7 @@ layout: default
         </div>
       {% endif %}
 
-      {% if page.status != 'planned' and site.related_blog_posts and site.related_blog_posts.enabled %}
+      {% if word_count > 100 and site.related_blog_posts and site.related_blog_posts.enabled %}
         {% if page.related_posts == null or page.related_posts %}
           {% include related_posts.liquid %}
         {% endif %}

@@ -76,6 +76,6 @@ test("gives About readers a clear route to the full blog", () => {
 test("uses reusable layout classes instead of inline presentation on About", () => {
   const about = readFileSync(join(repositoryRoot, "_pages/about.md"), "utf8");
 
-  assert.match(about, /class="section-heading/);
+  assert.match(about, /class="home-research/);
   assert.doesNotMatch(about, /style=/);
 });

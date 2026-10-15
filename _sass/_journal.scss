@@ -7,7 +7,7 @@
   --journal-reading-width: 760px;
   --journal-radius: 4px;
   --journal-shadow: 0 8px 24px rgba(23, 34, 56, 0.06);
-  --journal-section-gap: clamp(2.75rem, 5vw, 4.25rem);
+  --journal-section-gap: clamp(2rem, 4vw, 3rem);
   --journal-canvas: #ffffff;
   --journal-ink: #172238;
   --journal-surface: #ffffff;
@@ -17,7 +17,6 @@
   --journal-muted: #526078;
   --journal-accent: #254fc5;
   --journal-accent-soft: #edf2ff;
-  --journal-planned: #526078;
 }
 
 html[data-theme="dark"] {
@@ -31,7 +30,6 @@ html[data-theme="dark"] {
   --journal-muted: #a8b5cc;
   --journal-accent: #9bb5ff;
   --journal-accent-soft: #1b2b4b;
-  --journal-planned: #a8b5cc;
 }
 
 html {
@@ -72,6 +70,14 @@ li {
 .journal-shell {
   margin-inline: auto;
   max-width: var(--journal-content-width);
+}
+
+.site-main {
+  margin-top: 2rem;
+
+  &--home {
+    margin-top: 1rem;
+  }
 }
 
 .surface {

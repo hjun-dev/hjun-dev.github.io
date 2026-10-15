@@ -1,14 +1,11 @@
 {% assign topic = include.topic %}
 {% assign topic_posts = site.categories[topic.key] %}
-{% assign topic_planned = site.planned | where: 'primary_category', topic.key | sort: 'plan_order' %}
-{% assign published_count = 0 %}
+{% assign post_count = 0 %}
 {% if topic_posts %}
-  {% assign published_count = topic_posts.size %}
+  {% assign post_count = topic_posts.size %}
 {% endif %}
-{% assign planned_count = topic_planned.size %}
-{% assign topic_item_count = published_count | plus: planned_count %}
 
-{% if topic_item_count > 0 %}
+{% if post_count > 0 %}
   {% assign topic_path = topic.key | slugify | prepend: '/blog/category/' | append: '/' %}
   <article class="blog-topic-panel">
     <header class="blog-topic-panel__header">
@@ -18,16 +15,10 @@
       <a
         class="blog-topic-panel__count-link"
         href="{{ topic_path | relative_url }}"
-        aria-label="View {{ published_count }} published and {{ planned_count }} planned notes in {{ topic.label }}"
+        aria-label="View {{ post_count }} posts in {{ topic.label }}"
       >
         <span class="blog-topic-panel__count">
-          {%- if published_count > 0 -%}
-            {{- published_count }} {% if published_count == 1 %}post{% else %}posts{% endif -%}
-          {%- endif -%}
-          {%- if planned_count > 0 -%}
-            {%- if published_count > 0 %} · {% endif -%}
-            {{ planned_count }} planned
-          {%- endif -%}
+          {{- post_count }} {% if post_count == 1 %}post{% else %}posts{% endif -%}
         </span>
         <span class="blog-topic-panel__arrow" aria-hidden="true">→</span>
       </a>

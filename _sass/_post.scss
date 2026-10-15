@@ -86,30 +86,6 @@
   width: 100%;
 }
 
-.planned-note-callout {
-  background: var(--journal-surface-muted);
-  border: 1px solid var(--journal-border);
-  border-left: 3px solid var(--journal-accent);
-  border-radius: 3px;
-  margin-bottom: 2.25rem;
-  padding: 1rem 1.1rem;
-
-  span {
-    color: var(--journal-planned);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-  }
-
-  p {
-    color: var(--journal-muted);
-    font-size: 0.84rem;
-    line-height: 1.6;
-    margin: 0.35rem 0 0;
-  }
-}
-
 .post-toc-desktop {
   min-width: 0;
 

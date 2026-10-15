@@ -12,9 +12,7 @@ layout: default
   {% assign is_topic_archive = true %}
 {% endif %}
 {% assign archive_title = page.title %}
-{% assign planned_documents = '' | split: ',' %}
 {% if page.type == 'categories' %}
-  {% assign planned_documents = site.planned | where: 'primary_category', page.title | sort: 'plan_order' %}
   {% assign archive_title = site.data.blog_category_labels[page.title] | default: page.title %}
 {% elsif page.type == 'tags' %}
   {% assign featured_tag = site.data.blog_featured_tags | where: 'key', page.title | first %}
@@ -35,13 +33,7 @@ layout: default
           {% if page.type == 'tags' %}#{% endif -%}
           {{- archive_title }}
         </h1>
-        <span>
-          {%- if sorted_documents.size > 0 -%}{{ sorted_documents.size }} published{%- endif -%}
-          {%- if planned_documents.size > 0 -%}
-            {%- if sorted_documents.size > 0 %} · {% endif -%}
-            {{ planned_documents.size }} planned
-          {%- endif -%}
-        </span>
+        <span>{{ sorted_documents.size }} {% if sorted_documents.size == 1 %}post{% else %}posts{% endif %}</span>
       </div>
     </header>
   {% else %}
@@ -60,23 +52,12 @@ layout: default
     <section class="blog-category-archive" aria-label="Posts in {{ page.title }}">
       {% if sorted_documents.size > 0 %}
         <div class="blog-archive-subheading">
-          <h2>Published articles</h2>
+          <h2>Articles</h2>
           <p class="eyebrow">Newest first</p>
         </div>
         <div class="blog-archive-list">
           {% for document in sorted_documents %}
             {% include blog/archive_row.liquid document=document %}
-          {% endfor %}
-        </div>
-      {% endif %}
-      {% if planned_documents.size > 0 %}
-        <div class="blog-archive-subheading blog-archive-subheading--planned">
-          <h2>Planned notes</h2>
-          <p class="eyebrow">In preparation</p>
-        </div>
-        <div class="blog-archive-list blog-archive-list--planned">
-          {% for document in planned_documents %}
-            {% include blog/archive_row.liquid document=document planned=true %}
           {% endfor %}
         </div>
       {% endif %}

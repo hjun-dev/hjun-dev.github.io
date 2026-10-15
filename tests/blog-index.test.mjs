@@ -22,10 +22,6 @@ function frontMatterTags(frontMatter) {
   return match ? match[1].split(",").map((tag) => tag.trim().replace(/^['"]|['"]$/g, "")) : [];
 }
 
-function categoryCount(topic) {
-  return listPostPaths().filter((postPath) => frontMatterCategories(readFrontMatter(postPath)).includes(topic)).length;
-}
-
 const expectedTopicGroups = ["Foundations", "Decision & Control", "Learning Systems"];
 const expectedTopics = [
   "optimization",
@@ -37,16 +33,6 @@ const expectedTopics = [
   "generalization",
   "representation learning",
 ];
-const expectedCategoryCounts = new Map([
-  ["optimization", 10],
-  ["mathematics", 2],
-  ["control", 1],
-  ["reinforcement learning", 2],
-  ["imitation and intervention learning", 0],
-  ["generative models", 0],
-  ["generalization", 0],
-  ["representation learning", 0],
-]);
 const blogPage = readText("_pages/blog.md");
 const blogScss = readOptional("_sass/_blog.scss");
 const topicsData = readOptional("_data/blog_topics.yml");
@@ -78,12 +64,11 @@ test("topic taxonomy is grouped into durable research tracks", () => {
 
 test("every article has exactly one primary category", () => {
   for (const postPath of listPostPaths()) {
-    assert.equal(frontMatterCategories(readFrontMatter(postPath)).length, 1, `${postPath} must have one primary category`);
+    const categories = frontMatterCategories(readFrontMatter(postPath));
+    assert.equal(categories.length, 1, `${postPath} must have one primary category`);
+    assert.ok(expectedTopics.includes(categories[0]), `${postPath} must use a known primary category`);
   }
 
-  for (const [topic, expectedCount] of expectedCategoryCounts) {
-    assert.equal(categoryCount(topic), expectedCount, `${topic} has an unexpected article count`);
-  }
 });
 
 test("cross-cutting subjects and formats are tags rather than primary categories", () => {
@@ -125,22 +110,20 @@ test("specific-topic browser links only tags that already have articles", () => 
   assert.match(blogPage, /include blog\/tag_browser\.liquid/);
 });
 
-test("omits topic panels that have neither published nor planned notes", () => {
-  assert.match(topicPanel, /assign topic_item_count = published_count \| plus: planned_count/);
-  assert.match(topicPanel, /if topic_item_count > 0[\s\S]*endif/);
+test("omits empty topic panels", () => {
+  assert.match(topicPanel, /if post_count > 0[\s\S]*endif/);
 });
 
-test("topic counts include published and planned notes and link to canonical archives", () => {
+test("topic counts link to canonical post archives", () => {
   assert.match(
     topicPanel,
-    /<a\s+class="blog-topic-panel__count-link"[\s\S]*href="{{ topic_path \| relative_url }}"[\s\S]*aria-label="View {{ published_count }} published and {{ planned_count }} planned notes in {{ topic\.label }}"/
+    /<a\s+class="blog-topic-panel__count-link"[\s\S]*href="{{ topic_path \| relative_url }}"[\s\S]*aria-label="View {{ post_count }} posts in {{ topic\.label }}"/
   );
   assert.match(topicPanel, /class="blog-topic-panel__arrow" aria-hidden="true">→<\/span>/);
 });
 
-test("topic post count labels use singular and expose planned notes", () => {
-  assert.match(topicPanel, /published_count == 1[\s\S]*post[\s\S]*posts/);
-  assert.match(topicPanel, /if planned_count > 0[\s\S]*planned/);
+test("topic post count labels use singular and include the field description", () => {
+  assert.match(topicPanel, /post_count == 1[\s\S]*post[\s\S]*posts/);
   assert.match(topicPanel, /topic\.description/);
 });
 

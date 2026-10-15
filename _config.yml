@@ -150,9 +150,6 @@ collections:
     defaults:
       layout: post
     output: true
-  planned:
-    output: true
-    permalink: /blog/planned/:name/
   projects:
     output: true
 
@@ -193,6 +190,8 @@ exclude:
   - purgecss.config.js
   - README.md
   - readme_preview/
+  - docs/
+  - tests/
   - vendor
 keep_files:
   - CNAME

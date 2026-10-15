@@ -3,25 +3,26 @@ layout: default
 ---
 <div class="home-page journal-shell">
   <header class="home-hero">
+    {% if page.profile and page.profile.image %}
+      <div class="home-hero__portrait">
+        {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
+        {% include figure.liquid loading="eager" path=profile_image_path class="home-hero__image" sizes="(min-width: 768px) 160px, 96px" alt=site.title cache_bust=true %}
+      </div>
+    {% endif %}
     <div class="home-hero__copy">
       <p class="eyebrow">Aerospace · Control · Learning</p>
       <h1>{{ site.title }}</h1>
       <p class="home-hero__role">{{ page.subtitle }}</p>
-      <p class="home-hero__statement">Researching how optimization, control, and learning can make autonomous aerospace systems safer and more capable.</p>
-      <div class="home-hero__links">
-        <a class="home-hero__primary" href="{{ '/cv/' | relative_url }}">View CV <span aria-hidden="true">→</span></a>
-        <a href="{{ '/blog/' | relative_url }}">Read research notes</a>
-      </div>
     </div>
-
-    {% if page.profile and page.profile.image %}
-      <div class="home-hero__portrait">
-        {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
-        {% capture sizes %}(min-width: {{ site.max_width }}) 300px, (min-width: 768px) 32vw, 88vw{% endcapture %}
-        {% include figure.liquid loading="eager" path=profile_image_path class="home-hero__image" sizes=sizes alt=site.title cache_bust=true %}
-        <p>Inha University<br>Incheon, South Korea</p>
-      </div>
-    {% endif %}
+    <div class="home-hero__statement">
+      <p>My research focuses on optimal control theory, deep learning and reinforcement learning applications for aerospace systems.</p>
+      <p>My goal is to bridge the gap between theoretical control guarantees and practical learning-based methods.</p>
+    </div>
+    <div class="home-hero__links">
+        <a class="home-hero__primary" href="{{ '/cv/' | relative_url }}">View CV <span aria-hidden="true">→</span></a>
+        <a href="{{ '/publications/' | relative_url }}">Publications</a>
+        <a href="{{ '/blog/' | relative_url }}">Read research notes</a>
+    </div>
   </header>
 
   <article class="home-content">
@@ -34,15 +35,37 @@ layout: default
       </section>
     {% endif %}
 
-    {% if page.latest_posts and page.latest_posts.enabled %}
+    <div class="home-work">
+      <section class="home-module home-projects" aria-labelledby="home-projects-title">
+        <div class="section-heading">
+          <h2 id="home-projects-title">Selected projects</h2>
+          <a class="text-link" href="{{ '/projects/' | relative_url }}">All projects <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="home-project-list">
+          {% assign sorted_projects = site.projects | sort: 'importance' %}
+          {% for project in sorted_projects limit: 3 %}
+            {% include home_project.liquid project=project %}
+          {% endfor %}
+        </div>
+      </section>
+      {% if page.latest_posts and page.latest_posts.enabled %}
       <section class="home-module">
         <div class="section-heading">
-          <div><p class="eyebrow">From the notebook</p><h2>Latest posts</h2></div>
+          <h2>Recent writing</h2>
           <a class="text-link" href="{{ '/blog/' | relative_url }}">Browse all writing <span aria-hidden="true">→</span></a>
         </div>
-        {% include latest_posts.liquid %}
+        <div class="home-writing-list">
+          {% for post in site.posts limit: page.latest_posts.limit %}
+            <article class="home-writing-row">
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time>
+              <h3><a href="{{ post.url | relative_url }}">{{ post.title | remove_first: '[Paper Review] ' }}</a></h3>
+              {% if post.description %}<p>{{ post.description }}</p>{% endif %}
+            </article>
+          {% endfor %}
+        </div>
       </section>
-    {% endif %}
+      {% endif %}
+    </div>
 
     {% if page.selected_papers %}
       <section class="home-module">
@@ -52,9 +75,12 @@ layout: default
     {% endif %}
 
     {% if page.social %}
-      <section class="home-module home-contact" aria-label="Social links">
+      <section class="home-module home-contact" aria-label="Contact and social links">
+        <div class="home-contact__details">
+          <a href="mailto:{{ page.contact_email }}">{{ page.contact_email }}</a>
+          <p>{{ page.contact_address }}</p>
+        </div>
         <div class="contact-icons">{% include social.liquid %}</div>
-        <div class="contact-note">{{ site.contact_note }}</div>
       </section>
     {% endif %}
 

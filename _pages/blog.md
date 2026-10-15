@@ -8,7 +8,7 @@ pagination:
   enabled: true
   collection: posts
   permalink: /page/:num/
-  per_page: 5
+  per_page: 8
   sort_field: date
   sort_reverse: true
   trail:
@@ -17,12 +17,10 @@ pagination:
 ---
 
 {% assign active_topic_count = 0 %}
-{% assign planned_notes = site.planned | sort: 'plan_order' %}
 {% for group in site.data.blog_topics %}
 {% for topic in group.topics %}
 {% assign topic_posts = site.categories[topic.key] %}
-{% assign topic_planned = planned_notes | where: 'primary_category', topic.key %}
-{% assign topic_item_count = topic_planned.size %}
+{% assign topic_item_count = 0 %}
 {% if topic_posts %}
   {% assign topic_item_count = topic_item_count | plus: topic_posts.size %}
 {% endif %}
@@ -42,7 +40,6 @@ pagination:
         <nav class="blog-jump-nav" aria-label="On this page">
           <a href="#explore-topics">Topics <span aria-hidden="true">↘</span></a>
           <a href="#all-posts">All posts <span aria-hidden="true">↘</span></a>
-          <a href="#writing-queue">Writing queue <span aria-hidden="true">↘</span></a>
         </nav>
       </header>
 
@@ -50,10 +47,6 @@ pagination:
       <div>
         <dt>Articles</dt>
         <dd>{{ site.posts.size }}</dd>
-      </div>
-      <div>
-        <dt>Planned</dt>
-        <dd>{{ planned_notes.size }}</dd>
       </div>
       <div>
         <dt>Active topics</dt>
@@ -75,11 +68,9 @@ pagination:
           {% assign group_post_count = 0 %}
           {% for topic in group.topics %}
             {% assign topic_posts = site.categories[topic.key] %}
-            {% assign topic_planned = planned_notes | where: 'primary_category', topic.key %}
             {% if topic_posts %}
               {% assign group_post_count = group_post_count | plus: topic_posts.size %}
             {% endif %}
-            {% assign group_post_count = group_post_count | plus: topic_planned.size %}
           {% endfor %}
 
           {% if group_post_count > 0 %}
@@ -125,20 +116,4 @@ pagination:
 
   </section>
 
-  {% if paginator.page == 1 %}
-    <section class="blog-section writing-queue" aria-labelledby="writing-queue">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Next in the notebook</p>
-          <h2 id="writing-queue">Writing queue</h2>
-        </div>
-        <p class="section-heading__note">Upcoming paper reviews. Each note includes its primary sources.</p>
-      </div>
-      <div class="writing-queue__grid">
-        {% for note in planned_notes %}
-          {% include blog/planned_note.liquid note=note %}
-        {% endfor %}
-      </div>
-    </section>
-  {% endif %}
 </div>
