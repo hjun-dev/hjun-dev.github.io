@@ -242,6 +242,10 @@ button,
     .navbar-collapse {
       border-top: 1px solid var(--journal-border);
       margin-top: 0.7rem;
+      max-height: calc(100vh - 4.5rem);
+      max-height: calc(100dvh - 4.5rem);
+      overflow-y: auto;
+      overscroll-behavior: contain;
       padding: 0.75rem 0 0.35rem;
       text-align: left !important;
     }
