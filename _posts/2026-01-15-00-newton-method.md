@@ -717,3 +717,8 @@ $$
 - Convergence는 **superlinear**이며 Newton과 동일하진 않다.
 
 - **Quasi-Newton methods**에는 매우 다양한 형태가 존재하며 $H$를 **propagate** 해나가는 방식을 공통적으로 사용한다.
+
+## References
+
+- [Ryan Tibshirani, *Convex Optimization (10-725): Newton's Method*](https://www.stat.cmu.edu/~ryantibs/convexopt/lectures/newton.pdf)
+- [Stephen Boyd and Lieven Vandenberghe, *Convex Optimization*](https://web.stanford.edu/~boyd/cvxbook/)

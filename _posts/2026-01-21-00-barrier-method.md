@@ -458,3 +458,8 @@ $$
 $$
 
 모든 $s$가 0이라면 **feasible point**가 존재함을, $s\gt0$가 나타난다면 해당 constraint 때문에 원 문제가 **infeasible**함을 알 수 있다.
+
+## References
+
+- [Ryan Tibshirani, *Convex Optimization (10-725): Barrier Method*](https://www.stat.cmu.edu/~ryantibs/convexopt/lectures/barr-method.pdf)
+- [Stephen Boyd and Lieven Vandenberghe, *Convex Optimization*](https://web.stanford.edu/~boyd/cvxbook/)

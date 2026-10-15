@@ -1,0 +1,21 @@
+{% assign note = include.note %}
+{% assign note_category = note.primary_category | default: note.categories.first %}
+{% assign note_category_label = site.data.blog_category_labels[note_category] | default: note_category %}
+
+<article class="planned-note">
+  <div class="planned-note__meta">
+    <span class="planned-note__status">Planned</span>
+    {% if note_category %}
+      <a href="{{ note_category | slugify | prepend: '/blog/category/' | append: '/' | relative_url }}">{{ note_category_label }}</a>
+    {% endif %}
+  </div>
+  <h3 class="planned-note__title">
+    <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
+  </h3>
+  {% if note.description %}
+    <p>{{ note.description }}</p>
+  {% endif %}
+  <a class="planned-note__link" href="{{ note.url | relative_url }}" aria-label="Open planned note: {{ note.title }}">
+    Source &amp; outline <span aria-hidden="true">→</span>
+  </a>
+</article>

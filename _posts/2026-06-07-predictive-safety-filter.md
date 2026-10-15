@@ -1521,3 +1521,7 @@ Pendulum swing-up 예제는 초기 데이터가 적은 상황에서도 PSF가 sa
 
 > 성능 최적화는 learning controller에게 맡기고,  
 > 실제 시스템에 적용되는 입력은 predictive safety filter가 안전하게 certify한다.
+
+## References
+
+- [Kim P. Wabersich and Melanie N. Zeilinger, “A Predictive Safety Filter for Learning-Based Control of Constrained Nonlinear Dynamical Systems,” arXiv:1812.05506](https://arxiv.org/abs/1812.05506)

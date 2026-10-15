@@ -3,6 +3,7 @@ layout: page
 permalink: /publications/
 title: Publications
 description: Publications organized by category and date.
+eyebrow: Research output
 nav: true
 nav_order: 2
 ---

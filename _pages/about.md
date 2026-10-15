@@ -48,7 +48,7 @@ My goal is to bridge the gap between theoretical control guarantees and practica
 </div>
 
 <div class="projects">
-  <div class="row row-cols-1 row-cols-md-3">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 project-grid">
     {% assign sorted_projects = site.projects | sort: 'importance' %}
     {% for project in sorted_projects limit: 3 %}
       {% include projects.liquid %}

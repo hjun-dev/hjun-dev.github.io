@@ -550,3 +550,8 @@ Dual function을 보면 알 수 있듯이 이는 scenario 2의 problem과 일치
 Strong duality에 대한 자세한 내용은 다음 챕터에서 설명하도록 하겠다.
 
 ---
+
+## References
+
+- [Ryan Tibshirani, *Convex Optimization (10-725): Duality in Linear Programs*](https://www.stat.cmu.edu/~ryantibs/convexopt/lectures/dual-lps.pdf)
+- [Stephen Boyd and Lieven Vandenberghe, *Convex Optimization*](https://web.stanford.edu/~boyd/cvxbook/)

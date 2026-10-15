@@ -1,12 +1,15 @@
 {% assign topic = include.topic %}
 {% assign topic_posts = site.categories[topic.key] %}
+{% assign topic_planned = site.planned | where: 'primary_category', topic.key | sort: 'plan_order' %}
+{% assign published_count = 0 %}
+{% if topic_posts %}
+  {% assign published_count = topic_posts.size %}
+{% endif %}
+{% assign planned_count = topic_planned.size %}
+{% assign topic_item_count = published_count | plus: planned_count %}
 
-{% if topic_posts and topic_posts.size > 0 %}
+{% if topic_item_count > 0 %}
   {% assign topic_path = topic.key | slugify | prepend: '/blog/category/' | append: '/' %}
-  {% assign topic_post_noun = 'posts' %}
-  {% if topic_posts.size == 1 %}
-    {% assign topic_post_noun = 'post' %}
-  {% endif %}
   <article class="blog-topic-panel surface">
     <header class="blog-topic-panel__header">
       <h3>
@@ -15,11 +18,11 @@
       <a
         class="blog-topic-panel__count-link"
         href="{{ topic_path | relative_url }}"
-        aria-label="View all {{ topic_posts.size }} {{ topic_post_noun }} in {{ topic.label }}"
+        aria-label="View {{ published_count }} published and {{ planned_count }} planned notes in {{ topic.label }}"
       >
         <span class="blog-topic-panel__count">
-          {{- topic_posts.size }}
-          {{ topic_post_noun -}}
+          {{- published_count }} {% if published_count == 1 %}post{% else %}posts{% endif -%}
+          {%- if planned_count > 0 %} · {{ planned_count }} planned{% endif -%}
         </span>
         <span class="blog-topic-panel__arrow" aria-hidden="true">→</span>
       </a>
@@ -32,6 +35,15 @@
           <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time>
         </li>
       {% endfor %}
+      {% if published_count < 2 %}
+        {% assign remaining_slots = 2 | minus: published_count %}
+        {% for note in topic_planned limit: remaining_slots %}
+          <li class="blog-topic-panel__planned">
+            <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
+            <span>Planned</span>
+          </li>
+        {% endfor %}
+      {% endif %}
     </ol>
   </article>
 {% endif %}

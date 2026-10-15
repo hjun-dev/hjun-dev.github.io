@@ -415,3 +415,9 @@ s &\leftarrow s + \alpha\,\Delta s
 \end{aligned}
 $$
 
+## References
+
+- [Sanjay Mehrotra, “On the Implementation of a Primal-Dual Interior Point Method,” *SIAM Journal on Optimization*, 1992](https://epubs.siam.org/doi/abs/10.1137/0802028)
+- [Ryan Tibshirani, *Convex Optimization (10-725): Primal-Dual Interior-Point Methods*](https://www.stat.cmu.edu/~ryantibs/convexopt/lectures/primal-dual.pdf)
+- [Stephen Boyd and Lieven Vandenberghe, *Convex Optimization*](https://web.stanford.edu/~boyd/cvxbook/)
+

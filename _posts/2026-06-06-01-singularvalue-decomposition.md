@@ -1863,3 +1863,7 @@ $$
 > SVD는 입력공간의 직교방향들이 출력공간의 어떤 직교방향으로 보내지는지, 그리고 그 과정에서 얼마나 스케일되는지를 보여주는 분해이다.
 
 이 관점으로 보면 특이값분해는 단순한 계산 공식이 아니라, 직사각행렬이 입력공간을 어떻게 압축하고, 어떤 방향을 제거하며, 어떤 출력공간만 만들어내는지를 보여주는 해석 도구이다.
+
+## References
+
+- [Gilbert Strang, MIT OpenCourseWare 18.06, “Lecture 29: Singular Value Decomposition”](https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/resources/lecture-29-singular-value-decomposition/)

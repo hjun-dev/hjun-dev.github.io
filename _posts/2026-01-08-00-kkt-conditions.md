@@ -681,3 +681,8 @@ $$
 $$
 \hat{\beta} \in \text{argmin}_{\beta \in \mathbb{R}^p} f(X\beta) + \lambda \Vert \beta \Vert_1
 $$
+
+## References
+
+- [Ryan Tibshirani, *Convex Optimization (10-725): KKT Conditions*](https://www.stat.cmu.edu/~ryantibs/convexopt/lectures/kkt.pdf)
+- [Stephen Boyd and Lieven Vandenberghe, *Convex Optimization*](https://web.stanford.edu/~boyd/cvxbook/)

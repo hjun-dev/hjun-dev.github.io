@@ -422,3 +422,8 @@ $$
 
 따라서 duality gap이 0이면 primal optimal과 dual optimal이 그 지점의 $x$와 $(u,v)$가 되는 것을 알 수 있다.<br>
 알고리즘적 관점에서는 $f(x)-g(u,v)\le \epsilon$이 $f(x)-f^{\ast}\le \epsilon$을 보장하므로 종료조건으로 활용가능하다.
+
+## References
+
+- [Ryan Tibshirani, *Convex Optimization (10-725): Duality in General Programs*](https://www.stat.cmu.edu/~ryantibs/convexopt/lectures/dual-gen.pdf)
+- [Stephen Boyd and Lieven Vandenberghe, *Convex Optimization*](https://web.stanford.edu/~boyd/cvxbook/)

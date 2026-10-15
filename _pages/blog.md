@@ -17,10 +17,16 @@ pagination:
 ---
 
 {% assign active_topic_count = 0 %}
+{% assign planned_notes = site.planned | sort: 'plan_order' %}
 {% for group in site.data.blog_topics %}
 {% for topic in group.topics %}
 {% assign topic_posts = site.categories[topic.key] %}
-{% if topic_posts and topic_posts.size > 0 %}
+{% assign topic_planned = planned_notes | where: 'primary_category', topic.key %}
+{% assign topic_item_count = topic_planned.size %}
+{% if topic_posts %}
+  {% assign topic_item_count = topic_item_count | plus: topic_posts.size %}
+{% endif %}
+{% if topic_item_count > 0 %}
 {% assign active_topic_count = active_topic_count | plus: 1 %}
 {% endif %}
 {% endfor %}
@@ -40,7 +46,11 @@ pagination:
         <dd>{{ site.posts.size }}</dd>
       </div>
       <div>
-        <dt>Topics</dt>
+        <dt>Planned</dt>
+        <dd>{{ planned_notes.size }}</dd>
+      </div>
+      <div>
+        <dt>Active topics</dt>
         <dd>{{ active_topic_count }}</dd>
       </div>
       <div>
@@ -62,9 +72,11 @@ pagination:
           {% assign group_post_count = 0 %}
           {% for topic in group.topics %}
             {% assign topic_posts = site.categories[topic.key] %}
-            {% if topic_posts and topic_posts.size > 0 %}
+            {% assign topic_planned = planned_notes | where: 'primary_category', topic.key %}
+            {% if topic_posts %}
               {% assign group_post_count = group_post_count | plus: topic_posts.size %}
             {% endif %}
+            {% assign group_post_count = group_post_count | plus: topic_planned.size %}
           {% endfor %}
 
           {% if group_post_count > 0 %}
@@ -111,4 +123,21 @@ pagination:
     {% include pagination.liquid %}
 
   </section>
+
+  {% if paginator.page == 1 %}
+    <section class="blog-section writing-queue" aria-labelledby="writing-queue">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Next in the notebook</p>
+          <h2 id="writing-queue">Writing queue</h2>
+        </div>
+        <p class="section-heading__note">Paper reviews and method notes currently being prepared.</p>
+      </div>
+      <div class="writing-queue__grid">
+        {% for note in planned_notes %}
+          {% include blog/planned_note.liquid note=note %}
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
 </div>

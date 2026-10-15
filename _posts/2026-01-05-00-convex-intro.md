@@ -100,3 +100,9 @@ CMU의 Ryan Tibshirani 교수님의 **Convex Optimization (Fall 2019, 10-725)** 
 
 강의의 흐름을 따라가며 꾸준히 정리하는 것이 목표입니다. 이 기록이 이후 최적화 이론을 다시 공부하거나 논문을 읽을 때 참고할 수 있는 개인적인 정리 노트로 남기를 바랍니다. 
 같은 주제에 관심 있는 분들께도 참고가 된다면 좋겠습니다.
+
+## References
+
+- [Ryan Tibshirani, *Convex Optimization (10-725): Introduction*](https://www.stat.cmu.edu/~ryantibs/convexopt/lectures/intro.pdf)
+- [Ryan Tibshirani, *Convex Optimization (10-725), Fall 2019*](https://www.stat.cmu.edu/~ryantibs/convexopt/)
+- [Stephen Boyd and Lieven Vandenberghe, *Convex Optimization*](https://web.stanford.edu/~boyd/cvxbook/)

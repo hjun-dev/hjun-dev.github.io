@@ -37,10 +37,10 @@ const expectedTopics = [
   "generalization and representation",
 ];
 const expectedCategoryCounts = new Map([
-  ["optimization", 11],
+  ["optimization", 10],
   ["mathematics", 2],
   ["control", 1],
-  ["reinforcement learning", 3],
+  ["reinforcement learning", 2],
   ["imitation and intervention learning", 0],
   ["generative models", 0],
   ["generalization and representation", 0],
@@ -95,7 +95,6 @@ test("cross-cutting subjects and formats are tags rather than primary categories
   }
 
   for (const postPath of [
-    "_posts/2025-01-06-unified-approach.md",
     "_posts/2026-05-19-phangman.md",
     "_posts/2026-05-31-rocket-landing-annealing.md",
     "_posts/2026-06-07-predictive-safety-filter.md",
@@ -124,25 +123,28 @@ test("specific-topic browser links only tags that already have articles", () => 
   assert.match(blogPage, /include blog\/tag_browser\.liquid/);
 });
 
-test("omits topic panels whose filtered post list is empty", () => {
-  assert.match(topicPanel, /if topic_posts and topic_posts\.size > 0[\s\S]*endif/);
+test("omits topic panels that have neither published nor planned notes", () => {
+  assert.match(topicPanel, /assign topic_item_count = published_count \| plus: planned_count/);
+  assert.match(topicPanel, /if topic_item_count > 0[\s\S]*endif/);
 });
 
-test("topic post counts link to their canonical archives with an accessible arrow", () => {
+test("topic counts include published and planned notes and link to canonical archives", () => {
   assert.match(
     topicPanel,
-    /<a\s+class="blog-topic-panel__count-link"[\s\S]*href="{{ topic_path \| relative_url }}"[\s\S]*aria-label="View all {{ topic_posts\.size }} {{ topic_post_noun }} in {{ topic\.label }}"/
+    /<a\s+class="blog-topic-panel__count-link"[\s\S]*href="{{ topic_path \| relative_url }}"[\s\S]*aria-label="View {{ published_count }} published and {{ planned_count }} planned notes in {{ topic\.label }}"/
   );
   assert.match(topicPanel, /class="blog-topic-panel__arrow" aria-hidden="true">→<\/span>/);
 });
 
-test("topic post count labels use the singular noun for one post", () => {
-  assert.match(topicPanel, /assign topic_post_noun = ['"]posts['"][\s\S]*topic_posts\.size == 1[\s\S]*assign topic_post_noun = ['"]post['"]/);
-  assert.match(topicPanel, /aria-label="View all {{ topic_posts\.size }} {{ topic_post_noun }} in {{ topic\.label }}"/);
+test("topic post count labels use singular and expose planned notes", () => {
+  assert.match(topicPanel, /published_count == 1[\s\S]*post[\s\S]*posts/);
+  assert.match(topicPanel, /if planned_count > 0[\s\S]*planned/);
+  assert.match(topicPanel, /for note in topic_planned/);
 });
 
 test("category and tag archives show newest-first article summaries with dates on the right", () => {
-  assert.match(archiveLayout, /assign sorted_documents = page\.documents \| sort: ['"]date['"] \| reverse/);
+  assert.match(archiveLayout, /assign sorted_documents = ['"]['"] \| split: ['"],['"]/);
+  assert.match(archiveLayout, /if page\.documents[\s\S]*assign sorted_documents = page\.documents \| sort: ['"]date['"] \| reverse/);
   assert.match(archiveLayout, /page\.type == ['"]categories['"] or page\.type == ['"]tags['"]/);
   assert.match(archiveLayout, /blog\/archive_row\.liquid/);
   assert.match(archiveRow, /class="blog-archive-row__title"[\s\S]*document\.description[\s\S]*class="blog-archive-row__date"/);

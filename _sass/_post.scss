@@ -12,7 +12,7 @@
   }
 
   .post-title {
-    font-size: clamp(2rem, 5.8vw, 3.9rem);
+    font-size: clamp(2rem, 4.8vw, 3.25rem);
     letter-spacing: -0.045em;
     line-height: 1.12;
     margin: 0;
@@ -84,6 +84,29 @@
 .post-reading__main {
   min-width: 0;
   width: 100%;
+}
+
+.planned-note-callout {
+  background: color-mix(in srgb, var(--journal-planned) 9%, var(--journal-surface));
+  border: 1px solid color-mix(in srgb, var(--journal-planned) 36%, var(--journal-border));
+  border-radius: 0.75rem;
+  margin-bottom: 2.25rem;
+  padding: 1rem 1.1rem;
+
+  span {
+    color: var(--journal-planned);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  p {
+    color: var(--journal-muted);
+    font-size: 0.84rem;
+    line-height: 1.6;
+    margin: 0.35rem 0 0;
+  }
 }
 
 .post-toc-desktop {
@@ -283,6 +306,10 @@
 }
 
 @media (max-width: 991.98px) {
+  .post-reading .post-title {
+    font-size: clamp(1.9rem, 6.5vw, 3.1rem);
+  }
+
   .post-reading-layout,
   .post-reading-layout--with-toc,
   .post-reading-layout--toc-right {

@@ -2,27 +2,23 @@
 layout: default
 ---
 {% if page._styles %}
-  <!-- Page/Post style -->
-  <style type="text/css">
-    {{ page._styles }}
-  </style>
+  <style type="text/css">{{ page._styles }}</style>
 {% endif %}
 
-<div class="post">
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-description">{{ page.description }}</p>
+<div class="page-shell journal-shell">
+  <header class="page-header">
+    <p class="eyebrow">{{ page.eyebrow | default: 'Research portfolio' }}</p>
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}<p>{{ page.description }}</p>{% endif %}
   </header>
 
-  <article>
+  <article class="page-content">
     {{ content }}
   </article>
 
   {% if page.related_publications %}
     <h2>References</h2>
-    <div class="publications">
-      {% bibliography --cited_in_order %}
-    </div>
+    <div class="publications">{% bibliography --cited_in_order %}</div>
   {% endif %}
 
   {% if site.giscus and page.giscus_comments %}

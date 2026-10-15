@@ -566,3 +566,8 @@ Primal-dual method는 $\mu=10$을 사용했고 surrogate duality gap과 feasibil
 <br>
 
 Primal-dual method가 훨씬 더 높은 정확도의 solution을 얻었음에도 iteration은 살짝 더 필요한 수준인 것을 볼 수 있다.
+
+## References
+
+- [Ryan Tibshirani, *Convex Optimization (10-725): Primal-Dual Interior-Point Methods*](https://www.stat.cmu.edu/~ryantibs/convexopt/lectures/primal-dual.pdf)
+- [Stephen Boyd and Lieven Vandenberghe, *Convex Optimization*](https://web.stanford.edu/~boyd/cvxbook/)

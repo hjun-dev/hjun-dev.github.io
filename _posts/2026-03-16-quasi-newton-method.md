@@ -447,3 +447,9 @@ $$
 이후에도 계속 연구가 진행되고 있다.
 
 ---
+
+## References
+
+- [Ryan Tibshirani, *Convex Optimization (10-725): Quasi-Newton Methods*](https://www.stat.cmu.edu/~ryantibs/convexopt/lectures/quasi-newton.pdf)
+- [Nicol N. Schraudolph, Jin Yu, and Simon Günter, “A Stochastic Quasi-Newton Method for Online Convex Optimization,” AISTATS 2007](https://proceedings.mlr.press/v2/schraudolph07a.html)
+- [Stephen Boyd and Lieven Vandenberghe, *Convex Optimization*](https://web.stanford.edu/~boyd/cvxbook/)

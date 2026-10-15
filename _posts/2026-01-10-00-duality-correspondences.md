@@ -893,3 +893,8 @@ $f$, $h_i$가 전부 **closed and convex**이고 $\ell_j$가 전부 **affine**�
 해당 내용의 증명은 bifunction을 최소화하는 문제로 관점을 달리해야 한다. 그러면 dual function은 bifunction의 conjugate에 대응하게 된다. (자세한 내용은 Rockafellar의 CH 29와 30을 참고)<br>
 
 - **Double dual**의 구체적인 증명은 Perturbation-Duality Scheme in Optimization 관련 포스트에서 설명하겠습니다.
+
+## References
+
+- [Ryan Tibshirani, *Convex Optimization (10-725): Duality Uses and Correspondences*](https://www.stat.cmu.edu/~ryantibs/convexopt/lectures/dual-corres.pdf)
+- [Stephen Boyd and Lieven Vandenberghe, *Convex Optimization*](https://web.stanford.edu/~boyd/cvxbook/)

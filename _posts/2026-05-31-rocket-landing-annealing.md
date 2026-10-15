@@ -890,3 +890,7 @@ RAJS는 에피소드 초반에는 guide policy가 환경을 진행하고, 이후
 실험 결과, baseline controller의 성공률은 8%였지만 PPO-RAJS-S는 97.39%의 성공률을 달성했다. 또한 action smoothness regulation을 통해 더 부드러운 제어 입력을 생성했으며, Hardware-in-the-Loop test를 통해 실시간 제어 가능성도 확인했다. <br>
 
 따라서 이 논문은 기존 제어기를 단순히 대체하는 것이 아니라, 기존 제어기를 guide로 활용하여 어려운 로켓 착륙 제어 문제를 강화학습으로 학습하는 방법을 보여준다.
+
+## References
+
+- [Yuxuan Jiang et al., “Rocket Landing Control with Random Annealing Jump Start Reinforcement Learning,” arXiv:2407.15083](https://arxiv.org/abs/2407.15083)

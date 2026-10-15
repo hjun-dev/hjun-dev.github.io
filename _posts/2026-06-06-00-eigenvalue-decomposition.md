@@ -1203,3 +1203,7 @@ $$
 > 고유값분해는 행렬이 공간의 각 고유방향을 얼마나 늘리고, 줄이고, 뒤집고, 없애는지를 보여주는 해석 도구이다.
 
 이렇게 보면 행렬은 더 이상 숫자의 배열이 아니라, 공간 위에서 작용하는 하나의 변환으로 보인다.
+
+## References
+
+- [Gilbert Strang, MIT OpenCourseWare 18.06, “Lecture 21: Eigenvalues and Eigenvectors”](https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/resources/lecture-21-eigenvalues-and-eigenvectors/)
