@@ -51,4 +51,11 @@ test("GitHub Actions are pinned and deployment separates build from write access
   assert.match(deploy, /persist-credentials: false/);
   assert.match(deploy, /\n\s{2}build:\s*[\s\S]*\n\s{2}deploy:\s*[\s\S]*permissions:\s*[\s\S]*?contents: write/);
   assert.doesNotMatch(deploy, /yaml-update-action|npm install -g|pip3? install/);
+
+  const deployJob = deploy.split("\n  deploy:")[1];
+  const checkoutPosition = deployJob.indexOf("name: Checkout deployment repository");
+  const downloadPosition = deployJob.indexOf("name: Download site artifact");
+  const deployPosition = deployJob.indexOf("name: Deploy");
+  assert.ok(checkoutPosition > -1, "deploy job must initialize the Git repository");
+  assert.ok(checkoutPosition < downloadPosition && downloadPosition < deployPosition);
 });
