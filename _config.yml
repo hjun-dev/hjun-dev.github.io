@@ -85,8 +85,8 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: Hyeong-Jun's Research Blog # blog_name will be displayed in your blog page
-blog_description: Exploring Optimization, Control, and AI in Aerospace # blog_description will be displayed in your blog page
+blog_name: Research notebook # blog_name will be displayed in your blog page
+blog_description: Notes on optimization, control, and machine learning for autonomous systems # blog_description will be displayed in your blog page
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related posts
 
@@ -267,7 +267,8 @@ display_categories: [
     "reinforcement learning",
     "imitation and intervention learning",
     "generative models",
-    "generalization and representation",
+    "generalization",
+    "representation learning",
   ] # primary research fields used by the blog
 
 # -----------------------------------------------------------------------------

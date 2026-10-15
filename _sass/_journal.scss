@@ -5,31 +5,33 @@
 :root {
   --journal-content-width: 1120px;
   --journal-reading-width: 760px;
-  --journal-radius: 12px;
-  --journal-shadow: 0 14px 40px rgba(23, 33, 43, 0.07);
-  --journal-section-gap: clamp(2.75rem, 6vw, 5rem);
-  --journal-canvas: #f6f5f1;
-  --journal-ink: #17212b;
+  --journal-radius: 4px;
+  --journal-shadow: 0 8px 24px rgba(23, 34, 56, 0.06);
+  --journal-section-gap: clamp(2.75rem, 5vw, 4.25rem);
+  --journal-canvas: #ffffff;
+  --journal-ink: #172238;
   --journal-surface: #ffffff;
-  --journal-surface-muted: #eef2f3;
-  --journal-border: rgba(23, 33, 43, 0.14);
-  --journal-muted: #65717c;
-  --journal-accent: #315f78;
-  --journal-accent-soft: #e3edf1;
-  --journal-planned: #996332;
+  --journal-surface-muted: #f4f6fa;
+  --journal-border: #dce2ec;
+  --journal-rule: #172238;
+  --journal-muted: #526078;
+  --journal-accent: #254fc5;
+  --journal-accent-soft: #edf2ff;
+  --journal-planned: #526078;
 }
 
 html[data-theme="dark"] {
-  --journal-canvas: #171c21;
-  --journal-ink: #edf1f3;
-  --journal-shadow: 0 16px 44px rgba(0, 0, 0, 0.24);
-  --journal-surface: #20272d;
-  --journal-surface-muted: #273038;
-  --journal-border: rgba(219, 231, 238, 0.16);
-  --journal-muted: #aab5bd;
-  --journal-accent: #8db9cf;
-  --journal-accent-soft: #253a45;
-  --journal-planned: #d6a774;
+  --journal-canvas: #0e1523;
+  --journal-ink: #e9eef8;
+  --journal-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  --journal-surface: #141e30;
+  --journal-surface-muted: #182338;
+  --journal-border: #2c3850;
+  --journal-rule: #9fadc6;
+  --journal-muted: #a8b5cc;
+  --journal-accent: #9bb5ff;
+  --journal-accent-soft: #1b2b4b;
+  --journal-planned: #a8b5cc;
 }
 
 html {
@@ -37,9 +39,7 @@ html {
 }
 
 body {
-  background:
-    radial-gradient(circle at 15% -12%, rgba(49, 95, 120, 0.08), transparent 28rem),
-    var(--journal-canvas);
+  background: var(--journal-canvas);
   font-family: $font-family-sans-serif;
   font-size: 1rem;
   line-height: 1.65;
@@ -82,10 +82,10 @@ li {
 }
 
 .eyebrow {
-  color: var(--global-theme-color);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.11em;
+  color: var(--journal-accent);
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.12em;
   margin-bottom: 0.65rem;
   text-transform: uppercase;
 }
@@ -95,11 +95,16 @@ li {
   display: flex;
   gap: 1rem;
   justify-content: space-between;
-  margin-bottom: 1.35rem;
+  margin-bottom: 1.5rem;
 
   h2,
   h3 {
     margin: 0;
+  }
+
+  h2 {
+    font-size: clamp(1.45rem, 2.7vw, 1.85rem);
+    letter-spacing: -0.035em;
   }
 }
 
@@ -120,12 +125,11 @@ li {
 }
 
 .site-navbar.navbar {
-  backdrop-filter: blur(18px);
-  background-color: color-mix(in srgb, var(--journal-canvas) 91%, transparent);
+  background-color: var(--journal-canvas);
   border-bottom: 1px solid var(--journal-border);
   box-shadow: none;
-  min-height: 4rem;
-  opacity: 0.98;
+  min-height: 4.25rem;
+  opacity: 1;
 
   .site-brand {
     align-items: center;
@@ -139,7 +143,7 @@ li {
   .site-brand__mark {
     align-items: center;
     background: var(--journal-ink);
-    border-radius: 50%;
+    border-radius: 3px;
     color: var(--journal-canvas);
     display: inline-flex;
     font-size: 0.64rem;
@@ -155,16 +159,16 @@ li {
   }
 
   .nav-link {
-    border-radius: 0.5rem;
+    border-radius: 3px;
     font-size: 0.86rem;
-    font-weight: 550;
+    font-weight: 600;
     padding: 0.45rem 0.65rem;
     position: relative;
   }
 
   .nav-item.active > .nav-link::after {
     background: var(--global-theme-color);
-    border-radius: 999px;
+    border-radius: 0;
     bottom: 0.08rem;
     content: "";
     height: 2px;
@@ -175,11 +179,16 @@ li {
 
   .nav-control button {
     align-items: center;
-    border-radius: 0.5rem;
+    border-radius: 3px;
     display: inline-flex;
     justify-content: center;
     min-height: 2.35rem;
     min-width: 2.35rem;
+  }
+
+  .nav-link:hover,
+  .nav-item.active > .nav-link {
+    color: var(--journal-accent) !important;
   }
 }
 
@@ -252,10 +261,6 @@ button,
 }
 
 @media (max-width: 575.98px) {
-  .site-brand__name {
-    display: none;
-  }
-
   .section-heading__note {
     text-align: left;
   }

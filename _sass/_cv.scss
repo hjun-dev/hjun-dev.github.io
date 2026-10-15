@@ -14,7 +14,9 @@
   margin: clamp(1rem, 4vw, 3rem) 0 1.5rem;
 
   h1 {
+    font-family: $font-family-display;
     font-size: clamp(2.1rem, 5vw, 3.5rem);
+    font-weight: 400;
     margin: 0;
   }
 
@@ -27,7 +29,7 @@
 .cv-download {
   align-items: center;
   border: 1px solid var(--journal-border);
-  border-radius: 999px;
+  border-radius: 3px;
   color: var(--global-text-color);
   display: inline-flex;
   flex: 0 0 auto;
@@ -204,7 +206,7 @@
 
 a.btncv {
   border: 1px solid var(--journal-border);
-  border-radius: 999px;
+  border-radius: 3px;
   color: var(--global-text-color) !important;
   font-size: 0.68rem;
   font-weight: 600;

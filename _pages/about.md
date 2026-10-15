@@ -23,24 +23,25 @@ announcements:
 latest_posts:
   enabled: true
   scrollable: false # adds a vertical scroll bar if there are more than 3 new posts items
-  limit: 3 # leave blank to include all the blog posts
+  limit: 2 # leave blank to include all the blog posts
 ---
 
-**Hello! I am Hyeong-Jun Lee.**
-
-My research focuses on optimal control theory, deep learning and reinforcement learning applications for aerospace systems.
-
-My goal is to bridge the gap between theoretical control guarantees and practical learning-based methods.
-
-<div class="section-heading mt-5">
-  <h2>Research Interests</h2>
+<div class="home-research">
+  <section class="home-research__focus">
+    <h2>Research focus</h2>
+    <p>My research focuses on optimal control theory, deep learning and reinforcement learning applications for aerospace systems.</p>
+    <p>My goal is to bridge the gap between theoretical control guarantees and practical learning-based methods.</p>
+  </section>
+  <section class="home-research__interests">
+    <h2>Research interests</h2>
+    <dl>
+      <div><dt>Optimization</dt><dd>Convex optimization, SCP, convergence analysis</dd></div>
+      <div><dt>Control theory</dt><dd>Model predictive control</dd></div>
+      <div><dt>Learning</dt><dd>Deep learning, safe RL, imitation learning</dd></div>
+      <div><dt>Aerospace systems</dt><dd>Guidance, navigation, and control</dd></div>
+    </dl>
+  </section>
 </div>
-
-- **Optimization** (Convex Optimization, SCP, Convergence Analysis)
-- **Control Theory** (MPC)
-- **Deep Learning**
-- **Reinforcement Learning** (Safe RL, Imitation learning)
-- **Aerospace Systems** (Guidance, Navigation, and Control)
 
 <div class="section-heading mt-5">
   <h2>Recent Projects</h2>

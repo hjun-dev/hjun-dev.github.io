@@ -50,7 +50,7 @@
   .post-category {
     background: var(--journal-surface-muted);
     border: 1px solid var(--journal-border);
-    border-radius: 999px;
+    border-radius: 3px;
     color: var(--global-theme-color);
     font-size: 0.72rem;
     font-weight: 650;
@@ -87,9 +87,10 @@
 }
 
 .planned-note-callout {
-  background: color-mix(in srgb, var(--journal-planned) 9%, var(--journal-surface));
-  border: 1px solid color-mix(in srgb, var(--journal-planned) 36%, var(--journal-border));
-  border-radius: 0.75rem;
+  background: var(--journal-surface-muted);
+  border: 1px solid var(--journal-border);
+  border-left: 3px solid var(--journal-accent);
+  border-radius: 3px;
   margin-bottom: 2.25rem;
   padding: 1rem 1.1rem;
 
@@ -143,7 +144,7 @@
 .post-toc-mobile {
   background: var(--journal-surface-muted);
   border: 1px solid var(--journal-border);
-  border-radius: 0.65rem;
+  border-radius: 3px;
   display: none;
   margin-top: 1.25rem;
   padding: 0.75rem 0.9rem;
@@ -267,7 +268,7 @@
   pre,
   figure.highlight {
     border: 1px solid var(--journal-border);
-    border-radius: 0.65rem;
+    border-radius: 3px;
     margin: 1.5rem 0;
     overflow-x: auto;
   }

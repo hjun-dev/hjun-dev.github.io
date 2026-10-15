@@ -13,7 +13,7 @@
       {% endif %}
     </div>
     <h3 class="blog-post-row__title">
-      <a href="{{ row_post.url | relative_url }}">{{ row_post.title }}</a>
+      <a href="{{ row_post.url | relative_url }}">{{ row_post.title | remove_first: '[Paper Review] ' }}</a>
     </h3>
     {% if row_post.description %}
       <p class="blog-post-row__description">{{ row_post.description }}</p>

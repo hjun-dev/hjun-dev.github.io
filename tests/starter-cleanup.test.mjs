@@ -67,10 +67,10 @@ test("does not expose starter identity or placeholder references", () => {
 });
 
 test("gives About readers a clear route to the full blog", () => {
-  const latestPosts = readFileSync(join(repositoryRoot, "_includes/latest_posts.liquid"), "utf8");
+  const aboutLayout = readFileSync(join(repositoryRoot, "_layouts/about.liquid"), "utf8");
 
-  assert.match(latestPosts, /href=["']\{\{\s*['"]\/blog\/['"]\s*\|\s*relative_url\s*\}\}["']/);
-  assert.match(latestPosts, /View all posts/i);
+  assert.match(aboutLayout, /href=["']\{\{\s*['"]\/blog\/['"]\s*\|\s*relative_url\s*\}\}["']/);
+  assert.match(aboutLayout, /Browse all writing/i);
 });
 
 test("uses reusable layout classes instead of inline presentation on About", () => {

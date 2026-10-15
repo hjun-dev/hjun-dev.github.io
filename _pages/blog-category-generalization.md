@@ -1,7 +1,7 @@
 ---
 layout: archive
-permalink: /blog/category/generalization-and-representation/
-title: generalization and representation
+permalink: /blog/category/generalization/
+title: generalization
 type: categories
 collection_name: posts
 ---

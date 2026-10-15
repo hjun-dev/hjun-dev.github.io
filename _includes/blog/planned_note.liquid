@@ -10,7 +10,7 @@
     {% endif %}
   </div>
   <h3 class="planned-note__title">
-    <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
+    <a href="{{ note.url | relative_url }}">{{ note.title | remove_first: '[Paper Review] ' }}</a>
   </h3>
   {% if note.description %}
     <p>{{ note.description }}</p>

@@ -17,8 +17,8 @@ layout: default
 
 <div class="post post-reading">
   <header class="post-header post-reading__header">
-    <p class="eyebrow">{% if page.status == 'planned' %}Planned note{% else %}Research article{% endif %}</p>
-    <h1 class="post-title">{{ page.title }}</h1>
+    <p class="eyebrow">{% if page.status == 'planned' %}Planned note{% elsif page.tags contains 'paper review' %}Paper review{% else %}Research article{% endif %}</p>
+    <h1 class="post-title">{{ page.title | remove_first: '[Paper Review] ' }}</h1>
     {% if page.description %}
       <p class="post-reading__dek">{{ page.description }}</p>
     {% endif %}
@@ -50,8 +50,12 @@ layout: default
         {% assign category_label = site.data.blog_category_labels[category] | default: category %}
         <a class="post-category" href="{{ category | slugify | prepend: '/blog/category/' | append: '/' | relative_url }}">{{ category_label }}</a>
       {% endfor %}
-      {% for tag in page.tags %}
-        <a class="post-tag" href="{{ tag | slugify | prepend: '/blog/tag/' | append: '/' | relative_url }}">#{{ tag }}</a>
+      {% for tag in page.tags limit: 3 %}
+        {% if site.tags[tag] %}
+          <a class="post-tag" href="{{ tag | slugify | prepend: '/blog/tag/' | append: '/' | relative_url }}">#{{ tag }}</a>
+        {% else %}
+          <span class="post-tag">#{{ tag }}</span>
+        {% endif %}
       {% endfor %}
       <a class="post-year" href="{{ year | prepend: '/blog/' | append: '/' | relative_url }}">{{ year }}</a>
     </div>

@@ -10,40 +10,29 @@
 
 {% if topic_item_count > 0 %}
   {% assign topic_path = topic.key | slugify | prepend: '/blog/category/' | append: '/' %}
-  <article class="blog-topic-panel surface">
+  <article class="blog-topic-panel">
     <header class="blog-topic-panel__header">
-      <h3>
+      <h4>
         <a href="{{ topic_path | relative_url }}">{{ topic.label }}</a>
-      </h3>
+      </h4>
       <a
         class="blog-topic-panel__count-link"
         href="{{ topic_path | relative_url }}"
         aria-label="View {{ published_count }} published and {{ planned_count }} planned notes in {{ topic.label }}"
       >
         <span class="blog-topic-panel__count">
-          {{- published_count }} {% if published_count == 1 %}post{% else %}posts{% endif -%}
-          {%- if planned_count > 0 %} · {{ planned_count }} planned{% endif -%}
+          {%- if published_count > 0 -%}
+            {{- published_count }} {% if published_count == 1 %}post{% else %}posts{% endif -%}
+          {%- endif -%}
+          {%- if planned_count > 0 -%}
+            {%- if published_count > 0 %} · {% endif -%}
+            {{ planned_count }} planned
+          {%- endif -%}
         </span>
         <span class="blog-topic-panel__arrow" aria-hidden="true">→</span>
       </a>
     </header>
 
-    <ol class="blog-topic-panel__posts">
-      {% for post in topic_posts limit: 2 %}
-        <li>
-          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time>
-        </li>
-      {% endfor %}
-      {% if published_count < 2 %}
-        {% assign remaining_slots = 2 | minus: published_count %}
-        {% for note in topic_planned limit: remaining_slots %}
-          <li class="blog-topic-panel__planned">
-            <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
-            <span>Planned</span>
-          </li>
-        {% endfor %}
-      {% endif %}
-    </ol>
+    <p class="blog-topic-panel__description">{{ topic.description }}</p>
   </article>
 {% endif %}

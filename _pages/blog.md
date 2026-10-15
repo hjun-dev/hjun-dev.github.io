@@ -34,11 +34,17 @@ pagination:
 
 <div class="blog-index journal-shell">
   {% if paginator.page == 1 %}
-    <header class="blog-intro">
-      <p class="eyebrow">Research notes</p>
-      <h1>{{ site.blog_name }}</h1>
-      <p>{{ site.blog_description }}. Technical notes on optimization, control, reinforcement learning, and the mathematics behind them.</p>
-    </header>
+    <div class="blog-masthead">
+      <header class="blog-intro">
+        <p class="eyebrow">Hyeong-Jun Lee / Notes &amp; reviews</p>
+        <h1>{{ site.blog_name }}</h1>
+        <p>{{ site.blog_description }}.</p>
+        <nav class="blog-jump-nav" aria-label="On this page">
+          <a href="#explore-topics">Topics <span aria-hidden="true">↘</span></a>
+          <a href="#all-posts">All posts <span aria-hidden="true">↘</span></a>
+          <a href="#writing-queue">Writing queue <span aria-hidden="true">↘</span></a>
+        </nav>
+      </header>
 
     <dl class="blog-summary" aria-label="Blog summary">
       <div>
@@ -53,16 +59,13 @@ pagination:
         <dt>Active topics</dt>
         <dd>{{ active_topic_count }}</dd>
       </div>
-      <div>
-        <dt>Latest</dt>
-        <dd>{{ site.posts.first.date | date: '%Y.%m.%d' }}</dd>
-      </div>
     </dl>
+    </div>
 
-    <section class="blog-section" aria-labelledby="explore-topics">
+    <section class="blog-section blog-discovery" aria-labelledby="explore-topics">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">Browse the archive</p>
+          <p class="eyebrow">Fields &amp; methods</p>
           <h2 id="explore-topics">Explore by topic</h2>
         </div>
       </div>
@@ -83,7 +86,6 @@ pagination:
             <section class="blog-topic-group" aria-labelledby="topic-group-{{ group.label | slugify }}">
               <header class="blog-topic-group__header">
                 <h3 id="topic-group-{{ group.label | slugify }}">{{ group.label }}</h3>
-                <p>{{ group.description }}</p>
               </header>
               <div class="blog-topic-grid">
                 {% for topic in group.topics %}
@@ -98,7 +100,6 @@ pagination:
       <div class="blog-specific-topics">
         <div class="blog-specific-topics__heading">
           <h3>Browse specific topics</h3>
-          <p>Methods, applications, and article formats across the primary fields.</p>
         </div>
         {% include blog/tag_browser.liquid %}
       </div>
@@ -131,7 +132,7 @@ pagination:
           <p class="eyebrow">Next in the notebook</p>
           <h2 id="writing-queue">Writing queue</h2>
         </div>
-        <p class="section-heading__note">Paper reviews and method notes currently being prepared.</p>
+        <p class="section-heading__note">Upcoming paper reviews. Each note includes its primary sources.</p>
       </div>
       <div class="writing-queue__grid">
         {% for note in planned_notes %}

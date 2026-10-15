@@ -4,6 +4,8 @@ layout: default
 {% assign sorted_documents = '' | split: ',' %}
 {% if page.documents %}
   {% assign sorted_documents = page.documents | sort: 'date' | reverse %}
+{% elsif page.type == 'categories' and site.categories[page.title] %}
+  {% assign sorted_documents = site.categories[page.title] | sort: 'date' | reverse %}
 {% endif %}
 {% assign is_topic_archive = false %}
 {% if page.type == 'categories' or page.type == 'tags' %}
@@ -33,7 +35,13 @@ layout: default
           {% if page.type == 'tags' %}#{% endif -%}
           {{- archive_title }}
         </h1>
-        <span>{{ sorted_documents.size }} published{% if planned_documents.size > 0 %} · {{ planned_documents.size }} planned{% endif %}</span>
+        <span>
+          {%- if sorted_documents.size > 0 -%}{{ sorted_documents.size }} published{%- endif -%}
+          {%- if planned_documents.size > 0 -%}
+            {%- if sorted_documents.size > 0 %} · {% endif -%}
+            {{ planned_documents.size }} planned
+          {%- endif -%}
+        </span>
       </div>
     </header>
   {% else %}
@@ -52,19 +60,19 @@ layout: default
     <section class="blog-category-archive" aria-label="Posts in {{ page.title }}">
       {% if sorted_documents.size > 0 %}
         <div class="blog-archive-subheading">
-          <p class="eyebrow">Published</p>
-          <h2>Articles</h2>
+          <h2>Published articles</h2>
+          <p class="eyebrow">Newest first</p>
+        </div>
+        <div class="blog-archive-list">
+          {% for document in sorted_documents %}
+            {% include blog/archive_row.liquid document=document %}
+          {% endfor %}
         </div>
       {% endif %}
-      <div class="blog-archive-list">
-        {% for document in sorted_documents %}
-          {% include blog/archive_row.liquid document=document %}
-        {% endfor %}
-      </div>
       {% if planned_documents.size > 0 %}
         <div class="blog-archive-subheading blog-archive-subheading--planned">
-          <p class="eyebrow">In preparation</p>
           <h2>Planned notes</h2>
+          <p class="eyebrow">In preparation</p>
         </div>
         <div class="blog-archive-list blog-archive-list--planned">
           {% for document in planned_documents %}

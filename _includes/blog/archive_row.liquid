@@ -4,11 +4,11 @@
   <div class="blog-archive-row__body">
     <h2 class="blog-archive-row__title">
       {% if document.redirect == blank %}
-        <a href="{{ document.url | relative_url }}">{{ document.title }}</a>
+        <a href="{{ document.url | relative_url }}">{{ document.title | remove_first: '[Paper Review] ' }}</a>
       {% elsif document.redirect contains '://' %}
-        <a href="{{ document.redirect }}" target="_blank" rel="noopener noreferrer">{{ document.title }}</a>
+        <a href="{{ document.redirect }}" target="_blank" rel="noopener noreferrer">{{ document.title | remove_first: '[Paper Review] ' }}</a>
       {% else %}
-        <a href="{{ document.redirect | relative_url }}">{{ document.title }}</a>
+        <a href="{{ document.redirect | relative_url }}">{{ document.title | remove_first: '[Paper Review] ' }}</a>
       {% endif %}
     </h2>
     {% if document.description %}
