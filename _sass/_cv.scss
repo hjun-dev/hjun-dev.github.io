@@ -246,6 +246,19 @@ a.anchor {
 }
 
 @media (max-width: 767.98px) {
+  .cv-summary {
+    padding: 0.85rem;
+
+    .table {
+      display: table;
+      table-layout: fixed;
+      width: 100%;
+    }
+
+    td { overflow-wrap: anywhere; }
+    td:first-child { overflow-wrap: normal; white-space: nowrap; width: 6rem; }
+  }
+
   .cv-header {
     align-items: flex-start;
     flex-direction: column;

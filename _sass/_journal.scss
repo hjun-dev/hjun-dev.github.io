@@ -236,6 +236,9 @@ button,
   .site-navbar.navbar {
     min-height: 3.6rem;
 
+    .navbar-toggler { min-height: 44px; min-width: 44px; }
+    .nav-control button { min-height: 44px; min-width: 44px; }
+
     .navbar-collapse {
       border-top: 1px solid var(--journal-border);
       margin-top: 0.7rem;
@@ -248,6 +251,7 @@ button,
     }
 
     .nav-link {
+      min-height: 44px;
       padding: 0.55rem 0.65rem;
     }
 

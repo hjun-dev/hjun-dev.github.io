@@ -47,6 +47,10 @@
     return added;
   }
 
+  function needsInlineScroll(naturalWidth, availableWidth) {
+    return availableWidth > 0 && naturalWidth > availableWidth + 1;
+  }
+
   function init(doc, win) {
     const content = doc.querySelector(".post-reading #markdown-content");
     if (!content) return;
@@ -84,6 +88,7 @@
 
     let activeIndex = -1;
     let framePending = false;
+    let overflowPending = true;
     let pointerInside = false;
     const overflowAttributes = new WeakMap();
 
@@ -100,7 +105,18 @@
     }
 
     function enhanceOverflow() {
-      const regions = content.querySelectorAll('mjx-container[display="true"], .fixed-table-body, pre, table');
+      content.querySelectorAll('mjx-container[jax="CHTML"]:not([display="true"])').forEach((element) => {
+        // Tables already own their horizontal scroll area. Measure against the local
+        // paragraph/list width, not the full article, so indented equations fit too.
+        if (element.closest("table")) return;
+        const math = element.querySelector("mjx-math");
+        if (!math) return;
+        const block = element.closest("p, li, blockquote, h1, h2, h3, h4, h5, h6") || content;
+        const style = win.getComputedStyle(block);
+        const available = block.clientWidth - (parseFloat(style.paddingLeft) || 0) - (parseFloat(style.paddingRight) || 0);
+        element.classList.toggle("reading-math-overflow", needsInlineScroll(math.getBoundingClientRect().width, available));
+      });
+      const regions = content.querySelectorAll('mjx-container[display="true"], mjx-container.reading-math-overflow, mjx-container[data-reading-overflow], .fixed-table-body, .table-responsive, pre, table');
       regions.forEach((element) => {
         const overflowing = element.scrollWidth > element.clientWidth + 1;
         if (overflowing && !overflowAttributes.has(element)) {
@@ -122,7 +138,10 @@
 
     function update() {
       framePending = false;
-      enhanceOverflow();
+      if (overflowPending) {
+        overflowPending = false;
+        enhanceOverflow();
+      }
       if (!nav || !headings.length) return;
       const navbar = doc.getElementById("navbar");
       const anchorOffset = parseFloat(win.getComputedStyle(headings[0]).scrollMarginTop) || 0;
@@ -156,6 +175,11 @@
       win.requestAnimationFrame(update);
     }
 
+    function scheduleLayout() {
+      overflowPending = true;
+      schedule();
+    }
+
     if (nav) {
       nav.addEventListener("pointerenter", () => { pointerInside = true; });
       nav.addEventListener("pointerleave", () => { pointerInside = false; revealCurrent(); });
@@ -169,13 +193,13 @@
       });
     }
     win.addEventListener("scroll", schedule, { passive: true });
-    win.addEventListener("resize", schedule, { passive: true });
+    win.addEventListener("resize", scheduleLayout, { passive: true });
     win.addEventListener("hashchange", schedule);
-    win.addEventListener("load", schedule, { once: true });
-    if (win.ResizeObserver) new win.ResizeObserver(schedule).observe(content);
-    if (doc.fonts) doc.fonts.ready.then(schedule);
+    win.addEventListener("load", scheduleLayout, { once: true });
+    if (win.ResizeObserver) new win.ResizeObserver(scheduleLayout).observe(content);
+    if (doc.fonts) doc.fonts.ready.then(scheduleLayout);
     schedule();
   }
 
-  return { selectActiveHeading, readingLinePosition, isSpacerContent, tocScrollTarget, scrollRegionAttributes, init };
+  return { selectActiveHeading, readingLinePosition, isSpacerContent, tocScrollTarget, scrollRegionAttributes, needsInlineScroll, init };
 });

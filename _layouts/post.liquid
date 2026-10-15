@@ -24,7 +24,9 @@ layout: default
     {% endif %}
 
     <div class="post-meta-row">
-      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %-d, %Y' }}</time>
+      <a class="post-date" href="{{ year | prepend: '/blog/' | append: '/' | relative_url }}">
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %-d, %Y' }}</time>
+      </a>
       {% if word_count > 100 %}
         <span aria-hidden="true">·</span>
         <span>{{ reading_time }} min read</span>

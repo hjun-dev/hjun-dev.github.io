@@ -60,6 +60,14 @@
   font-size: 0.8rem;
   gap: 0.35rem 0.55rem;
   margin-top: 1.25rem;
+
+  .post-date {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible { color: var(--journal-accent); text-decoration: underline; }
+  }
 }
 
 .post-taxonomy {
@@ -188,32 +196,47 @@
   border-radius: 3px;
   display: none;
   margin-top: 1.25rem;
-  padding: 0.75rem 0.9rem;
+  padding: 0 0.85rem;
 
   summary {
     color: var(--global-text-color);
     cursor: pointer;
     font-size: 0.82rem;
     font-weight: 650;
+    line-height: 1.5;
+    min-height: 44px;
+    padding-block: 0.7rem;
   }
 
   &__content {
     border-top: 1px solid var(--journal-border);
     font-size: 0.8rem;
     line-height: 1.6;
-    margin-top: 0.7rem;
+    margin-top: 0;
     max-height: min(50vh, 24rem);
     overscroll-behavior: contain;
     overflow-y: auto;
-    padding-top: 0.6rem;
+    padding-block: 0.4rem 0.6rem;
 
     ul {
+      list-style: none;
       margin: 0;
-      padding-left: 1.1rem;
+      padding-left: 0;
+
+      ul {
+        border-left: 1px solid var(--journal-border);
+        margin-left: 0.25rem;
+        padding-left: 0.8rem;
+      }
     }
 
-    a { display: inline-block; padding-block: 0.2rem; }
-    a[aria-current="location"] { color: var(--journal-ink); font-weight: 650; }
+    a { display: block; min-height: 44px; padding: 0.65rem 0.45rem; }
+    a[aria-current="location"] {
+      background: var(--journal-accent-soft);
+      border-radius: 3px;
+      color: var(--journal-ink);
+      font-weight: 650;
+    }
   }
 }
 
@@ -314,6 +337,23 @@
     overflow-y: hidden;
     padding: 0.35rem 0 0.55rem;
   }
+
+  mjx-container.reading-math-overflow {
+    box-sizing: border-box;
+    display: block;
+    margin: 0.5em 0;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    padding: 0.35rem 0 0.55rem;
+    text-align: left;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  // Keep hidden screen-reader math within the visible formula's bounds.
+  mjx-assistive-mml { max-width: 100%; }
 
   figure,
   img,
@@ -427,6 +467,8 @@
   }
 }
 
+.post-reading__after iframe { max-width: 100%; }
+
 .post-related {
   border-top: 1px solid var(--journal-border);
   margin-top: 2.5rem;
@@ -487,10 +529,19 @@
 
 @media (max-width: 575.98px) {
   .post-reading {
+    &__header { margin: 0.25rem 0 1.5rem; }
+    &__dek { font-size: 0.94rem; line-height: 1.65; word-break: keep-all; }
+
     .post-title {
       font-size: clamp(1.65rem, 7.5vw, 2.1rem);
     }
   }
+
+  .post-meta-row { margin-top: 1rem; }
+  .post-taxonomy { gap: 0.4rem 0.55rem; margin-top: 0.75rem; }
+  // The linked publication date already provides the same year-archive route.
+  .post-taxonomy .post-year { display: none; }
+  .post-toc-mobile { margin-top: 1rem; }
 
   .post-content {
     font-size: 1rem;
