@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .letter { fill: #172238; }
+    .dot { fill: #254fc5; }
+    @media (prefers-color-scheme: dark) {
+      .letter { fill: #e9eef8; }
+      .dot { fill: #9bb5ff; }
+    }
+  </style>
+  <path class="letter" d="M7 9h23v2h-8v40h12c6 0 8-5 10-12h2l-2 14H7v-2h7V11H7z"/>
+  <circle class="dot" cx="55" cy="49" r="4"/>
+</svg>
