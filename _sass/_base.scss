@@ -953,31 +953,6 @@ html.transition *:after {
   transition-delay: 0 !important;
 }
 
-// Extra Markdown style (post Customization)
-.post {
-  .post-meta {
-    color: var(--global-text-color-light);
-    font-size: 0.875rem;
-    margin-bottom: 0;
-  }
-
-  .post-tags {
-    color: var(--global-text-color-light);
-    font-size: 0.875rem;
-    padding-top: 0.25rem;
-    padding-bottom: 1rem;
-
-    a {
-      color: var(--global-text-color-light);
-      text-decoration: none;
-
-      &:hover {
-        color: var(--global-theme-color);
-      }
-    }
-  }
-}
-
 progress {
   /* Positioning */
   position: fixed;
@@ -1214,10 +1189,6 @@ nav[data-toggle="toc"] {
 .medium-zoom-overlay,
 .medium-zoom-image--opened {
   z-index: 999;
-}
-
-#toc-sidebar {
-  z-index: 1;
 }
 
 .echarts {

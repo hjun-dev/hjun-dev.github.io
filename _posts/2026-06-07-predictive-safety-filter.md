@@ -760,12 +760,12 @@ $$
 
 | Constraint | Meaning |
 | --- | --- |
-| $\mu_{i+1|k}=f(\mu_{i|k},v_{i|k};\bar{\theta})$ | 평균 모델에 대한 nominal backup trajectory |
-| $\mu_{i|k}\in \bar{X}_i$ | model error를 고려한 tightened state constraint |
-| $v_{i|k}\in \bar{U}_i$ | model error를 고려한 tightened input constraint |
-| $E_{p_S}(\mu_{i|k},v_{i|k})\subseteq \bar{E}_i^{\gamma}$ | confident subset에서만 planning |
-| $\mu_{N|k}\in \bar{S}_N^f$ | terminal safe set으로의 도달 |
-| $\mu_{0|k}=x(k)$ | 현재 실제 상태에서 planning 시작 |
+| $\mu_{i+1\vert k}=f(\mu_{i\vert k},v_{i\vert k};\bar{\theta})$ | 평균 모델에 대한 nominal backup trajectory |
+| $\mu_{i\vert k}\in \bar{X}_i$ | model error를 고려한 tightened state constraint |
+| $v_{i\vert k}\in \bar{U}_i$ | model error를 고려한 tightened input constraint |
+| $E_{p_S}(\mu_{i\vert k},v_{i\vert k})\subseteq \bar{E}_i^{\gamma}$ | confident subset에서만 planning |
+| $\mu_{N\vert k}\in \bar{S}_N^f$ | terminal safe set으로의 도달 |
+| $\mu_{0\vert k}=x(k)$ | 현재 실제 상태에서 planning 시작 |
 
 이 문제가 논문 Fig. 2의 오른쪽 column에 있는 online problem (6)이다.
 
