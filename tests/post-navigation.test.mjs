@@ -19,9 +19,14 @@ test("uses current heading positions after equations or images change the layout
 });
 
 test("keeps anchored headings current across mobile and desktop header heights", () => {
-  assert.equal(readingLinePosition(59, 88), 90);
-  assert.equal(readingLinePosition(68, 88), 94);
+  assert.equal(readingLinePosition(59, 88), 109);
+  assert.equal(readingLinePosition(68, 88), 118);
   assert.equal(selectActiveHeading([-400, 88.17, 800], readingLinePosition(59, 88)), 1);
+});
+
+test("keeps a directly linked section current after a small font or math layout shift", () => {
+  assert.equal(selectActiveHeading([-400, 100.39, 800], readingLinePosition(68, 88)), 1);
+  assert.equal(selectActiveHeading([-400, 100.39, 800], readingLinePosition(59, 88)), 1);
 });
 
 test("marks a short final section at the document end even if its heading cannot reach the reading line", () => {

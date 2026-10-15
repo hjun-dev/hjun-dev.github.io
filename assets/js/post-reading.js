@@ -21,8 +21,8 @@
   }
 
   function readingLinePosition(headerBottom, anchorOffset) {
-    // Match CSS anchor clearance even when the mobile navbar is shorter; allow subpixel rounding.
-    return Math.max(headerBottom + 24, anchorOffset) + 2;
+    // Track a short reading window below the navbar, including anchor clearance and subpixel rounding.
+    return Math.max(headerBottom + 48, anchorOffset) + 2;
   }
 
   function isSpacerContent(text, childTags) {
