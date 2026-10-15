@@ -12,7 +12,7 @@
   border-bottom: 1px solid var(--journal-border);
   display: grid;
   gap: clamp(1.5rem, 4vw, 3rem);
-  grid-template-columns: minmax(0, 1fr) minmax(12rem, 15rem);
+  grid-template-columns: minmax(0, 1fr) minmax(14rem, 17.5rem);
   padding: clamp(1.75rem, 3vw, 2.5rem) 0;
 
   &__copy {
@@ -78,10 +78,11 @@
     }
 
     img {
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 14 / 15;
       border-radius: 3px;
-      filter: saturate(0.9) contrast(1.02);
+      height: auto;
       object-fit: cover;
+      object-position: 50% 45%;
       width: 100%;
     }
 
@@ -377,7 +378,7 @@
 @media (max-width: 991.98px) {
   .home-hero {
     gap: 1.75rem;
-    grid-template-columns: minmax(0, 1fr) 12rem;
+    grid-template-columns: minmax(0, 1fr) 14rem;
   }
 
   .home-hero h1 {
@@ -406,7 +407,7 @@
     align-items: center;
     display: grid;
     gap: 1rem;
-    grid-template-columns: 6.5rem minmax(0, 1fr);
+    grid-template-columns: 8rem minmax(0, 1fr);
     justify-self: start;
     max-width: 22rem;
 

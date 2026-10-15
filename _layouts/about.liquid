@@ -16,7 +16,7 @@ layout: default
     {% if page.profile and page.profile.image %}
       <div class="home-hero__portrait">
         {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
-        {% include figure.liquid loading="eager" path=profile_image_path class="home-hero__image" sizes="(min-width: 992px) 240px, (min-width: 768px) 192px, 104px" alt=site.title cache_bust=true %}
+        {% include figure.liquid loading="eager" path=profile_image_path class="home-hero__image" avoid_scaling=true alt=site.title cache_bust=true %}
         <p>Inha University<br>Incheon, South Korea</p>
       </div>
     {% endif %}

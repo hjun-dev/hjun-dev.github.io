@@ -108,6 +108,7 @@
 .blog-topic-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
+  padding: 0 1rem;
 }
 
 .blog-topic-groups {
@@ -118,15 +119,23 @@
 }
 
 .blog-topic-group {
+  align-self: start;
+  background: var(--journal-surface);
+  border: 1px solid var(--journal-border);
+  border-radius: var(--journal-radius);
   min-width: 0;
+  overflow: hidden;
 
   &__header {
-    border-top: 2px solid var(--journal-rule);
-    padding: 0.85rem 0 1rem;
+    background: var(--journal-ink);
+    color: var(--journal-canvas);
+    padding: 0.9rem 1rem;
 
     h3 {
-      font-size: 1.05rem;
+      color: inherit;
+      font-size: 1.25rem;
       font-weight: 700;
+      line-height: 1.3;
       margin: 0;
     }
   }
@@ -205,13 +214,17 @@
   min-width: 0;
   padding: 0.85rem 0 1rem;
 
+  &:first-child {
+    border-top: 0;
+  }
+
   &__header {
     display: grid;
     gap: 0.5rem;
 
     h4 {
-      font-size: 1.02rem;
-      font-weight: 650;
+      font-size: 1rem;
+      font-weight: 600;
       line-height: 1.4;
       margin: 0;
 
@@ -505,6 +518,12 @@
   .blog-topic-grid {
     gap: 0 1.5rem;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .blog-topic-panel:nth-child(2) {
+    border-top: 0;
   }
 }
 
