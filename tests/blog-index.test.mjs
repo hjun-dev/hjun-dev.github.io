@@ -27,12 +27,16 @@ const blogScss = readOptional("_sass/_blog.scss");
 const topicsData = readOptional("_data/blog_topics.yml");
 const topicPanel = readOptional("_includes/blog/topic_panel.liquid");
 
-test("page one progresses from summary to latest, topics, and all posts", () => {
+test("page one progresses from summary to topics and all posts without a duplicate latest module", () => {
   assert.match(blogPage, /paginator\.page\s*==\s*1/);
   assert.match(blogPage, /site\.posts\.size/);
-  assert.match(blogPage, /blog\/featured_post\.liquid/);
   assert.match(blogPage, /site\.data\.blog_topics/);
   assert.match(blogPage, /blog\/post_row\.liquid/);
+  assert.doesNotMatch(blogPage, /Latest writing|blog\/featured_post\.liquid|blog-recent-grid/);
+
+  const topicsPosition = blogPage.indexOf("Explore by topic");
+  const archivePosition = blogPage.indexOf("All posts");
+  assert.ok(topicsPosition > -1 && topicsPosition < archivePosition);
 });
 
 test("all configured topics resolve to canonical posts", () => {

@@ -35,13 +35,7 @@ test("keeps the footer in normal flow", () => {
 });
 
 test("exposes editorial tokens and accessible interaction states", () => {
-  for (const token of [
-    "--journal-content-width",
-    "--journal-reading-width",
-    "--journal-radius",
-    "--journal-shadow",
-    "--journal-section-gap",
-  ]) {
+  for (const token of ["--journal-content-width", "--journal-reading-width", "--journal-radius", "--journal-shadow", "--journal-section-gap"]) {
     assert.match(journalScss, new RegExp(token));
   }
 

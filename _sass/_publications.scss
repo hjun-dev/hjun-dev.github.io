@@ -1,0 +1,65 @@
+/*******************************************************************************
+ * Publication archive
+ ******************************************************************************/
+
+.publication-section {
+  margin-top: var(--journal-section-gap);
+}
+
+.publications {
+  margin-top: 0.75rem;
+
+  ol.bibliography {
+    border-top: 1px solid var(--journal-border);
+
+    > li {
+      border-bottom: 1px solid var(--journal-border);
+      margin: 0;
+      padding: clamp(1.15rem, 3vw, 1.6rem) 0;
+    }
+  }
+
+  .row {
+    align-items: start;
+  }
+
+  ol.bibliography > li .title {
+    color: var(--global-text-color);
+    font-size: clamp(1.04rem, 2vw, 1.18rem);
+    font-weight: 650;
+    letter-spacing: -0.012em;
+    line-height: 1.48;
+    margin-bottom: 0.42rem;
+    overflow-wrap: anywhere;
+  }
+
+  .author {
+    color: var(--global-text-color);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 0.3rem;
+  }
+
+  .periodical {
+    color: var(--journal-muted);
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.72rem;
+
+    a.btn {
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  .publications ol.bibliography > li {
+    padding: 1.05rem 0;
+  }
+}

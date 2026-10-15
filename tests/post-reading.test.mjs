@@ -25,15 +25,14 @@ const postLayout = readText("_layouts/post.liquid");
 const postScss = readOptional("_sass/_post.scss");
 const relatedPosts = readText("_includes/related_posts.liquid");
 const psfPost = readText("_posts/2026-06-07-predictive-safety-filter.md");
-const psfTableSection = markdownTable(psfPost, "| Constraint | Meaning |");
+const psfTableSection = markdownTable(psfPost, "| Constraint");
+const psfDisplayMath = [...psfPost.matchAll(/\$\$([\s\S]*?)\$\$/g)].map((match) => match[1]).join("\n");
+const psfInlineMath = [...psfPost.matchAll(/(?<!\$)\$(?!\$)([^$\r\n]+)\$(?!\$)/g)].map((match) => match[1]).join("\n");
 
 test("renders reading time and TOCs only for opted-in posts", () => {
   assert.match(postLayout, /number_of_words/);
   assert.match(postLayout, /reading_time/);
-  assert.match(
-    postLayout,
-    /if page\.toc and page\.toc\.sidebar[\s\S]*post-toc-mobile[\s\S]*toc-sidebar[\s\S]*endif/,
-  );
+  assert.match(postLayout, /if page\.toc and page\.toc\.sidebar[\s\S]*post-toc-mobile[\s\S]*toc-sidebar[\s\S]*endif/);
   assert.doesNotMatch(defaultLayout, /id="toc-sidebar"/);
 });
 
@@ -48,6 +47,14 @@ test("does not split LaTeX table cells on pipe characters", () => {
   assert.match(psfPost, /mu_\{i\\vert k\}/);
   assert.doesNotMatch(psfTableSection, /\\mu_\{[^}\r\n]*\|k\}/);
   assert.doesNotMatch(psfTableSection, /v_\{[^}\r\n]*\|k\}/);
+});
+
+test("does not parse absolute-value display equations as Markdown tables", () => {
+  assert.doesNotMatch(psfDisplayMath, /^\s*\|/m);
+});
+
+test("does not parse inline prediction indices as Markdown tables", () => {
+  assert.doesNotMatch(psfInlineMath, /\|/);
 });
 
 test("uses semantic related-post markup", () => {

@@ -27,42 +27,40 @@ latest_posts:
 ---
 
 **Hello! I am Hyeong-Jun Lee.**
- 
+
 My research focuses on optimal control theory, deep learning and reinforcement learning applications for aerospace systems.
 
 My goal is to bridge the gap between theoretical control guarantees and practical learning-based methods.
 
-### **Research Interests**
-* **Optimization** (Convex Optimization, SCP, Convergence Analysis)
-* **Control Theory** (MPC)
-* **Deep Learning**
-* **Reinforcement Learning** (Safe RL, Imitation learning)
-* **Aerospace Systems** (Guidance, Navigation, and Control)
+<div class="section-heading mt-5">
+  <h2>Research Interests</h2>
+</div>
 
-### **Recent Projects**
+- **Optimization** (Convex Optimization, SCP, Convergence Analysis)
+- **Control Theory** (MPC)
+- **Deep Learning**
+- **Reinforcement Learning** (Safe RL, Imitation learning)
+- **Aerospace Systems** (Guidance, Navigation, and Control)
+
+<div class="section-heading mt-5">
+  <h2>Recent Projects</h2>
+  <a class="text-link" href="{{ '/projects/' | relative_url }}">View all projects <span aria-hidden="true">→</span></a>
+</div>
+
 <div class="projects">
   <div class="row row-cols-1 row-cols-md-3">
-    {% for project in site.projects limit:3 %}
-    <div class="col mb-4">
-      <div class="card h-100 hoverable">
-        {% if project.img %}
-        <a href="{{ project.url | relative_url }}">
-          <img src="{{ project.img | relative_url }}" class="card-img-top" alt="{{ project.title }}" style="object-fit: cover; height: 150px;">
-        </a>
-        {% endif %}
-        <div class="card-body">
-          <h5 class="card-title"><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h5>
-          <p class="card-text" style="font-size: 0.9rem;">{{ project.description }}</p>
-        </div>
-      </div>
-    </div>
+    {% assign sorted_projects = site.projects | sort: 'importance' %}
+    {% for project in sorted_projects limit: 3 %}
+      {% include projects.liquid %}
     {% endfor %}
   </div>
 </div>
 
-### **Contact**
+<div class="section-heading mt-5">
+  <h2>Contact</h2>
+</div>
 
-* **Email:** hjunlee525@gmail.com
-* **Address:** Inha Aerospace Campus, 36 Gaetbeol-ro, Yeonsu-gu, Incheon 21999, Republic of Korea
+- **Email:** hjunlee525@gmail.com
+- **Address:** Inha Aerospace Campus, 36 Gaetbeol-ro, Yeonsu-gu, Incheon 21999, Republic of Korea
 
 ---

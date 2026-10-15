@@ -2,7 +2,7 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: Hyeong-Jun Lee  # the website title (if blank, full name will be used instead)
+title: Hyeong-Jun Lee # the website title (if blank, full name will be used instead)
 first_name: Hyeong-Jun
 #middle_name:
 last_name: Lee
@@ -14,12 +14,12 @@ description: > # the ">" symbol means to ignore newlines until "footer_text:"
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-keywords:  Hyeong-Jun Lee, Inha University, Aerospace, Optimization, hjun-dev, Reinforcement Learning, Deep Learning, Aerospace Engineering
+keywords: Hyeong-Jun Lee, Inha University, Aerospace, Optimization, hjun-dev, Reinforcement Learning, Deep Learning, Aerospace Engineering
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: favicon.png # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
 url: https://hjun-dev.github.io # the base hostname & protocol for your site
-baseurl:  # the subpath of your site, e.g. /blog/. Leave blank for root
+baseurl: # the subpath of your site, e.g. /blog/. Leave blank for root
 last_updated: true # set to true if you want to display last updated in the footer
 impressum_path: # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
 back_to_top: true # set to false to disable the back to top button
@@ -103,7 +103,7 @@ related_blog_posts:
 # Giscus comments (RECOMMENDED)
 # Follow instructions on https://giscus.app/ to setup for your repo to fill out the information below.
 giscus:
-  repo: hjun-dev/hjun-dev.github.io  # <your-github-user-name>/<your-github-repo-name>
+  repo: hjun-dev/hjun-dev.github.io # <your-github-user-name>/<your-github-repo-name>
   repo_id: R_kgDOQuobfA # leave empty or specify your repo_id (see https://giscus.app/)
   category: General # name of the category under which discussions will be created
   category_id: DIC_kwDOQuobfM4C1OZO # leave empty or specify your category_id (see https://giscus.app/)
@@ -188,7 +188,6 @@ exclude:
   - lighthouse_results/
   - package.json
   - package-lock.json
-  - _pages/about_einstein.md
   - purgecss.config.js
   - README.md
   - readme_preview/
@@ -622,7 +621,6 @@ third_party_libraries:
       css: "https://cdn.jsdelivr.net/npm/venobox@{{version}}/dist/venobox.min.css"
       js: "https://cdn.jsdelivr.net/npm/venobox@{{version}}/dist/venobox.min.js"
     version: "2.1.8"
-
 # -----------------------------------------------------------------------------
 # Get external JSON data
 # -----------------------------------------------------------------------------

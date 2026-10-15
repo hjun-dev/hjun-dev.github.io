@@ -30,6 +30,10 @@ test("contains the supplied current research projects and funder links", () => {
 test("retains the existing CV project history", () => {
   assert.match(cvData, /AI-based Moving Target Tracking & Situational Awareness/);
   assert.match(cvData, /Deep learning model for off-road vehicle state estimation/);
+  assert.doesNotMatch(cvData, /title:.*\(Funded by (?:Hyundai Motor Company|Hanwha Aerospace)\)/);
+  assert.match(cvData, /institution: Funded by Hyundai Motor Company/);
+  assert.match(cvData, /institution: Funded by Hanwha Aerospace/);
+  assert.match(cvData, /https:\/\/www\.hanwhaaerospace\.com\/eng\/index\.do/);
 });
 
 test("uses document sections and safe external actions", () => {

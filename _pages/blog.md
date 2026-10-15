@@ -39,23 +39,6 @@ pagination:
       </div>
     </dl>
 
-    <section class="blog-section" aria-labelledby="latest-writing">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Recently published</p>
-          <h2 id="latest-writing">Latest writing</h2>
-        </div>
-      </div>
-
-      {% include blog/featured_post.liquid post=site.posts.first %}
-
-      <div class="blog-recent-grid">
-        {% for post in site.posts offset: 1 limit: 4 %}
-          {% include blog/post_card.liquid post=post %}
-        {% endfor %}
-      </div>
-    </section>
-
     <section class="blog-section" aria-labelledby="explore-topics">
       <div class="section-heading">
         <div>
@@ -70,7 +53,8 @@ pagination:
         {% endfor %}
       </div>
     </section>
-  {% endif %}
+
+{% endif %}
 
   <section class="blog-section blog-archive" aria-labelledby="all-posts">
     <div class="section-heading">
@@ -87,5 +71,6 @@ pagination:
     </div>
 
     {% include pagination.liquid %}
+
   </section>
 </div>

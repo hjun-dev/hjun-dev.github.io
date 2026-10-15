@@ -2,14 +2,26 @@
   {% for content in entry.contents %}
     <article class="cv-timeline__item">
       <div class="cv-timeline__date">
-        {% if content.year %}<span>{{ content.year }}</span>{% endif %}
-        {% if content.location %}<span>{{ content.location }}</span>{% endif %}
+        {% if content.year -%}
+          <span>{{ content.year }}</span>
+        {%- endif %}
+        {% if content.location -%}
+          <span>{{ content.location }}</span>
+        {%- endif %}
       </div>
       <div class="cv-timeline__body">
-        {% if content.title %}<h3>{{ content.title }}</h3>{% endif %}
-        {% if content.institution %}<p class="cv-timeline__institution">{{ content.institution }}</p>{% endif %}
-        {% if content.department %}<p class="cv-timeline__department">{{ content.department }}</p>{% endif %}
-        {% if content.maindescription %}<div class="cv-timeline__description">{{ content.maindescription }}</div>{% endif %}
+        {% if content.title %}
+          <h3>{{ content.title }}</h3>
+        {% endif %}
+        {% if content.institution %}
+          <p class="cv-timeline__institution">{{ content.institution }}</p>
+        {% endif %}
+        {% if content.department %}
+          <p class="cv-timeline__department">{{ content.department }}</p>
+        {% endif %}
+        {% if content.maindescription %}
+          <div class="cv-timeline__description">{{ content.maindescription }}</div>
+        {% endif %}
 
         {% if content.description %}
           {% if content.description.first %}

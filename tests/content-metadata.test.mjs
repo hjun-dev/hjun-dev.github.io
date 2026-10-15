@@ -27,14 +27,7 @@ function nonCanonicalPostCategories() {
 }
 
 test("uses canonical public blog categories", () => {
-  assert.deepEqual(configuredCategories(), [
-    "optimization",
-    "control",
-    "reinforcement learning",
-    "deep learning",
-    "linear algebra",
-    "paper review",
-  ]);
+  assert.deepEqual(configuredCategories(), ["optimization", "control", "reinforcement learning", "deep learning", "linear algebra", "paper review"]);
   assert.equal(nonCanonicalPostCategories(), 0);
 });
 

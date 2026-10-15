@@ -713,7 +713,7 @@ $$
 
 이제 논문의 최종 predictive safety filter problem을 정리할 수 있다. 최종 PSF는 nominal state sequence $\{\mu_{i \vert k}\}$와 nominal input sequence $\{v_{i \vert k}\}$를 최적화한다.
 
-목적은 learning input $u_L(k)$와 첫 번째 nominal input $v_{0|k}$의 차이를 최소화하는 것이다.
+목적은 learning input $u_L(k)$와 첫 번째 nominal input $v_{0\vert k}$의 차이를 최소화하는 것이다.
 
 $$
 \min_{\{v_i\}_{i\in \mathbb{I}_{[0,N-1]}}}
@@ -758,14 +758,14 @@ $$
 
 각 constraint의 의미는 다음과 같다.
 
-| Constraint | Meaning |
-| --- | --- |
-| $\mu_{i+1\vert k}=f(\mu_{i\vert k},v_{i\vert k};\bar{\theta})$ | 평균 모델에 대한 nominal backup trajectory |
-| $\mu_{i\vert k}\in \bar{X}_i$ | model error를 고려한 tightened state constraint |
-| $v_{i\vert k}\in \bar{U}_i$ | model error를 고려한 tightened input constraint |
-| $E_{p_S}(\mu_{i\vert k},v_{i\vert k})\subseteq \bar{E}_i^{\gamma}$ | confident subset에서만 planning |
-| $\mu_{N\vert k}\in \bar{S}_N^f$ | terminal safe set으로의 도달 |
-| $\mu_{0\vert k}=x(k)$ | 현재 실제 상태에서 planning 시작 |
+| Constraint                                                         | Meaning                                         |
+| ------------------------------------------------------------------ | ----------------------------------------------- |
+| $\mu_{i+1\vert k}=f(\mu_{i\vert k},v_{i\vert k};\bar{\theta})$     | 평균 모델에 대한 nominal backup trajectory      |
+| $\mu_{i\vert k}\in \bar{X}_i$                                      | model error를 고려한 tightened state constraint |
+| $v_{i\vert k}\in \bar{U}_i$                                        | model error를 고려한 tightened input constraint |
+| $E_{p_S}(\mu_{i\vert k},v_{i\vert k})\subseteq \bar{E}_i^{\gamma}$ | confident subset에서만 planning                 |
+| $\mu_{N\vert k}\in \bar{S}_N^f$                                    | terminal safe set으로의 도달                    |
+| $\mu_{0\vert k}=x(k)$                                              | 현재 실제 상태에서 planning 시작                |
 
 이 문제가 논문 Fig. 2의 오른쪽 column에 있는 online problem (6)이다.
 
@@ -1035,7 +1035,7 @@ $$
 입력 torque는 다음 범위로 제한된다.
 
 $$
-|u|\leq 0.7
+\lvert u\rvert\leq 0.7
 $$
 
 ---
@@ -1287,13 +1287,13 @@ z\geq 0.175\,[m]
 $$
 
 $$
-|\dot{z}|\leq 1\,[m/s]
+\lvert\dot{z}\rvert\leq 1\,[m/s]
 $$
 
 Input은 normalized되어 있다.
 
 $$
-|u_i|\leq 1
+\lvert u_i\rvert\leq 1
 $$
 
 ---
@@ -1361,7 +1361,7 @@ Stage cost는 목표 위치와의 거리와 safety intervention penalty를 포�
 $$
 \ell(\tilde{x},u)
 =
-|x_d-x|+|y_d-y|+|z_d-z|
+\lvert x_d-x\rvert+\lvert y_d-y\rvert+\lvert z_d-z\rvert
 +
 100\|\pi_L(\tilde{x})-v_{0|k}^{\ast}\|_2
 $$

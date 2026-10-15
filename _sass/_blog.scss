@@ -59,46 +59,6 @@
   margin-top: var(--journal-section-gap);
 }
 
-.blog-featured {
-  padding: clamp(1.35rem, 4vw, 2.5rem);
-
-  &__meta,
-  &__description {
-    color: var(--journal-muted);
-  }
-
-  &__meta {
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    font-size: 0.8rem;
-    gap: 0.75rem;
-  }
-
-  &__title {
-    font-size: clamp(1.6rem, 4vw, 2.65rem);
-    margin: 1rem 0 0.8rem;
-    max-width: 900px;
-    overflow-wrap: anywhere;
-
-    a {
-      color: inherit;
-      text-decoration: none;
-
-      &:hover {
-        color: var(--global-theme-color);
-      }
-    }
-  }
-
-  &__description {
-    font-size: 1rem;
-    line-height: 1.7;
-    margin-bottom: 1.25rem;
-    max-width: 760px;
-  }
-}
-
 .blog-topic-chip {
   background: var(--journal-surface-muted);
   border: 1px solid var(--journal-border);
@@ -112,7 +72,6 @@
   text-transform: capitalize;
 }
 
-.blog-recent-grid,
 .blog-topic-grid {
   display: grid;
   gap: 1rem;
@@ -120,55 +79,8 @@
   margin-top: 1rem;
 }
 
-.blog-card__title,
 .blog-post-row__title {
   overflow-wrap: anywhere;
-}
-
-.blog-card {
-  box-shadow: none;
-  min-width: 0;
-  padding: 1.3rem;
-
-  &__meta {
-    align-items: center;
-    color: var(--journal-muted);
-    display: flex;
-    flex-wrap: wrap;
-    font-size: 0.75rem;
-    gap: 0.4rem;
-
-    a {
-      color: inherit;
-      text-decoration: none;
-      text-transform: capitalize;
-    }
-  }
-
-  &__title {
-    font-size: 1.08rem;
-    line-height: 1.42;
-    margin: 0.7rem 0 0.55rem;
-    a {
-      color: inherit;
-      text-decoration: none;
-
-      &:hover {
-        color: var(--global-theme-color);
-      }
-    }
-  }
-
-  &__description {
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    color: var(--journal-muted);
-    display: -webkit-box;
-    font-size: 0.88rem;
-    line-height: 1.62;
-    margin: 0;
-    overflow: hidden;
-  }
 }
 
 .blog-topic-panel {
@@ -324,7 +236,6 @@
 }
 
 @media (max-width: 767.98px) {
-  .blog-recent-grid,
   .blog-topic-grid {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -350,8 +261,6 @@
     }
   }
 
-  .blog-featured,
-  .blog-card,
   .blog-topic-panel {
     padding: 1rem;
   }

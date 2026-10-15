@@ -15,7 +15,9 @@
               class="page-link"
               href="{{ trail.path | relative_url | remove: 'index.html' }}"
               title="{{ trail.title }}"
-              {% if page.url == trail.path %}aria-current="page"{% endif %}
+              {% if page.url == trail.path %}
+                aria-current="page"
+              {% endif %}
             >
               {{- trail.num -}}
             </a>
