@@ -34,7 +34,8 @@ const expectedTopics = [
   "reinforcement learning",
   "imitation and intervention learning",
   "generative models",
-  "generalization and representation",
+  "generalization",
+  "representation learning",
 ];
 const expectedCategoryCounts = new Map([
   ["optimization", 10],
@@ -43,7 +44,8 @@ const expectedCategoryCounts = new Map([
   ["reinforcement learning", 2],
   ["imitation and intervention learning", 0],
   ["generative models", 0],
-  ["generalization and representation", 0],
+  ["generalization", 0],
+  ["representation learning", 0],
 ]);
 const blogPage = readText("_pages/blog.md");
 const blogScss = readOptional("_sass/_blog.scss");
@@ -61,8 +63,8 @@ test("page one progresses from summary to topics and all posts without a duplica
   assert.match(blogPage, /blog\/post_row\.liquid/);
   assert.doesNotMatch(blogPage, /Latest writing|blog\/featured_post\.liquid|blog-recent-grid/);
 
-  const topicsPosition = blogPage.indexOf("Explore by topic");
-  const archivePosition = blogPage.indexOf("All posts");
+  const topicsPosition = blogPage.indexOf('id="explore-topics"');
+  const archivePosition = blogPage.indexOf('id="all-posts"');
   assert.ok(topicsPosition > -1 && topicsPosition < archivePosition);
 });
 
@@ -139,12 +141,13 @@ test("topic counts include published and planned notes and link to canonical arc
 test("topic post count labels use singular and expose planned notes", () => {
   assert.match(topicPanel, /published_count == 1[\s\S]*post[\s\S]*posts/);
   assert.match(topicPanel, /if planned_count > 0[\s\S]*planned/);
-  assert.match(topicPanel, /for note in topic_planned/);
+  assert.match(topicPanel, /topic\.description/);
 });
 
 test("category and tag archives show newest-first article summaries with dates on the right", () => {
   assert.match(archiveLayout, /assign sorted_documents = ['"]['"] \| split: ['"],['"]/);
   assert.match(archiveLayout, /if page\.documents[\s\S]*assign sorted_documents = page\.documents \| sort: ['"]date['"] \| reverse/);
+  assert.match(archiveLayout, /elsif page\.type == 'categories' and site\.categories\[page\.title\][\s\S]*assign sorted_documents = site\.categories\[page\.title\] \| sort: 'date' \| reverse/);
   assert.match(archiveLayout, /page\.type == ['"]categories['"] or page\.type == ['"]tags['"]/);
   assert.match(archiveLayout, /blog\/archive_row\.liquid/);
   assert.match(archiveRow, /class="blog-archive-row__title"[\s\S]*document\.description[\s\S]*class="blog-archive-row__date"/);

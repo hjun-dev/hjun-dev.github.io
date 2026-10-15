@@ -16,12 +16,12 @@ const plannedNotes = new Map([
   ["2026-10-15-optnet.md", ["optimization", "https://proceedings.mlr.press/v70/amos17a.html"]],
   ["2026-10-15-haco.md", ["imitation and intervention learning", "https://arxiv.org/abs/2202.10341"]],
   ["2026-10-15-pvp.md", ["imitation and intervention learning", "https://papers.neurips.cc/paper_files/paper/2023/hash/f57ffe47d0b528fbb97901d16bd4eba2-Abstract-Conference.html"]],
-  ["2026-10-15-supcon.md", ["generalization and representation", "https://proceedings.neurips.cc/paper/2020/hash/d89a66c7c80a29b1bdbab0f2a1a94af8-Abstract.html"]],
-  ["2026-10-15-dann.md", ["generalization and representation", "https://jmlr.org/papers/v17/15-239.html"]],
+  ["2026-10-15-supcon.md", ["representation learning", "https://proceedings.neurips.cc/paper/2020/hash/d89a66c7c80a29b1bdbab0f2a1a94af8-Abstract.html"]],
+  ["2026-10-15-dann.md", ["generalization", "https://jmlr.org/papers/v17/15-239.html"]],
   ["2026-10-15-a2d.md", ["imitation and intervention learning", "https://proceedings.mlr.press/v139/warrington21a.html"]],
   ["2026-10-15-sitt.md", ["imitation and intervention learning", "https://proceedings.iclr.cc/paper_files/paper/2025/hash/a8223b0ad64007423ffb308b0dd92298-Abstract-Conference.html"]],
-  ["2026-10-15-maml.md", ["generalization and representation", "https://proceedings.mlr.press/v70/finn17a.html"]],
-  ["2026-10-15-mldg.md", ["generalization and representation", "https://ojs.aaai.org/index.php/AAAI/article/view/11596"]],
+  ["2026-10-15-maml.md", ["generalization", "https://proceedings.mlr.press/v70/finn17a.html"]],
+  ["2026-10-15-mldg.md", ["generalization", "https://ojs.aaai.org/index.php/AAAI/article/view/11596"]],
   ["2026-10-15-iarl.md", ["imitation and intervention learning", "https://proceedings.mlr.press/v87/wang18a.html"]],
 ]);
 

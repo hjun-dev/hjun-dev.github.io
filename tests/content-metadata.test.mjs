@@ -34,7 +34,8 @@ test("uses canonical public blog categories", () => {
     "reinforcement learning",
     "imitation and intervention learning",
     "generative models",
-    "generalization and representation",
+    "generalization",
+    "representation learning",
   ]);
   assert.equal(nonCanonicalPostCategories(), 0);
 });
