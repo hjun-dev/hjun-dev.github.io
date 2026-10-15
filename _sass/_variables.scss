@@ -9,9 +9,9 @@
 $red-color: #ff3636 !default;
 $red-color-dark: #b71c1c !default;
 $orange-color: #f29105 !default;
-$blue-color: #0076df !default;
-$blue-color-dark: #00369f !default;
-$cyan-color: #2698ba !default;
+$blue-color: #2f6fa3 !default;
+$blue-color-dark: #1f537e !default;
+$cyan-color: #5ea8c4 !default;
 $light-cyan-color: color.adjust($cyan-color, $lightness: 25%);
 $green-color: #00ab37 !default;
 $green-color-lime: #b7d12a !default;
@@ -53,7 +53,7 @@ $back-to-top-width: $back-to-top-diameter;
 
 // Fonts
 // 1. 본문
-$font-family-sans-serif: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif: "Inter", "Noto Sans KR", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 
 // 2. 코드 블록
 $font-family-monospace: "Consolas", "Monaco", "Courier New", monospace !default;

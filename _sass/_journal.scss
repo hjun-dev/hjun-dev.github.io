@@ -1,0 +1,227 @@
+/*******************************************************************************
+ * Editorial research-journal shell
+ ******************************************************************************/
+
+:root {
+  --journal-content-width: 1120px;
+  --journal-reading-width: 760px;
+  --journal-radius: 14px;
+  --journal-shadow: 0 18px 48px rgba(26, 53, 74, 0.08);
+  --journal-section-gap: clamp(2.75rem, 6vw, 5rem);
+  --journal-surface: #ffffff;
+  --journal-surface-muted: #f5f8fa;
+  --journal-border: rgba(31, 83, 126, 0.16);
+  --journal-muted: #607080;
+}
+
+html[data-theme="dark"] {
+  --journal-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+  --journal-surface: #24282d;
+  --journal-surface-muted: #2a3036;
+  --journal-border: rgba(179, 202, 220, 0.18);
+  --journal-muted: #a7b4bf;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--global-text-color);
+  font-weight: 650;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+.container {
+  width: min(100% - 2rem, var(--journal-content-width));
+}
+
+.journal-shell {
+  margin-inline: auto;
+  max-width: var(--journal-content-width);
+}
+
+.surface {
+  background: var(--journal-surface);
+  border: 1px solid var(--journal-border);
+  border-radius: var(--journal-radius);
+  box-shadow: var(--journal-shadow);
+}
+
+.eyebrow {
+  color: var(--global-theme-color);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  margin-bottom: 0.65rem;
+  text-transform: uppercase;
+}
+
+.section-heading {
+  align-items: baseline;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1.35rem;
+
+  h2,
+  h3 {
+    margin: 0;
+  }
+}
+
+.text-link {
+  align-items: center;
+  display: inline-flex;
+  font-weight: 600;
+  gap: 0.35rem;
+  text-underline-offset: 0.22em;
+}
+
+.site-navbar.navbar {
+  background-color: var(--global-bg-color);
+  border-bottom: 1px solid var(--journal-border);
+  box-shadow: 0 4px 24px rgba(26, 53, 74, 0.04);
+  min-height: 4rem;
+  opacity: 0.98;
+
+  .navbar-brand {
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .navbar-nav {
+    align-items: center;
+    gap: 0.15rem;
+  }
+
+  .nav-link {
+    border-radius: 0.5rem;
+    font-size: 0.86rem;
+    font-weight: 550;
+    padding: 0.45rem 0.65rem;
+    position: relative;
+  }
+
+  .nav-item.active > .nav-link::after {
+    background: var(--global-theme-color);
+    border-radius: 999px;
+    bottom: 0.08rem;
+    content: "";
+    height: 2px;
+    left: 0.65rem;
+    position: absolute;
+    right: 0.65rem;
+  }
+
+  .nav-control button {
+    align-items: center;
+    border-radius: 0.5rem;
+    display: inline-flex;
+    justify-content: center;
+    min-height: 2.35rem;
+    min-width: 2.35rem;
+  }
+}
+
+.site-footer {
+  border-top: 1px solid var(--journal-border);
+  color: var(--journal-muted);
+  flex: 0 0 auto;
+  font-size: 0.78rem;
+  line-height: 1.65;
+  padding: 1.5rem 0 1.75rem;
+
+  .container {
+    text-align: center;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--journal-border);
+    text-underline-offset: 0.2em;
+  }
+}
+
+a,
+button,
+[tabindex] {
+  &:focus-visible {
+    border-radius: 0.25rem;
+    outline: 3px solid rgba(47, 111, 163, 0.38);
+    outline-offset: 3px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .container {
+    width: min(100% - 1.25rem, var(--journal-content-width));
+  }
+
+  .site-navbar.navbar {
+    min-height: 3.6rem;
+
+    .navbar-collapse {
+      border-top: 1px solid var(--journal-border);
+      margin-top: 0.7rem;
+      padding: 0.75rem 0 0.35rem;
+    }
+
+    .navbar-nav {
+      align-items: stretch;
+    }
+
+    .nav-link {
+      padding: 0.55rem 0.65rem;
+    }
+
+    .nav-item.active > .nav-link::after {
+      bottom: 0.25rem;
+      left: 0.65rem;
+      right: auto;
+      width: 1.5rem;
+    }
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
