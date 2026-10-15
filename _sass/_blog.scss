@@ -76,7 +76,105 @@
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-top: 1rem;
+}
+
+.blog-topic-groups {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.25rem);
+  margin-top: 1.5rem;
+}
+
+.blog-topic-group {
+  min-width: 0;
+
+  &__header {
+    align-items: end;
+    border-bottom: 1px solid var(--journal-border);
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: minmax(10rem, 0.8fr) minmax(0, 1.8fr);
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+
+    h3 {
+      font-size: clamp(1rem, 2vw, 1.16rem);
+      margin: 0;
+    }
+
+    p {
+      color: var(--journal-muted);
+      font-size: 0.78rem;
+      line-height: 1.55;
+      margin: 0;
+      max-width: 640px;
+    }
+  }
+}
+
+.blog-specific-topics {
+  border-top: 1px solid var(--journal-border);
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  padding-top: 1.25rem;
+
+  &__heading {
+    align-items: baseline;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+
+    h3 {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    p {
+      color: var(--journal-muted);
+      font-size: 0.76rem;
+      margin: 0;
+      text-align: right;
+    }
+  }
+}
+
+.blog-tag-browser {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+
+  &__item {
+    align-items: center;
+    background: var(--journal-surface-muted);
+    border: 1px solid var(--journal-border);
+    border-radius: 999px;
+    color: var(--global-text-color);
+    display: inline-flex;
+    font-size: 0.76rem;
+    gap: 0.55rem;
+    padding: 0.42rem 0.48rem 0.42rem 0.75rem;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--global-theme-color);
+      color: var(--global-theme-color);
+      text-decoration: none;
+    }
+  }
+
+  &__count {
+    align-items: center;
+    background: var(--global-bg-color);
+    border: 1px solid var(--journal-border);
+    border-radius: 999px;
+    color: var(--journal-muted);
+    display: inline-flex;
+    font-size: 0.68rem;
+    height: 1.35rem;
+    justify-content: center;
+    min-width: 1.35rem;
+    padding: 0 0.3rem;
+  }
 }
 
 .blog-post-row__title {
@@ -360,8 +458,24 @@
 }
 
 @media (max-width: 767.98px) {
+  .blog-topic-group__header {
+    align-items: start;
+    gap: 0.35rem;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .blog-topic-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .blog-specific-topics__heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 0.35rem;
+
+    p {
+      text-align: left;
+    }
   }
 
   .blog-post-row {

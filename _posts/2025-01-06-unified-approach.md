@@ -3,8 +3,8 @@ layout: post
 title: "Unified Approach: Optimization to Deep RL"
 date: 2025-01-06 09:00:00 +0900
 description: "최적화, 제어, 강화학습, 딥러닝 그리고 논문 리뷰까지 한 번에 테스트하는 예제 글입니다."
-tags: [test, tutorial, math, code]
-categories: [optimization, control, reinforcement learning, deep learning, paper review]
+tags: [optimization, control, deep learning, paper review, tutorial, math, code]
+categories: [reinforcement learning]
 ---
 
 ## 1. Introduction (Paper Review)

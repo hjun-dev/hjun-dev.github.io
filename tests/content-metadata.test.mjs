@@ -8,9 +8,9 @@ const socials = readText("_data/socials.yml");
 const phangmanFrontMatter = readFrontMatter("_posts/2026-05-19-phangman.md");
 
 function configuredCategories() {
-  const match = config.match(/^display_categories:\s*(\[[^\n]+\])/m);
+  const match = config.match(/^display_categories:\s*\[([\s\S]*?)\]\s*(?:#.*)?$/m);
   assert.ok(match, "display_categories must be present in _config.yml");
-  return JSON.parse(match[1]);
+  return [...match[1].matchAll(/["']([^"']+)["']/g)].map((category) => category[1]);
 }
 
 function frontMatterCategories(frontMatter) {
@@ -19,7 +19,7 @@ function frontMatterCategories(frontMatter) {
 }
 
 function nonCanonicalPostCategories() {
-  const deprecatedAliases = new Set(["reinforcement-learning", "deep-learning", "paper-review"]);
+  const deprecatedAliases = new Set(["reinforcement-learning", "deep-learning", "paper-review", "deep learning", "linear algebra", "paper review"]);
 
   return listPostPaths()
     .flatMap((postPath) => frontMatterCategories(readFrontMatter(postPath)))
@@ -27,7 +27,15 @@ function nonCanonicalPostCategories() {
 }
 
 test("uses canonical public blog categories", () => {
-  assert.deepEqual(configuredCategories(), ["optimization", "control", "reinforcement learning", "deep learning", "linear algebra", "paper review"]);
+  assert.deepEqual(configuredCategories(), [
+    "optimization",
+    "mathematics",
+    "control",
+    "reinforcement learning",
+    "imitation and intervention learning",
+    "generative models",
+    "generalization and representation",
+  ]);
   assert.equal(nonCanonicalPostCategories(), 0);
 });
 

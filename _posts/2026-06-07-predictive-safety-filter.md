@@ -3,8 +3,8 @@ layout: post
 title: "[Paper Review] Predictive Safety Filter for Learning-Based Control"
 description: "Constrained nonlinear dynamical system에서 learning-based controller의 입력을 predictive safety filter로 안전하게 검증하는 방법"
 date: 2026-06-07 10:00:00 +0900
-tags: [predictive safety filter, safe reinforcement learning, model predictive control, constrained control, data-driven control]
-categories: [control, reinforcement learning, optimization]
+tags: [paper review, predictive safety filter, safe reinforcement learning, model predictive control, constrained control, data-driven control, optimization]
+categories: [control]
 related_posts: True
 giscus_comments: true
 pretty_table: true

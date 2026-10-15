@@ -16,6 +16,16 @@ pagination:
     after: 3
 ---
 
+{% assign active_topic_count = 0 %}
+{% for group in site.data.blog_topics %}
+{% for topic in group.topics %}
+{% assign topic_posts = site.categories[topic.key] %}
+{% if topic_posts and topic_posts.size > 0 %}
+{% assign active_topic_count = active_topic_count | plus: 1 %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+
 <div class="blog-index journal-shell">
   {% if paginator.page == 1 %}
     <header class="blog-intro">
@@ -31,7 +41,7 @@ pagination:
       </div>
       <div>
         <dt>Topics</dt>
-        <dd>{{ site.data.blog_topics.size }}</dd>
+        <dd>{{ active_topic_count }}</dd>
       </div>
       <div>
         <dt>Latest</dt>
@@ -47,10 +57,38 @@ pagination:
         </div>
       </div>
 
-      <div class="blog-topic-grid">
-        {% for topic in site.data.blog_topics %}
-          {% include blog/topic_panel.liquid topic=topic %}
+      <div class="blog-topic-groups">
+        {% for group in site.data.blog_topics %}
+          {% assign group_post_count = 0 %}
+          {% for topic in group.topics %}
+            {% assign topic_posts = site.categories[topic.key] %}
+            {% if topic_posts and topic_posts.size > 0 %}
+              {% assign group_post_count = group_post_count | plus: topic_posts.size %}
+            {% endif %}
+          {% endfor %}
+
+          {% if group_post_count > 0 %}
+            <section class="blog-topic-group" aria-labelledby="topic-group-{{ group.label | slugify }}">
+              <header class="blog-topic-group__header">
+                <h3 id="topic-group-{{ group.label | slugify }}">{{ group.label }}</h3>
+                <p>{{ group.description }}</p>
+              </header>
+              <div class="blog-topic-grid">
+                {% for topic in group.topics %}
+                  {% include blog/topic_panel.liquid topic=topic %}
+                {% endfor %}
+              </div>
+            </section>
+          {% endif %}
         {% endfor %}
+      </div>
+
+      <div class="blog-specific-topics">
+        <div class="blog-specific-topics__heading">
+          <h3>Browse specific topics</h3>
+          <p>Methods, applications, and article formats across the primary fields.</p>
+        </div>
+        {% include blog/tag_browser.liquid %}
       </div>
     </section>
 

@@ -4,7 +4,7 @@ title: "[Linear Algebra] 고유값분해의 직관적 이해"
 description: "대칭행렬의 고유값분해를 고유벡터 방향, 스케일링, Null Space, Range, 2-norm, definiteness 관점에서 직관적으로 정리"
 date: 2026-06-06 13:00:00 +0900
 tags: [linear algebra, eigenvalue decomposition, matrix factorization]
-categories: [mathematics, linear algebra]
+categories: [mathematics]
 related_posts: True
 giscus_comments: true
 pretty_table: true

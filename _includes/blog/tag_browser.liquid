@@ -1,0 +1,12 @@
+<div class="blog-tag-browser" aria-label="Specific topics">
+  {% for featured_tag in site.data.blog_featured_tags %}
+    {% assign tagged_posts = site.tags[featured_tag.key] %}
+    {% if tagged_posts and tagged_posts.size > 0 %}
+      {% assign tag_path = featured_tag.key | slugify | prepend: '/blog/tag/' | append: '/' %}
+      <a class="blog-tag-browser__item" href="{{ tag_path | relative_url }}">
+        <span>#{{ featured_tag.label }}</span>
+        <span class="blog-tag-browser__count">{{ tagged_posts.size }}</span>
+      </a>
+    {% endif %}
+  {% endfor %}
+</div>

@@ -4,7 +4,7 @@ title: "[Linear Algebra] 특이값분해의 직관적 이해"
 description: "SVD를 정의역, 공역, 치역, Null Space, Row Space, Least Squares, Least Norm 관점에서 직관적으로 정리"
 date: 2026-06-06 14:00:00 +0900
 tags: [linear algebra, singular value decomposition, least squares]
-categories: [mathematics, linear algebra]
+categories: [mathematics]
 related_posts: True
 giscus_comments: true
 pretty_table: true

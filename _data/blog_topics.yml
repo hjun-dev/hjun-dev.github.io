@@ -1,12 +1,25 @@
-- key: optimization
-  label: Optimization
-- key: control
-  label: Control
-- key: reinforcement learning
-  label: Reinforcement Learning
-- key: deep learning
-  label: Deep Learning
-- key: linear algebra
-  label: Linear Algebra
-- key: paper review
-  label: Paper Review
+- label: Foundations
+  description: Mathematical tools and optimization methods that support learning and control.
+  topics:
+    - key: optimization
+      label: Optimization
+    - key: mathematics
+      label: Mathematical Foundations
+
+- label: Decision & Control
+  description: Methods for planning, control, and learning from rewards or human guidance.
+  topics:
+    - key: control
+      label: Control & Planning
+    - key: reinforcement learning
+      label: Reinforcement Learning
+    - key: imitation and intervention learning
+      label: Imitation & Intervention Learning
+
+- label: Learning Systems
+  description: Generative modeling and robust learning across tasks, domains, and data regimes.
+  topics:
+    - key: generative models
+      label: Generative Models
+    - key: generalization and representation
+      label: Generalization & Representation

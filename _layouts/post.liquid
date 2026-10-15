@@ -43,7 +43,8 @@ layout: default
 
     <div class="post-taxonomy" aria-label="Article topics">
       {% for category in page.categories %}
-        <a class="post-category" href="{{ category | slugify | prepend: '/blog/category/' | append: '/' | relative_url }}">{{ category }}</a>
+        {% assign category_label = site.data.blog_category_labels[category] | default: category %}
+        <a class="post-category" href="{{ category | slugify | prepend: '/blog/category/' | append: '/' | relative_url }}">{{ category_label }}</a>
       {% endfor %}
       {% for tag in page.tags %}
         <a class="post-tag" href="{{ tag | slugify | prepend: '/blog/tag/' | append: '/' | relative_url }}">#{{ tag }}</a>

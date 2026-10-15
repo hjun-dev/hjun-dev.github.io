@@ -2,14 +2,32 @@
 layout: default
 ---
 {% assign sorted_documents = page.documents | sort: 'date' | reverse %}
+{% assign is_topic_archive = false %}
+{% if page.type == 'categories' or page.type == 'tags' %}
+  {% assign is_topic_archive = true %}
+{% endif %}
+{% assign archive_title = page.title %}
+{% if page.type == 'categories' %}
+  {% assign archive_title = site.data.blog_category_labels[page.title] | default: page.title %}
+{% elsif page.type == 'tags' %}
+  {% assign featured_tag = site.data.blog_featured_tags | where: 'key', page.title | first %}
+  {% if featured_tag %}
+    {% assign archive_title = featured_tag.label %}
+  {% endif %}
+{% endif %}
 
-<div class="post{% if page.type == 'categories' %} blog-archive-page{% endif %}">
-  {% if page.type == 'categories' %}
+<div class="post{% if is_topic_archive %} blog-archive-page{% endif %}">
+  {% if is_topic_archive %}
     <header class="blog-archive-header">
       <a class="blog-archive-header__back" href="{{ '/blog/' | relative_url }}">← All writing</a>
-      <p class="eyebrow">Topic archive</p>
+      <p class="eyebrow">
+        {% if page.type == 'categories' %}Primary field{% else %}Specific topic{% endif %}
+      </p>
       <div class="blog-archive-header__title-row">
-        <h1>{{ page.title }}</h1>
+        <h1>
+          {% if page.type == 'tags' %}#{% endif -%}
+          {{- archive_title }}
+        </h1>
         <span>
           {{- sorted_documents.size }}
           {% if sorted_documents.size == 1 %}post{% else %}posts{% endif -%}
@@ -28,7 +46,7 @@ layout: default
     </header>
   {% endif %}
 
-  {% if page.type == 'categories' %}
+  {% if is_topic_archive %}
     <section class="blog-category-archive" aria-label="Posts in {{ page.title }}">
       <div class="blog-archive-list">
         {% for document in sorted_documents %}

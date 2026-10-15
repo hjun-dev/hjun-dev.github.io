@@ -1,5 +1,6 @@
 {% assign row_post = include.post %}
 {% assign primary_category = row_post.categories | first %}
+{% assign primary_category_label = site.data.blog_category_labels[primary_category] | default: primary_category %}
 
 <article class="blog-post-row">
   <time class="blog-post-row__date" datetime="{{ row_post.date | date_to_xmlschema }}">{{ row_post.date | date: '%Y.%m.%d' }}</time>
@@ -7,7 +8,7 @@
     <div class="blog-post-row__taxonomy">
       {% if primary_category %}
         <a class="blog-topic-chip" href="{{ primary_category | slugify | prepend: '/blog/category/' | append: '/' | relative_url }}">
-          {{- primary_category -}}
+          {{- primary_category_label -}}
         </a>
       {% endif %}
     </div>
