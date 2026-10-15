@@ -37,7 +37,150 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-paper-review-predictive-safety-filter-for-learning-based-control",
+        },{id: "post-paper-review-supervised-contrastive-learning",
+        
+          title: "[Paper Review] Supervised Contrastive Learning",
+        
+        description: "Supervised contrastive objective와 representation geometry",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/supcon/";
+          
+        },
+      },{id: "post-paper-review-sitt-student-informed-teacher-training",
+        
+          title: "[Paper Review] SITT: Student-Informed Teacher Training",
+        
+        description: "학생의 관측 한계를 반영하는 privileged teacher 학습",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/sitt/";
+          
+        },
+      },{id: "post-paper-review-pvp-proxy-value-propagation",
+        
+          title: "[Paper Review] PVP: Proxy Value Propagation",
+        
+        description: "Proxy value propagation을 통한 active human involvement 학습",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/pvp/";
+          
+        },
+      },{id: "post-paper-review-optnet-differentiable-optimization-as-a-layer",
+        
+          title: "[Paper Review] OptNet: Differentiable Optimization as a Layer",
+        
+        description: "Quadratic programming layer와 implicit differentiation",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/optnet/";
+          
+        },
+      },{id: "post-paper-review-mldg-meta-learning-for-domain-generalization",
+        
+          title: "[Paper Review] MLDG: Meta-Learning for Domain Generalization",
+        
+        description: "Meta-train과 meta-test domain을 이용한 domain generalization",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/mldg/";
+          
+        },
+      },{id: "post-paper-review-mile-model-based-intervention-learning",
+        
+          title: "[Paper Review] MILE: Model-based Intervention Learning",
+        
+        description: "개입과 비개입 데이터를 함께 활용하는 model-based intervention learning",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/mile/";
+          
+        },
+      },{id: "post-paper-review-maml-model-agnostic-meta-learning",
+        
+          title: "[Paper Review] MAML: Model-Agnostic Meta-Learning",
+        
+        description: "새로운 task에 빠르게 적응하는 초기화를 학습하는 meta-learning",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/maml/";
+          
+        },
+      },{id: "post-paper-review-iarl-intervention-aided-reinforcement-learning",
+        
+          title: "[Paper Review] IARL: Intervention Aided Reinforcement Learning",
+        
+        description: "사람의 개입을 활용한 안전한 navigation policy 최적화",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/iarl/";
+          
+        },
+      },{id: "post-paper-review-hg-dagger-interactive-imitation-learning-with-human-experts",
+        
+          title: "[Paper Review] HG-DAgger: Interactive Imitation Learning with Human Experts",
+        
+        description: "Human-gated supervision을 이용한 interactive imitation learning",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/hg-dagger/";
+          
+        },
+      },{id: "post-paper-review-haco-human-ai-copilot-optimization",
+        
+          title: "[Paper Review] HACO: Human-AI Copilot Optimization",
+        
+        description: "사람의 개입을 활용한 reward-free 자율주행 정책 학습",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/haco/";
+          
+        },
+      },{id: "post-paper-review-dann-domain-adversarial-training-of-neural-networks",
+        
+          title: "[Paper Review] DANN: Domain-Adversarial Training of Neural Networks",
+        
+        description: "Gradient reversal과 domain-adversarial training을 이용한 domain adaptation",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/dann/";
+          
+        },
+      },{id: "post-paper-review-dagger-dataset-aggregation-for-imitation-learning",
+        
+          title: "[Paper Review] DAgger: Dataset Aggregation for Imitation Learning",
+        
+        description: "Distribution shift와 no-regret reduction을 통한 dataset aggregation",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/dagger/";
+          
+        },
+      },{id: "post-paper-review-a2d-adaptive-asymmetric-dagger",
+        
+          title: "[Paper Review] A2D: Adaptive Asymmetric DAgger",
+        
+        description: "부분관측 환경에서 expert와 student를 함께 조정하는 asymmetric imitation learning",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/a2d/";
+          
+        },
+      },{id: "post-paper-review-predictive-safety-filter-for-learning-based-control",
         
           title: "[Paper Review] Predictive Safety Filter for Learning-Based Control",
         
@@ -202,72 +345,7 @@ ninja.data = [{
             window.location.href = "/blog/2026/00-convex-intro/";
           
         },
-      },{id: "planned-paper-review-a2d-adaptive-asymmetric-dagger",
-          title: '[Paper Review] A2D: Adaptive Asymmetric DAgger',
-          description: "부분관측 환경에서 student가 모방할 수 있도록 privileged expert까지 함께 조정하는 A2D를 정리할 예정입니다.",
-          section: "Planned",handler: () => {
-              window.location.href = "/blog/planned/2026-10-15-a2d/";
-            },},{id: "planned-paper-review-dagger-dataset-aggregation-for-imitation-learning",
-          title: '[Paper Review] DAgger: Dataset Aggregation for Imitation Learning',
-          description: "DAgger의 distribution shift 문제 설정, no-regret reduction, dataset aggregation 절차를 정리할 예정입니다.",
-          section: "Planned",handler: () => {
-              window.location.href = "/blog/planned/2026-10-15-dagger/";
-            },},{id: "planned-paper-review-dann-domain-adversarial-training-of-neural-networks",
-          title: '[Paper Review] DANN: Domain-Adversarial Training of Neural Networks',
-          description: "Gradient reversal을 이용해 label-discriminative하면서 domain-invariant한 feature를 학습하는 DANN을 정리할 예정입니다.",
-          section: "Planned",handler: () => {
-              window.location.href = "/blog/planned/2026-10-15-dann/";
-            },},{id: "planned-paper-review-haco-human-ai-copilot-optimization",
-          title: '[Paper Review] HACO: Human-AI Copilot Optimization',
-          description: "사람의 제한된 개입으로 안전한 자율주행 정책을 학습하는 HACO의 reward-free 구조를 정리할 예정입니다.",
-          section: "Planned",handler: () => {
-              window.location.href = "/blog/planned/2026-10-15-haco/";
-            },},{id: "planned-paper-review-hg-dagger-interactive-imitation-learning-with-human-experts",
-          title: '[Paper Review] HG-DAgger: Interactive Imitation Learning with Human Experts',
-          description: "사람이 필요할 때만 개입하는 human-gated data collection과 DAgger의 차이를 정리할 예정입니다.",
-          section: "Planned",handler: () => {
-              window.location.href = "/blog/planned/2026-10-15-hg-dagger/";
-            },},{id: "planned-paper-review-iarl-intervention-aided-reinforcement-learning",
-          title: '[Paper Review] IARL: Intervention Aided Reinforcement Learning',
-          description: "사람의 개입 데이터를 이용해 navigation policy의 안전성과 학습 효율을 높이는 IARL을 정리할 예정입니다.",
-          section: "Planned",handler: () => {
-              window.location.href = "/blog/planned/2026-10-15-iarl/";
-            },},{id: "planned-paper-review-maml-model-agnostic-meta-learning",
-          title: '[Paper Review] MAML: Model-Agnostic Meta-Learning',
-          description: "소수의 gradient step으로 새로운 task에 빠르게 적응하는 initialization을 학습하는 MAML을 정리할 예정입니다.",
-          section: "Planned",handler: () => {
-              window.location.href = "/blog/planned/2026-10-15-maml/";
-            },},{id: "planned-paper-review-mile-model-based-intervention-learning",
-          title: '[Paper Review] MILE: Model-based Intervention Learning',
-          description: "개입과 비개입 시점 모두에서 전문가 피드백을 추론하는 MILE의 intervention model을 정리할 예정입니다.",
-          section: "Planned",handler: () => {
-              window.location.href = "/blog/planned/2026-10-15-mile/";
-            },},{id: "planned-paper-review-mldg-meta-learning-for-domain-generalization",
-          title: '[Paper Review] MLDG: Meta-Learning for Domain Generalization',
-          description: "학습 domain을 meta-train과 meta-test로 나눠 unseen domain 일반화를 최적화하는 MLDG를 정리할 예정입니다.",
-          section: "Planned",handler: () => {
-              window.location.href = "/blog/planned/2026-10-15-mldg/";
-            },},{id: "planned-paper-review-optnet-differentiable-optimization-as-a-layer",
-          title: '[Paper Review] OptNet: Differentiable Optimization as a Layer',
-          description: "Quadratic program을 neural network layer로 구성하고 implicit differentiation으로 학습하는 OptNet을 정리할 예정입니다.",
-          section: "Planned",handler: () => {
-              window.location.href = "/blog/planned/2026-10-15-optnet/";
-            },},{id: "planned-paper-review-pvp-proxy-value-propagation",
-          title: '[Paper Review] PVP: Proxy Value Propagation',
-          description: "능동적 사람 개입을 proxy value로 전파해 reward 없이 정책을 개선하는 PVP를 정리할 예정입니다.",
-          section: "Planned",handler: () => {
-              window.location.href = "/blog/planned/2026-10-15-pvp/";
-            },},{id: "planned-paper-review-sitt-student-informed-teacher-training",
-          title: '[Paper Review] SITT: Student-Informed Teacher Training',
-          description: "학생의 관측 한계를 teacher 학습에 반영해 privileged imitation gap을 줄이는 SITT를 정리할 예정입니다.",
-          section: "Planned",handler: () => {
-              window.location.href = "/blog/planned/2026-10-15-sitt/";
-            },},{id: "planned-paper-review-supervised-contrastive-learning",
-          title: '[Paper Review] Supervised Contrastive Learning',
-          description: "같은 class의 여러 positive를 사용하는 supervised contrastive objective와 representation geometry를 정리할 예정입니다.",
-          section: "Planned",handler: () => {
-              window.location.href = "/blog/planned/2026-10-15-supcon/";
-            },},{id: "projects-rlv-landing-simulation-simulink-unity",
+      },{id: "projects-rlv-landing-simulation-simulink-unity",
           title: 'RLV Landing Simulation (Simulink-Unity)',
           description: "Reusable Launch Vehicle landing simulation connecting MATLAB/Simulink and Unity.",
           section: "Projects",handler: () => {
