@@ -15,7 +15,7 @@ footer_text: >
   Research portfolio and technical notebook. Hosted on <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a>.
 keywords: Hyeong-Jun Lee, Inha University, Aerospace, Optimization, hjun-dev, Reinforcement Learning, Deep Learning, Aerospace Engineering
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: favicon.png # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+icon: name-mark.svg # scalable L. mark for browser tabs
 
 url: https://hjun-dev.github.io # the base hostname & protocol for your site
 baseurl: # the subpath of your site, e.g. /blog/. Leave blank for root
@@ -64,7 +64,7 @@ max_width: 1120px
 # see https://schema.org/docs/faq.html for more information
 serve_og_meta: true # Include Open Graph meta tags in the HTML head
 serve_schema_org: true # Include Schema.org in the HTML head
-og_image: assets/img/favicon.png # The site-wide (default for all links) Open Graph preview image
+og_image: https://hjun-dev.github.io/assets/img/name-card.png # name-first Open Graph preview
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification

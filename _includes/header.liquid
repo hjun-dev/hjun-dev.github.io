@@ -7,13 +7,10 @@
   >
     <div class="container">
         <a class="navbar-brand site-brand title" href="{{ site.baseurl }}/" aria-label="{{ site.title }} — home">
-          <span class="site-brand__mark" aria-hidden="true">HL</span>
           <span class="site-brand__name">
           {% if site.title == 'blank' %}
             {% if site.first_name %}
-              <span class="font-weight-bold">
-                {{- site.first_name -}}
-              </span>
+              {{- site.first_name -}}
             {% endif %}
             {% if site.middle_name %}
               {{- site.middle_name -}}
@@ -23,7 +20,7 @@
             {% endif %}
           {% else %}
             {{- site.title -}}
-          {% endif %}
+          {%- endif -%}<span class="site-brand__dot" aria-hidden="true">.</span>
           </span>
         </a>
       <!-- Navbar Toggle -->

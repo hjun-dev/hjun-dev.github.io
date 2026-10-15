@@ -140,23 +140,18 @@ li {
   .site-brand {
     align-items: center;
     display: inline-flex;
-    font-size: 0.95rem;
-    font-weight: 650;
-    gap: 0.65rem;
-    letter-spacing: -0.015em;
+    color: var(--journal-ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: -0.045em;
+    line-height: 1.2;
+    min-height: 44px;
+    white-space: nowrap;
   }
 
-  .site-brand__mark {
-    align-items: center;
-    background: var(--journal-ink);
-    border-radius: 3px;
-    color: var(--journal-canvas);
-    display: inline-flex;
-    font-size: 0.64rem;
-    height: 2rem;
-    justify-content: center;
-    letter-spacing: 0.04em;
-    width: 2rem;
+  .site-brand__dot {
+    color: var(--journal-accent);
   }
 
   .navbar-nav {
