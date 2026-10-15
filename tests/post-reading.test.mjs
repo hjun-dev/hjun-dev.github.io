@@ -43,6 +43,14 @@ test("supports technical overflow and bounded desktop TOCs", () => {
   assert.match(postScss, /font-size:\s*1\.0625rem/);
 });
 
+test("gives the sticky desktop TOC a full-height grid containing block", () => {
+  assert.match(
+    postScss,
+    /&--with-toc\s*\{[^}]*align-items:\s*stretch;/s,
+    "the TOC grid row must stretch so its sticky child can travel beside the article",
+  );
+});
+
 test("does not split LaTeX table cells on pipe characters", () => {
   assert.match(psfPost, /mu_\{i\\vert k\}/);
   assert.doesNotMatch(psfTableSection, /\\mu_\{[^}\r\n]*\|k\}/);

@@ -71,7 +71,7 @@
   justify-content: center;
 
   &--with-toc {
-    align-items: start;
+    align-items: stretch;
     gap: clamp(1.5rem, 4vw, 3.5rem);
     grid-template-columns: minmax(10rem, 13rem) minmax(0, var(--journal-reading-width));
   }
