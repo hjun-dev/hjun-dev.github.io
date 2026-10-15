@@ -5,7 +5,7 @@ description: Reusable Launch Vehicle landing simulation connecting MATLAB/Simuli
 img: assets/img/projects/rlv_landing.gif
 importance: 1
 category: work
-github: https://github.com/hjun-dev/hjun-dev.github.io
+github: https://github.com/hyeong-jun-lee/hyeong-jun-lee.github.io
 ---
 
 ### **Project Overview**

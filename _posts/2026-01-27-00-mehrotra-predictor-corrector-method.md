@@ -20,7 +20,7 @@ toc:
 
 ---
 
-**Primal-dual interior-point-method**에 대한 자세한 내용은 다음 포스트를 참고 :<br>[[Convex Optimization] 16. Primal-dual interior-point-methods](https://hjun-dev.github.io/blog/2026/00-primal-dual-interior-point-method/)
+**Primal-dual interior-point-method**에 대한 자세한 내용은 다음 포스트를 참고 :<br>[[Convex Optimization] 16. Primal-dual interior-point-methods]({{ '/blog/2026/00-primal-dual-interior-point-method/' | relative_url }})
 
 ---
 
