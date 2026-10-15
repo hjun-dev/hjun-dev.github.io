@@ -1,0 +1,25 @@
+{% assign featured = include.post %}
+{% assign primary_category = featured.categories | first %}
+
+<article class="blog-featured surface">
+  <div class="blog-featured__meta">
+    {% if primary_category %}
+      <a class="blog-topic-chip" href="{{ primary_category | slugify | prepend: '/blog/category/' | append: '/' | relative_url }}">
+        {{- primary_category -}}
+      </a>
+    {% endif %}
+    <time datetime="{{ featured.date | date_to_xmlschema }}">{{ featured.date | date: '%B %-d, %Y' }}</time>
+  </div>
+
+  <h2 class="blog-featured__title">
+    <a href="{{ featured.url | relative_url }}">{{ featured.title }}</a>
+  </h2>
+
+  {% if featured.description %}
+    <p class="blog-featured__description">{{ featured.description }}</p>
+  {% endif %}
+
+  <a class="text-link" href="{{ featured.url | relative_url }}">
+    Read article <span aria-hidden="true">→</span>
+  </a>
+</article>

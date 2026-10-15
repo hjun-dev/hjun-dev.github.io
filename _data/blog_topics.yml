@@ -1,0 +1,12 @@
+- key: optimization
+  label: Optimization
+- key: control
+  label: Control
+- key: reinforcement learning
+  label: Reinforcement Learning
+- key: deep learning
+  label: Deep Learning
+- key: linear algebra
+  label: Linear Algebra
+- key: paper review
+  label: Paper Review

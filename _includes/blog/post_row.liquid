@@ -1,0 +1,28 @@
+{% assign row_post = include.post %}
+{% assign primary_category = row_post.categories | first %}
+
+<article class="blog-post-row">
+  <time class="blog-post-row__date" datetime="{{ row_post.date | date_to_xmlschema }}">{{ row_post.date | date: '%Y.%m.%d' }}</time>
+  <div class="blog-post-row__body">
+    <div class="blog-post-row__taxonomy">
+      {% if primary_category %}
+        <a class="blog-topic-chip" href="{{ primary_category | slugify | prepend: '/blog/category/' | append: '/' | relative_url }}">
+          {{- primary_category -}}
+        </a>
+      {% endif %}
+    </div>
+    <h3 class="blog-post-row__title">
+      <a href="{{ row_post.url | relative_url }}">{{ row_post.title }}</a>
+    </h3>
+    {% if row_post.description %}
+      <p class="blog-post-row__description">{{ row_post.description }}</p>
+    {% endif %}
+    {% if row_post.tags.size > 0 %}
+      <div class="blog-post-row__tags" aria-label="Tags">
+        {% for tag in row_post.tags limit: 3 %}
+          <a href="{{ tag | slugify | prepend: '/blog/tag/' | append: '/' | relative_url }}">#{{ tag }}</a>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</article>

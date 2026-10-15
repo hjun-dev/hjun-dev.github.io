@@ -1,0 +1,20 @@
+{% assign card_post = include.post %}
+{% assign primary_category = card_post.categories | first %}
+
+<article class="blog-card surface">
+  <div class="blog-card__meta">
+    <time datetime="{{ card_post.date | date_to_xmlschema }}">{{ card_post.date | date: '%b %-d, %Y' }}</time>
+    {% if primary_category %}
+      <span aria-hidden="true">·</span>
+      <a href="{{ primary_category | slugify | prepend: '/blog/category/' | append: '/' | relative_url }}">{{ primary_category }}</a>
+    {% endif %}
+  </div>
+
+  <h3 class="blog-card__title">
+    <a href="{{ card_post.url | relative_url }}">{{ card_post.title }}</a>
+  </h3>
+
+  {% if card_post.description %}
+    <p class="blog-card__description">{{ card_post.description }}</p>
+  {% endif %}
+</article>
