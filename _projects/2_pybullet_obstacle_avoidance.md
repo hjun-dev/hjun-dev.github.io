@@ -5,7 +5,6 @@ description: Single agent obstacle avoidance and goal reaching using Soft Actor-
 img: assets/img/projects/pybullet_reward.gif
 importance: 2
 category: work
-github: https://github.com/hyeong-jun-lee/hyeong-jun-lee.github.io
 ---
 
 ### **Project Overview**

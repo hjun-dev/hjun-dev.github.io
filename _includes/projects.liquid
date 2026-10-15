@@ -8,7 +8,8 @@
       {% endif %}
       <div class="project-card__body">
         <p class="project-card__eyebrow">Research project</p>
-        <h2 class="project-card__title">{{ project.title }}</h2>
+        {% assign project_heading = include.heading_level | default: 2 %}
+        <h{{ project_heading }} class="project-card__title">{{ project.title }}</h{{ project_heading }}>
         <p class="project-card__description">{{ project.description }}</p>
         <span class="project-card__read">View project <span aria-hidden="true">→</span></span>
       </div>

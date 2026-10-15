@@ -10,12 +10,12 @@
       </li>
       {% if paginator.page_trail %}
         {% for trail in paginator.page_trail %}
-          <li class="page-item {% if page.url == trail.path %}active{% endif %}">
+          <li class="page-item {% if paginator.page == trail.num %}active{% endif %}">
             <a
               class="page-link"
               href="{{ trail.path | relative_url | remove: 'index.html' }}"
               title="{{ trail.title }}"
-              {% if page.url == trail.path %}
+              {% if paginator.page == trail.num %}
                 aria-current="page"
               {% endif %}
             >

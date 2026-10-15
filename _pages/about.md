@@ -42,7 +42,7 @@ latest_posts:
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 project-grid">
       {% assign sorted_projects = site.projects | sort: 'importance' %}
       {% for project in sorted_projects limit: 3 %}
-        {% include projects.liquid %}
+        {% include projects.liquid heading_level=3 %}
       {% endfor %}
     </div>
   </div>

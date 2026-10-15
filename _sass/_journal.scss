@@ -74,9 +74,28 @@ li {
 
 .site-main {
   margin-top: 2rem;
+  scroll-margin-top: 5rem;
 
   &--home {
     margin-top: 1rem;
+  }
+}
+
+.skip-link {
+  background: var(--journal-ink);
+  border-radius: 3px;
+  color: var(--journal-canvas) !important;
+  font-size: 0.85rem;
+  font-weight: 600;
+  left: 1rem;
+  padding: 0.65rem 1rem;
+  position: fixed;
+  top: 0.75rem;
+  transform: translateY(-200%);
+  z-index: 1100;
+
+  &:focus {
+    transform: translateY(0);
   }
 }
 

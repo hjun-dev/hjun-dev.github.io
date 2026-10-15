@@ -212,6 +212,37 @@
   }
 }
 
+.home-writing {
+  .blog-archive-row {
+    padding: 0.9rem 0;
+
+    &:first-child { padding-top: 0; }
+    &:last-child { border-bottom: 0; padding-bottom: 0; }
+  }
+
+  .blog-topic-chip {
+    margin-bottom: 0.3rem;
+  }
+
+  .blog-archive-row__title {
+    font-size: 1.1rem;
+  }
+
+  .blog-archive-row__description {
+    font-size: 0.82rem;
+    margin-top: 0.35rem;
+  }
+}
+
+.recovery-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-top: 1rem;
+
+  a { min-height: 44px; }
+}
+
 .home-contact {
   align-items: center;
   display: flex;

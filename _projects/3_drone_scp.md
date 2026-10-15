@@ -5,7 +5,6 @@ description: 6-DOF drone trajectory optimization using Sequential Convex Program
 img: assets/img/projects/SCP_result.png
 importance: 3
 category: work
-github: https://github.com/hyeong-jun-lee/hyeong-jun-lee.github.io
 ---
 
 ### **Project Overview**

@@ -5,7 +5,6 @@ description: Addressing action delay in RL environments (LunarLander & BipedalWa
 img: assets/img/projects/mile_thumb.gif 
 importance: 4
 category: work
-github: https://github.com/hyeong-jun-lee/hyeong-jun-lee.github.io
 ---
 
 ### **Project Overview**

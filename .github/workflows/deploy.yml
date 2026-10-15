@@ -78,6 +78,8 @@ jobs:
         run: bundle exec ruby tests/related-posts-render.test.rb
       - name: Verify name-first brand rendering
         run: bundle exec ruby tests/brand-render.test.rb
+      - name: Verify reading lists and navigation rendering
+        run: bundle exec ruby tests/navigation-render.test.rb
       - name: Verify site and reading interactions
         run: node --test tests/*.test.mjs
       - name: Build
@@ -86,6 +88,8 @@ jobs:
         run: bundle exec jekyll build
       - name: Verify published site addresses
         run: bundle exec ruby tests/site-address-build.test.rb
+      - name: Verify navigation and recovery pages
+        run: bundle exec ruby tests/navigation-build.test.rb
       - name: Upload site artifact
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:

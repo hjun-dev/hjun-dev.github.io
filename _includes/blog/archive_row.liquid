@@ -1,8 +1,15 @@
 {% assign document = include.document %}
+{% assign row_heading = include.heading_level | default: 2 %}
 
 <article class="blog-archive-row">
   <div class="blog-archive-row__body">
-    <h2 class="blog-archive-row__title">
+    {% if include.show_category %}
+      {% assign category = document.categories | first %}
+      {% if category %}
+        <a class="blog-topic-chip" href="{{ category | slugify | prepend: '/blog/category/' | append: '/' | relative_url }}">{{ site.data.blog_category_labels[category] | default: category }}</a>
+      {% endif %}
+    {% endif %}
+    <h{{ row_heading }} class="blog-archive-row__title">
       {% if document.redirect == blank %}
         <a href="{{ document.url | relative_url }}">{{ document.title | remove_first: '[Paper Review] ' }}</a>
       {% elsif document.redirect contains '://' %}
@@ -10,7 +17,7 @@
       {% else %}
         <a href="{{ document.redirect | relative_url }}">{{ document.title | remove_first: '[Paper Review] ' }}</a>
       {% endif %}
-    </h2>
+    </h{{ row_heading }}>
     {% if document.description %}
       <p class="blog-archive-row__description">{{ document.description }}</p>
     {% endif %}
