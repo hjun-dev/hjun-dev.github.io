@@ -527,12 +527,14 @@ $$
 Barrier method는 다양한 $\mu$를 사용했고 primal-dual method는 $\mu=10$을 사용했다. 둘  모두 backtracking에서 $\alpha=0.01, \beta=0.5$를 사용했다.
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/barriervspdipm.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/barriervspdipm.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="2474" height="916"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -550,12 +552,14 @@ Barrier method는 $\mu=100$로 two outer loops만 진행했다. 결과적으로 
 Primal-dual method는 $\mu=10$을 사용했고 surrogate duality gap과 feasibility gap이 거의 $10^{-8}$일때 종료했다.
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/barriervspdipm2.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/barriervspdipm2.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="2416" height="1084"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>

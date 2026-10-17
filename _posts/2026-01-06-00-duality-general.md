@@ -47,12 +47,14 @@ Lagrangian의 **중요한 특징** 중 하나는 모든 $u\ge 0$와 $v$에 대�
 $f$와 $L(x,u,v)$의 관계는 feasible set 밖에서는 적용되지 않음에 주의하자.
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/lagrangian00.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-10 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/lagrangian00.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1286" height="1100"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -271,12 +273,14 @@ $$
 Objective function이 nonconvex이므로 **nonconvex problem**이다.
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/nonconvexmini.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/nonconvexmini.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="2524" height="1202"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>

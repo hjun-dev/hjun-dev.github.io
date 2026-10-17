@@ -41,12 +41,14 @@ toc:
 논문에서 다루는 문제는 재사용 로켓의 최종 착륙 단계이다. 구체적으로는 lower atmospheric layer에서 로켓을 수직 착륙시키는 제어 문제를 다룬다.
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/rajs_rocket_landing_task.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/rajs_rocket_landing_task.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1334" height="896"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -94,12 +96,14 @@ toc:
 착륙 성공을 위해서는 위치뿐만 아니라 속도, 자세, 각속도 조건까지 만족해야 한다. 예를 들어 $x,z$ 위치는 목표점 기준 $\pm 5m$ 이내에 있어야 하며, 수평 속도 $v_x, v_z$는 $\pm 1m/s$ 이내에 들어와야 한다. 수직 속도 $v_y$는 $-1 \sim 0m/s$ 범위로 제한된다. <br>
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/rajs_state_terminal_constraints.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/rajs_state_terminal_constraints.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1366" height="876"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -631,12 +635,14 @@ $$
 이를 해결하기 위해 저자들은 Simulink Embedded Coder를 사용하여 C code를 생성하고, 이를 native module로 compile한다. 또한 GOPS Slxpy를 사용하여 RL 환경과 연결한다.
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/rajs_wrapped_plant.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/rajs_wrapped_plant.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1272" height="534"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -701,12 +707,14 @@ PPO-RAJS의 주요 hyperparameter는 다음과 같다.
 <br>
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/rajs_success_rate_baselines.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/rajs_success_rate_baselines.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1218" height="866"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -742,12 +750,14 @@ $$
 $F_2$가 작을수록 action sequence가 더 부드럽다고 볼 수 있다.
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/rajs_smooth_training_curve.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-10 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/rajs_smooth_training_curve.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1046" height="1308"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -761,12 +771,14 @@ $F_2$가 작을수록 action sequence가 더 부드럽다고 볼 수 있다.
 위 결과에서 PPO-RAJS-S는 PPO-RAJS보다 더 빠르게 성공률이 증가하며, action fluctuation도 크게 감소한다. 이는 cascading jump start를 사용하여 smoothness regulation이 포함된 setting에서도 안정적으로 policy를 학습할 수 있었기 때문이다. <br>
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/rajs_action_sequence_comparison.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-10 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/rajs_action_sequence_comparison.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1122" height="1158"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -799,12 +811,14 @@ $F_2$가 작을수록 action sequence가 더 부드럽다고 볼 수 있다.
 Landing trial 중 각 constraint의 satisfaction rate는 대부분 99% 이상이다. 다만 $v_y$ constraint는 다른 항목보다 상대적으로 위반 빈도가 높게 나타난다. 이는 로켓 착륙에서 수직 속도 제어가 특히 어려운 요소임을 보여준다. <br>
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/rajs_final_policy_statistics.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/rajs_final_policy_statistics.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1280" height="900"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -818,12 +832,14 @@ Landing trial 중 각 constraint의 satisfaction rate는 대부분 99% 이상이
 또한 논문에서는 PPO-RAJS-S policy가 제어한 100개의 trajectory를 시각화한다.
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/rajs_landing_trajectories.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-10 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/rajs_landing_trajectories.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1336" height="1206"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>

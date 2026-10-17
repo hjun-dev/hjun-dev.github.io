@@ -96,12 +96,14 @@ $$
 이 문제는 **nonquadratic function**이기 때문에 수렴에 여러 스텝이 걸린다. (Quadratic function이라면 한 스텝에 수렴.)
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/gdvsnmgraph.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-10 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/gdvsnmgraph.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1234" height="1246"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -130,12 +132,14 @@ $$
 위 식의 solution은 $v=-(DF(x))^{-1}F(x) = -(\nabla^2 f(x))^{-1} \nabla f(x)$이 된다.
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/linearizationofgradient.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/linearizationofgradient.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1812" height="1228"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -297,12 +301,14 @@ $t=1$일 때 보면 loop condition이 의미하는 바는 quadratic approximatio
 다음은 **logistic regression**을 **Gradient descent (with backtracking)** 와 **Newton's method (with backtracking)** 로 수렴시킨 결과 그래프이다.
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/gdnmconvergencelogistic.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-10 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/gdnmconvergencelogistic.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1088" height="1038"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -600,12 +606,14 @@ Self-concordance 정의에 등장하는 계수는 함수의 스케일링에 따�
 다음 그림은 x축을 실제 연산에 걸린 시간으로 설정하여 두 알고리즘의 수렴 속도를 비교한 그래프이다. 한 iteration에 걸리는 시간은 Newton's method가 더 많지만 몇 개의 step만으로 더 수렴이 많이 진행돼 더 빠른 수렴 속도를 가지는 것을 볼 수 있다.
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/logisticregressiongdnm.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-10 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/logisticregressiongdnm.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1212" height="1208"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>

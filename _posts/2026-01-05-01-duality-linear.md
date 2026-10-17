@@ -202,12 +202,14 @@ $
 (나가는 유량과 들어오는 유량은 같다. (source & sink 제외))
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/maxflowmincut.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-10 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/maxflowmincut.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1284" height="1250"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>

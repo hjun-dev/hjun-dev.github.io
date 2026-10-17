@@ -163,12 +163,14 @@ $$
 
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-9 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/svd_domain_to_range.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/svd_domain_to_range.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="2360" height="1212"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -548,12 +550,13 @@ $$
 
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-9 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/svd_three_step_geometry.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/svd_three_step_geometry.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1671" height="941"
+            zoomable=true
         %}
     </div>
 </div>
@@ -1374,12 +1377,13 @@ $$
 
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-9 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/svd_least_squares_projection.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-10 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/svd_least_squares_projection.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1448" height="1086"
+            zoomable=true
         %}
     </div>
 </div>
@@ -1501,12 +1505,13 @@ $$
 
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-9 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/svd_least_norm_solution.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/svd_least_norm_solution.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1536" height="1024"
+            zoomable=true
         %}
     </div>
 </div>

@@ -44,12 +44,14 @@ $$
 <br>
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/psf_fig1_concept.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/psf_fig1_concept.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="668" height="279"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -368,11 +370,13 @@ horizon이 0이 되면 상태는 terminal safe set에 도달해 있고, 이후�
 
 <div class="row mt-3 justify-content-sm-center">
     <div class="col-sm-10 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/psf_fig2_nominal_and_uncertain.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/psf_fig2_nominal_and_uncertain.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="703" height="667"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -1227,12 +1231,14 @@ $$
 <br>
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/psf_fig3_pendulum_swingup.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-10 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/psf_fig3_pendulum_swingup.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="619" height="679"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -1437,12 +1443,14 @@ $$
 <br>
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/psf_fig4_quadrotor_experiment.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-10 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/psf_fig4_quadrotor_experiment.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="684" height="625"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>

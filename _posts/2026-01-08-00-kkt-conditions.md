@@ -268,12 +268,14 @@ $$
 이러한 해를 water-filling이라고 부른다. 주어진 $\alpha_i$를 ground level로 생각하고 채우는 물의 합이 1일때 가능한 $\frac{1}{v^{\ast}}$까지 물을 채우는 문제로 생각할 수 있다.
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/waterfilling.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/waterfilling.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1363" height="750"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -338,12 +340,14 @@ $$
 (KKT 조건 자체가 해를 직접 구해주지는 않음.)
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/kktsvm.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-10 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/kktsvm.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1552" height="1312"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -642,12 +646,14 @@ $$
 
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/affinespanunique.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/affinespanunique.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1340" height="844"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>

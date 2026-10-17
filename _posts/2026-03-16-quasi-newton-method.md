@@ -323,12 +323,14 @@ $$
 $$
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/BFGSvsNM.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/BFGSvsNM.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="2640" height="1042"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>

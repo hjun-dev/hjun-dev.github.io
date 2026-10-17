@@ -72,12 +72,14 @@ $$
 위 식에서 $t$는 $t\gt0$인 큰 수를 고른다. 아래의 그림에서 $t$가 커질수록 indicator function의 형태와 유사해지는 것을 확인할 수 있다.
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/logbarrierindicator.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-10 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/logbarrierindicator.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1312" height="1108"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -160,12 +162,14 @@ $$
 이는 $\nabla \phi(x^{\star}(t))$가 $c$와 평행해야 함을 의미한다. 따라서 다음 그림에서처럼 **hyperplane** $\lbrace x: c^{T}x = c^Tx^{\star}(t) \rbrace$이 $x^{\star}(t)$에서 $\phi$의 **contour**에 접하게 나타나는 것을 알 수 있다.
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/barrierlpproblem.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/barrierlpproblem.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1214" height="858"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -353,12 +357,14 @@ $(b)$ 단계를 **centering step**이라고 부른다.<br>
 아래 예시 그래프는 $n=50$ 차원, $m=100$ inequality constraints의 small LP를 barrier method로 푼 결과이다.
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/convergencefordiffval.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-10 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/convergencefordiffval.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="948" height="736"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -403,12 +409,14 @@ $$
 아래의 LP 예제에서도 로그스케일에 대한 linear convergence임을 확인할 수 있다.
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/linearconvergencebarriermethod.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-10 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/linearconvergencebarriermethod.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1232" height="884"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>

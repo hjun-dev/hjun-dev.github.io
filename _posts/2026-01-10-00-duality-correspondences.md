@@ -259,12 +259,14 @@ $f^{\ast}$는 $y$의 convex function들의 **pointwise maximum**이므로 $f^{\a
 ($f$의 convexity와 상관없이.)
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/conjugatefuncpic.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-10 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/conjugatefuncpic.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1388" height="1064"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -620,12 +622,14 @@ X\beta = y-u
 $$
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/visuallassodual.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/visuallassodual.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="2114" height="1370"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
@@ -758,12 +762,14 @@ y\in K^{\ast} \Longleftrightarrow \text{the halfspace} \; \lbrace x:y^{T}x\ge 0 
 $$
 
 <div class="row mt-3 justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid 
-            loading="eager" 
-            path="assets/img/blog_img/dualconepic.png" 
-            class="img-fluid rounded z-depth-1" 
-            zoomable=true 
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid
+            loading="lazy"
+            path="assets/img/blog_img/dualconepic.png"
+            class="img-fluid rounded d-block mx-auto"
+            width="1378" height="678"
+            avoid_scaling=true
+            zoomable=true
         %}
     </div>
 </div>
