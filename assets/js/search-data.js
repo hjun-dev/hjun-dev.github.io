@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-paper-review-supervised-contrastive-learning",
+        },{id: "post-imitation-learning-기초-behavioral-cloning부터-dagger까지",
+        
+          title: "[Imitation Learning] 기초: Behavioral Cloning부터 DAgger까지",
+        
+        description: "Behavioral Cloning의 분포 변화와 오차 누적에서 DAgger의 데이터 누적, no-regret 성능 보장과 원논문 실험까지",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/dagger/";
+          
+        },
+      },{id: "post-paper-review-supervised-contrastive-learning",
         
           title: "[Paper Review] Supervised Contrastive Learning",
         
@@ -156,17 +167,6 @@ ninja.data = [{
         handler: () => {
           
             window.location.href = "/blog/2026/dann/";
-          
-        },
-      },{id: "post-paper-review-dagger-dataset-aggregation-for-imitation-learning",
-        
-          title: "[Paper Review] DAgger: Dataset Aggregation for Imitation Learning",
-        
-        description: "Distribution shift와 no-regret reduction을 통한 dataset aggregation",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2026/dagger/";
           
         },
       },{id: "post-paper-review-a2d-adaptive-asymmetric-dagger",
