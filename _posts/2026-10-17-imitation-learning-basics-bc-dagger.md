@@ -101,7 +101,7 @@ $$
 
 <div class="row mt-3 justify-content-sm-center">
   <div class="col-sm-12 mt-3 mt-md-0">
-    {% include figure.liquid loading="lazy" path="assets/img/blog_img/imitation-learning-basics/levine-distribution-shift.png" class="img-fluid rounded" width="2460" height="1430" alt="전문가 궤적과 BC 정책의 궤적이 갈라지면서 학습과 실행의 관측분포가 달라지는 개념도." caption="그림 1. 전문가 데이터와 BC rollout의 분포 차이. 출처: Sergey Levine, <a href='https://rail.eecs.berkeley.edu/deeprlcourse-fa23/static/slides/lec-2.pdf#page=11'>CS 285, Fall 2023, Lecture 2, PDF p.11</a>에서 발췌." zoomable=true avoid_scaling=true %}
+    {% include figure.liquid loading="lazy" path="assets/img/blog_img/imitation-learning-basics/levine-distribution-shift.png" class="img-fluid rounded" width="2460" height="1430" alt="전문가 궤적과 BC 정책의 궤적이 갈라지면서 학습과 실행의 관측분포가 달라지는 개념도." caption="학습 데이터와 정책의 관측분포를 같게 만들 수 있을까?<br>출처: <a href='https://rail.eecs.berkeley.edu/deeprlcourse-fa23/static/slides/lec-2.pdf#page=11'>Sergey Levine, CS 285 — Supervised Learning of Behaviors (Fall 2023)</a>." zoomable=true avoid_scaling=true %}
   </div>
 </div>
 
@@ -189,7 +189,7 @@ $\epsilon$이 작더라도 $T$가 길면 상한은 크게 증가한다. 예를 �
 
 <div class="row mt-3 justify-content-sm-center">
   <div class="col-sm-12 mt-3 mt-md-0">
-    {% include figure.liquid loading="lazy" path="assets/img/blog_img/imitation-learning-basics/levine-mistakes-and-recoveries.png" class="img-fluid rounded" width="2500" height="1220" alt="비용 지형 위에서 전문가 궤적과 주변 궤적을 비교한 stability 개념도." caption="그림 2. 비용 지형과 궤적으로 설명한 stability 개념도. 출처: Sergey Levine, <a href='https://rail.eecs.berkeley.edu/deeprlcourse-fa23/static/slides/lec-2.pdf#page=10'>CS 285, Fall 2023, Lecture 2, PDF p.10</a>에서 발췌." zoomable=true avoid_scaling=true %}
+    {% include figure.liquid loading="lazy" path="assets/img/blog_img/imitation-learning-basics/levine-mistakes-and-recoveries.png" class="img-fluid rounded" width="2500" height="1220" alt="비용 지형 위에서 전문가 궤적과 주변 궤적을 비교한 stability 개념도." caption="Stability.<br>출처: <a href='https://rail.eecs.berkeley.edu/deeprlcourse-fa23/static/slides/lec-2.pdf#page=10'>Sergey Levine, CS 285 — Supervised Learning of Behaviors (Fall 2023)</a>." zoomable=true avoid_scaling=true %}
   </div>
 </div>
 
@@ -283,7 +283,7 @@ $\beta_i$는 데이터를 수집할 때 전문가 행동을 **실제로 실행�
 
 <div class="row mt-3 justify-content-sm-center">
   <div class="col-sm-12 mt-3 mt-md-0">
-    {% include figure.liquid loading="lazy" path="assets/img/blog_img/imitation-learning-basics/levine-dagger-loop.png" class="img-fluid rounded" width="2860" height="450" alt="전문가 데이터로 학습한 정책을 실행하고, 방문 관측에 전문가 라벨을 붙인 뒤 누적 데이터로 다시 학습하는 DAgger 반복." caption="그림 3. Expert mixing을 생략한 DAgger 반복 절차. 출처: Sergey Levine, <a href='https://rail.eecs.berkeley.edu/deeprlcourse-fa23/static/slides/lec-2.pdf#page=12'>CS 285, Fall 2023, Lecture 2, PDF p.12</a>에서 발췌. 알고리즘 원출처: Ross et al. (2011)." zoomable=true avoid_scaling=true %}
+    {% include figure.liquid loading="lazy" path="assets/img/blog_img/imitation-learning-basics/levine-dagger-loop.png" class="img-fluid rounded" width="2860" height="450" alt="전문가 데이터로 학습한 정책을 실행하고, 방문 관측에 전문가 라벨을 붙인 뒤 누적 데이터로 다시 학습하는 DAgger 반복." caption="DAgger: Dataset Aggregation.<br>출처: <a href='https://rail.eecs.berkeley.edu/deeprlcourse-fa23/static/slides/lec-2.pdf#page=12'>Sergey Levine, CS 285 — Supervised Learning of Behaviors (Fall 2023)</a>; Ross et al. (2011)." zoomable=true avoid_scaling=true %}
   </div>
 </div>
 
@@ -591,7 +591,7 @@ $$
 
 ## 12. Experiments
 
-Ross et al. (2011)의 Section 5에서는 Super Tux Kart, Super Mario Bros., handwriting recognition으로 DAgger를 평가한다. 아래 그림과 수치는 논문에서 보고한 결과이며, Figure 번호도 원문을 따른다.
+Ross et al. (2011)의 Section 5에서는 Super Tux Kart, Super Mario Bros., handwriting recognition으로 DAgger를 평가한다. 아래 그림과 수치는 논문에서 보고한 결과이다.
 
 ### 12.1 Super Tux Kart
 
@@ -599,13 +599,13 @@ Ross et al. (2011)의 Section 5에서는 Super Tux Kart, Super Mario Bros., hand
 
 <div class="row mt-3 justify-content-sm-center">
   <div class="col-sm-7 mt-3 mt-md-0">
-    {% include figure.liquid loading="lazy" path="assets/img/blog_img/imitation-learning-basics/ross2011-fig1-kart-environment.png" class="img-fluid rounded" width="606" height="453" alt="우주 위의 좁은 트랙을 달리는 Super Tux Kart 실험 화면." caption="출처: Ross, Gordon &amp; Bagnell (2011), <a href='https://proceedings.mlr.press/v15/ross11a/ross11a.pdf#page=6'>Figure 1, p.632</a>. 실험 환경 그림 발췌." zoomable=true avoid_scaling=true %}
+    {% include figure.liquid loading="lazy" path="assets/img/blog_img/imitation-learning-basics/ross2011-fig1-kart-environment.png" class="img-fluid rounded" width="606" height="453" alt="우주 위의 좁은 트랙을 달리는 Super Tux Kart 실험 화면." caption="Super Tux Kart의 Star Track 화면.<br>출처: <a href='https://proceedings.mlr.press/v15/ross11a/ross11a.pdf#page=6'>Ross, Gordon &amp; Bagnell (2011)</a>." zoomable=true avoid_scaling=true %}
   </div>
 </div>
 
 <div class="row mt-3 justify-content-sm-center">
   <div class="col-sm-10 mt-3 mt-md-0">
-    {% include figure.liquid loading="lazy" path="assets/img/blog_img/imitation-learning-basics/ross2011-fig2-kart-results.png" class="img-fluid rounded" width="870" height="780" alt="학습 데이터가 늘어날 때 DAgger의 평균 트랙 이탈은 0에 가까워지지만 SMILe과 Supervised에는 이탈이 남는 그래프." caption="출처: Ross, Gordon &amp; Bagnell (2011), <a href='https://proceedings.mlr.press/v15/ross11a/ross11a.pdf#page=6'>Figure 2, p.632</a>. 원본 결과 그래프 발췌; 축·범례·오차 막대 유지." zoomable=true avoid_scaling=true %}
+    {% include figure.liquid loading="lazy" path="assets/img/blog_img/imitation-learning-basics/ross2011-fig2-kart-results.png" class="img-fluid rounded" width="870" height="780" alt="학습 데이터가 늘어날 때 DAgger의 평균 트랙 이탈은 0에 가까워지지만 SMILe과 Supervised에는 이탈이 남는 그래프." caption="학습 데이터 수에 따른 랩당 평균 이탈 횟수.<br>출처: <a href='https://proceedings.mlr.press/v15/ross11a/ross11a.pdf#page=6'>Ross, Gordon &amp; Bagnell (2011)</a>." zoomable=true avoid_scaling=true %}
   </div>
 </div>
 
@@ -617,13 +617,13 @@ Ross et al. (2011)의 Section 5에서는 Super Tux Kart, Super Mario Bros., hand
 
 <div class="row mt-3 justify-content-sm-center">
   <div class="col-sm-7 mt-3 mt-md-0">
-    {% include figure.liquid loading="lazy" path="assets/img/blog_img/imitation-learning-basics/ross2011-fig3-mario-environment.png" class="img-fluid rounded" width="606" height="453" alt="블록 위의 Mario와 주변 장애물이 보이는 Super Mario Bros. 실험 화면." caption="출처: Ross, Gordon &amp; Bagnell (2011), <a href='https://proceedings.mlr.press/v15/ross11a/ross11a.pdf#page=7'>Figure 3, p.633</a>. 실험 환경 그림 발췌." zoomable=true avoid_scaling=true %}
+    {% include figure.liquid loading="lazy" path="assets/img/blog_img/imitation-learning-basics/ross2011-fig3-mario-environment.png" class="img-fluid rounded" width="606" height="453" alt="블록 위의 Mario와 주변 장애물이 보이는 Super Mario Bros. 실험 화면." caption="Super Mario Bros.의 게임 화면.<br>출처: <a href='https://proceedings.mlr.press/v15/ross11a/ross11a.pdf#page=7'>Ross, Gordon &amp; Bagnell (2011)</a>." zoomable=true avoid_scaling=true %}
   </div>
 </div>
 
 <div class="row mt-3 justify-content-sm-center">
   <div class="col-sm-10 mt-3 mt-md-0">
-    {% include figure.liquid loading="lazy" path="assets/img/blog_img/imitation-learning-basics/ross2011-fig4-mario-results.png" class="img-fluid rounded" width="870" height="756" alt="DAgger와 SEARN, SMILe, 지도학습의 학습 데이터 수에 따른 스테이지당 평균 이동 거리를 비교한 그래프." caption="출처: Ross, Gordon &amp; Bagnell (2011), <a href='https://proceedings.mlr.press/v15/ross11a/ross11a.pdf#page=7'>Figure 4, p.633</a>. 원본 결과 그래프 발췌; 축·범례·오차 막대 유지." zoomable=true avoid_scaling=true %}
+    {% include figure.liquid loading="lazy" path="assets/img/blog_img/imitation-learning-basics/ross2011-fig4-mario-results.png" class="img-fluid rounded" width="870" height="756" alt="DAgger와 SEARN, SMILe, 지도학습의 학습 데이터 수에 따른 스테이지당 평균 이동 거리를 비교한 그래프." caption="학습 데이터 수에 따른 스테이지당 평균 이동 거리.<br>출처: <a href='https://proceedings.mlr.press/v15/ross11a/ross11a.pdf#page=7'>Ross, Gordon &amp; Bagnell (2011)</a>." zoomable=true avoid_scaling=true %}
   </div>
 </div>
 
@@ -637,7 +637,7 @@ BC는 전문가 시연에 드문, 장애물 바로 앞에 갇힌 상태에서 �
 
 <div class="row mt-3 justify-content-sm-center">
   <div class="col-sm-10 mt-3 mt-md-0">
-    {% include figure.liquid loading="lazy" path="assets/img/blog_img/imitation-learning-basics/ross2011-fig5-handwriting-results.png" class="img-fluid rounded" width="870" height="825" alt="학습 반복에 따른 테스트 문자 정확도 비교. DAgger와 SEARN 일부 설정은 비슷한 정확도를 보이고 지도학습 기준선보다 높다." caption="출처: Ross, Gordon &amp; Bagnell (2011), <a href='https://proceedings.mlr.press/v15/ross11a/ross11a.pdf#page=8'>Figure 5, p.634</a>. 원본 결과 그래프 발췌; 가로축은 데이터 수가 아닌 반복 횟수이다." zoomable=true avoid_scaling=true %}
+    {% include figure.liquid loading="lazy" path="assets/img/blog_img/imitation-learning-basics/ross2011-fig5-handwriting-results.png" class="img-fluid rounded" width="870" height="825" alt="학습 반복에 따른 테스트 문자 정확도 비교. DAgger와 SEARN 일부 설정은 비슷한 정확도를 보이고 지도학습 기준선보다 높다." caption="학습 반복 횟수에 따른 문자 인식 정확도.<br>출처: <a href='https://proceedings.mlr.press/v15/ross11a/ross11a.pdf#page=8'>Ross, Gordon &amp; Bagnell (2011)</a>." zoomable=true avoid_scaling=true %}
   </div>
 </div>
 
@@ -656,8 +656,6 @@ No-regret 조건과 앞서 정리한 손실·mixing 가정 아래에서는 학�
 ---
 
 ## References
-
-강의 그림은 **Fall 2023 공식 PDF**에서 발췌했다. 강의의 페이지 번호는 PDF 뷰어 기준이며, 논문 Figure의 페이지 번호는 인쇄 페이지 기준이다.
 
 - [Sergey Levine, **CS 285: Supervised Learning of Behaviors**, UC Berkeley, Fall 2023, Lecture 2](https://rail.eecs.berkeley.edu/deeprlcourse-fa23/static/slides/lec-2.pdf). Stability p.10, distribution shift p.11, DAgger p.12, 오차 누적 분석 pp.35–37.
 - [Stéphane Ross and J. Andrew Bagnell, **Efficient Reductions for Imitation Learning**, AISTATS 2010](https://proceedings.mlr.press/v9/ross10a.html). Forward Training과 SMILe 및 기존 BC의 오차 누적 분석.
