@@ -15,7 +15,9 @@ window.MathJax = {
 
 document.addEventListener("readystatechange", () => {
   if (document.readyState === "complete") {
-    document.querySelectorAll("pre>code.language-pseudocode").forEach((elem) => {
+    const blocks = document.querySelectorAll("pre>code.language-pseudocode");
+    if (!blocks.length) return;
+    blocks.forEach((elem) => {
       const texData = elem.textContent;
       const parent = elem.parentElement.parentElement;
       /* create pseudocode node */
@@ -29,5 +31,7 @@ document.addEventListener("readystatechange", () => {
       /* embed the visualization in the container */
       pseudocode.renderElement(pseudoCodeElement);
     });
+    // pseudocode.js converts math after initial typesetting; include its new glyphs.
+    window.MathJax.chtmlStylesheet?.();
   }
 });
